@@ -6,7 +6,6 @@ pipeline {
         docker {
           image 'node:8'
         }
-
       }
       steps {
         sh 'npm install'
@@ -23,6 +22,13 @@ pipeline {
             sh 'docker build -t nip/front-dev .'
             echo 'Docker dev image built'
           }
+          when {
+            branch "master"
+          }
+          steps {
+            sh 'docker build -t nip/front .'
+            echo 'Docker prod image built'
+          }
         }
         stage('Stop old container') {
           when {
@@ -32,7 +38,16 @@ pipeline {
             sh 'docker stop nip-front-dev || true'
             sh 'docker rm nip-front-dev || true'
             sh 'docker rmi nip/front-dev || true'
-            echo 'Old container stopped'
+            echo 'Dev container stopped'
+          }
+          when {
+            branch "master"
+          }
+          steps {
+            sh 'docker stop nip-front || true'
+            sh 'docker rm nip-front || true'
+            sh 'docker rmi nip/front || true'
+            echo 'Prod container stopped'
           }
         }
       }
@@ -44,6 +59,13 @@ pipeline {
       steps {
         sh 'docker run -p 4200:4200 -d --name nip-front-dev nip/front-dev'
         echo 'Dev container ready !'
+      }
+      when {
+        branch "master"
+      }
+      steps {
+        sh 'docker run -p 80:4200 -d --name nip-front nip/front'
+        echo 'Prod container ready !'
       }
     }
   }
