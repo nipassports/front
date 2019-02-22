@@ -56,7 +56,6 @@ export class PassDetailComponent implements OnInit {
   constructor( private pS : PassService) { }
 
   ngOnInit() {
-    this.getPass(1);
   }
 
   getPass(id: number ): void {
