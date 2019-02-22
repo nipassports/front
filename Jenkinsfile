@@ -13,9 +13,9 @@ pipeline {
         echo 'Everything is okay, we can continue !'
       }
     }
-    stage('Build image') {
+    stage('Build') {
       parallel {
-        stage('Build image') {
+        stage('Build dev') {
           when {
             branch "dev"
           }
@@ -24,7 +24,16 @@ pipeline {
             echo 'Docker dev image built'
           }
         }
-        stage('Stop old container') {
+        stage('Build prod') {
+          when {
+            branch "master"
+          }
+          steps {
+            sh 'docker build -t nip/front .'
+            echo 'Docker prod image built'
+          }
+        }
+        stage('Stop old dev') {
           when {
             branch "dev"
           }
@@ -32,18 +41,38 @@ pipeline {
             sh 'docker stop nip-front-dev || true'
             sh 'docker rm nip-front-dev || true'
             sh 'docker rmi nip/front-dev || true'
-            echo 'Old container stopped'
+            echo 'Old dev container stopped'
+          }
+        }
+        stage('Stop old prod') {
+          when {
+            branch "master"
+          }
+          steps {
+            sh 'docker stop nip-front || true'
+            sh 'docker rm nip-front || true'
+            sh 'docker rmi nip/front || true'
+            echo 'Old prod container stopped'
           }
         }
       }
     }
-    stage('Run new container') {
+    stage('Run dev container') {
       when {
         branch "dev"
       }
       steps {
         sh 'docker run -p 4200:4200 -d --name nip-front-dev nip/front-dev'
         echo 'Dev container ready !'
+      }
+    }
+    stage('Run prod container') {
+      when {
+        branch "master"
+      }
+      steps {
+        sh 'docker run -p 80:4200 -d --name nip-front nip/front'
+        echo 'Prod container ready !'
       }
     }
   }
