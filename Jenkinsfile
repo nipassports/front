@@ -23,8 +23,8 @@ pipeline {
         }
         stage('Stop old container') {
           steps {
-            sh 'docker stop nip-front-dev'
-            sh 'docker rm nip-front-dev'
+            sh 'docker stop nip-front-master'
+            sh 'docker rm nip-front-master'
             echo 'Old containers stopped'
           }
         }
@@ -32,7 +32,7 @@ pipeline {
     }
     stage('Run new container') {
       steps {
-        sh 'docker run -p 4200:4200 -d --name nip-front-dev nip-front'
+        sh 'docker run -p 80:4200 -d --name nip-front-master nip-front'
         echo 'Container ready !'
       }
     }
