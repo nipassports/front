@@ -6,6 +6,7 @@ pipeline {
         docker {
           image 'node:8'
         }
+
       }
       steps {
         sh 'npm install'
@@ -13,41 +14,35 @@ pipeline {
       }
     }
     stage('Build image') {
-      steps {
-        if(env.BRANCH_NAME == 'master') {
-          sh 'docker build -t nip/front .'
-          echo 'Docker prod image built'
+      parallel {
+        stage('Build image') {
+          when {
+            branch "dev"
+          }
+          steps {
+            sh 'docker build -t nip/front-dev .'
+            echo 'Docker dev image built'
+          }
         }
-        if(env.BRANCH_NAME == 'dev') {
-          sh 'docker build -t nip/front-dev .'
-          echo 'Docker dev image built'
-        }
-      }
-    }
-    stage('Stop old container') {
-      steps {
-        if(env.BRANCH_NAME == 'master') {
-          sh 'docker stop nip-front'
-          sh 'docker rm nip-front'
-          echo 'Production container stopped'
-        }
-        if(env.BRANCH_NAME == 'dev') {
-          sh 'docker stop nip-front-dev'
-          sh 'docker rm nip-front-dev'
-          echo 'Dev container stopped'
+        stage('Stop old container') {
+          when {
+            branch "dev"
+          }
+          steps {
+            sh 'docker stop nip-front-dev'
+            sh 'docker rm nip-front-dev'
+            echo 'Old container stopped'
+          }
         }
       }
     }
-    stage('Run container') {
+    stage('Run new container') {
+      when {
+        branch "dev"
+      }
       steps {
-        if(env.BRANCH_NAME == 'master'){
-          sh 'docker run -p 80:4200 -d --name nip-front nip/front'
-          echo 'Container ready (port 80) !'
-        }
-        if(env.BRANCH_NAME == 'dev'){
-          sh 'docker run -p 4200:4200 -d --name nip-front-dev nip/front-dev'
-          echo 'Container ready (port 4200) !'
-        }
+        sh 'docker run -p 4200:4200 -d --name nip-front-dev nip/front-dev'
+        echo 'Dev container ready !'
       }
     }
   }
