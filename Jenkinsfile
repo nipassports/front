@@ -29,9 +29,9 @@ pipeline {
             branch "dev"
           }
           steps {
-            sh 'docker stop nip-front-dev' 2> /dev/null
-            sh 'docker rm nip-front-dev' 2> /dev/null
-            sh 'docker rmi nip/front-dev' 2> /dev/null
+            sh 'docker stop nip-front-dev 2> /dev/null'
+            sh 'docker rm nip-front-dev 2> /dev/null'
+            sh 'docker rmi nip/front-dev 2> /dev/null'
             echo 'Old container stopped'
           }
         }
