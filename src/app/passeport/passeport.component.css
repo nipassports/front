@@ -1,0 +1,81 @@
+.navbar{
+
+    position: absolute;
+    width: 80%;
+    height: 9%;
+    left: 5%;
+    top: 0%;
+    margin-top: 10%;
+    margin-left: 5%;
+    background: #828282;
+    border-radius: 10px;
+    overflow: hidden;
+    
+}
+
+body {margin: 0;}
+
+div.inside{
+    position: absolute;
+    background-color: #F9F2F2;
+    width: 76.8%;
+    height: 60%;
+    top: 0%;
+    margin-top: 14.5%;
+    margin-left: 11.8%;
+    overflow: hidden;
+}
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-left: 1%;
+  padding-top: 1%;
+  overflow: hidden;
+  height: 100px;
+  float: left;
+  
+}
+
+ul.topnav li {
+    float: left;
+    width: 200px;
+    height: 100px;
+    border-right: 2px solid #828282;
+    overflow: hidden;
+    background-color: #C7C6C6;
+    border-radius: 10px;
+}
+
+ul.topnav li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  
+}
+
+ul.topnav li a:hover:not(.active) {
+    background-color: #F9F2F2;
+    height: 100px;
+}
+
+.selected {background-color: #F9F2F2;}
+
+ul.topnav li.right {
+    float: right;
+    margin-right: 2%;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  div.inside,
+  .navbar,
+  ul.topnav,
+  ul.topnav li,
+  ul.topnav li a ,
+  ul.topnav li.right, 
+  ul.topnav li {float: none;}
+}

@@ -1,0 +1,15 @@
+<div class="navbar">
+
+  <ul class="topnav" >
+    <li *ngFor="let vue of passBar"><a routerLink="{{vue}}" [class.selected]="vue === selectedVue" (click)="onClick(vue)">{{vue}}</a></li>
+  </ul>
+  
+  <ul class="topnav">
+    <li class="right"><a> Déclarer un problème </a></li>
+  </ul>
+
+</div>
+
+<div class="inside">
+  <router-outlet></router-outlet>
+</div>

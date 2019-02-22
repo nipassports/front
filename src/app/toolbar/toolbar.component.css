@@ -1,0 +1,30 @@
+
+.bg-custom{
+    background-color:rgb(13, 21, 70);
+    color:rgb(13, 21, 70);
+}
+
+.nip{
+    position: absolute;
+    left: 0%;
+    font-size:40px;
+    font-weight:bold;
+    color:lightgrey;
+}
+
+.acc{
+    position: relative;
+    left:78%
+}
+
+.pass{
+    position: absolute;
+    left:85.5%
+}
+.grey{
+    color: lightgrey;
+}
+.connect{
+    position: absolute;
+    right: 1%;
+}
