@@ -4,6 +4,8 @@
     color:rgb(13, 21, 70);
 }
 
+
+  
 .nip{
     position: absolute;
     left: 0%;
@@ -27,4 +29,8 @@
 .connect{
     position: absolute;
     right: 1%;
+}
+
+.navbar-brand{
+    left:20px;
 }

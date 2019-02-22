@@ -1,81 +1,48 @@
-.navbar{
 
-    position: absolute;
-    width: 80%;
-    height: 9%;
-    left: 5%;
-    top: 0%;
-    margin-top: 10%;
-    margin-left: 5%;
-    background: #828282;
-    border-radius: 10px;
-    overflow: hidden;
-    
-}
-
-body {margin: 0;}
-
-div.inside{
-    position: absolute;
-    background-color: #F9F2F2;
-    width: 76.8%;
-    height: 60%;
-    top: 0%;
-    margin-top: 14.5%;
-    margin-left: 11.8%;
-    overflow: hidden;
-}
-
-ul.topnav {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  margin-left: 1%;
-  padding-top: 1%;
+.row {
+  width: 100%;
+  margin-left: 3%;
+  margin-top: 12.5%;
+  background: #828282;
+  border-radius: 10px;
   overflow: hidden;
-  height: 100px;
-  float: left;
-  
 }
 
-ul.topnav li {
-    float: left;
-    width: 200px;
-    height: 100px;
-    border-right: 2px solid #828282;
-    overflow: hidden;
-    background-color: #C7C6C6;
-    border-radius: 10px;
-}
-
-ul.topnav li a {
+.selected {
   display: block;
-  color: black;
+  width: 100%;
+  height: 50px;
+  background-color: #F9F2F2;
+}
+
+.col {
+  width: 100%;
+}
+
+.Mon.Passeport{
+  font-size: 15px;
+}
+.col-lg-2 {
+
+  width: 100%;
+  height: 50px;
+  display: inline-block;
+  border-right: 2px solid #828282;
+  background-color: #C7C6C6;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-ul.topnav li a:hover:not(.active) {
-    background-color: #F9F2F2;
-    height: 100px;
+.mb {
+  margin-bottom: -12px;
 }
 
-.selected {background-color: #F9F2F2;}
-
-ul.topnav li.right {
-    float: right;
-    margin-right: 2%;
-    border-radius: 10px;
+.card-header {
+  width: 100%;
+  height: 100%;
 }
 
-@media screen and (max-width: 600px) {
-  div.inside,
-  .navbar,
-  ul.topnav,
-  ul.topnav li,
-  ul.topnav li a ,
-  ul.topnav li.right, 
-  ul.topnav li {float: none;}
+.col.a {
+  background-color: #F9F2F2;
 }

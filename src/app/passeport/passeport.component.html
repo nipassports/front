@@ -1,15 +1,38 @@
-<div class="navbar">
+<div class="container navbar">
 
-  <ul class="topnav" >
-    <li *ngFor="let vue of passBar"><a routerLink="{{vue}}" [class.selected]="vue === selectedVue" (click)="onClick(vue)">{{vue}}</a></li>
-  </ul>
-  
-  <ul class="topnav">
-    <li class="right"><a> Déclarer un problème </a></li>
-  </ul>
+  <!-- Marketing Icons Section -->
+  <div class="row">
 
-</div>
+    <div class="col">
 
-<div class="inside">
-  <router-outlet></router-outlet>
+      <div class="col-lg-2 mb mt-3 {{vue}}" *ngFor="let vue of passBar">
+
+        <p class="card-header" routerLink="{{vue}}" [class.selected]="vue === selectedVue" (click)="onClick(vue)">
+          {{vue}}
+        </p>
+        <!-- 
+      
+                <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+              </div>
+      
+              <div class="card-footer">
+                <a href="#" class="btn btn-primary">Learn More</a>
+              </div>
+      -->
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col a">
+      
+    </div>
+
+  </div>
+
 </div>

@@ -1,37 +1,49 @@
-
-<div class="marginbot">
 <!-- TITLE-->
     <div class="title">
         <h1 class="center">Accédez à votre passeport en ligne</h1>
     </div>
 
 <!-- Carousel-->
-    <div class="container-fluid">
-
-        <ngb-carousel >
-          <ng-template ngbSlide>
-            <img src="../assets/img/passeport.jpg" alt="Random first slide">
-            <div class="carousel-caption">
-              <h3>Nips</h3>
-              <p>Accédez à vos passeports en toute simplicité</p>
-            </div>
-          </ng-template>
-          <ng-template ngbSlide>
-            <img src="../assets/img/hyper.png" alt="Random second slide">
-            <div class="carousel-caption ">
-              <h3>Hyperledger</h3>
-              <p class="Deuxieme">Utilisation de la nouvelle technologie hyperledger d'IBM</p>
-            </div>
-          </ng-template>
-          <ng-template ngbSlide>
-            <img src="../assets/img/secu.jpg" alt="Random third slide">
-            <div class="carousel-caption">
-              <h3>Blockchain</h3>
-              <p>La technologie du bitcoin au service de la sécurité des données de vos passeports</p>
-            </div>
-          </ng-template>
-        </ngb-carousel>
+<header>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active" style="background-image: url('../assets/img/passport.jpg')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>First Slide</h3>
+          <p>This is a description for the first slide.</p>
         </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('../assets/img/hyper.png')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Second Slide</h3>
+          <p>This is a description for the second slide.</p>
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('../assets/img/blockchain.png')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Third Slide</h3>
+          <p>This is a description for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</header>
 
 <!--EQUIPE-->
     <div class="centered">
@@ -76,4 +88,3 @@
     <img src="../assets/img/angular.png" class="ang">
     <img src="../assets/img/hyperledger.png" class="hyper">
     <img src="../assets/img/nodejs.png" class="node">
-</div>
