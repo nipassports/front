@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
   {path: 'MonPasseport', component: PasseportComponent, 
         children : [
+	    { path: '', redirectTo: 'Mon Passeport', pathMatch: 'full' },
             {path: 'Mon Passeport', component: PassDetailComponent},
             {path: 'Visa', component: VisaComponent}, 
             {path: 'Autre', component: AutreComponent },
