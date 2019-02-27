@@ -5,9 +5,10 @@
 
     <div class="col">
 
-      <div class="col-lg-2 mb mt-3 {{vue}}" *ngFor="let vue of passBar">
+      <div class="col-lg-2 mb mt-3 {{vue}}" routerLink="{{vue}}" [class.selected]="vue === selectedVue"
+        (click)="onClick(vue)" *ngFor="let vue of passBar">
 
-        <p class="card-header" routerLink="{{vue}}" [class.selected]="vue === selectedVue" (click)="onClick(vue)">
+        <p class="card-header" [class.selected]="vue === selectedVue">
           {{vue}}
         </p>
         <!-- 
@@ -27,12 +28,12 @@
 
   </div>
 
+</div>
+
+<div class="container object">
   <div class="row">
 
-    <div class="col a">
-      
-    </div>
+    <router-outlet></router-outlet>
 
   </div>
-
 </div>

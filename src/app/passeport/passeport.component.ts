@@ -35,5 +35,6 @@ export class PasseportComponent implements OnInit {
 
   onClick(vue: string): void{
     this.selectedVue = vue;
+    console.log("selectedVue:" + this.selectedVue + ", vue:" + vue );
   }
 }
