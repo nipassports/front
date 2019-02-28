@@ -3,7 +3,7 @@
 div.col-auto.a {
     display: inline-block;
     margin-left: 30px;
-    margin-top: 3.5%;
+    margin-top: 10px;
 }
 
 div.col-auto.a div.row.a {
@@ -41,15 +41,17 @@ div.col-auto.a div.row.c {
 /*                                    Deuxième colonne                              */
 
 div.col-auto.b {
-    margin-top: 3.5%;
+    margin-top: 10px;
     display: inline-block;
     height: auto;
+    width: auto;
     margin-left: 30px;
 
 }
 
 div.col-auto.c {
-    margin-bottom: 13px;
+    display: inline-block;
+    margin-bottom: 22px;
     margin-right: 60px;
 }
 
