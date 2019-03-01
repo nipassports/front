@@ -4,7 +4,12 @@
     color:rgb(13, 21, 70);
 }
 
-
+.size{
+    margin-top:-15px;
+    margin-bottom: -14px;
+    height:50px;
+    width:50px;
+}
   
 .nip{
     position: absolute;

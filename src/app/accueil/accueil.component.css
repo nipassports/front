@@ -1,24 +1,31 @@
-.title{
+.font-title{
+    font-family: 'Advent Pro', sans-serif;
+    color:rgb(13, 21, 70);
+    font-size:48px;
+}
+.mt-max{
+    margin-top:75px; 
+}
+.my_border{
     border:2px solid rgb(13, 21, 70);
     border-radius: 4px;
-    position: absolute;
-    margin: auto;
-    right: 0;
-    left: 0;
-    width: 580px;
-    height: 60px;
-    margin-top:75px;
 }
-
 .center{
     font-family: 'Advent Pro', sans-serif;
     margin-left:22px;
     color:rgb(13, 21, 70);
 
 }
+.font-carousel{
+    font-family: 'Advent Pro', sans-serif;
+    color:rgb(13, 21, 70);
+}
+.bg-custom{
+    background-color :rgba(255,255,255,0.6);
+}
 .carousel-item {
-    margin-top:11%;
-    height: 65vh;
+    margin-top:2%;
+    height: 75vh;
     min-height: 300px;
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
@@ -26,17 +33,6 @@
     -o-background-size: cover;
     background-size: cover;
   }
-img{
-    width:1420px;
-    height: 600px;
-    position: relative;
-    margin-top: 150px;
-}
-
-Deuxieme{
-    color: black
-}
-
 .centered{
     border-radius: 4px;
     position: absolute;
@@ -57,8 +53,66 @@ Deuxieme{
     margin-top:50px;
     border:2px solid rgb(13, 21, 70);
 }
-
-
+.size{
+    background-size: cover;
+    width:65%;
+    height: 90%;
+    margin-top:26px;
+}
+.sizen{
+    background-size: cover;
+    width:66%;
+    height: 99%;
+    margin-top:26px;
+}
+.sizej{
+    background-size: cover;
+    width:58%;
+    height: 85%;
+    margin-top:29px;
+    margin-left:3px;
+}
+.sizeo{
+    background-size: cover;
+    width:58%;
+    height: 88%;
+    margin-top:30px;
+}
+.sizec{
+    background-size: cover;
+    width:58%;
+    height: 91%;
+    margin-top:30px;
+}
+.sizeju{
+    background-size: cover;
+    width:58%;
+    height: 90.3%;
+    margin-top:30px;
+}
+.sizeje{
+    background-size: cover;
+    width:58%;
+    height: 90.3%;
+    margin-top:30px;
+}
+.sizet{
+    background-size: cover;
+    width:58%;
+    height: 90.3%;
+    margin-top:30px;
+}
+.sizea{
+    background-size: cover;
+    width:58%;
+    height: 90.3%;
+    margin-top:30px;
+}
+.font-name{
+    font-family: 'Advent Pro', sans-serif;
+    color:rgb(13, 21, 70);
+    font-size: 20px;
+}
 .cercle {
   display: block;
   width: 200px;
@@ -68,172 +122,22 @@ Deuxieme{
   border-radius: 50%;
 }
 
-b.pos1{
-    position: relative;
-    right:600px;
-    top: 120px;
-}
-
-b.pos2{
-    position: relative;
-    right:200px;
-    bottom: 82px;
-}
-b.pos3{
-    position: relative;
-    left:200px;
-    bottom: 282px;
-}
-
-b.pos4{
-    position: relative;
-    left:600px;
-    bottom: 483px;
-}
-
-.margeOff{
-    margin-bottom:-500px;
-}
 
 .ang{
     width:150px;
     height:150px;
-    position: relative;
-    left:330px;
-    top:20px;
+
 }
 
 .hyper{
     width:400px;
     height:150px;
-    position: relative;
-    left:370px;
-    top:30px;
+
 }
 
 .node{
     width:200px;
     height:150px;
-    position: relative;
-    left:400px;
-    top:20px;
+
 }
 
-.jerome{
-    width:120px;
-    height:180px;
-    position:relative;
-    left:1262px;
-    bottom: 828px;
-}
-
-.nouille{
-    width:137px;
-    height:210px;
-    position: relative;
-    left:-66.7px;
-    bottom: 1115px;
-}
-
-.julien{
-    width:120px;
-    height:180px;
-    position:relative;
-    left:205px;
-    bottom: 1118px;
-}
-
-.clement{
-    width:120px;
-    height:180px;
-    position:relative;
-    left:884px;
-    bottom: 1117px;
-}
-
-.oussama{
-    width:118px;
-    height:180px;
-    position:relative;
-    left:365px;
-    bottom: 1120px;
-}
-
-.jean{
-    width:120px;
-    height:180px;
-    position:relative;
-    left:246px;
-    bottom: 817px;
-}
-
-.abde{
-    width:120px;
-    height:180px;
-    position:relative;
-    left:-274px;
-    bottom:  818px;  
-}
-.theo{
-    width:120px;
-    height:180px;
-    position:relative;
-    left:-794px;
-    bottom:  818px;  
-}
-.margeOff2{
-    margin-bottom:-800px;
-}
-
-.marginbot{
-    margin-bottom: -800px;
-}
-
-.name{
-    font-family: 'Advent Pro', sans-serif;
-    position: relative;
-    top:-640px;
-    left:420px;
-}
-.name1{
-    font-family: 'Advent Pro', sans-serif;
-    position: relative;
-    top:-940px;
-    left:-875px;
-}
-.name2{
-    font-family: 'Advent Pro', sans-serif;
-    position: relative;
-    top:-940px;
-    left:-875px;
-}
-.name3{
-    font-family: 'Advent Pro', sans-serif;
-    position: relative;
-    top:-940px;
-    left:-875px;
-}
-.name4{
-    font-family: 'Advent Pro', sans-serif;
-    position: relative;
-    top:-940px;
-    left:-875px;
-}
-.name5{
-    font-family: 'Advent Pro', sans-serif;
-    position: relative;
-    top:-832px;
-    left:200px;
-}
-.name6{
-    font-family: 'Advent Pro', sans-serif;
-    position: relative;
-    top:-832px;
-    left:420px;
-}
-.name7{
-    font-family: 'Advent Pro', sans-serif;
-    position: relative;
-    top:-832px;
-    left:714px;
-}
