@@ -7,6 +7,7 @@ import { ProblemComponent } from './problem/problem.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { PasseportComponent } from './passeport/passeport.component';
 import { ChooseComponent } from './choose/choose.component';
+import { AddPassComponent } from './add-pass/add-pass.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
             {path: 'problem', component: ProblemComponent},
         ]
   },
-
+  { path: 'AddPass', component: AddPassComponent },
   { path: 'Accueil', component: AccueilComponent },
   { path: 'choose', component: ChooseComponent }
 ];

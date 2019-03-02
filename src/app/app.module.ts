@@ -17,6 +17,7 @@ import { AutreComponent } from './autre/autre.component';
 import { ProblemComponent } from './problem/problem.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ChooseComponent } from './choose/choose.component';
+import { AddPassComponent } from './add-pass/add-pass.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ChooseComponent } from './choose/choose.component';
     AutreComponent,
     ProblemComponent,
     AccueilComponent,
-    ChooseComponent
+    ChooseComponent,
+    AddPassComponent
   ],
   imports: [
     HttpClientModule,

@@ -10,12 +10,37 @@ export class PassService {
 
   private passUrl = 'api/pass';
 
-  constructor(  
+  constructor(
     private http: HttpClient) { }
 
-  getPassInfo (id:number): Observable<Pass> {
-  
+  getPassInfo(id: number): Observable<Pass> {
+
     const url = `${this.passUrl}/${id}`;
     return this.http.get<Pass>(url)
-}
+  }
+
+  /** POST: add a new hero to the server */
+  addPass(pseudoPass: any): void {
+
+    console.log("add Pass:" + pseudoPass);
+    /*
+      var pass = {
+        type,
+        countrycode,
+        passnb,
+        name,
+        surname,
+        datebirth,
+        nationality,
+        placeofbirth,
+        tall,
+        autority,
+        placeofliving,
+        eyescolor,
+        dateexpiry,
+        daterelease,
+      }
+    */
+  }
+
 }
