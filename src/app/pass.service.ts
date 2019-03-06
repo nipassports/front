@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 })
 export class PassService {
 
-  private passUrl = 'http://localhost:3000/passports';
+  private passUrl = 'http://host.docker.internal:3000/passports';
 
   constructor(
     private http: HttpClient) { }
@@ -21,7 +21,7 @@ export class PassService {
 
   /** POST: add a new hero to the server */
   addPass(pseudoPass: any): Observable<any> {
-    return this.http.post('http://localhost:3000/passports',
+    return this.http.post('http://host.docker.internal:3000/passports',
     {
       type:pseudoPass[0],
       countryCode:pseudoPass[1],
