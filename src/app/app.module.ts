@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule }    from '@angular/common/http';
-
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { InMemoryDataService } from './in-memory-data.service';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +16,7 @@ import { ProblemComponent } from './problem/problem.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ChooseComponent } from './choose/choose.component';
 import { AddPassComponent } from './add-pass/add-pass.component';
+import { PassService } from './pass.service';
 
 @NgModule({
   declarations: [
@@ -34,14 +33,13 @@ import { AddPassComponent } from './add-pass/add-pass.component';
   ],
   imports: [
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
     NgbModule,
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PassService,
+              AppComponent
+             ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

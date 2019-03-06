@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { PassService } from '../pass.service';
+import { Pass } from '../pass';
+
+
+
 
 @Component({
   selector: 'app-add-pass',
   templateUrl: './add-pass.component.html',
   styleUrls: ['./add-pass.component.css']
 })
+
 export class AddPassComponent implements OnInit {
 
   passBar = [ 
@@ -29,7 +34,7 @@ export class AddPassComponent implements OnInit {
       eyesColor: 'Couleur des yeux',
       dateOfExpiry: "Date d'expiration",
       dateOfIssue: 'Date de délivrance',
-      passOrigin:"Origine du passeport",
+      passOrigin: "Origine du passeport",
       id: "ID",
       signature: "Signature du titulaire"
   };
@@ -48,19 +53,23 @@ export class AddPassComponent implements OnInit {
     autority: 'Autority',
     residence: 'Residence',
     eyesColor: 'Color of eyes',
-    dateOfExpiry: "Date of expiry",
+    dateOfExpiry: 'Date of expiry',
     dateOfIssue: 'Date of issue',
-    passOrigin:"Passeport origine",
+    passOrigin: "Passeport origine",
     id: "ID",
     signature: "Holder's signature"
   };
 
-  constructor( private pS : PassService) { }
+  constructor( private passservice: PassService) { }
 
   ngOnInit() {
   }
 
-  addPass(pseudoPass:any):void{
-    this.pS.addPass(pseudoPass);
+  addPass(pseudoPass: any): void{
+    console.log('hello world');
+    this.passservice.addPass(pseudoPass).subscribe(data =>{
+      console.log(data);
+    });
+    console.log('hello world 2');
   }
 }

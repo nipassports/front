@@ -325,7 +325,9 @@
 <div class="container-fluid">
   <div class="row valider">
 
-    <button class="valider" (click)="addPass([type.value,
+    <button class="valider" (click)="addPass(
+      [
+      type.value,
       countryCode.value,
       passNb.value,
       name.value,
@@ -341,7 +343,7 @@
       dateOfExpiry.value,
       dateOfIssue.value,
       passOrigin.value,
-      validity.value])">
+      Valide])">
       Valider
     </button>
 

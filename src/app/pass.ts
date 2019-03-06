@@ -1,16 +1,19 @@
 export class Pass {
     type: string;
     countrycode: string;
-    passnb: any;
+    passNb: any;
     name: string;
     surname: string;
-    datebirth: string;
+    dateOfBirth: string;
     nationality: string;
-    placeofbirth: string;
-    tall: number;
+    placeOfBirth: string;
+    height: number;
     autority: string;
-    placeofliving: string;
-    eyescolor: string;
-    dateexpiry: string;
-    daterelease: string;
+    residence: string;
+    eyesColor: string;
+    passOrigin:string;
+    sex:string;
+    validity: string;
+    dateOfExpiry: string;
+    dateOfIssue: string;
   }
