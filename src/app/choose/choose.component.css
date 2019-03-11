@@ -1,57 +1,17 @@
 
-b.cercle {
+.cercle {
   display: block;
   width: 320px;
   height: 250px;
-  margin: 25px auto;
   background-color: #C4C4C4;
   border-radius: 40px;
-}
-
-b.pos1{
-    position: relative;
-    right:400px;
-    top: 300px;
-}
-
-b.pos2{
-    position: relative;
-    right:00px;
-    top: 25px;
-}
-b.pos3{
-    position: relative;
-    left:400px;
-    bottom: 250px;
-}
-.centre1{
-    position: relative;
-    left:50px;
-    top:-160px;
-}
-.centre2{
-    position: relative;
-    left:19px;
-    top:-160px;
-}
-.centre3{
-    position: relative;
-    left:70px;
-    top:-160px;
 }
 .font{
     font-family:Roboto;
     font-size:20pt;
-    position: relative;
-    top:200px;
-
 }
-
 .police{
     width:150px;
     height: 150px;
-    position: relative;
-    bottom:175px;
-    left:83px;
 }
 
