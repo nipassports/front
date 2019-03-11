@@ -1,4 +1,4 @@
-export class Pass {
+/*export class Pass {
     type: string;
     countrycode: string;
     passNb: any;
@@ -16,4 +16,20 @@ export class Pass {
     validity: string;
     dateOfExpiry: string;
     dateOfIssue: string;
-  }
+}*/
+export class Pass {
+  type: string;
+  countrycode: string;
+  passnb: any;
+  name: string;
+  surname: string;
+  datebirth: string;
+  nationality: string;
+  placeofbirth: string;
+  tall: number;
+  autority: string;
+  placeofliving: string;
+  eyescolor: string;
+  dateexpiry: string;
+  daterelease: string;
+}

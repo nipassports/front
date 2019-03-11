@@ -12,7 +12,7 @@ import { AddPassComponent } from './add-pass/add-pass.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
-  {path: 'MonPasseport', component: PasseportComponent, 
+  {path: 'Mon Passeport', component: PasseportComponent, 
         children : [
             { path: '', redirectTo: 'Mon Passeport', pathMatch: 'full' },
             {path: 'Mon Passeport', component: PassDetailComponent},
@@ -21,9 +21,9 @@ const routes: Routes = [
             {path: 'problem', component: ProblemComponent},
         ]
   },
-  { path: 'AddPass', component: AddPassComponent },
+  { path: 'Ajout Passeport', component: AddPassComponent },
   { path: 'Accueil', component: AccueilComponent },
-  { path: 'choose', component: ChooseComponent }
+  { path: 'Se connecter', component: ChooseComponent }
 ];
 
 @NgModule({

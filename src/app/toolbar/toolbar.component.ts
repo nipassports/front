@@ -8,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
 
   constructor() { }
-
+  selectedvue:string;
+  ongletNav =[
+    'Accueil',
+    'Mon Passeport',
+    'Se connecter',
+    'Ajout Passeport'
+  ];
   ngOnInit() {
+    this.selectedvue='Accueil';
+  }
+  onClick(vue: string): void{
+    this.selectedvue = vue;
+    console.log("selectedVue:" + this.selectedvue + ", vue:" + vue );
   }
 
 }
