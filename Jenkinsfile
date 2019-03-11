@@ -62,7 +62,7 @@ pipeline {
         branch "dev"
       }
       steps {
-        sh 'docker run -p 4200:4200 -d --name nip-front-dev nip/front-dev'
+        sh 'docker run -p 4200:4200 -p 3000:3000 -d --name nip-front-dev nip/front-dev'
         echo 'Dev container ready !'
       }
     }
