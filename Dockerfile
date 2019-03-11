@@ -8,6 +8,7 @@ WORKDIR /app
 RUN npm install
 
 EXPOSE 4200
+EXPOSE 3000
 
 # Demarrage
 CMD ["npm", "start"]
