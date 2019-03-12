@@ -1,0 +1,40 @@
+.font-title{
+    font-family: 'Advent Pro', sans-serif;
+    color:#2F404D;
+    font-size:48px;
+}
+.item{
+    display: block;
+    width: 150px;
+    height: 175px;
+    background-color: #C4C4C4;
+}
+.photo{
+    display: block;
+    width: 100px;
+    height: 175px;
+    background-color:black;
+    color:white;
+}
+[class*="col-"], footer {
+    background-color: lightgreen;
+    border: 2px solid black;
+    border-radius: 6px;
+    line-height: 40px;
+    text-align: center;
+}
+.font-research{
+    font-family: 'Advent Pro', sans-serif;
+    color:#2F404D;
+    font-size:24px;
+}
+
+.my_border{
+    border:2px solid #2F404D;
+    border-radius: 4px;
+}
+
+marg-top{
+
+    margin-top:20%;
+}

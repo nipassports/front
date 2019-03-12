@@ -13,7 +13,8 @@ export class ToolbarComponent implements OnInit {
     'Accueil',
     'Mon Passeport',
     'Se connecter',
-    'Ajout Passeport'
+    'Ajout Passeport',
+    'Liste des Passeports'
   ];
   ngOnInit() {
     this.selectedvue='Accueil';

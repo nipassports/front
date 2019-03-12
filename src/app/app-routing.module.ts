@@ -8,6 +8,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { PasseportComponent } from './passeport/passeport.component';
 import { ChooseComponent } from './choose/choose.component';
 import { AddPassComponent } from './add-pass/add-pass.component';
+import { AuthcitoyenComponent } from './authcitoyen/authcitoyen.component';
+import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
 
 
 const routes: Routes = [
@@ -23,7 +25,9 @@ const routes: Routes = [
   },
   { path: 'Ajout Passeport', component: AddPassComponent },
   { path: 'Accueil', component: AccueilComponent },
-  { path: 'Se connecter', component: ChooseComponent }
+  { path: 'Se connecter', component: ChooseComponent },
+  {path: 'Citoyen',component: AuthcitoyenComponent},
+  {path: 'Liste des Passeports',component: EnsemblePassComponent}
 ];
 
 @NgModule({

@@ -1,36 +1,41 @@
-<div class="container-fluid">
-  <div class="d-flex justify-content-around flex-row  mt-5 mb-5">
+<div class="container-fluid ">
+  <div class="container mb-5 mt-custom justify-content-center">
+    <div class="row justify-content-around">
     
 
-      <div class="cercle d-flex justify-content-center">
-        <div class="d-flex flex-column justify-content-center">
-          <img src="../assets/img/team.png" class="police ml-4 ">
-          <div class="font mt-3">
-            Espace Particulier
+      <div class="cercle d-flex justify-content-center" routerLink="/Citoyen" (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave(0)" >
+          <div class="d-flex flex-column justify-content-center align-items-center" >
+            <img src="../assets/img/team.png" class="img img-fluid " *ngIf="entier!=1">
+            <img src="../assets/img/team-white.png" class="img img-fluid " *ngIf="entier==1">
+            <h1 class="font mt-3">
+                Espace Particulier
+            </h1>
           </div>
-        </div>
       </div>
 
 
-
-      <div class="cercle d-flex justify-content-center">
-        <div class="d-flex flex-column justify-content-center">
-          <img src="../assets/img/museum.png" class="police ">
-          <div class="font mt-3">
-            Espace gouvernementale
+      <div class="cercle d-flex justify-content-center"  (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave(0)">
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="../assets/img/museum.png" class="img img-fluid "  *ngIf="entier!=2"/>
+            <img src="../assets/img/museum-white.png" class="img img-fluid "  *ngIf="entier==2"/>
+            <h1 class="font mt-3">
+              Espace gouvernementale
+            </h1>
           </div>
-        </div>
       </div>
 
 
-      <div class="cercle d-flex justify-content-center">
-        <div class="d-flex flex-column justify-content-center">
-          <img src="../assets/img/police.png" class="police ">
-          <div class="font mt-3">
-          Espace douanier
+      <div class="cercle d-flex justify-content-center" (mouseenter)="mouseEnter(3)" (mouseleave)="mouseLeave(0)">
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="../assets/img/police.png" class="img img-fluid" *ngIf="entier!=3">
+            <img src="../assets/img/police-white.png" class="img img-fluid" *ngIf="entier==3">
+            <h1 class="font mt-3">
+            Espace douanier
+            </h1>
           </div>
-        </div>
       </div>
 
+
+    </div>
   </div>
 </div>

@@ -17,6 +17,9 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { ChooseComponent } from './choose/choose.component';
 import { AddPassComponent } from './add-pass/add-pass.component';
 import { PassService } from './pass.service';
+import { ChangeimgDirective } from './changeimg.directive';
+import { AuthcitoyenComponent } from './authcitoyen/authcitoyen.component';
+import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { PassService } from './pass.service';
     ProblemComponent,
     AccueilComponent,
     ChooseComponent,
-    AddPassComponent
+    AddPassComponent,
+    ChangeimgDirective,
+    AuthcitoyenComponent,
+    EnsemblePassComponent
   ],
   imports: [
     HttpClientModule,
