@@ -9,7 +9,7 @@ import { Pass } from '../pass';
 })
 export class PasseportComponent implements OnInit {
 
-  pass: Pass;
+  private pass: Pass;
 
   selectedVue: string;
 

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PassService } from '../pass.service';
 import { Pass } from '../pass';
+import { AuthInfo } from '../authInfo';
+import { AuthentificationService } from '../authentification.service';
+
 
 @Component({
   selector: 'app-pass-detail',
@@ -10,7 +13,7 @@ import { Pass } from '../pass';
 export class PassDetailComponent implements OnInit {
 
   pass: Pass;
-
+  private id: number;
   frInfo = {
       type: 'Type',
       countryCode: 'Code du pays',
@@ -45,7 +48,7 @@ export class PassDetailComponent implements OnInit {
     height: 'Height',
     autority: 'Autority',
     residence: 'Residence',
-    eyesColor: 'Color of eyes',
+    consoler: 'Color of eyes',
     dateOfExpiry: "Date of expiry",
     dateOfIssue: 'Date of issue',
     passOrigin:"Passeport origine",
@@ -53,10 +56,14 @@ export class PassDetailComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor( private pS : PassService) { }
+  constructor( private pS : PassService, private userInfo : AuthentificationService) { 
+  }
 
   ngOnInit() {
-    this.getPass(1);
+    
+    this.userInfo.getId().subscribe(id => this.id = id);
+    console.log("id: "+this.id);
+    this.getPass(this.id);
   }
 
   getPass(id: number ): void {

@@ -11,7 +11,7 @@ export class ToolbarComponent implements OnInit {
   selectedvue:string;
   ongletNav =[
     'Accueil',
-    'Mon Passeport',
+    //'Mon Passeport',
     'Se connecter',
     'Ajout Passeport',
     'Liste des Passeports'

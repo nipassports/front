@@ -21,6 +21,8 @@ import { ChangeimgDirective } from './changeimg.directive';
 import { AuthcitoyenComponent } from './authcitoyen/authcitoyen.component';
 import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,

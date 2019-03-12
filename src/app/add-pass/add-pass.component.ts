@@ -66,10 +66,10 @@ export class AddPassComponent implements OnInit {
   }
 
   addPass(pseudoPass: any): void{
-    console.log('hello world');
+    console.log('Ajout du passeport');
     this.passservice.addPass(pseudoPass).subscribe(data =>{
       console.log(data);
     });
-    console.log('hello world 2');
+    console.log("Fin d'ajout");
   }
 }
