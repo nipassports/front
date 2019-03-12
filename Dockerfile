@@ -4,6 +4,8 @@ FROM node:8
 COPY . /app
 WORKDIR /app
 
+ENTRYPOINT ["docker-entrypoint.sh"]
+
 # Installation des dependances
 RUN npm install
 

@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 })
 export class PassService {
 
-  private passUrl = 'http://localhost:3000/passports';
+  private passUrl = 'http://host.docker.internal:3000/passports';
 
   constructor(
     private http: HttpClient) { }
