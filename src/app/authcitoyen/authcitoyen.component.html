@@ -1,3 +1,67 @@
-<p>
-  authcitoyen works!
-</p>
+<div class="container-fluid">
+
+  <div class="row connect">
+
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4 custom rounded">
+      <form role="form">
+
+        <div class="row title justify-content-md-center mt-4 ml-auto mr-auto mb-2">
+
+          <div class="col"> </div>
+          <div class="col">
+            <p> Citoyen </p>
+          </div>
+          <div class="col"> </div>
+
+        </div>
+
+        <div class="row form-group ml-auto mr-auto mt-5">
+
+          <label for="identifiant">
+            Identifiant:
+          </label>
+          <input type="text" class="form-control" id="identifiant" required>
+
+        </div>
+
+        <div class="row password form-group ml-auto mr-auto">
+
+          <label for="password">
+            Mot de Passe:
+          </label>
+          <input type="password" class="form-control" id="password" required>
+          <p class="forget" routerLink="#"> Mot de passe oublié ?</p>
+        </div>
+
+        <div class="row checkbox ml-auto mr-auto mb-3">
+
+          <label>
+            <input type="checkbox" required> Accepter les conditions d'utilisation
+          </label>
+        </div>
+
+        <div class="row connect-button ml-auto mr-auto mb-4">
+
+          <div class="col"></div>
+          <div class="col"></div>
+
+          <div class="offset-md-4 col">
+
+            <button type="submit" class="btn btn-primary">
+              Connexion
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+    <div class="col-md-4">
+    </div>
+
+  </div>
+
+</div>

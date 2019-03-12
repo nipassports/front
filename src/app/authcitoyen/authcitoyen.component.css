@@ -1,0 +1,36 @@
+div.container-fluid {
+    width: 100%;
+    margin-top: 12.5%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+div.col-md-4.custom{
+    border: 2px solid #02004E;
+}
+
+div.row.title {
+    background: #02004E;
+    border-radius: 10px;
+    color : white;
+}
+
+div.row.title{
+    overflow: hidden;
+}
+
+div.row.title div.col p{
+    text-align: center;
+    font-size: 22px;
+    padding-top: 10px;
+}
+
+div.row.connect{
+    margin-bottom: 50px;
+}
+
+div.row.password p.forget{
+    color: #989FA4;
+    font-size: 10px;
+    cursor: pointer;
+}
