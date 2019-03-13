@@ -23,23 +23,23 @@ export class PassService {
   addPass(pseudoPass: any): Observable<any> {
     return this.http.post('http://192.168.0.100:3000/passports',
     {
-      type:pseudoPass[0],
-      countryCode:pseudoPass[1],
-      passNb:pseudoPass[2],
-      name:pseudoPass[3],
-      surname:pseudoPass[4],
-      dateOfBirth:pseudoPass[5],
-      nationality:pseudoPass[6],
-      sex:pseudoPass[7],
-      placeOfBirth:pseudoPass[8],
-      height:pseudoPass[9],
-      autority:pseudoPass[10],
-      residence:pseudoPass[11],
-      eyesColor:pseudoPass[12],
-      dateOfExpiry:pseudoPass[13],
-      dateOfIssue:pseudoPass[14],
-      passOrigin:pseudoPass[15],
-      validity:'Valide'
+      Type:pseudoPass[0],
+      CountryCode:pseudoPass[1],
+      PassNb:pseudoPass[2],
+      Name:pseudoPass[3],
+      Surname:pseudoPass[4],
+      DateOfBirth:pseudoPass[5],
+      Nationality:pseudoPass[6],
+      Sex:pseudoPass[7],
+      PlaceOfBirth:pseudoPass[8],
+      Height:pseudoPass[9],
+      Autority:pseudoPass[10],
+      Residence:pseudoPass[11],
+      EyesColor:pseudoPass[12],
+      DateOfExpiry:pseudoPass[13],
+      DateOfIssue:pseudoPass[14],
+      PassOrigin:pseudoPass[15],
+      Validity:'Valide'
     });
   }
 
