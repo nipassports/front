@@ -3,6 +3,7 @@ import { AuthentificationService } from '../authentification.service';
 import { Observable } from 'rxjs';
 import { AuthInfo } from '../authInfo';
 import {Router} from "@angular/router";
+import { GlobalToolbarInfo } from '../globalToolbarInfo';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class AuthcitoyenComponent implements OnInit {
   private info: AuthInfo;
   valid: boolean;
 
-  constructor(private auth: AuthentificationService, private router: Router) { }
+  constructor(private global: GlobalToolbarInfo,private auth: AuthentificationService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,6 +29,7 @@ export class AuthcitoyenComponent implements OnInit {
 
     console.log(this.valid);
     if(this.valid==true){
+      this.global.tbInfo = 'citoyen';
       this.router.navigate(['//Mon Passeport/Mon Passeport']);
     }
   }

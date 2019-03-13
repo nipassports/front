@@ -1,3 +1,5 @@
-<app-toolbar></app-toolbar>
+<ng-template [ngIf]="global.tbInfo === 'all'"><app-toolbar></app-toolbar></ng-template>
+<ng-template [ngIf]="global.tbInfo === 'citoyen'"><app-toolbar-citoyen ></app-toolbar-citoyen></ng-template>
+
 <router-outlet></router-outlet>
 <!--  <app-passeport></app-passeport>  -->

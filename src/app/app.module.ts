@@ -20,6 +20,8 @@ import { PassService } from './pass.service';
 import { ChangeimgDirective } from './changeimg.directive';
 import { AuthcitoyenComponent } from './authcitoyen/authcitoyen.component';
 import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
+import { GlobalToolbarInfo } from './globalToolbarInfo';
+import { ToolbarCitoyenComponent } from './toolbar-citoyen/toolbar-citoyen.component';
 
 
 
@@ -37,7 +39,8 @@ import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
     AddPassComponent,
     ChangeimgDirective,
     AuthcitoyenComponent,
-    EnsemblePassComponent
+    EnsemblePassComponent,
+    ToolbarCitoyenComponent
   ],
   imports: [
     HttpClientModule,
@@ -46,6 +49,7 @@ import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
     AppRoutingModule
   ],
   providers: [PassService,
+              GlobalToolbarInfo,
               AppComponent
              ],
   bootstrap: [AppComponent]
