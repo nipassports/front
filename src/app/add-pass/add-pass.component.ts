@@ -67,9 +67,8 @@ export class AddPassComponent implements OnInit {
 
   addPass(pseudoPass: any): void{
     console.log('Ajout du passeport');
-    this.passservice.addPass(pseudoPass).subscribe(data =>{
-      console.log(data);
-    });
+    this.passservice.addPass(pseudoPass).map((res:Response)=> console.log(res.json())
+    );
     console.log("Fin d'ajout");
   }
 }

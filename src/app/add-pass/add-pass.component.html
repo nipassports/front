@@ -179,7 +179,7 @@
                 <span class="titre">{{frInfo.height}}</span>
                 <span class="trad">/{{enInfo.height}}:</span>
                 <br />
-                <input #height type="number" max="3" step="0.01" required>
+                <input #height  max="3" step="0.01" required>
               </p>
             </label>
           </div>
@@ -206,7 +206,7 @@
                 <span class="titre">{{frInfo.dateOfBirth}}</span>
                 <span class="trad">/{{enInfo.dateOfBirth}}:</span>
                 <br />
-                <input #dateOfBirth type="date" required>
+                <input #dateOfBirth  required>
               </p>
             </label>
           </div>
@@ -274,7 +274,7 @@
                 <span class="titre">{{frInfo.dateOfIssue}}</span>
                 <span class="trad">/{{enInfo.dateOfIssue}}:</span>
                 <br />
-                <input #dateOfIssue type="date" required>
+                <input #dateOfIssue  required>
               </p>
             </label>
           </div>
@@ -285,7 +285,7 @@
                 <span class="titre">{{frInfo.dateOfExpiry}}</span>
                 <span class="trad">/{{enInfo.dateOfExpiry}}:</span>
                 <br />
-                <input #dateOfExpiry type="date" required>
+                <input #dateOfExpiry  required>
               </p>
             </label>
           </div>
@@ -311,7 +311,7 @@
                 <span class="titre">{{frInfo.nationality}}</span>
                 <span class="trad">/{{enInfo.nationality}}:</span>
                 <br />
-                <input #nationality type="text" required>
+                <input #nationality  required>
               </p>
             </label>
           </div>
@@ -326,7 +326,7 @@
   <div class="container-fluid">
     <div class="row valider">
 
-      <button class="valider" type="submit" (click)="addPass(
+      <button class="valider" (click)="addPass(
       [
       type.value,
       countryCode.value,
