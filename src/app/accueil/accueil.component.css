@@ -1,24 +1,24 @@
 .font-title{
     font-family: 'Advent Pro', sans-serif;
-    color:rgb(13, 21, 70);
+    color:#2F404D;
     font-size:48px;
 }
 .mt-max{
     margin-top:75px; 
 }
 .my_border{
-    border:2px solid rgb(13, 21, 70);
+    border:2px solid #2F404D;
     border-radius: 4px;
 }
 .center{
     font-family: 'Advent Pro', sans-serif;
     margin-left:22px;
-    color:rgb(13, 21, 70);
+    color:#2F404D;
 
 }
 .font-carousel{
     font-family: 'Advent Pro', sans-serif;
-    color:rgb(13, 21, 70);
+    color:#2F404D;
 }
 .bg-custom{
     background-color :rgba(255,255,255,0.6);
@@ -41,7 +41,7 @@
     left: 0;
     width: 240px;
     margin-top:25px;
-    border:2px solid rgb(13, 21, 70);
+    border:2px solid #2F404D;
 }
 .centered2{
     border-radius: 4px;
@@ -51,7 +51,7 @@
     left: 0;
     width: 240px;
     margin-top:50px;
-    border:2px solid rgb(13, 21, 70);
+    border:2px solid #2F404D;
 }
 .size{
     background-size: cover;
@@ -110,7 +110,7 @@
 }
 .font-name{
     font-family: 'Advent Pro', sans-serif;
-    color:rgb(13, 21, 70);
+    color:#2F404D;
     font-size: 20px;
 }
 .cercle {
