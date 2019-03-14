@@ -16,4 +16,5 @@ export class Pass {
     validity: string;
     dateOfExpiry: string;
     dateOfIssue: string;
+
 }

@@ -6,17 +6,26 @@ div.container-fluid {
 }
 
 div.col-md-4.custom{
-    border: 2px solid #02004E;
+    border: 2px solid #2F404D;;
 }
 
 div.row.title {
-    background: #02004E;
+    background: #2F404D;
     border-radius: 10px;
     color : white;
 }
 
 div.row.title{
     overflow: hidden;
+}
+
+.btn-custom{
+    background: #2F404D;
+    color : white;
+}
+.btn-custom:hover{
+    background: #5DAC99;
+    color : white;
 }
 
 div.row.title div.col p{

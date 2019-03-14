@@ -45,7 +45,25 @@
 .font_item{
     font-family: 'Roboto', sans-serif;
     color:#2F404D;
+    font-size: 12px;
+    font-weight: bold;
 
+}
+.mb-custom{
+    margin-bottom: 30%
+}
+.font_info{
+    font-family: 'Roboto', sans-serif;
+    color:    #2F404D;
+    font-size: 12px;
+    font-weight: normal;
+
+}
+.font_validity{
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    font-size: 15px;
+    background-color: #5DAC99;
 }
 .bouton:hover{
     border-left:2px solid #2F404D;

@@ -108,10 +108,11 @@
                 <span class="titre">{{frInfo.type}}</span>
                 <span class="trad">/{{enInfo.type}}:</span>
                 <br />
-                <select #type required>
-                  <option value="P">P</option>
-                  <option value="...">...</option>
-                </select>
+
+                <select #typ type="text" required>
+                    <option value="P">P</option>
+                    <option value="F">F</option>
+                  </select>
               </p>
             </label>
 
@@ -127,7 +128,7 @@
                 <span class="titre">{{frInfo.surname}}</span>
                 <span class="trad">/{{enInfo.surname}}:</span>
                 <br />
-                <input #surname required>
+                <input #surname type="text" required>
               </p>
             </label>
           </div>
@@ -138,7 +139,7 @@
                 <span class="titre">{{frInfo.sex}}</span>
                 <span class="trad">/{{enInfo.sex}}:</span>
                 <br />
-                <select #sex required>
+                <select #sex type="text" required>
                   <option value="M">M</option>
                   <option value="F">F</option>
                 </select>
@@ -157,7 +158,7 @@
                 <span class="titre">{{frInfo.countryCode}}</span>
                 <span class="trad">/{{enInfo.countryCode}}:</span>
                 <br />
-                <input #countryCode required>
+                <input #countryCode type="text" required>
               </p>
             </label>
           </div>
@@ -168,7 +169,7 @@
                 <span class="titre">{{frInfo.name}}</span>
                 <span class="trad">/{{enInfo.name}}:</span>
                 <br />
-                <input #name required>
+                <input #name type="text" required>
               </p>
             </label>
           </div>
@@ -179,7 +180,7 @@
                 <span class="titre">{{frInfo.height}}</span>
                 <span class="trad">/{{enInfo.height}}:</span>
                 <br />
-                <input #height   required>
+                <input #height type="text"  required>
               </p>
             </label>
           </div>
@@ -195,7 +196,7 @@
                 <span class="titre">{{frInfo.passNb}}</span>
                 <span class="trad">/{{enInfo.passNb}}:</span>
                 <br />
-                <input #passNb required>
+                <input #passNb type="text" required>
               </p>
             </label>
           </div>
@@ -206,7 +207,7 @@
                 <span class="titre">{{frInfo.dateOfBirth}}</span>
                 <span class="trad">/{{enInfo.dateOfBirth}}:</span>
                 <br />
-                <input #dateOfBirth  required>
+                <input #dateOfBirth type="text" required>
               </p>
             </label>
           </div>
@@ -217,7 +218,7 @@
                 <span class="titre">{{frInfo.eyesColor}}</span>
                 <span class="trad">/{{enInfo.eyesColor}}:</span>
                 <br />
-                <input #eyesColor required>
+                <input #eyesColor type="text" required>
               </p>
             </label>
           </div>
@@ -235,7 +236,7 @@
                 <span class="titre">{{frInfo.placeOfBirth}}</span>
                 <span class="trad">/{{enInfo.placeOfBirth}}:</span>
                 <br />
-                <input class="GD" #placeOfBirth required>
+                <input class="GD" #placeOfBirth type="text" required>
               </p>
             </label>
           </div>
@@ -246,7 +247,7 @@
                 <span class="titre">{{frInfo.residence}}</span>
                 <span class="trad">/{{enInfo.residence}}:</span>
                 <br />
-                <input class="GD" #residence required>
+                <input class="GD" #residence type="text" required>
               </p>
             </label>
           </div>
@@ -263,7 +264,7 @@
                 <span class="titre">{{frInfo.autority}}</span>
                 <span class="trad">/{{enInfo.autority}}:</span>
                 <br />
-                <input #autority class="GD" required>
+                <input #autority class="GD" type="text" required>
               </p>
             </label>
           </div>
@@ -274,7 +275,7 @@
                 <span class="titre">{{frInfo.dateOfIssue}}</span>
                 <span class="trad">/{{enInfo.dateOfIssue}}:</span>
                 <br />
-                <input #dateOfIssue  required>
+                <input #dateOfIssue  type="text" required>
               </p>
             </label>
           </div>
@@ -285,7 +286,7 @@
                 <span class="titre">{{frInfo.dateOfExpiry}}</span>
                 <span class="trad">/{{enInfo.dateOfExpiry}}:</span>
                 <br />
-                <input #dateOfExpiry  required>
+                <input #dateOfExpiry type="text" required>
               </p>
             </label>
           </div>
@@ -311,7 +312,7 @@
                 <span class="titre">{{frInfo.nationality}}</span>
                 <span class="trad">/{{enInfo.nationality}}:</span>
                 <br />
-                <input #nationality  required>
+                <input #nationality  type="text" required>
               </p>
             </label>
           </div>
@@ -328,7 +329,8 @@
 
       <button class="valider" (click)="addPass(
       [
-      type.value,
+
+      typ.value,
       countryCode.value,
       passNb.value,
       name.value,
