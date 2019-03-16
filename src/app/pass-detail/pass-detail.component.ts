@@ -13,7 +13,7 @@ import { AuthentificationService } from '../authentification.service';
 export class PassDetailComponent implements OnInit {
 
   pass: Pass;
-  private id: number;
+  private passNb: string;
   frInfo = {
       type: 'Type',
       countryCode: 'Code du pays',
@@ -60,15 +60,14 @@ export class PassDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    this.userInfo.getId().subscribe(id => this.id = id);
-    console.log("id: "+this.id);
-    this.getPass(this.id);
+    this.passNb = this.userInfo.getPassNb();
+    console.log("passNb: "+this.passNb);
+    this.getPass(this.passNb);
   }
 
-  getPass(id: number ): void {
-    this.pS.getPassInfo(id)
+  getPass(passNb: string ): void {
+    this.pS.getPassInfo(passNb)
     .subscribe( pass => this.pass = pass);
-    console.log(this.pass);
+    console.log("pass-detail: "+ this.pass);
   }
 }

@@ -26,8 +26,8 @@ const routes: Routes = [
   { path: 'Ajout Passeport', component: AddPassComponent },
   { path: 'Accueil', component: AccueilComponent },
   { path: 'Se connecter', component: ChooseComponent },
-  {path: 'Citoyen',component: AuthcitoyenComponent},
-  {path: 'Liste des Passeports',component: EnsemblePassComponent}
+  { path: 'Citoyen',component: AuthcitoyenComponent},
+  { path: 'Liste des Passeports',component: EnsemblePassComponent}
 ];
 
 @NgModule({

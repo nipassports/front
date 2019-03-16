@@ -14,9 +14,9 @@ export class PassService {
   constructor(
     private http: HttpClient) { }
 
-  getPassInfo(id: number): Observable<Pass> {
+  getPassInfo(passNb: string): Observable<Pass> {
 
-    const url = `${this.passUrl}/${id}`;
+    const url = `${this.passUrl}/${passNb}`;
     return this.http.get<Pass>(url)
   }
 

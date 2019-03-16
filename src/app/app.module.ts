@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { InMemoryDataService } from './in-memory-data.service';
-
-
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule }    from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
+
+
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { PasseportComponent } from './passeport/passeport.component';
@@ -22,6 +24,8 @@ import { AuthcitoyenComponent } from './authcitoyen/authcitoyen.component';
 import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
 import { GlobalToolbarInfo } from './globalToolbarInfo';
 import { ToolbarCitoyenComponent } from './toolbar-citoyen/toolbar-citoyen.component';
+import { AuthentificationService } from './authentification.service';
+import { AuthInfo } from './authInfo';
 
 
 
@@ -44,12 +48,16 @@ import { ToolbarCitoyenComponent } from './toolbar-citoyen/toolbar-citoyen.compo
   ],
   imports: [
     HttpClientModule,
+    ReactiveFormsModule,
     NgbModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule
   ],
   providers: [PassService,
               GlobalToolbarInfo,
+              AuthInfo,
+              AuthentificationService,
               AppComponent
              ],
   bootstrap: [AppComponent]

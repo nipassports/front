@@ -43,3 +43,10 @@ div.row.password p.forget{
     font-size: 10px;
     cursor: pointer;
 }
+
+input.checkbox{
+    width: 5px;
+    height: 20px;
+    margin-right: 5px;
+    margin-top: 2px;
+}
