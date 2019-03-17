@@ -4,7 +4,7 @@ div.container-fluid.navbar div.row {
     width: 95%;
     margin-top: 90px;
     margin-left: 60px;
-    background: #828282;
+    background: #2F404D;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -27,7 +27,7 @@ div.container-fluid.navbar div.row {
   
   
 .card-header {
-    background-color: #828282;
+    background-color: #2F404D;
     text-align: center;
     font-size: 22px;
     color : white;
@@ -132,7 +132,7 @@ div.col-lg-4.nationality{
 
 button.valider {
     cursor: pointer;
-    background-color: #02004E;
+    background-color: #2F404D;
     height: 50px;
     width : 300px;
     color : white;

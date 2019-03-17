@@ -14,10 +14,10 @@ export class PassService {
   constructor(
     private http: HttpClient) { }
 
-  getPassInfo(passNb: string): Observable<Pass> {
+  getPassInfo(passNb: string): Observable<Pass_json> {
 
     const url = `${this.passUrl}/${passNb}`;
-    return this.http.get<Pass>(url)
+    return this.http.get<Pass_json>(url)
   }
 
   getAllPass() :Observable<Pass_json[]>{

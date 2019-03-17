@@ -13,6 +13,7 @@ import { AuthentificationService } from '../authentification.service';
 export class PassDetailComponent implements OnInit {
 
   pass: Pass;
+  id: string;
   private passNb: string;
   frInfo = {
       type: 'Type',
@@ -67,7 +68,8 @@ export class PassDetailComponent implements OnInit {
 
   getPass(passNb: string ): void {
     this.pS.getPassInfo(passNb)
-    .subscribe( pass => this.pass = pass);
+    .subscribe( 
+      pass => {this.pass = pass.infos; this.id = pass.id});
     console.log("pass-detail: "+ this.pass);
   }
 }
