@@ -3,15 +3,14 @@ import { PassService } from '../pass.service';
 import { Pass } from '../pass';
 import { AuthInfo } from '../authInfo';
 import { AuthentificationService } from '../authentification.service';
-
-
+import { Routes, RouterModule,ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-pass-detail',
-  templateUrl: './pass-detail.component.html',
-  styleUrls: ['./pass-detail.component.css']
+  selector: 'app-pass-infos',
+  templateUrl: './pass-infos.component.html',
+  styleUrls: ['./pass-infos.component.css']
 })
-export class PassDetailComponent implements OnInit {
+export class PassInfosComponent implements OnInit {
 
   pass: Pass;
   id: string;
@@ -58,19 +57,24 @@ export class PassDetailComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor( private pS : PassService, private userInfo : AuthentificationService) { 
+  constructor( private pS : PassService,private route:ActivatedRoute) { 
   }
 
   ngOnInit() {
-    this.passNb = this.userInfo.getPassNb();
+    
+    this.passNb = this.pS.getPassNumb();
     console.log("passNb: "+this.passNb);
     this.getPass(this.passNb);
   }
 
   getPass(passNb: string ): void {
+
     this.pS.getPassInfo(passNb)
     .subscribe( 
       pass => {this.pass = pass.infos; this.id = pass.id});
-    console.log("pass-detail: "+ this.pass);
+
+    console.log("pass-detail:"+ this.pass);
+
   }
+
 }

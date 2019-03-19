@@ -10,8 +10,8 @@ import { ChooseComponent } from './choose/choose.component';
 import { AddPassComponent } from './add-pass/add-pass.component';
 import { AuthcitoyenComponent } from './authcitoyen/authcitoyen.component';
 import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
-
-
+import { AffichagePassComponent } from './affichage-pass/affichage-pass.component';
+import { PassInfosComponent } from './pass-infos/pass-infos.component';
 const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
   {path: 'Mon Passeport', component: PasseportComponent, 
@@ -23,6 +23,16 @@ const routes: Routes = [
             {path: 'problem', component: ProblemComponent},
         ]
   },
+  
+  {path: 'Passeports/:passNb', component: AffichagePassComponent, 
+  children : [
+      { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
+      {path: 'Passeport', component: PassInfosComponent},
+      {path: 'Visa', component: VisaComponent}, 
+      {path: 'Autre', component: AutreComponent },
+      {path: 'problem', component: ProblemComponent},
+  ]
+},
   { path: 'Ajout Passeport', component: AddPassComponent },
   { path: 'Accueil', component: AccueilComponent },
   { path: 'Se connecter', component: ChooseComponent },

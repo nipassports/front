@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Pass } from './pass';
 import { Pass_json } from './pass_json';
 import { Observable, of } from 'rxjs';
+import { first, map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,16 @@ import { Observable, of } from 'rxjs';
 export class PassService {
 
   private passUrl = 'http://192.168.0.100:3000/passports';
+  private passNb:string;
 
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
+  setPassNumb(passNb:string){
+    this.passNb=passNb;
+  }
+  getPassNumb(){
+    return this.passNb;
+  }
   getPassInfo(passNb: string): Observable<Pass_json> {
 
     const url = `${this.passUrl}/${passNb}`;
@@ -48,5 +56,6 @@ export class PassService {
       validity:"Valide"
     });
   }
+
 
 }

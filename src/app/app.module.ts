@@ -26,6 +26,8 @@ import { GlobalToolbarInfo } from './globalToolbarInfo';
 import { ToolbarCitoyenComponent } from './toolbar-citoyen/toolbar-citoyen.component';
 import { AuthentificationService } from './authentification.service';
 import { AuthInfo } from './authInfo';
+import { AffichagePassComponent } from './affichage-pass/affichage-pass.component';
+import { PassInfosComponent } from './pass-infos/pass-infos.component';
 
 
 
@@ -44,7 +46,9 @@ import { AuthInfo } from './authInfo';
     ChangeimgDirective,
     AuthcitoyenComponent,
     EnsemblePassComponent,
-    ToolbarCitoyenComponent
+    ToolbarCitoyenComponent,
+    AffichagePassComponent,
+    PassInfosComponent
   ],
   imports: [
     HttpClientModule,
