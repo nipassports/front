@@ -47,17 +47,20 @@ export class AuthcitoyenComponent implements OnInit {
     this.auth.verify(this.f.identifiant.value, this.f.password.value)
     .pipe(first())
     .subscribe(
-      (data: boolean) => {
-        
-        console.log("connect: " + data)
+      ( data ) => {
+        console.log('coucou');
 
-        if (data == true) {
+        //console.log('connect: ' + data.message);
+
+        if (data.message === 'Auth successful') {
           this.auth.setPassNb(this.f.identifiant.value);
           this.global.tbInfo = 'citoyen';
+          this.global.token  = data.token;
+          this.global.passNb  = this.f.identifiant.value;
           this.router.navigate(['/Mon Passeport/Mon Passeport']);
         }
 
-        if (data==false){
+        if (data.message==='Auth failed'){
           this.error = "Le mot de passe ou l'identifiant est incorrect";
         }
 

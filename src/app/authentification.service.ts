@@ -10,6 +10,7 @@ import { AuthInfo } from './authInfo';
 })
 export class AuthentificationService {
   private authUrl = 'http://192.168.0.100:3000/passports';
+  private passNb;
 
   constructor(private http: HttpClient, private info: AuthInfo) { }
 
@@ -20,11 +21,12 @@ export class AuthentificationService {
     this.info.passNb = identifiant;
     console.log("identification :" + identifiant + "," + passeword);
 
-    return this.http.post<boolean>(url, { passNb:identifiant, password:passeword })
+    return this.http.post<any>(url, { passNb:identifiant, password:passeword })
       .pipe(map(valid => {
         // login successful if there's a user in the response
         this.info.valid = valid;
-        console.log('Connexion terminé ! validité des info: ' + valid);
+        console.log(valid);
+        console.log('Connexion terminé ! validité des info: ' + valid.message);
 
         return valid;
       }));
@@ -40,14 +42,14 @@ export class AuthentificationService {
 
   logout() {
     this.info.valid = false;
-    this.info.passNb = "";
+    this.info.passNb = '';
   }
 
   getPassNb(): string {
-    return this.info.passNb;
+    return this.passNb;
   }
 
   setPassNb(passNb: string) {
-    this.info.passNb = passNb;
+    this.passNb = passNb;
   }
 }

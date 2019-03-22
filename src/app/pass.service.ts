@@ -4,6 +4,8 @@ import { Pass } from './pass';
 import { Pass_json } from './pass_json';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
+import { AuthInfo } from './authInfo';
+import { GlobalToolbarInfo } from './globalToolbarInfo';
 
 
 @Injectable({
@@ -14,7 +16,7 @@ export class PassService {
   private passUrl = 'http://192.168.0.100:3000/passports';
   private passNb:string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private info: AuthInfo, private global: GlobalToolbarInfo) { }
 
   setPassNumb(passNb:string){
     this.passNb=passNb;
@@ -23,9 +25,13 @@ export class PassService {
     return this.passNb;
   }
   getPassInfo(passNb: string): Observable<Pass_json> {
-
-    const url = `${this.passUrl}/${passNb}`;
-    return this.http.get<Pass_json>(url)
+    
+    const headers = new HttpHeaders({'Content-Type'  : 'application/json',
+                                 Authorization : 'bearer ' + this.global.token
+                                });
+    const options = { headers: headers };
+    const url = `${this.passUrl}/${this.info.passNb}`;
+    return this.http.get<Pass_json>(url , options);
   }
 
   getAllPass() :Observable<Pass_json[]>{
@@ -35,7 +41,7 @@ export class PassService {
   /** POST: add a new hero to the server */
   addPass(pseudoPass: any): Observable<string> {
     console.log('args',pseudoPass[0],pseudoPass[1],pseudoPass[2],pseudoPass[3],pseudoPass[4],pseudoPass[5],pseudoPass[6],pseudoPass[7],pseudoPass[8],pseudoPass[9],pseudoPass[10],pseudoPass[11],pseudoPass[12],pseudoPass[13],pseudoPass[14],pseudoPass[15]);
-    return this.http.post<string>('http://192.168.0.100:3000/passports',
+    return this.http.post<string>(this.passUrl,
     {
       type:pseudoPass[0],
       countryCode:pseudoPass[1],

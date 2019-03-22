@@ -3,6 +3,7 @@ import { PassService } from '../pass.service';
 import { Pass } from '../pass';
 import { AuthInfo } from '../authInfo';
 import { AuthentificationService } from '../authentification.service';
+import { GlobalToolbarInfo } from '../globalToolbarInfo';
 
 
 
@@ -58,13 +59,13 @@ export class PassDetailComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor( private pS : PassService, private userInfo : AuthentificationService) { 
+  constructor( private global: GlobalToolbarInfo ,private pS : PassService, private userInfo : AuthentificationService) { 
   }
 
   ngOnInit() {
     this.passNb = this.userInfo.getPassNb();
-    console.log("passNb: "+this.passNb);
-    this.getPass(this.passNb);
+    console.log("passNb: "+this.global.passNb);
+    this.getPass(this.global.passNb);
   }
 
   getPass(passNb: string ): void {
