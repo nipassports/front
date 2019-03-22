@@ -1,16 +1,15 @@
 .cercle {
   display: block;
-  width: 320px;
-  height: 250px;
+    
   background-color: #C4C4C4;
   border-radius: 40px;
 }
 .font{
     font-family:Roboto;
-    font-size:3.5vh;
+    font-size:18px;
 }
 .img{
-    height: 20vh;
+    height: 175px;
 }
 
 .cercle:hover{
