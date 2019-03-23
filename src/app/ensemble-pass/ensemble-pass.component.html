@@ -12,7 +12,7 @@
 
   <div class="container mt-5 mt-custom ">
 
-      <div class="row justify-content-around">
+      <div class="row justify-content-start">
 
           <div class="col-sm-6 col-lg-4 col-xl-3 mb-5 " *ngFor="let pass of Allpass">
               <div class="row  pr-3 ">
@@ -43,7 +43,7 @@
                   </div>
               </div>
               <div class="row pr-3 ">
-                  <div class="col-sm-12 bouton d-flex justify-content-center align-items-center pb-1 pt-1" routerLink='/Passeports/{{pass.infos.passNb}}'>Consulter</div>
+                  <div class="col-sm-12 bouton d-flex justify-content-center align-items-center pb-1 pt-1 btn" routerLink='/Passeports/{{pass.infos.passNb}}'>Consulter</div>
               </div>
 
           </div>

@@ -3,6 +3,7 @@
     color:#2F404D;
     font-size:48px;
 }
+
 .mt-max{
     margin-top:75px; 
 }
@@ -124,20 +125,23 @@
 
 
 .ang{
-    width:150px;
     height:150px;
 
 }
 
 .hyper{
-    width:400px;
     height:150px;
 
 }
 
 .node{
-    width:200px;
     height:150px;
 
 }
 
+.pl-custom{
+    padding-left: 15%;
+}
+.pr-custom{
+    padding-right: 15%;
+}

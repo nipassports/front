@@ -74,10 +74,11 @@
     background-color:#2F404D
 }
 .bouton{
-    border-left:2px solid #2F404D;
+    border-left:2px solid #2F404D ;
     border-right:2px solid #2F404D;
     border-bottom:2px solid #2F404D;
     font-family: 'Roboto', sans-serif;
+    border-radius: 0px;
     color:#2F404D;
 
 }
