@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PassService } from '../pass.service';
 import { Pass } from '../pass';
-import { AuthInfo } from '../authInfo';
 import { AuthentificationService } from '../authentification.service';
 import { GlobalToolbarInfo } from '../globalToolbarInfo';
 
@@ -63,9 +62,10 @@ export class PassDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.global.tbInfo = 'citoyen';
     this.passNb = this.userInfo.getPassNb();
-    console.log("passNb: "+this.global.passNb);
-    this.getPass(this.global.passNb);
+    console.log("lol!!!! passNb: "+this.passNb);
+    this.getPass(this.passNb);
   }
 
   getPass(passNb: string ): void {

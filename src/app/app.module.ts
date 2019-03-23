@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-
+import { StorageServiceModule} from 'angular-webstorage-service';
 
 
 import { AppComponent } from './app.component';
@@ -25,7 +25,6 @@ import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
 import { GlobalToolbarInfo } from './globalToolbarInfo';
 import { ToolbarCitoyenComponent } from './toolbar-citoyen/toolbar-citoyen.component';
 import { AuthentificationService } from './authentification.service';
-import { AuthInfo } from './authInfo';
 import { AffichagePassComponent } from './affichage-pass/affichage-pass.component';
 import { PassInfosComponent } from './pass-infos/pass-infos.component';
 
@@ -52,6 +51,7 @@ import { PassInfosComponent } from './pass-infos/pass-infos.component';
   ],
   imports: [
     HttpClientModule,
+    StorageServiceModule,
     ReactiveFormsModule,
     NgbModule,
     FormsModule,
@@ -60,7 +60,6 @@ import { PassInfosComponent } from './pass-infos/pass-infos.component';
   ],
   providers: [PassService,
               GlobalToolbarInfo,
-              AuthInfo,
               AuthentificationService,
               AppComponent
              ],

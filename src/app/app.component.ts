@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GlobalToolbarInfo } from './globalToolbarInfo';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,4 +13,5 @@ export class AppComponent {
   constructor(private global: GlobalToolbarInfo ) {
   }
 
+  
 }

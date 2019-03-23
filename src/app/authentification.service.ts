@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject,Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { first, map } from 'rxjs/operators';
-import { AuthInfo } from './authInfo';
-
+import {  map } from 'rxjs/operators';
+import { SESSION_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +10,18 @@ export class AuthentificationService {
   private authUrl = 'http://192.168.0.100:3000/passports';
   private passNb;
 
-  constructor(private http: HttpClient, private info: AuthInfo) { }
+  constructor(private http: HttpClient, 
+    @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
 
   verify(identifiant: string, passeword: string){
     const url = `${this.authUrl}/authcitizen`;
 
-    this.info.passNb = identifiant;
     console.log("identification :" + identifiant + "," + passeword);
 
     return this.http.post<any>(url, { passNb:identifiant, password:passeword })
       .pipe(map(valid => {
         // login successful if there's a user in the response
-        this.info.valid = valid;
         console.log(valid);
         console.log('Connexion terminé ! validité des info: ' + valid.message);
 
@@ -34,22 +31,39 @@ export class AuthentificationService {
   }
 
 
-  getValidity(): boolean {
-    console.log("auth service: " + this.info.valid)
-    return this.info.valid;
-  }
-
-
   logout() {
-    this.info.valid = false;
-    this.info.passNb = '';
+    
   }
 
-  getPassNb(): string {
-    return this.passNb;
+  setPassNb(passNb:string){
+ 
+    console.log('recieved= passNb:' + 'value:' + passNb);
+    this.storage.set("passNb", passNb);
+
   }
 
-  setPassNb(passNb: string) {
-    this.passNb = passNb;
+  getPassNb(){
+    console.log('getPassNb:' + 'value:' + this.storage.get("passNb"));
+    return this.storage.get("passNb");
   }
+
+  getTokenzz(){
+    console.log('getPassNb:' + 'value:' + this.storage.get("token"));
+    this.storage.get("token")
+  }
+
+  setToken(token:any){
+    console.log('setToken:' + 'value:' + token);
+    this.storage.set("token", token);
+
+  }
+
+  setTbInfo(val:string){
+    this.storage.set("tbInfo", val);
+  }
+
+  getTbInfo(val:string) {
+    return this.storage.get("tbInfo");
+  }
+
 }

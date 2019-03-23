@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PassService } from '../pass.service';
 import { Pass } from '../pass';
-import { AuthInfo } from '../authInfo';
+import { ActivatedRoute } from '@angular/router';
+import { AuthcitoyenComponent } from '../authcitoyen/authcitoyen.component';
 import { AuthentificationService } from '../authentification.service';
-import { Routes, RouterModule,ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pass-infos',
@@ -57,12 +57,12 @@ export class PassInfosComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor( private pS : PassService,private route:ActivatedRoute) { 
+  constructor( private pS : PassService,private auth: AuthentificationService, private route:ActivatedRoute) { 
   }
 
   ngOnInit() {
     
-    this.passNb = this.pS.getPassNumb();
+    this.passNb = this.auth.getPassNb();
     console.log("passNb: "+this.passNb);
     this.getPass(this.passNb);
   }

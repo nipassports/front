@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../authentification.service';
 import { Router } from "@angular/router";
 import { GlobalToolbarInfo } from '../globalToolbarInfo';
-import { AuthInfo } from '../authInfo';
+
 
 import { first } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { PassService } from '../pass.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class AuthcitoyenComponent implements OnInit {
   submitted = false;
   error: any;
 
-  constructor(private global: GlobalToolbarInfo, private auth: AuthentificationService, 
+  constructor(private global: GlobalToolbarInfo, private auth: AuthentificationService, private service: PassService,
     private router: Router,
     private formBuilder: FormBuilder) { }
 
@@ -55,8 +55,10 @@ export class AuthcitoyenComponent implements OnInit {
         if (data.message === 'Auth successful') {
           this.auth.setPassNb(this.f.identifiant.value);
           this.global.tbInfo = 'citoyen';
-          this.global.token  = data.token;
-          this.global.passNb  = this.f.identifiant.value;
+          // this.auth.setToolBar('citoyen');
+          // this.global.token  = data.token;
+          // this.global.passNb  = this.f.identifiant.value;
+          this.auth.setToken(data.token);
           this.router.navigate(['/Mon Passeport/Mon Passeport']);
         }
 
