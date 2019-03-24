@@ -63,10 +63,6 @@ export class AuthentificationService {
   }
 
 
-  logout() {
-
-  }
-
   setPassNb(passNb: string) {
 
     console.log('recieved= passNb:' + 'value:' + passNb);
