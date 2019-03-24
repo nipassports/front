@@ -58,11 +58,11 @@ export class AuthcitoyenComponent implements OnInit {
         if (data.message === 'Auth successful') {
           this.auth.setPassNb(this.f.identifiant.value);
           this.global.tbInfo = 'citoyen';
-          // this.auth.setToolBar('citoyen');
+          this.auth.setTbInfo('citoyen');
           // this.global.token  = data.token;
           // this.global.passNb  = this.f.identifiant.value;
           this.auth.setToken(data.token);
-          this.router.navigate(['/Mon Passeport/Mon Passeport']);
+          this.router.navigate(['/EspaceCitoyen/Mon Passeport']);
         }
 
         if (data.message ==='Auth failed'){

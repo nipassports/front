@@ -1,0 +1,68 @@
+
+.bg-custom{
+    background-color:#2F404D;
+    color:#2F404D;
+}
+.navbar-dark .navbar-nav .nav-link{
+    color: white !important;
+}
+
+.navbar-dark .navbar-nav .nav-link.selected{
+    margin-bottom: -10px;
+    margin-top :4px;
+    border-bottom:4px solid #5DAC99;
+    color:#5DAC99 !important;
+    
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+    margin-bottom: -10px;
+    margin-top :4px;
+    border-bottom:4px solid #5DAC99;
+    color:#5DAC99 !important;
+    
+}
+.size{
+    margin-top:-15px;
+    margin-bottom: -14px;
+    height:50px;
+    width:50px;
+}
+  
+.nip{
+    position: absolute;
+    left: 0%;
+    font-size:40px;
+    font-weight:bold;
+    color:lightgrey;
+}
+
+.acc{
+    position: relative;
+    left:78%
+}
+
+.pass{
+    position: absolute;
+    left:85.5%
+}
+.fcol{
+    color: white;
+}
+.fcol:hover{
+    color:#5DAC99;
+}
+.bcol:hover{
+    border-bottom: 3px;
+    border-bottom-color: #5DAC99;
+}
+.connect{
+    position: absolute;
+    right: 1%;
+}
+.ml-custom{
+    margin-left:70%;
+}
+
+.navbar-brand{
+    left:20px;
+}

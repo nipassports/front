@@ -20,7 +20,7 @@ import { EnsemblePassComponent } from './EspaceDouanes/ensemble-pass/ensemble-pa
 
 const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
-  {path: 'Mon Passeport', component: PasseportComponent, 
+  {path: 'EspaceCitoyen', component: PasseportComponent, 
         children : [
             { path: '', redirectTo: 'Mon Passeport', pathMatch: 'full' },
             {path: 'Mon Passeport', component: PassDetailComponent},
@@ -52,4 +52,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

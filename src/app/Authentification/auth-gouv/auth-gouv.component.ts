@@ -56,12 +56,12 @@ export class AuthGouvComponent implements OnInit {
 
         if (data.message === 'Auth successful') {
           this.auth.setPassNb(this.f.identifiant.value);
-          this.global.tbInfo = 'citoyen';
-          // this.auth.setToolBar('citoyen');
+          this.global.tbInfo = 'gouvernement';
+          this.auth.setTbInfo('gouvernement');
           // this.global.token  = data.token;
           // this.global.passNb  = this.f.identifiant.value;
           this.auth.setToken(data.token);
-          this.router.navigate(['/Mon Passeport/Mon Passeport']);
+          this.router.navigate(['/Ajout Passeport']);
         }
 
         if (data.message ==='Auth failed'){

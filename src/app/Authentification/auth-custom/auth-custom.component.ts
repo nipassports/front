@@ -57,12 +57,12 @@ export class AuthCustomComponent implements OnInit {
 
         if (data.message === 'Auth successful') {
           this.auth.setPassNb(this.f.identifiant.value);
-          this.global.tbInfo = 'citoyen';
-          // this.auth.setToolBar('citoyen');
+          this.global.tbInfo = 'douanes';
+          this.auth.setTbInfo('douanes');
           // this.global.token  = data.token;
           // this.global.passNb  = this.f.identifiant.value;
           this.auth.setToken(data.token);
-          this.router.navigate(['/Mon Passeport/Mon Passeport']);
+          this.router.navigate(['/Liste des Passeports']);
         }
 
         if (data.message ==='Auth failed'){
