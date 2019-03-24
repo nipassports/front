@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalToolbarInfo } from '../globalToolbarInfo';
+
 import { Router } from '@angular/router';
+import { GlobalToolbarInfo } from '../../globalToolbarInfo';
 
 @Component({
   selector: 'app-toolbar-citoyen',

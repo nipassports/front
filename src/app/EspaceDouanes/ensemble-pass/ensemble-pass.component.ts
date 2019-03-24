@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PassService } from '../pass.service';
-import { Pass } from '../pass';
-import { Pass_json } from '../pass_json';
-import { Routes, RouterModule } from '@angular/router';
+
+import { Pass_json } from '../../pass_json';
+import { PassService } from '../../Service/pass.service';
+
+
+
 @Component({
   selector: 'app-ensemble-pass',
   templateUrl: './ensemble-pass.component.html',

@@ -8,27 +8,36 @@ import { FormsModule } from '@angular/forms';
 import { StorageServiceModule} from 'angular-webstorage-service';
 
 
+import { AccueilComponent } from './accueil/accueil.component';
+import { ChooseComponent } from './choose/choose.component';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { PasseportComponent } from './passeport/passeport.component';
-import { VisaComponent } from './visa/visa.component';
-import { PassDetailComponent } from './pass-detail/pass-detail.component';
-import { AutreComponent } from './autre/autre.component';
-import { ProblemComponent } from './problem/problem.component';
-import { AccueilComponent } from './accueil/accueil.component';
-import { ChooseComponent } from './choose/choose.component';
-import { AddPassComponent } from './add-pass/add-pass.component';
-import { PassService } from './pass.service';
-import { ChangeimgDirective } from './changeimg.directive';
-import { AuthcitoyenComponent } from './authcitoyen/authcitoyen.component';
-import { EnsemblePassComponent } from './ensemble-pass/ensemble-pass.component';
+
+import { VisaComponent } from './EspaceCitoyen/visa/visa.component';
+import { PassDetailComponent } from './EspaceCitoyen/pass-detail/pass-detail.component';
+import { AutreComponent } from './EspaceCitoyen/autre/autre.component';
+import { ProblemComponent } from './EspaceCitoyen/problem/problem.component';
+import { ToolbarCitoyenComponent } from './EspaceCitoyen/toolbar-citoyen/toolbar-citoyen.component';
+
+import { AddPassComponent } from './EspaceGouvernement/add-pass/add-pass.component';
+
+
+
+import { EnsemblePassComponent } from './EspaceDouanes/ensemble-pass/ensemble-pass.component';
 import { GlobalToolbarInfo } from './globalToolbarInfo';
-import { ToolbarCitoyenComponent } from './toolbar-citoyen/toolbar-citoyen.component';
-import { AuthentificationService } from './authentification.service';
+
 import { AffichagePassComponent } from './affichage-pass/affichage-pass.component';
 import { PassInfosComponent } from './pass-infos/pass-infos.component';
 
+import { AuthcitoyenComponent } from './Authentification/authcitoyen/authcitoyen.component';
+import { AuthGouvComponent } from './Authentification/auth-gouv/auth-gouv.component';
+import { AuthCustomComponent } from './Authentification/auth-custom/auth-custom.component';
 
+import { PassService } from './Service/pass.service';
+import { AuthentificationService } from './Service/authentification.service';
+
+import { ChangeimgDirective } from './changeimg.directive';
 
 @NgModule({
   declarations: [
@@ -47,7 +56,9 @@ import { PassInfosComponent } from './pass-infos/pass-infos.component';
     EnsemblePassComponent,
     ToolbarCitoyenComponent,
     AffichagePassComponent,
-    PassInfosComponent
+    PassInfosComponent,
+    AuthGouvComponent,
+    AuthCustomComponent
   ],
   imports: [
     HttpClientModule,

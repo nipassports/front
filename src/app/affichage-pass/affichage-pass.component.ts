@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PassService } from '../pass.service';
+
 import { Pass } from '../pass';
 import { ActivatedRoute } from '@angular/router';
+import { PassService } from '../Service/pass.service';
+
 @Component({
   selector: 'app-affichage-pass',
   templateUrl: './affichage-pass.component.html',

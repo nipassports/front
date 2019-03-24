@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PassService } from '../pass.service';
-import { Pass } from '../pass';
-import { AuthentificationService } from '../authentification.service';
-import { GlobalToolbarInfo } from '../globalToolbarInfo';
+
+import { Pass } from '../../pass';
+import { GlobalToolbarInfo } from '../../globalToolbarInfo';
+
+import { PassService } from '../../Service/pass.service';
+import { AuthentificationService } from '../../Service/authentification.service';
+
 
 
 

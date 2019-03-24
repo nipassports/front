@@ -1,16 +1,19 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Pass_json } from './pass_json';
+
 import { Observable, of } from 'rxjs';
-import { GlobalToolbarInfo } from './globalToolbarInfo';
+import { GlobalToolbarInfo } from '../globalToolbarInfo';
 import { SESSION_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import { Pass_json } from '../pass_json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PassService {
 
-  private passUrl = 'http://192.168.0.100:3000/';
+  private citizenUrl = 'http://192.168.0.100:3000/citizen';
+  private customUrl = 'http://192.168.0.100:3000/custom';
+  private gouvUrl = 'http://192.168.0.100:3000/gouvernment';
   private passNb:string;
   public data:any=[];
 
@@ -25,18 +28,20 @@ export class PassService {
                                  Authorization : 'bearer ' + this.storage.get("token")
                                 });
     const options = { headers: headers };
-    const url = `${this.passUrl}/${passNb}`;
+
+    const url = `${this.citizenUrl}/${passNb}`;
     return this.http.get<Pass_json>(url , options);
   }
 
   getAllPass() :Observable<Pass_json[]>{
-    return this.http.get<Pass_json[]>(this.passUrl)
+
+    return this.http.get<Pass_json[]>(this.customUrl)
   }
 
   /** POST: add a new Pass to the server */
   addPass(pseudoPass: any): Observable<string> {
     console.log('args',pseudoPass[0],pseudoPass[1],pseudoPass[2],pseudoPass[3],pseudoPass[4],pseudoPass[5],pseudoPass[6],pseudoPass[7],pseudoPass[8],pseudoPass[9],pseudoPass[10],pseudoPass[11],pseudoPass[12],pseudoPass[13],pseudoPass[14],pseudoPass[15]);
-    return this.http.post<string>(this.passUrl,
+    return this.http.post<string>(this.gouvUrl,
     {
       type:pseudoPass[0],
       countryCode:pseudoPass[1],

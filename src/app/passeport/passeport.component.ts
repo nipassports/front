@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PassService } from '../pass.service';
+
 import { Pass } from '../pass';
+import { PassService } from '../Service/pass.service';
 
 @Component({
   selector: 'app-passeport',

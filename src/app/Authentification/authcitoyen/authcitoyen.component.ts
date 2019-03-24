@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthentificationService } from '../authentification.service';
 import { Router } from "@angular/router";
-import { GlobalToolbarInfo } from '../globalToolbarInfo';
-
-
 import { first } from 'rxjs/operators';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
-import { PassService } from '../pass.service';
+
+
+import { AuthentificationService } from '../../Service/authentification.service';
+import { GlobalToolbarInfo } from '../../globalToolbarInfo';
+import { PassService } from '../../Service/pass.service';
+
+
 
 
 @Component({
@@ -17,9 +19,10 @@ import { PassService } from '../pass.service';
 export class AuthcitoyenComponent implements OnInit {
 
   loginForm: FormGroup;
-  valid: boolean;
-  submitted = false;
-  error: any;
+
+  private submitted = false;
+  private error: any;
+  private type = 'citizen';
 
   constructor(private global: GlobalToolbarInfo, private auth: AuthentificationService, private service: PassService,
     private router: Router,
@@ -44,11 +47,11 @@ export class AuthcitoyenComponent implements OnInit {
         return;
     }
 
-    this.auth.verify(this.f.identifiant.value, this.f.password.value)
+    this.auth.verify(this.f.identifiant.value, this.f.password.value, this.type)
     .pipe(first())
     .subscribe(
       ( data ) => {
-        console.log('coucou');
+        console.log('coucou: '+JSON.stringify(data));
 
         //console.log('connect: ' + data.message);
 
@@ -62,14 +65,15 @@ export class AuthcitoyenComponent implements OnInit {
           this.router.navigate(['/Mon Passeport/Mon Passeport']);
         }
 
-        if (data.message==='Auth failed'){
+        if (data.message ==='Auth failed'){
           this.error = "Le mot de passe ou l'identifiant est incorrect";
         }
 
       },
 
       error => {
-         this.error = error;
+        console.log('ERROR: '+ JSON.stringify(error));
+         this.error = JSON.stringify(error);
         // this.loading = false;
       });
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PassService } from '../pass.service';
+import { PassService } from '../../Service/pass.service';
+
+
 
 
 

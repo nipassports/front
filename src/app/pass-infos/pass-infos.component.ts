@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PassService } from '../pass.service';
-import { Pass } from '../pass';
 import { ActivatedRoute } from '@angular/router';
-import { AuthcitoyenComponent } from '../authcitoyen/authcitoyen.component';
-import { AuthentificationService } from '../authentification.service';
+
+import { Pass } from '../pass';
+import { AuthentificationService } from '../Service/authentification.service';
+import { PassService } from '../Service/pass.service';
+
+
 
 @Component({
   selector: 'app-pass-infos',
