@@ -35,12 +35,23 @@ export class PassService {
 
   getAllPass() :Observable<Pass_json[]>{
 
-    return this.http.get<Pass_json[]>(this.customUrl)
+    const headers = new HttpHeaders({'Content-Type'  : 'application/json',
+                                 Authorization : 'bearer ' + this.storage.get("token")
+                                });
+    const options = { headers: headers };
+
+    return this.http.get<Pass_json[]>(this.customUrl, options);
   }
 
   /** POST: add a new Pass to the server */
   addPass(pseudoPass: any): Observable<string> {
     console.log('args',pseudoPass[0],pseudoPass[1],pseudoPass[2],pseudoPass[3],pseudoPass[4],pseudoPass[5],pseudoPass[6],pseudoPass[7],pseudoPass[8],pseudoPass[9],pseudoPass[10],pseudoPass[11],pseudoPass[12],pseudoPass[13],pseudoPass[14],pseudoPass[15]);
+    console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
+    const headers = new HttpHeaders({'Content-Type'  : 'application/json',
+                                 Authorization : 'bearer ' + this.storage.get("token")
+                                });
+    const options = { headers: headers };
+
     return this.http.post<string>(this.gouvUrl,
     {
       type:pseudoPass[0],
@@ -60,7 +71,7 @@ export class PassService {
       dateOfIssue:pseudoPass[14],
       passOrigin:pseudoPass[15],
       validity:"Valide"
-    });
+    }, options);
   }
 
 
