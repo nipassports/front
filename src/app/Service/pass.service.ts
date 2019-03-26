@@ -44,15 +44,15 @@ export class PassService {
   }
 
   /** POST: add a new Pass to the server */
-  addPass(pseudoPass: any): Observable<string> {
-    console.log('args',pseudoPass[0],pseudoPass[1],pseudoPass[2],pseudoPass[3],pseudoPass[4],pseudoPass[5],pseudoPass[6],pseudoPass[7],pseudoPass[8],pseudoPass[9],pseudoPass[10],pseudoPass[11],pseudoPass[12],pseudoPass[13],pseudoPass[14],pseudoPass[15]);
+  addPass(pseudoPass: any): Observable<any> {
+    console.log('args: '+ pseudoPass);
     console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
     const headers = new HttpHeaders({'Content-Type'  : 'application/json',
                                  Authorization : 'bearer ' + this.storage.get("token")
                                 });
     const options = { headers: headers };
 
-    return this.http.post<string>(this.gouvUrl,
+    return this.http.post<any>(this.gouvUrl,
     {
       type:pseudoPass[0],
       countryCode:pseudoPass[1],
@@ -70,7 +70,8 @@ export class PassService {
       dateOfExpiry:pseudoPass[13],
       dateOfIssue:pseudoPass[14],
       passOrigin:pseudoPass[15],
-      validity:"Valide"
+      validity:pseudoPass[16],
+      image:pseudoPass[17]
     }, options);
   }
 

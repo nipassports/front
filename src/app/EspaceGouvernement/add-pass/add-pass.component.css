@@ -3,7 +3,6 @@
 div.container-fluid.navbar div.row {
     width: 95%;
     margin-top: 90px;
-    margin-left: 60px;
     background: #2F404D;
     border-radius: 10px;
     overflow: hidden;
@@ -16,6 +15,7 @@ div.container-fluid.navbar div.row {
     width: 100%;
     height: 50px;
     display: inline-block;
+    border-right: 2px solid #828282;
     background-color: #C7C6C6;
     text-align: center;
     border-radius: 10px;
@@ -36,11 +36,10 @@ div.container-fluid.navbar div.row {
 /* Conteneur du formulaire */
 div.container-fluid.object div.row.object{
     width: 93%;
-    margin-left: 60px;
     margin-top: -8px;
+    margin-left: 3.5%;
     height: 500px;
-    transform: translate(16px);
-    background-color: #C4C4C4;
+    background-color: #F9F2F2;
     overflow: auto;
    
 }
@@ -49,13 +48,10 @@ div.container-fluid.object div.row.object{
 /* Conteneur du Bouton valider */
 div.container-fluid div.row.valider{
     width: 93%;
-    margin-left: 60px;
-    transform: translate(16px);
+    margin-left: 3.5%;
     justify-content: right;
     overflow: hidden;
 }
-
-
 
 
 
@@ -77,7 +73,8 @@ div.col-auto.a div.row.maPhoto {
     /*                        Photo                            */
 
     height : 200px;
-    background: #2F404D;
+    width : 300px;
+    background: #828282;
     border-radius: 10px;
     
 }
@@ -86,13 +83,17 @@ div.col-auto.a div.row.c {
     /*                        Signature                            */
 
     height : 50px;
-    background: #2F404D;
+    width : 300px;
+    background: #828282;
     border-radius: 10px;
     align-items: flex-start;
     display: block;
     text-align: center;
 }
 
+div.col-auto.a div.row.a {
+    width: 300px;
+}
 /*                                    Deuxième colonne                              */
 
 div.col-xs-2 {
@@ -112,6 +113,7 @@ div.col-auto.c {
     display: inline-block;
     margin-bottom: 22px;
     margin-right: 110px;
+    align-items: self-start;
 }
 
 div.col-auto.cd {
@@ -120,15 +122,20 @@ div.col-auto.cd {
 }
 
 div.row.d{
-    margin-top:10px;
+    margin-top:5px;
 }
 
 input.GD{
     width: 400px;
 }
 
-div.col-lg-4.nationality{
-    justify-content: right;
+/* div.col-lg-4.nationality{
+    display: flexbox ;
+    justify-content: end;
+} */
+
+div.col.d {
+    display: inline-block;
 }
 
 button.valider {
@@ -137,21 +144,11 @@ button.valider {
     height: 50px;
     width : 300px;
     color : white;
-    border:none;
     border-radius: 10px;
     margin-top: -10px;
     overflow: hidden;
 }
-button.valider:hover {
-    cursor: pointer;
-    background-color: #5DAC99;
-    height: 50px;
-    width : 300px;
-    color : white;
-    border-radius: 10px;
-    margin-top: -10px;
-    overflow: hidden;
-}
+
 
 /*                             Text                                                         */
 span.titre {
@@ -172,4 +169,13 @@ span.trad {
     line-height: normal;
     font-size: 11px;
     color: #000000;  
+}
+
+/*                                       Choix multiple                                        */ 
+select {
+    width: 100px;
+}
+
+input {
+    width: 200px;
 }
