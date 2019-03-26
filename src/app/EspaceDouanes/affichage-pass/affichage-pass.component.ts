@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Pass } from '../pass';
+import { Pass } from '../../pass';
 import { ActivatedRoute } from '@angular/router';
-import { PassService } from '../Service/pass.service';
+import { PassService } from '../../Service/pass.service';
 
 @Component({
   selector: 'app-affichage-pass',
@@ -28,7 +28,7 @@ export class AffichagePassComponent implements OnInit {
   ngOnInit() {
     this.selectedVue = 'Mon Passeport';
     this.route.params
-    .subscribe(params=>this.pS.getPassInfo(params.passNb));
+    .subscribe(params=>this.pS.setPassNumb(params.passNb));
 
   }
 

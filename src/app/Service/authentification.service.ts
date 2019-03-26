@@ -80,6 +80,7 @@ export class AuthentificationService {
     this.storage.get("token")
   }
 
+  
   setToken(token: any) {
     console.log('setToken:' + 'value:' + token);
     this.storage.set("token", token);

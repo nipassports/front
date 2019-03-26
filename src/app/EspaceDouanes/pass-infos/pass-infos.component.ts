@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Pass } from '../pass';
-import { AuthentificationService } from '../Service/authentification.service';
-import { PassService } from '../Service/pass.service';
+import { Pass } from '../../pass';
+import { AuthentificationService } from '../../Service/authentification.service';
+import { PassService } from '../../Service/pass.service';
 
 
 
@@ -64,18 +64,19 @@ export class PassInfosComponent implements OnInit {
 
   ngOnInit() {
     
-    this.passNb = this.auth.getPassNb();
+    this.passNb = this.pS.getPassNumb();
     console.log("passNb: "+this.passNb);
     this.getPass(this.passNb);
   }
 
   getPass(passNb: string ): void {
 
-    this.pS.getPassInfo(passNb)
+    console.log("LE NUM DE PASSPORT RECUPERE est :"+passNb)
+    this.pS.getPassInfoDouanes(passNb)
     .subscribe( 
       pass => {this.pass = pass.infos; this.id = pass.id});
 
-    console.log("pass-detail:"+ this.pass);
+    console.log("pass-detail:"+ this.pass.autority);
 
   }
 

@@ -17,11 +17,11 @@ export class ToolbarGouvComponent implements OnInit {
   selectedvue:string;
   ongletNav =[
     'Accueil',
-    'Ajout de Passeport',
+    'Ajout Passeport',
     'Se déconnecter',
   ];
   ngOnInit() {
-    this.selectedvue='Mon Passeport';
+    this.selectedvue='Ajout Passeport';
   }
   onClick(vue: string): void{
     this.selectedvue = vue;

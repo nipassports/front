@@ -12,7 +12,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { ChooseComponent } from './choose/choose.component';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { PasseportComponent } from './passeport/passeport.component';
+import { PasseportComponent } from './EspaceCitoyen/passeport/passeport.component';
 
 import { VisaComponent } from './EspaceCitoyen/visa/visa.component';
 import { PassDetailComponent } from './EspaceCitoyen/pass-detail/pass-detail.component';
@@ -29,8 +29,8 @@ import { ToolbarDouaneComponent } from './EspaceDouanes/toolbar-douane/toolbar-d
 import { EnsemblePassComponent } from './EspaceDouanes/ensemble-pass/ensemble-pass.component';
 import { GlobalToolbarInfo } from './globalToolbarInfo';
 
-import { AffichagePassComponent } from './affichage-pass/affichage-pass.component';
-import { PassInfosComponent } from './pass-infos/pass-infos.component';
+import { AffichagePassComponent } from './EspaceDouanes/affichage-pass/affichage-pass.component';
+import { PassInfosComponent } from './EspaceDouanes/pass-infos/pass-infos.component';
 
 import { AuthcitoyenComponent } from './Authentification/authcitoyen/authcitoyen.component';
 import { AuthGouvComponent } from './Authentification/auth-gouv/auth-gouv.component';

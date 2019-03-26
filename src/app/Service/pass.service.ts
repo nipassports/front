@@ -20,7 +20,12 @@ export class PassService {
   constructor(private http: HttpClient , private global: GlobalToolbarInfo,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
-
+    setPassNumb(passNb:string){
+      this.passNb=passNb;
+    }
+    getPassNumb(){
+      return this.passNb;
+    }
 
   getPassInfo(passNb: string): Observable<Pass_json> {
     console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
@@ -32,7 +37,16 @@ export class PassService {
     const url = `${this.citizenUrl}/${passNb}`;
     return this.http.get<Pass_json>(url , options);
   }
+  getPassInfoDouanes(passNb: string): Observable<Pass_json> {
+    console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
+    const headers = new HttpHeaders({'Content-Type'  : 'application/json',
+                                 Authorization : 'bearer ' + this.storage.get("token")
+                                });
+    const options = { headers: headers };
 
+    const url = `${this.customUrl}/${passNb}`;
+    return this.http.get<Pass_json>(url , options);
+  }
   getAllPass() :Observable<Pass_json[]>{
 
     const headers = new HttpHeaders({'Content-Type'  : 'application/json',

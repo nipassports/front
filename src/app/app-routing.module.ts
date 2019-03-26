@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { AccueilComponent } from './accueil/accueil.component';
-import { PasseportComponent } from './passeport/passeport.component';
+import { PasseportComponent } from './EspaceCitoyen/passeport/passeport.component';
 import { ChooseComponent } from './choose/choose.component';
 
-import { AffichagePassComponent } from './affichage-pass/affichage-pass.component';
-import { PassInfosComponent } from './pass-infos/pass-infos.component';
+import { AffichagePassComponent } from './EspaceDouanes/affichage-pass/affichage-pass.component';
+import { PassInfosComponent } from './EspaceDouanes/pass-infos/pass-infos.component';
 import { AuthcitoyenComponent } from './Authentification/authcitoyen/authcitoyen.component';
 import { AuthGouvComponent } from './Authentification/auth-gouv/auth-gouv.component';
 import { AuthCustomComponent } from './Authentification/auth-custom/auth-custom.component';

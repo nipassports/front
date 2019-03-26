@@ -12,6 +12,7 @@ export class ToolbarComponent implements OnInit {
   ongletNav =[
     'Accueil',
     //'Mon Passeport',
+    'FAQ',
     'Se connecter',
     //'Ajout Passeport',
     //'Liste des Passeports'
