@@ -17,15 +17,15 @@ export class ToolbarDouaneComponent implements OnInit {
 
   selectedvue:string;
   ongletNav =[
-    'Accueil',
-    'Liste des Passeports',
-    'Se déconnecter',
+    {title:'Accueil',link:'/Accueil'},
+    {title:'Liste des Passeports',link:'/Espace Douanes/Liste des Passeports'},
+    {title:'Se déconnecter',link:'#'},    
   ];
   ngOnInit() {
     this.selectedvue='Mon Passeport';
   }
-  onClick(vue: string): void{
-    this.selectedvue = vue;
+  onClick(vue: any): void{
+    this.selectedvue = vue.title;
     if(this.selectedvue == 'Se déconnecter'){
       this.global.tbInfo = 'all';
       this.storage.remove("tbInfo");

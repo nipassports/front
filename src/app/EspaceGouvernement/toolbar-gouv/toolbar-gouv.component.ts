@@ -16,15 +16,20 @@ export class ToolbarGouvComponent implements OnInit {
 
   selectedvue:string;
   ongletNav =[
-    'Accueil',
-    'Ajout Passeport',
-    'Se déconnecter',
+    {title:'Espace Gouvernement',link:'/Espace Gouvernement'},
+    {title:'Ajout Passeport',link:'/Espace Gouvernement/Ajout Passeport'},
+    {title:'Modifier Passeport',link:'/Espace Gouvernement/Modifier Passeport'},
+    {title:'Liste des Passeports',link:'/Espace Gouvernement/Liste des Passeports'},
+    {title:'Gestion des problèmes', link:'/Espace Gouvernement/Gestion des Problèmes'},
+    {title:'Se déconnecter', link:'#'}
   ];
+
+
   ngOnInit() {
-    this.selectedvue='Ajout Passeport';
+    this.selectedvue='Espace Gouvernement';
   }
-  onClick(vue: string): void{
-    this.selectedvue = vue;
+  onClick(vue: any): void{
+    this.selectedvue = vue.title;
     if(this.selectedvue == 'Se déconnecter'){
       this.global.tbInfo = 'all';
       this.storage.remove("tbInfo");

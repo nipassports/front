@@ -22,6 +22,7 @@ import { ToolbarCitoyenComponent } from './EspaceCitoyen/toolbar-citoyen/toolbar
 
 import { AddPassComponent } from './EspaceGouvernement/add-pass/add-pass.component';
 import { ToolbarGouvComponent } from './EspaceGouvernement/toolbar-gouv/toolbar-gouv.component';
+import { AccueilGouvComponent } from './EspaceGouvernement/accueil-gouv/accueil-gouv.component';
 
 import { ToolbarDouaneComponent } from './EspaceDouanes/toolbar-douane/toolbar-douane.component';
 
@@ -40,6 +41,11 @@ import { PassService } from './Service/pass.service';
 import { AuthentificationService } from './Service/authentification.service';
 
 import { ChangeimgDirective } from './changeimg.directive';
+import { ModifyPassComponent } from './EspaceGouvernement/modify-pass/modify-pass.component';
+import { PassListComponent } from './EspaceGouvernement/pass-list/pass-list.component';
+import { SpritPassListComponent } from './EspaceGouvernement/sprit-pass-list/sprit-pass-list.component';
+import { PassIssuesComponent } from './EspaceGouvernement/pass-issues/pass-issues.component';
+
 
 
 @NgModule({
@@ -63,7 +69,12 @@ import { ChangeimgDirective } from './changeimg.directive';
     AuthGouvComponent,
     AuthCustomComponent,
     ToolbarGouvComponent,
-    ToolbarDouaneComponent
+    ToolbarDouaneComponent,
+    AccueilGouvComponent,
+    ModifyPassComponent,
+    PassListComponent,
+    SpritPassListComponent,
+    PassIssuesComponent
   ],
   imports: [
     HttpClientModule,

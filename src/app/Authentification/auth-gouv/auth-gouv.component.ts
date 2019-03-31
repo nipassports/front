@@ -32,7 +32,7 @@ export class AuthGouvComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       identifiant: ['', Validators.required],
       password: ['', Validators.required],
-      checkbox: ['', Validators.required]
+      //checkbox: ['', Validators.required]
   });
   }
 
@@ -61,19 +61,16 @@ export class AuthGouvComponent implements OnInit {
           // this.global.token  = data.token;
           // this.global.passNb  = this.f.identifiant.value;
           this.auth.setToken(data.token);
-          this.router.navigate(['/Ajout Passeport']);
-        }
-
-        if (data.message ==='Auth failed'){
-          this.error = "Le mot de passe ou l'identifiant est incorrect";
+          this.router.navigate(['/Espace Gouvernement']);
         }
 
       },
 
       error => {
         console.log('ERROR: '+ JSON.stringify(error));
-         this.error = JSON.stringify(error);
+        //this.error = JSON.stringify(error);
         // this.loading = false;
+        this.error = "Le mot de passe ou l'identifiant est incorrect";
       });
 
   }

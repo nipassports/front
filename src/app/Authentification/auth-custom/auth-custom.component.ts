@@ -33,7 +33,7 @@ export class AuthCustomComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       identifiant: ['', Validators.required],
       password: ['', Validators.required],
-      checkbox: ['', Validators.required]
+      //checkbox: ['', Validators.required]
   });
   }
 
@@ -62,18 +62,15 @@ export class AuthCustomComponent implements OnInit {
           // this.global.token  = data.token;
           // this.global.passNb  = this.f.identifiant.value;
           this.auth.setToken(data.token);
-          this.router.navigate(['/Liste des Passeports']);
-        }
-
-        if (data.message ==='Auth failed'){
-          this.error = "Le mot de passe ou l'identifiant est incorrect";
+          this.router.navigate(['Espace Douanes/Liste des Passeports']);
         }
 
       },
 
       error => {
         console.log('ERROR: '+ JSON.stringify(error));
-         this.error = JSON.stringify(error);
+         //this.error = JSON.stringify(error);
+         this.error = "Le mot de passe ou l'identifiant est incorrect";
         // this.loading = false;
       });
 
