@@ -11,23 +11,39 @@ import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 })
 export class ToolbarGouvComponent implements OnInit {
 
+  selectedvue:string;
+  ongletNav =[
+    {title:'Espace Gouvernement',link:'/Espace Gouvernement',autority:1},
+    {title:'Ajout Passeport',link:'/Espace Gouvernement/Ajout Passeport',autority:1},
+    {title:'Modifier Passeport',link:'/Espace Gouvernement/Modifier Passeport',autority:-1},
+    {title:'Liste des Passeports',link:'/Espace Gouvernement/Liste des Passeports',autority:1},
+    {title:'Gestion des problèmes', link:'/Espace Gouvernement/Gestion des Problèmes',autority:1},
+    {title:'Se déconnecter', link:'#',autority:1}
+  ];
+
   constructor(private global: GlobalToolbarInfo,private router: Router,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
-  selectedvue:string;
-  ongletNav =[
-    {title:'Espace Gouvernement',link:'/Espace Gouvernement'},
-    {title:'Ajout Passeport',link:'/Espace Gouvernement/Ajout Passeport'},
-    {title:'Modifier Passeport',link:'/Espace Gouvernement/Modifier Passeport'},
-    {title:'Liste des Passeports',link:'/Espace Gouvernement/Liste des Passeports'},
-    {title:'Gestion des problèmes', link:'/Espace Gouvernement/Gestion des Problèmes'},
-    {title:'Se déconnecter', link:'#'}
-  ];
-
-
   ngOnInit() {
     this.selectedvue='Espace Gouvernement';
+    if ( this.storage.get("autority") !== null ){
+      this.global.autority = this.storage.get("autority");
+     }
+     else{
+      this.global.autority = -1;
+     }
+
+     this.ongletNav =[
+      {title:'Espace Gouvernement',link:'/Espace Gouvernement',autority:1},
+      {title:'Ajout Passeport',link:'/Espace Gouvernement/Ajout Passeport',autority:1},
+      {title:'Modifier Passeport',link:'/Espace Gouvernement/Modifier Passeport',autority:this.global.autority},
+      {title:'Liste des Passeports',link:'/Espace Gouvernement/Liste des Passeports',autority:1},
+      {title:'Gestion des problèmes', link:'/Espace Gouvernement/Gestion des Problèmes',autority:1},
+      {title:'Se déconnecter', link:'#',autority:1}
+    ];
+
   }
+  
   onClick(vue: any): void{
     this.selectedvue = vue.title;
     if(this.selectedvue == 'Se déconnecter'){

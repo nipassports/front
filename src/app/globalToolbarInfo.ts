@@ -5,4 +5,5 @@ export class GlobalToolbarInfo {
   tbInfo: string = 'all';
   token : string ;
   passNb : string;
+  autority: number;
 }
