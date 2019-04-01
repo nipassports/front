@@ -20,7 +20,7 @@ import { EnsemblePassComponent } from './EspaceDouanes/ensemble-pass/ensemble-pa
 
 const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
-  {path: 'EspaceCitoyen', component: PasseportComponent, 
+  {path: 'Mon Passeport', component: PasseportComponent, 
         children : [
             { path: '', redirectTo: 'Mon Passeport', pathMatch: 'full' },
             {path: 'Mon Passeport', component: PassDetailComponent},
@@ -29,7 +29,6 @@ const routes: Routes = [
             {path: 'problem', component: ProblemComponent},
         ]
   },
-  
   {path: 'Passeports/:passNb', component: AffichagePassComponent, 
   children : [
       { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
@@ -39,6 +38,7 @@ const routes: Routes = [
       {path: 'problem', component: ProblemComponent},
   ]
 },
+
   { path: 'Ajout Passeport', component: AddPassComponent },
   { path: 'Accueil', component: AccueilComponent },
   { path: 'Se connecter', component: ChooseComponent },

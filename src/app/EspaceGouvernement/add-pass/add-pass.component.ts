@@ -3,9 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
+import{ImageServiceService}from '../../image-service.service'
 
-
-
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-add-pass',
@@ -20,6 +22,7 @@ export class AddPassComponent implements OnInit {
   submitted = false;
   loading = false;
   private error: any;
+  selectedFile: ImageSnippet;
 
   passBar = [
     'Ajout du passeport'
@@ -68,7 +71,7 @@ export class AddPassComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor(private passservice: PassService, private formBuilder: FormBuilder) { }
+  constructor(private passservice: PassService, private formBuilder: FormBuilder,private imageService:ImageServiceService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -94,6 +97,20 @@ export class AddPassComponent implements OnInit {
   }
 
   get f() { return this.loginForm.controls; }
+  
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.imageService.loadImage(this.selectedFile.src)
+    });
+
+    reader.readAsDataURL(file);
+  }
 
   addPass(pseudoPass: any): void {
     console.log('Ajout du passeport');
@@ -112,6 +129,7 @@ export class AddPassComponent implements OnInit {
     }
 
     this.loading = true;
+
     const pseudoPass = [
 
       this.f.type.value,
@@ -131,9 +149,9 @@ export class AddPassComponent implements OnInit {
       this.f.dateOfIssue.value,
       this.f.passOrigin.value,
       "Valide",
-      "test-image"
+      this.imageService.IMGbase64
     ]
-
+    console.log(this.f.photo.value);
     this.passservice.addPass(pseudoPass)
       .pipe(first())
       .subscribe(

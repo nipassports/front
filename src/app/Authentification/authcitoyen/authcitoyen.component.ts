@@ -62,7 +62,7 @@ export class AuthcitoyenComponent implements OnInit {
           // this.global.token  = data.token;
           // this.global.passNb  = this.f.identifiant.value;
           this.auth.setToken(data.token);
-          this.router.navigate(['/EspaceCitoyen/Mon Passeport']);
+          this.router.navigate(['/Mon Passeport/Mon Passeport']);
         }
 
         if (data.message ==='Auth failed'){

@@ -44,7 +44,7 @@
         <div class="row a mt-3">
 
 
-          <input type="file" class="form-control-file input-sm" formControlName="photo" id="Photo"
+          <input type="file" #imageInput class="form-control-file input-sm" accept="image/*" (change)="processFile(imageInput)" formControlName="photo" id="Photo"
             [ngClass]="{ 'is-invalid': submitted && f.photo.errors }">
 
           <div *ngIf="submitted && f.photo.errors" class="invalid-feedback">
@@ -637,4 +637,9 @@
       <img *ngIf="loading" src="../assets/img/attente.gif" />
     </div>
   </div>
+
+
+
+
+  <p>{{image?.replace("data:image/png;base64,", "")}}</p>
 </form>
