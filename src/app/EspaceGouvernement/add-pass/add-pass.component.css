@@ -149,6 +149,16 @@ button.valider {
     overflow: hidden;
 }
 
+button.generate{
+    cursor: pointer;
+    background-color: rgb(105, 78, 37);
+    height: 50px;
+    width : 300px;
+    color : white;
+    border-radius: 10px;
+    margin-top: -10px;
+    overflow: hidden;
+}
 
 /*                             Text                                                         */
 span.titre {
@@ -178,4 +188,5 @@ select {
 
 input {
     width: 200px;
+    overflow: auto;
 }

@@ -15,7 +15,7 @@ export class ToolbarGouvComponent implements OnInit {
   ongletNav =[
     {title:'Espace Gouvernement',link:'/Espace Gouvernement',autority:1},
     {title:'Ajout Passeport',link:'/Espace Gouvernement/Ajout Passeport',autority:1},
-    {title:'Modifier Passeport',link:'/Espace Gouvernement/Modifier Passeport',autority:-1},
+    {title:'Modifier Passeport',link:'/Espace Gouvernement/Modifier Passeport',autority:0},
     {title:'Liste des Passeports',link:'/Espace Gouvernement/Liste des Passeports',autority:1},
     {title:'Gestion des problèmes', link:'/Espace Gouvernement/Gestion des Problèmes',autority:1},
     {title:'Se déconnecter', link:'#',autority:1}
@@ -30,7 +30,7 @@ export class ToolbarGouvComponent implements OnInit {
       this.global.autority = this.storage.get("autority");
      }
      else{
-      this.global.autority = -1;
+      this.global.autority = 0;
      }
 
      this.ongletNav =[
@@ -50,6 +50,8 @@ export class ToolbarGouvComponent implements OnInit {
       this.global.tbInfo = 'all';
       this.storage.remove("tbInfo");
       this.storage.remove("token");
+      this.storage.remove("autority");
+      this.storage.remove("passInfo");
       this.router.navigate(['/Accueil']);
     }
     console.log("selectedVue:" + this.selectedvue + ", vue:" + vue );

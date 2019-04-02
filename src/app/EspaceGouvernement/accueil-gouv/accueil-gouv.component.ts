@@ -21,7 +21,7 @@ export class AccueilGouvComponent implements OnInit {
       this.global.autority = this.storage.get("autority");
      }
      else{
-      this.global.autority = -1;
+      this.global.autority = 0;
      }
      console.log("autority globale :"+this.global.autority);
   }
