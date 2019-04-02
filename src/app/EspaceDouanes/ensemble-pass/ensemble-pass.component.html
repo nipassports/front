@@ -16,8 +16,11 @@
 
           <div class="col-sm-6 col-lg-4 col-xl-3 mb-5 " *ngFor="let pass of Allpass">
               <div class="row  pr-3 ">
-                  <div class="col-sm-5 photo d-flex justify-content-center align-items-center border_photo">photo</div>
-                  <div class="col-sm-7 d-flex item  pl-1 border_item">
+
+                <img src="{{pass.infos.image}}" class="images justify-content-center d-flex align-items-center col-5 border_photo" alt="Photo">
+
+                
+                <div class="col-7 d-flex item  pl-1 border_item">
                       <div class="row  align-self-start">
                           <div class="col-sm-12 font_item pt-2">Nom: 
                               <span class="font_info">{{pass.infos.surname}}</span>
@@ -40,7 +43,7 @@
                           <div class="col-sm-12 d-flex font_validity justify-content-center ">{{pass.infos.validity}}</div>
                       </div>
 
-                  </div>
+                </div>
               </div>
               <div class="row pr-3 ">
                   <div class="col-sm-12 bouton d-flex justify-content-center align-items-center pb-1 pt-1 btn" routerLink='/Passeports/{{pass.infos.passNb}}'>Consulter</div>

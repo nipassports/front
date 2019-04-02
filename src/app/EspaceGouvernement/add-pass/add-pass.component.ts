@@ -16,7 +16,7 @@ class ImageSnippet {
 })
 
 export class AddPassComponent implements OnInit {
-
+  imgchanged=false;
   loginForm: FormGroup;
   valid: boolean;
   submitted = false;
@@ -99,6 +99,8 @@ export class AddPassComponent implements OnInit {
   get f() { return this.loginForm.controls; }
   
   processFile(imageInput: any) {
+    this.imgchanged=true;
+
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
@@ -151,7 +153,6 @@ export class AddPassComponent implements OnInit {
       "Valide",
       this.imageService.IMGbase64
     ]
-    console.log(this.f.photo.value);
     this.passservice.addPass(pseudoPass)
       .pipe(first())
       .subscribe(

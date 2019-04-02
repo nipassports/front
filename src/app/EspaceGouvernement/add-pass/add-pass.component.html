@@ -38,7 +38,7 @@
         </div>
 
         <div class="row maPhoto">
-          <!--  Insérer la photo d'identité   -->
+          <div *ngIf="imgchanged"><img src="{{imageService.IMGbase64}}" class="images"></div>
         </div>
 
         <div class="row a mt-3">

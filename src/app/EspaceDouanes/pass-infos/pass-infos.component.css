@@ -18,10 +18,16 @@ div.col-auto.a div.row.a {
     padding-top: 2px;
 }
 
+.image{
+    max-width: 100%;
+	height: 100%;
+    
+}
 div.col-auto.a div.row.maPhoto {
     /*                        Photo                            */
 
-    height : 200px;
+    height : 260px;
+    width :170px;
     background: #828282;
     border-radius: 10px;
     

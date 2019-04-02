@@ -18,17 +18,17 @@ export class ToolbarCitoyenComponent implements OnInit {
   selectedvue:string;
 
   ongletNav =[
-    'Accueil',
-    'Mon Passeport',
-    'Se déconnecter',
+    {title:'Accueil',link:'/Accueil'},
+    {title:'Mon Passeport',link:'/Espace Citoyen/Mon Passeport'},
+    {title:'Se déconnecter',link:'#'},  
   ];
 
   ngOnInit() {
     this.selectedvue='Mon Passeport';
   }
 
-  onClick(vue: string): void{
-    this.selectedvue = vue;
+  onClick(vue: any): void{
+    this.selectedvue = vue.title;
     if(this.selectedvue == 'Se déconnecter'){
       this.storage.remove("tbInfo");
       this.storage.remove("token");

@@ -85,7 +85,7 @@ export class PassService {
       dateOfIssue:pseudoPass[14],
       passOrigin:pseudoPass[15],
       validity:pseudoPass[16],
-      image:pseudoPass[17]
+      image:pseudoPass[17],
     }, options);
   }
 

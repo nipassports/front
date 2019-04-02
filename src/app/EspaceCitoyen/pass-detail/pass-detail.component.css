@@ -17,11 +17,15 @@ div.col-auto.a div.row.a {
     text-align: center;
     padding-top: 2px;
 }
-
+.image{
+    height : 260px;
+    width :215px;
+}
 div.col-auto.a div.row.maPhoto {
     /*                        Photo                            */
 
-    height : 200px;
+    height : 260px;
+    width :215px;
     background: #828282;
     border-radius: 10px;
     

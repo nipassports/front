@@ -76,5 +76,6 @@ export class PassDetailComponent implements OnInit {
     .subscribe( 
       pass => {this.pass = pass.infos; this.id = pass.id});
     console.log("pass-detail: "+ this.pass);
+    console.log("pass-image: "+ this.pass.image);
   }
 }
