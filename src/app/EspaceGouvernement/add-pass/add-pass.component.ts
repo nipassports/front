@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Directive, Inject } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
 import{ImageServiceService}from '../../image-service.service'
+import { Pass } from '../../pass';
+import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { PathLocationStrategy } from '@angular/common';
+
+
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -15,8 +20,11 @@ class ImageSnippet {
   styleUrls: ['./add-pass.component.css']
 })
 
+
 export class AddPassComponent implements OnInit {
   imgchanged=false;
+
+  pass: Pass;
   loginForm: FormGroup;
   valid: boolean;
   submitted = false;
@@ -24,10 +32,7 @@ export class AddPassComponent implements OnInit {
   private error: any;
   selectedFile: ImageSnippet;
 
-  passBar = [
-    'Ajout du passeport'
-
-  ];
+  buttonValue: string;
 
   frInfo = {
     type: 'Type',
@@ -71,29 +76,59 @@ export class AddPassComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor(private passservice: PassService, private formBuilder: FormBuilder,private imageService:ImageServiceService) { }
+
+  constructor(private passservice: PassService, private formBuilder: FormBuilder, private imageService:ImageServiceService,private pS: PassService,
+    @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      photo: ['', Validators.required],
-      signature: ['', Validators.required],
-      passOrigin: ['', Validators.required],
-      type: ['', Validators.required],
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      sex: ['', Validators.required],
-      countryCode: ['', Validators.required],
-      height: ['', Validators.required],
-      passNb: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      eyesColor: ['', Validators.required],
-      placeOfBirth: ['', Validators.required],
-      residence: ['', Validators.required],
-      autority: ['', Validators.required],
-      dateOfIssue: ['', Validators.required],
-      dateOfExpiry: ['', Validators.required],
-      nationality: ['', Validators.required],
-    });
+    if ( this.storage.get("passInfo") !== null ){
+      this.pass= this.storage.get("passInfo");
+      console.log("INFO: "+ JSON.stringify(this.pass));
+      this.loginForm = this.formBuilder.group({
+        photo: [''],
+        signature: [''],
+        passOrigin: ['France', Validators.required],
+        type: ['P', Validators.required],
+        name: [this.pass.name, Validators.required],
+        surname: [this.pass.surname, Validators.required],
+        sex: [this.pass.sex, Validators.required],
+        countryCode: [this.pass.countryCode, Validators.required],
+        height: [this.pass.height, Validators.required],
+        passNb: [this.pass.passNb, Validators.required],
+        dateOfBirth: [this.pass.dateOfBirth, Validators.required],
+        eyesColor: [this.pass.eyesColor, Validators.required],
+        placeOfBirth: [this.pass.placeOfBirth, Validators.required],
+        residence: [this.pass.residence, Validators.required],
+        autority: [this.pass.autority, Validators.required],
+        dateOfIssue: [this.pass.dateOfIssue, Validators.required],
+        dateOfExpiry: [this.pass.dateOfExpiry, Validators.required],
+        nationality: [this.pass.nationality, Validators.required],
+      });
+    
+     }
+     else{
+      this.loginForm = this.formBuilder.group({
+        photo: ['', Validators.required],
+        signature: ['', Validators.required],
+        passOrigin: ['', Validators.required],
+        type: ['', Validators.required],
+        name: ['', Validators.required],
+        surname: ['', Validators.required],
+        sex: ['', Validators.required],
+        countryCode: ['', Validators.required],
+        height: ['', Validators.required],
+        passNb: ['', Validators.required],
+        dateOfBirth: ['', Validators.required],
+        eyesColor: ['', Validators.required],
+        placeOfBirth: ['', Validators.required],
+        residence: ['', Validators.required],
+        autority: ['', Validators.required],
+        dateOfIssue: ['', Validators.required],
+        dateOfExpiry: ['', Validators.required],
+        nationality: ['', Validators.required],
+      });
+     }
+
   }
 
   get f() { return this.loginForm.controls; }
@@ -122,77 +157,89 @@ export class AddPassComponent implements OnInit {
     console.log("Fin d'ajout");
   }
 
+  buttonClicked(value: string): void {
+    this.buttonValue = value;
+    console.log("buttonClicked value: " + value);
+  }
+
   onSubmit() {
 
     this.submitted = true;
+    console.log("button value: " + this.buttonValue)
 
-    if (this.loginForm.invalid) {
-      return;
+    if (this.buttonValue === "generate") {
+
+      this.pS.getPassRandom()
+        .subscribe(
+          pass => {
+            this.pass = pass;
+            this.storage.set("passInfo",this.pass);
+            console.log("pass-detail storage: " + JSON.stringify(this.storage.get("passInfo")));
+            location.reload();
+          },
+
+          error => { console.log("pass-detail:ERROR " + error) }
+        );  
+      
+        
     }
 
-    this.loading = true;
+    if (this.buttonValue === "valider") {
 
-    const pseudoPass = [
+      if (this.loginForm.invalid) {
+        return;
+      }
 
-      this.f.type.value,
-      this.f.countryCode.value,
-      this.f.passNb.value,
-      this.f.name.value,
-      this.f.surname.value,
-      this.f.dateOfBirth.value,
-      this.f.nationality.value,
-      this.f.sex.value,
-      this.f.placeOfBirth.value,
-      this.f.height.value,
-      this.f.autority.value,
-      this.f.residence.value,
-      this.f.eyesColor.value,
-      this.f.dateOfExpiry.value,
-      this.f.dateOfIssue.value,
-      this.f.passOrigin.value,
-      "Valide",
-      this.imageService.IMGbase64
-    ]
-    this.passservice.addPass(pseudoPass)
-      .pipe(first())
-      .subscribe(
-        data => {
+      this.loading = true;
+      const pseudoPass = [
 
-          console.log('coucou: ' + JSON.stringify(data));
+        this.f.type.value,
+        this.f.countryCode.value,
+        this.f.passNb.value,
+        this.f.name.value,
+        this.f.surname.value,
+        this.f.dateOfBirth.value,
+        this.f.nationality.value,
+        this.f.sex.value,
+        this.f.placeOfBirth.value,
+        this.f.height.value,
+        this.f.autority.value,
+        this.f.residence.value,
+        this.f.eyesColor.value,
+        this.f.dateOfExpiry.value,
+        this.f.dateOfIssue.value,
+        this.f.passOrigin.value,
+        "Valide",
+        this.imageService.IMGbase64
+      ]
 
-          //console.log('connect: ' + data.message);
+      this.passservice.addPass(pseudoPass)
+        .pipe(first())
+        .subscribe(
+          data => {
 
-          if (data.message === 'Transaction has been submitted') {
-            alert("Le passeport a bien été ajouté !\n\n   Identifiant: " + this.f.passNb.value +
-              "\n   Mot de passe: " + data.password);
+            console.log('coucou: ' + JSON.stringify(data));
+
+            //console.log('connect: ' + data.message);
+
+            if (data.message === 'Transaction has been submitted') {
+              alert("Le passeport a bien été ajouté !\n\n   Identifiant: " + this.f.passNb.value +
+                "\n   Mot de passe: " + data.password);
               this.loading = false;
+            }
+
+            else {
+              alert("Un problème est survenu, veuillez réessayer")
+            }
+          },
+
+          error => {
+            console.log('ERROR: ' + JSON.stringify(error));
+            this.error = JSON.stringify(error);
+            // this.loading = false;
           }
-
-          else {
-            alert("Un problème est survenu, veuillez réessayer")
-          }
-        },
-
-        error => {
-          console.log('ERROR: ' + JSON.stringify(error));
-          this.error = JSON.stringify(error);
-          // this.loading = false;
-        }
-      );
-
-
-
-
-
-
-    // console.log( 
-    //   "Submitted: "+ this.submitted +
-    //   "\nPhoto: "+ this.f.photo.value +
-    //   "\n Signature: "+  this.f.signature.value+
-    //   "\nPassOrigin: "+ this.f.passOrigin.value+
-    //   "\ntype: "+ this.f.type.value+
-    //   "\nsurname: "+this.f.surname.value);
-
+        );
+    }
 
 
 

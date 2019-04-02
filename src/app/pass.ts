@@ -1,6 +1,6 @@
 export class Pass {
     type: string;
-    countrycode: string;
+    countryCode: string;
     passNb: any;
     name: string;
     surname: string;
@@ -16,6 +16,6 @@ export class Pass {
     validity: string;
     dateOfExpiry: string;
     dateOfIssue: string;
-    image:string;
+    image: string;
 
 }

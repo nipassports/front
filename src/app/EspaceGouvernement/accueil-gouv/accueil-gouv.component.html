@@ -10,7 +10,7 @@
       <select #aut type="text" class="custom-select custom-select-sm">
 
         <option value="1">Autorisé</option>
-        <option value="-1">Non Autorisé</option>
+        <option value="0">Non Autorisé</option>
 
       </select>
 
@@ -90,7 +90,7 @@
 </ng-template>
 
 
-<ng-template [ngIf]="global.autority==-1">
+<ng-template [ngIf]="global.autority==0">
 
     <div class="container justify-content-center mt-custom">
 
