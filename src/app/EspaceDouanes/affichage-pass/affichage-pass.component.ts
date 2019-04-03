@@ -17,7 +17,7 @@ export class AffichagePassComponent implements OnInit {
   selectedVue: string;
 
   passBar = [ 
-    'Mon Passeport',
+    'Passeport',
     'Visa',
     'Autre'
 
@@ -26,7 +26,7 @@ export class AffichagePassComponent implements OnInit {
   constructor( private pS : PassService,private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.selectedVue = 'Mon Passeport';
+    this.selectedVue = 'Passeport';
     this.route.params
     .subscribe(params=>this.pS.setPassNumb(params.passNb));
 

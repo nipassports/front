@@ -28,7 +28,7 @@ div.col-auto.a div.row.maPhoto {
 
     height : 260px;
     width :170px;
-    background: #828282;
+    background: #2F404D;
     border-radius: 10px;
     
 }
@@ -37,7 +37,7 @@ div.col-auto.a div.row.c {
     /*                        Signature                            */
 
     height : 50px;
-    background: #828282;
+    background: #2F404D;
     border-radius: 10px;
     align-items: flex-start;
     display: block;
@@ -68,7 +68,7 @@ span.titre {
     line-height: normal;
     font-size: 13px;
 
-    color: #000000;
+    color: #2F404D;
 }
 
 span.trad {
@@ -78,5 +78,5 @@ span.trad {
     font-weight: 300;
     line-height: normal;
     font-size: 11px;
-    color: #000000;  
+    color: #2F404D;  
 }

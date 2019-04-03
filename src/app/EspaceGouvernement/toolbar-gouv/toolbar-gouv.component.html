@@ -11,7 +11,7 @@
 
               <ng-template [ngIf]="vue.autority==1">
                   <a class="nav-link btn fcol" routerLink="{{vue.link}}" 
-                  [class.selected]="vue===selectedvue">{{vue.title}}</a>
+                  [class.selected]="vue.title===selectedvue">{{vue.title}}</a>
               </ng-template>
 
           </li>
