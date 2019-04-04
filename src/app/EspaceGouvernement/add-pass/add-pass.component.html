@@ -38,13 +38,13 @@
         </div>
 
         <div class="row maPhoto">
-          <!--  Insérer la photo d'identité   -->
+          <div *ngIf="imgchanged"><img src="{{imageService.IMGbase64}}" class="images"></div>
         </div>
 
         <div class="row a mt-3">
 
 
-          <input type="file" class="form-control-file input-sm" formControlName="photo" id="Photo"
+          <input type="file" #imageInput class="form-control-file input-sm" accept="image/*" (change)="processFile(imageInput)" formControlName="photo" id="Photo"
             [ngClass]="{ 'is-invalid': submitted && f.photo.errors }">
 
           <div *ngIf="submitted && f.photo.errors" class="invalid-feedback">
@@ -630,17 +630,22 @@
   </div> <!-- container-fluid object-->
 
   <div class="container-fluid justify-content-end">
-    <div class="row valider">
+    <div class="row bouton">
       
       <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
         Génerer
       </button>
 
-      <button class="btn btn-custom valider" (click)="buttonClicked('valider')">
+      <button class="btn btn-custom generate" (click)="buttonClicked('valider')">
         Valider
       </button>
 
       <img *ngIf="loading" src="../assets/img/attente.gif" />
     </div>
   </div>
+
+
+
+
+  <p>{{image?.replace("data:image/png;base64,", "")}}</p>
 </form>

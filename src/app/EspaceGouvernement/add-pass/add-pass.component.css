@@ -39,14 +39,14 @@ div.container-fluid.object div.row.object{
     margin-top: -8px;
     margin-left: 3.5%;
     height: 500px;
-    background-color: #F9F2F2;
+    background-color: #C4C4C4;
     overflow: auto;
    
 }
 
 
 /* Conteneur du Bouton valider */
-div.container-fluid div.row.valider{
+div.container-fluid div.row.bouton{
     width: 93%;
     margin-left: 3.5%;
     justify-content: right;
@@ -68,13 +68,19 @@ input.custom-file-input.input-sm {
     display: block;
 
 }
+.images{
 
+    height :250px;
+    width : 300px;
+    padding-left:20px;
+    padding-right:20px;
+}
 div.col-auto.a div.row.maPhoto {
     /*                        Photo                            */
 
-    height : 200px;
+    height : 250px;
     width : 300px;
-    background: #828282;
+    background: #2F404D;
     border-radius: 10px;
     
 }
@@ -84,7 +90,7 @@ div.col-auto.a div.row.c {
 
     height : 50px;
     width : 300px;
-    background: #828282;
+    background: #2F404D;
     border-radius: 10px;
     align-items: flex-start;
     display: block;
@@ -138,9 +144,10 @@ div.col.d {
     display: inline-block;
 }
 
-button.valider {
+
+button.generate:hover{
     cursor: pointer;
-    background-color: #2F404D;
+    background-color: #5DAC99;
     height: 50px;
     width : 300px;
     color : white;
@@ -148,10 +155,9 @@ button.valider {
     margin-top: -10px;
     overflow: hidden;
 }
-
 button.generate{
     cursor: pointer;
-    background-color: rgb(105, 78, 37);
+    background-color: #2F404D;
     height: 50px;
     width : 300px;
     color : white;
@@ -168,7 +174,7 @@ span.titre {
     line-height: normal;
     font-size: 13px;
 
-    color: #000000;
+    color: #2F404D;
 }
 
 span.trad {
@@ -178,7 +184,7 @@ span.trad {
     font-weight: 300;
     line-height: normal;
     font-size: 11px;
-    color: #000000;  
+    color: #2F404D;  
 }
 
 /*                                       Choix multiple                                        */ 

@@ -3,14 +3,16 @@ import { Component, OnInit, Input, Directive, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
+import{ImageServiceService}from '../../image-service.service'
 import { Pass } from '../../pass';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { PathLocationStrategy } from '@angular/common';
 
 
 
-
-
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-add-pass',
@@ -20,6 +22,7 @@ import { PathLocationStrategy } from '@angular/common';
 
 
 export class AddPassComponent implements OnInit {
+  imgchanged=false;
 
   pass: Pass;
   loginForm: FormGroup;
@@ -27,6 +30,8 @@ export class AddPassComponent implements OnInit {
   submitted = false;
   loading = false;
   private error: any;
+  selectedFile: ImageSnippet;
+
   buttonValue: string;
 
   frInfo = {
@@ -71,7 +76,8 @@ export class AddPassComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor(private passservice: PassService, private formBuilder: FormBuilder, private pS: PassService,
+
+  constructor(private passservice: PassService, private formBuilder: FormBuilder, private imageService:ImageServiceService,private pS: PassService,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
@@ -126,6 +132,22 @@ export class AddPassComponent implements OnInit {
   }
 
   get f() { return this.loginForm.controls; }
+  
+  processFile(imageInput: any) {
+    this.imgchanged=true;
+
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.imageService.loadImage(this.selectedFile.src)
+    });
+
+    reader.readAsDataURL(file);
+  }
 
   addPass(pseudoPass: any): void {
     console.log('Ajout du passeport');
@@ -188,7 +210,7 @@ export class AddPassComponent implements OnInit {
         this.f.dateOfIssue.value,
         this.f.passOrigin.value,
         "Valide",
-        "test-image"
+        this.imageService.IMGbase64
       ]
 
       this.passservice.addPass(pseudoPass)

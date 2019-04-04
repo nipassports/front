@@ -83,7 +83,7 @@ export class PassService {
       Authorization: 'bearer ' + this.storage.get("token")
     });
     const options = { headers: headers };
-
+    console.log('VALEUR DE LIMAGE '+pseudoPass[17]);
     return this.http.post<any>(this.gouvUrl,
       {
         type: pseudoPass[0],
