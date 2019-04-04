@@ -6,7 +6,7 @@ import { first } from 'rxjs/operators';
 import{ImageServiceService}from '../../image-service.service'
 import { Pass } from '../../pass';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
-import { PathLocationStrategy } from '@angular/common';
+
 
 
 
@@ -83,7 +83,13 @@ export class AddPassComponent implements OnInit {
   ngOnInit() {
     if ( this.storage.get("passInfo") !== null ){
       this.pass= this.storage.get("passInfo");
-      console.log("INFO: "+ Date.parse(this.pass.dateOfIssue));
+      
+      console.log(this.pass.dateOfBirth)
+
+      let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
+      let dateOfIssue = this.normalDate(this.pass.dateOfIssue); 
+      let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry); 
+
       this.loginForm = this.formBuilder.group({
         photo: ['',Validators.required],
         signature: ['',Validators.required],
@@ -95,13 +101,13 @@ export class AddPassComponent implements OnInit {
         countryCode: [this.pass.countryCode, Validators.required],
         height: [this.pass.height, Validators.required],
         passNb: [this.pass.passNb, Validators.required],
-        dateOfBirth: [this.pass.dateOfBirth, Validators.required],
+        dateOfBirth: [dateOfBirth, Validators.required],
         eyesColor: [this.pass.eyesColor, Validators.required],
         placeOfBirth: [this.pass.placeOfBirth, Validators.required],
         residence: [this.pass.residence, Validators.required],
         autority: [this.pass.autority, Validators.required],
-        dateOfIssue: [this.pass.dateOfIssue, Validators.required],
-        dateOfExpiry: [this.pass.dateOfExpiry, Validators.required],
+        dateOfIssue: [dateOfIssue, Validators.required],
+        dateOfExpiry: [dateOfExpiry, Validators.required],
         nationality: [this.pass.nationality, Validators.required],
       });
     
@@ -162,13 +168,23 @@ export class AddPassComponent implements OnInit {
     console.log("buttonClicked value: " + value);
   }
 
+
+  normalDate(date:string): string{
+    let splitDate = date.split('/');
+    const year  = splitDate[2];
+    const month = splitDate[1];
+    const day = splitDate[0];
+    const trueDate = year+"-"+month+"-"+day;
+    return trueDate;
+  }
+
   onSubmit() {
 
-    this.submitted = true;
     console.log("button value: " + this.buttonValue)
 
     if (this.buttonValue === "generate") {
 
+      console.log("before generate: " + this.f.dateOfBirth.value)
       this.pS.getPassRandom()
         .subscribe(
           pass => {
@@ -185,6 +201,8 @@ export class AddPassComponent implements OnInit {
     }
 
     if (this.buttonValue === "valider") {
+
+      this.submitted = true;
 
       if (this.loginForm.invalid) {
         return;
