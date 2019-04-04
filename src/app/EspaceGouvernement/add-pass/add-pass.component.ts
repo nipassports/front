@@ -77,10 +77,10 @@ export class AddPassComponent implements OnInit {
   ngOnInit() {
     if ( this.storage.get("passInfo") !== null ){
       this.pass= this.storage.get("passInfo");
-      console.log("INFO: "+ JSON.stringify(this.pass));
+      console.log("INFO: "+ Date.parse(this.pass.dateOfIssue));
       this.loginForm = this.formBuilder.group({
-        photo: [''],
-        signature: [''],
+        photo: ['',Validators.required],
+        signature: ['',Validators.required],
         passOrigin: ['France', Validators.required],
         type: ['P', Validators.required],
         name: [this.pass.name, Validators.required],
