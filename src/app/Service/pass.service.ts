@@ -47,7 +47,7 @@ export class PassService {
     });
     const options = { headers: headers };
 
-    const url = `${this.citizenUrl}/${passNb}`;
+    const url = `${this.citizenUrl}/passport/`;
     return this.http.get<Pass_json>(url, options);
   }
 
@@ -59,7 +59,7 @@ export class PassService {
     });
     const options = { headers: headers };
 
-    const url = `${this.customUrl}/${passNb}`;
+    const url = `${this.customUrl}/passport/${passNb}`;
     return this.http.get<Pass_json>(url, options);
   }
 
@@ -71,7 +71,7 @@ export class PassService {
     });
     const options = { headers: headers };
 
-    return this.http.get<Pass_json[]>(this.customUrl, options);
+    return this.http.get<Pass_json[]>(this.customUrl+"/passport", options);
   }
 
   /** POST: add a new Pass to the server */
@@ -84,7 +84,7 @@ export class PassService {
     });
     const options = { headers: headers };
     console.log('VALEUR DE LIMAGE '+pseudoPass[17]);
-    return this.http.post<any>(this.gouvUrl,
+    return this.http.post<any>(this.gouvUrl+"/passport",
       {
         type: pseudoPass[0],
         countryCode: pseudoPass[1],

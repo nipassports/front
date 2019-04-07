@@ -3,7 +3,6 @@
 div.col-auto.a {
     display: inline-block;
     margin-left: 30px;
-    margin-top: 10px;
 }
 
 div.col-auto.a div.row.a {
@@ -68,7 +67,6 @@ span.titre {
 
     color: #2F404D;
 }
-
 
 span.trad {
     margin-left: 5px;
