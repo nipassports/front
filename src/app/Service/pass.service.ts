@@ -27,17 +27,9 @@ export class PassService {
   getPassNumb() {
     return this.passNb;
   }
+  
 
-  getPassRandom(): Observable<Pass> {
-    
-    const url = `${this.gouvUrl}/random`;
-    this.http.get<Pass>(url)
-    .subscribe(
-      data => {console.log("passRandom: "+JSON.stringify(data) )}
-    )
-    
-    return this.http.get<Pass>(url);
-  }
+  //Citizen
 
   getPassInfo(passNb: string): Observable<Pass_json> {
     console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
@@ -51,6 +43,7 @@ export class PassService {
     return this.http.get<Pass_json>(url, options);
   }
 
+  //Custom
   getPassInfoDouanes(passNb: string): Observable<Pass_json> {
     console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
     const headers = new HttpHeaders({
@@ -74,6 +67,7 @@ export class PassService {
     return this.http.get<Pass_json[]>(this.customUrl+"/passport", options);
   }
 
+  // Government 
   /** POST: add a new Pass to the server */
   addPass(pseudoPass: any): Observable<any> {
     console.log('args: ' + pseudoPass);
@@ -107,5 +101,34 @@ export class PassService {
       }, options);
   }
 
+  getPassRandom(): Observable<Pass> {
+    
+    const url = `${this.gouvUrl}/random`;    
+    return this.http.get<Pass>(url);
+  }
 
+  getCountryPass(countryCode:string): Observable<Pass_json[]> {
+
+    const url = `${this.gouvUrl}/all/${countryCode}`;
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+
+    return this.http.get<Pass_json[]>(url,options);
+  }
+
+  getPassInfoGouv(passNb: string): Observable<Pass_json> {
+   
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+
+    const url = `${this.gouvUrl}/one/${passNb}`;
+    return this.http.get<Pass_json>(url, options);
+  }
 }

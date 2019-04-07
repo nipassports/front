@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpritPassListComponent } from './sprit-pass-list.component';
+import { PassDetailsComponent } from './pass-details.component';
 
-describe('SpritPassListComponent', () => {
-  let component: SpritPassListComponent;
-  let fixture: ComponentFixture<SpritPassListComponent>;
+describe('PassDetailsComponent', () => {
+  let component: PassDetailsComponent;
+  let fixture: ComponentFixture<PassDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpritPassListComponent ]
+      declarations: [ PassDetailsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SpritPassListComponent);
+    fixture = TestBed.createComponent(PassDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

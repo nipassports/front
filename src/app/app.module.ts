@@ -43,8 +43,9 @@ import { AuthentificationService } from './Service/authentification.service';
 import { ChangeimgDirective } from './changeimg.directive';
 import { ModifyPassComponent } from './EspaceGouvernement/modify-pass/modify-pass.component';
 import { PassListComponent } from './EspaceGouvernement/pass-list/pass-list.component';
-import { SpritPassListComponent } from './EspaceGouvernement/sprit-pass-list/sprit-pass-list.component';
 import { PassIssuesComponent } from './EspaceGouvernement/pass-issues/pass-issues.component';
+import { PassDetailsComponent } from './EspaceGouvernement/pass-details/pass-details.component';
+import { PassViewComponent } from './EspaceGouvernement/pass-view/pass-view.component';
 
 
 
@@ -73,8 +74,9 @@ import { PassIssuesComponent } from './EspaceGouvernement/pass-issues/pass-issue
     AccueilGouvComponent,
     ModifyPassComponent,
     PassListComponent,
-    SpritPassListComponent,
-    PassIssuesComponent
+    PassIssuesComponent,
+    PassDetailsComponent,
+    PassViewComponent
   ],
   imports: [
     HttpClientModule,

@@ -19,26 +19,19 @@ import { AddPassComponent } from './EspaceGouvernement/add-pass/add-pass.compone
 import { EnsemblePassComponent } from './EspaceDouanes/ensemble-pass/ensemble-pass.component';
 import { AccueilGouvComponent } from './EspaceGouvernement/accueil-gouv/accueil-gouv.component';
 import { ModifyPassComponent } from './EspaceGouvernement/modify-pass/modify-pass.component';
-import { SpritPassListComponent } from './EspaceGouvernement/sprit-pass-list/sprit-pass-list.component';
 import { PassIssuesComponent } from './EspaceGouvernement/pass-issues/pass-issues.component';
 
 import { AffichagePassComponent } from './EspaceDouanes/affichage-pass/affichage-pass.component';
 import { PassInfosComponent } from './EspaceDouanes/pass-infos/pass-infos.component';
+import { PassListComponent } from './EspaceGouvernement/pass-list/pass-list.component';
+import { PassViewComponent } from './EspaceGouvernement/pass-view/pass-view.component';
+import { PassDetailsComponent } from './EspaceGouvernement/pass-details/pass-details.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
 
   
-  {path: 'Passeports/:passNb', component: AffichagePassComponent, 
-  children : [
-      { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
-      {path: 'Passeport', component: PassInfosComponent},
-      {path: 'Visa', component: VisaComponent}, 
-      {path: 'Autre', component: AutreComponent },
-      {path: 'problem', component: ProblemComponent},
-  ]
-},
   //Visitor
   { path: 'Accueil', component: AccueilComponent },
   { path: 'Se connecter', component: ChooseComponent },
@@ -51,12 +44,21 @@ const routes: Routes = [
   // Gouv
   { path: 'Espace Gouvernement', component: AccueilGouvComponent },
   { path: 'Espace Gouvernement/Modifier Passeport', component: ModifyPassComponent },
-  { path: 'Espace Gouvernement/Liste des Passeports', component: SpritPassListComponent },
+  { path: 'Espace Gouvernement/Liste des Passeports', component: PassListComponent },
   { path: 'Espace Gouvernement/Ajout Passeport', component: AddPassComponent },
   { path: 'Espace Gouvernement/Gestion des Problèmes', component: PassIssuesComponent },
+  { path: 'Espace Gouvernement/Passeports/:passNb', component: PassViewComponent, 
+  children : [
+      { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
+      {path: 'Passeport', component: PassDetailsComponent},
+      {path: 'Visa', component: VisaComponent}, 
+      {path: 'Autre', component: AutreComponent },
+      {path: 'problem', component: ProblemComponent},
+  ]
+},
 
   //Citizen
-  {path: 'Espace Citoyen', component: PasseportComponent, 
+  { path: 'Espace Citoyen', component: PasseportComponent, 
         children : [
             { path: '', redirectTo: 'Mon Passeport', pathMatch: 'full' },
             {path: 'Mon Passeport', component: PassDetailComponent},
@@ -67,7 +69,17 @@ const routes: Routes = [
   },
 
   // Custom
-  { path: 'Espace Douanes/Liste des Passeports',component: EnsemblePassComponent}
+  { path: 'Espace Douanes/Liste des Passeports',component: EnsemblePassComponent},
+  { path: 'Espace Douanes/Passeports/:passNb', component: AffichagePassComponent, 
+  children : [
+      { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
+      {path: 'Passeport', component: PassInfosComponent},
+      {path: 'Visa', component: VisaComponent}, 
+      {path: 'Autre', component: AutreComponent },
+      {path: 'problem', component: ProblemComponent},
+  ]
+}
+
 ];
 
 
