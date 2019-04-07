@@ -19,7 +19,8 @@
 </div>
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="container-fluid object justify-content-center">
+  <div><img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" /></div>
+  <div class="container-fluid object justify-content-center" *ngIf="!loading">
 
     <div class="row object justify-content-center">
 
@@ -74,7 +75,7 @@
           <!--  Insérer l'image de la signature   -->
         </div>
 
-        <div class="row a">
+        <div class="row a mt-3">
 
           <div class="form-group">
 
@@ -640,7 +641,6 @@
         Valider
       </button>
 
-      <img *ngIf="loading" src="../assets/img/attente.gif" />
     </div>
   </div>
 
