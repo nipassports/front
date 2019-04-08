@@ -1,7 +1,4 @@
- * {
-     padding:0px; 
-     margin:0px; 
- }
+
 .font-title{
     font-family: 'Advent Pro', sans-serif;
     color:#2F404D;
@@ -139,10 +136,9 @@
     .font-title{
         font-family: 'Advent Pro', sans-serif;
         color:#2F404D;
-        line-height: 1.1; 
+        line-height: 1; 
         font-size:2em;
     }
-
 
     .cercle {
         width:10em; 
