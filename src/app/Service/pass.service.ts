@@ -6,7 +6,8 @@ import { GlobalToolbarInfo } from '../globalToolbarInfo';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { Pass_json } from '../pass_json';
 import { Pass } from '../pass';
-
+import { Visa_json } from '../visa_json';
+import {Visa} from '../visa';
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +44,16 @@ export class PassService {
     return this.http.get<Pass_json>(url, options);
   }
 
+  getVisa():Observable<Visa_json[]>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.citizenUrl}/visa/`;
+    return this.http.get<Visa_json[]>(url, options);
+  }
+
   //Custom
   getPassInfoDouanes(passNb: string): Observable<Pass_json> {
     console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
@@ -54,6 +65,18 @@ export class PassService {
 
     const url = `${this.customUrl}/passport/${passNb}`;
     return this.http.get<Pass_json>(url, options);
+  }
+
+  getVisaDouane(passNb:string):Observable<Visa_json[]>{
+    console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+
+    const url = `${this.customUrl}/visa/${passNb}`;
+    return this.http.get<Visa_json[]>(url, options);
   }
 
   getAllPass(): Observable<Pass_json[]> {

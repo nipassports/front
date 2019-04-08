@@ -46,6 +46,8 @@ import { PassListComponent } from './EspaceGouvernement/pass-list/pass-list.comp
 import { PassIssuesComponent } from './EspaceGouvernement/pass-issues/pass-issues.component';
 import { PassDetailsComponent } from './EspaceGouvernement/pass-details/pass-details.component';
 import { PassViewComponent } from './EspaceGouvernement/pass-view/pass-view.component';
+import { VisaDouaneComponent } from './EspaceDouanes/visa-douane/visa-douane.component';
+import { FAQComponent } from './faq/faq.component';
 
 
 
@@ -76,7 +78,9 @@ import { PassViewComponent } from './EspaceGouvernement/pass-view/pass-view.comp
     PassListComponent,
     PassIssuesComponent,
     PassDetailsComponent,
-    PassViewComponent
+    PassViewComponent,
+    VisaDouaneComponent,
+    FAQComponent
   ],
   imports: [
     HttpClientModule,
