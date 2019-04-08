@@ -1,7 +1,11 @@
+ * {
+     padding:0px; 
+     margin:0px; 
+ }
 .font-title{
     font-family: 'Advent Pro', sans-serif;
     color:#2F404D;
-    font-size:48px;
+    font-size:3em;
 }
 
 .mt-max{
@@ -85,30 +89,14 @@
     height: 91%;
     margin-top:30px;
 }
-.sizeju{
-    background-size: cover;
-    width:58%;
-    height: 90.3%;
-    margin-top:30px;
-}
-.sizeje{
-    background-size: cover;
-    width:58%;
-    height: 90.3%;
-    margin-top:30px;
-}
+
 .sizet{
     background-size: cover;
     width:58%;
     height: 90.3%;
     margin-top:30px;
 }
-.sizea{
-    background-size: cover;
-    width:58%;
-    height: 90.3%;
-    margin-top:30px;
-}
+
 .font-name{
     font-family: 'Advent Pro', sans-serif;
     color:#2F404D;
@@ -125,17 +113,17 @@
 
 
 .ang{
-    height:150px;
+    height:10em;
 
 }
 
 .hyper{
-    height:150px;
+    height:10em;
 
 }
 
 .node{
-    height:150px;
+    height:10em;
 
 }
 
@@ -144,4 +132,69 @@
 }
 .pr-custom{
     padding-right: 15%;
+}
+
+@media screen  and (max-width: 760px) {
+
+    .font-title{
+        font-family: 'Advent Pro', sans-serif;
+        color:#2F404D;
+        line-height: 1.1; 
+        font-size:2em;
+    }
+
+
+    .cercle {
+        width:10em; 
+        height:10em; 
+    }
+
+    .sizeo{
+        background-size: cover;
+        width:58%;
+        height: 83%;
+        margin-top:30px;
+    }
+    .sizec{
+        background-size: cover;
+        width:58%;
+        height: 86%;
+        margin-top:30px;
+    }
+    
+    .sizet{
+        background-size: cover;
+        width:58%;
+        height: 85.3%;
+        margin-top:30px;
+    }
+
+    .sizen{
+        background-size: cover;
+        width:66%;
+        height: 95%;
+        margin-top:26px;
+    }
+    .sizej{
+        background-size: cover;
+        width:58%;
+        height: 80%;
+        margin-top:29px;
+        margin-left:3px;
+    }
+
+    .ang{
+        height:6em;
+    
+    }
+    
+    .hyper{
+        height:6em;
+    
+    }
+    
+    .node{
+        height:6em;
+    
+    }
 }
