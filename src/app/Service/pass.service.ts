@@ -165,4 +165,14 @@ export class PassService {
     const url = `${this.gouvUrl}/passport/all/${countryCode}`;
     return this.http.get<Pass_json[]>(url, options);
   }
+
+  getVisaGouv(passNb:string):Observable<Visa_json[]>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/visa/one/${passNb}`;
+    return this.http.get<Visa_json[]>(url, options);
+  }
 }

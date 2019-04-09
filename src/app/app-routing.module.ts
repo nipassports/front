@@ -29,7 +29,7 @@ import { PassDetailsComponent } from './EspaceGouvernement/pass-details/pass-det
 import { AddVisaComponent } from './EspaceGouvernement/add-visa/add-visa.component';
 import {VisaDouaneComponent} from './EspaceDouanes/visa-douane/visa-douane.component';
 import {FAQComponent} from './faq/faq.component';
-
+import {VisagouvComponent} from './EspaceGouvernement/visagouv/visagouv.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
@@ -54,7 +54,7 @@ const routes: Routes = [
   children : [
       { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
       {path: 'Passeport', component: PassDetailsComponent},
-      {path: 'Visa', component: VisaComponent}, 
+      {path: 'Visa', component: VisagouvComponent}, 
       {path: 'Autre', component: AutreComponent },
       {path: 'problem', component: ProblemComponent},
       {path: 'Ajout VISA', component: AddVisaComponent}
