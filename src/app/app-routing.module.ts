@@ -27,6 +27,8 @@ import { PassListComponent } from './EspaceGouvernement/pass-list/pass-list.comp
 import { PassViewComponent } from './EspaceGouvernement/pass-view/pass-view.component';
 import { PassDetailsComponent } from './EspaceGouvernement/pass-details/pass-details.component';
 import { AddVisaComponent } from './EspaceGouvernement/add-visa/add-visa.component';
+import {VisaDouaneComponent} from './EspaceDouanes/visa-douane/visa-douane.component';
+import {FAQComponent} from './faq/faq.component';
 
 
 const routes: Routes = [
@@ -36,7 +38,7 @@ const routes: Routes = [
   //Visitor
   { path: 'Accueil', component: AccueilComponent },
   { path: 'Se connecter', component: ChooseComponent },
-
+  { path: 'FAQ', component: FAQComponent },
   // Authentification 
   { path: 'Citoyen',component: AuthcitoyenComponent},
   { path: 'Gouvernement',component: AuthGouvComponent},
@@ -76,7 +78,7 @@ const routes: Routes = [
   children : [
       { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
       {path: 'Passeport', component: PassInfosComponent},
-      {path: 'Visa', component: VisaComponent}, 
+      {path: 'Visa', component: VisaDouaneComponent}, 
       {path: 'Autre', component: AutreComponent },
       {path: 'problem', component: ProblemComponent},
   ]
