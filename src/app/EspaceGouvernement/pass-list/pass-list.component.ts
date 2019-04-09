@@ -17,11 +17,11 @@ export class PassListComponent implements OnInit {
   
 
   ngOnInit() {
-    this.getAllPass("FR");
+    this.getAllPassGouv("FR");
   }
 
-  getAllPass(country: string): void {
-    this.pS.getCountryPass(country)
+  getAllPassGouv(country: string): void {
+    this.pS.getAllPassGouv(country)
     .subscribe( Allpass => this.Allpass = Allpass);
     console.log(this.Allpass);
   }

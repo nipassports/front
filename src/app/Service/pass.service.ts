@@ -151,7 +151,18 @@ export class PassService {
     });
     const options = { headers: headers };
 
-    const url = `${this.gouvUrl}/one/${passNb}`;
+    const url = `${this.gouvUrl}/passport/one/${passNb}`;
     return this.http.get<Pass_json>(url, options);
+  }
+
+  getAllPassGouv(countryCode:string):Observable<Pass_json[]>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+
+    const url = `${this.gouvUrl}/passport/all/${countryCode}`;
+    return this.http.get<Pass_json[]>(url, options);
   }
 }
