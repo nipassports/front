@@ -41,10 +41,11 @@ div.container.navbar div.row {
   
   .card-header {
     background-color: #C7C6C6;
+    margin-top: -7px;
   }
   
   div.container.object .row{
-    width: 95%;
+    width: 97%;
     margin-top: -8px;
     height: 500px;
     transform: translate(16px);

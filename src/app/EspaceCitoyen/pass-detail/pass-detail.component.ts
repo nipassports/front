@@ -53,7 +53,7 @@ export class PassDetailComponent implements OnInit {
     height: 'Height',
     autority: 'Autority',
     residence: 'Residence',
-    consoler: 'Color of eyes',
+    eyesColor: 'Color of eyes',
     dateOfExpiry: "Date of expiry",
     dateOfIssue: 'Date of issue',
     passOrigin:"Passeport origine",
