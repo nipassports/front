@@ -17,7 +17,9 @@ export class PassViewComponent implements OnInit {
   passBar = [ 
     'Passeport',
     'Visa',
-    'Autre'
+    'Autre',
+
+    'Ajout VISA'
 
   ];
 

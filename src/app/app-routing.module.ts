@@ -26,6 +26,7 @@ import { PassInfosComponent } from './EspaceDouanes/pass-infos/pass-infos.compon
 import { PassListComponent } from './EspaceGouvernement/pass-list/pass-list.component';
 import { PassViewComponent } from './EspaceGouvernement/pass-view/pass-view.component';
 import { PassDetailsComponent } from './EspaceGouvernement/pass-details/pass-details.component';
+import { AddVisaComponent } from './EspaceGouvernement/add-visa/add-visa.component';
 import {VisaDouaneComponent} from './EspaceDouanes/visa-douane/visa-douane.component';
 import {FAQComponent} from './faq/faq.component';
 
@@ -56,6 +57,7 @@ const routes: Routes = [
       {path: 'Visa', component: VisaComponent}, 
       {path: 'Autre', component: AutreComponent },
       {path: 'problem', component: ProblemComponent},
+      {path: 'Ajout VISA', component: AddVisaComponent}
   ]
 },
 

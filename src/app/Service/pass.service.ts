@@ -132,7 +132,7 @@ export class PassService {
 
   getCountryPass(countryCode:string): Observable<Pass_json[]> {
 
-    const url = `${this.gouvUrl}/all/${countryCode}`;
+    const url = `${this.gouvUrl}/passport/all/${countryCode}`;
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
