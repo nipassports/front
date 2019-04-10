@@ -125,6 +125,11 @@
     margin-top:10px;
 }
 
+
+.alert {
+	font-size: 0.9em; 
+}
+
 @media screen and (max-width: 480px) {
 	.log-box{
 		border-radius: 0px 0px 10px 10px; 
@@ -140,6 +145,24 @@
 		color: #5DAC99;
 		font-size: 2em; 
 	}
+	.alert {
+		font-size: 0.7em; 
+	}
+
+
+}
+
+@media screen and (max-width: 940px) {
+	.alert {
+		font-size: 0.8em; 
+	}
+
+	.btn {
+		font-size: 0.8em; 
+		padding:5px 10px;
+	}
+
+	
 }
 
 
