@@ -30,6 +30,7 @@ import { AddVisaComponent } from './EspaceGouvernement/add-visa/add-visa.compone
 import {VisaDouaneComponent} from './EspaceDouanes/visa-douane/visa-douane.component';
 import {FAQComponent} from './faq/faq.component';
 import {VisagouvComponent} from './EspaceGouvernement/visagouv/visagouv.component'
+import { AuthentifComponent } from './authentif/authentif.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
@@ -37,7 +38,7 @@ const routes: Routes = [
   
   //Visitor
   { path: 'Accueil', component: AccueilComponent },
-  { path: 'Se connecter', component: ChooseComponent },
+  { path: 'Se connecter', component: AuthentifComponent },
   { path: 'FAQ', component: FAQComponent },
   // Authentification 
   { path: 'Citoyen',component: AuthcitoyenComponent},

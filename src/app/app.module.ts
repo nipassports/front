@@ -50,6 +50,7 @@ import { AddVisaComponent } from './EspaceGouvernement/add-visa/add-visa.compone
 import { VisaDouaneComponent } from './EspaceDouanes/visa-douane/visa-douane.component';
 import { FAQComponent } from './faq/faq.component';
 import { VisagouvComponent } from './EspaceGouvernement/visagouv/visagouv.component';
+import { AuthentifComponent } from './authentif/authentif.component';
 
 
 
@@ -84,7 +85,8 @@ import { VisagouvComponent } from './EspaceGouvernement/visagouv/visagouv.compon
     AddVisaComponent,
     VisaDouaneComponent,
     FAQComponent,
-    VisagouvComponent
+    VisagouvComponent,
+    AuthentifComponent
   ],
   imports: [
     HttpClientModule,

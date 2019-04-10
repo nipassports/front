@@ -1,0 +1,68 @@
+<div class="login-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8 m-auto col-sm-8 col-12">
+        <div class="log-box">
+          <div class="row">
+            <div class="col-sm-5 col-sm-5 col-12">
+              <div class="logo-back">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="rectangle mt-sm-1" (click)="Espace('Citoyen')">
+                      <p> CITOYEN</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="rectangle gouvernement" (click)="Espace('Gouvernement')">
+                      <p> GOUVERNEMENT</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="rectangle douane" (click)="Espace('Douane')">
+                      <p> DOUANE</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-7 col-sm-7 col-12">
+              <div class="log-content">
+                <h1>{{espace}}</h1>
+                <div class="log-body">
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group myr-top">
+                      <label>Login</label>
+                      <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant"
+                      [ngClass]="{ 'is-invalid': submitted && f.identifiant.errors }" placeholder="Numéro de passeport">
+                    </div>
+                    <div class="form-group myr-top">
+                      <label>Password</label>
+                      <input type="password" class="form-control custom" placeholder="Mot de Passe" id="password" formControlName="password"
+                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    </div>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-auto">
+                          <div class="log-btn text-center">
+                            <button class="btn btn-theme1">Connexion</button>
+                          </div>
+                        </div>
+                        <div class="form-group col-md-auto">
+                          <div class="log-btn text-center">
+                            <button class="btn btn-theme1">Retour</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="log-bottom-cotent">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
