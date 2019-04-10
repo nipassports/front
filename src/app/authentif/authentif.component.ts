@@ -11,7 +11,7 @@ import { PassService } from '../Service/pass.service';
 @Component({
   selector: 'app-authentif',
   templateUrl: './authentif.component.html',
-  styleUrls: ['./authentif.component.css']
+  styleUrls: ['./authentif.component.css'], 
 })
 export class AuthentifComponent implements OnInit {
 

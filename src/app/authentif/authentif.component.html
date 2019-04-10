@@ -29,7 +29,7 @@
               <div class="log-content">
                 <h1>{{espace}}</h1>
                 <div class="log-body">
-                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keyup)="onSubmit()">
                     <div class="form-group myr-top">
                       <label>Login</label>
                       <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant"
