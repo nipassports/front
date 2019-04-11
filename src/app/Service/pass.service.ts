@@ -18,7 +18,6 @@ export class PassService {
   private gouvUrl = 'http://192.168.0.100:3000/gouvernment';
   private passNb: string;
   public data: any = [];
-
   constructor(private http: HttpClient, private global: GlobalToolbarInfo,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 

@@ -28,7 +28,7 @@
       
           <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5 ">
             <div class="cercle d-flex justify-content-center pt-3 pb-3 btn" routerLink="/Espace Gouvernement/Ajout Passeport"
-              (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave(0)">
+              (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave(0)" (click)="viewstorage('Ajout Passeport')">
               <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="../assets/img/add.png" class="img img-fluid " *ngIf="entier!==1">
                 <img src="../assets/img/add-white.png" class="img img-fluid " *ngIf="entier===1">
@@ -42,7 +42,7 @@
       
           <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
             <div class="cercle container justify-content-center pt-3 pb-3 btn"
-              routerLink="/Espace Gouvernement/Modifier Passeport" (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave(0)">
+              routerLink="/Espace Gouvernement/Modifier Passeport" (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave(0)" (click)="viewstorage('Modifier Passeport')">
               <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="../assets/img/modify.png" class="img img-fluid justify-content-center align-items-center"
                   *ngIf="entier!=2" />
@@ -57,7 +57,7 @@
           <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
             <div class="cercle d-flex justify-content-center pt-3 pb-3 btn"
               routerLink="/Espace Gouvernement/Liste des Passeports" (mouseenter)="mouseEnter(3)"
-              (mouseleave)="mouseLeave(0)">
+              (mouseleave)="mouseLeave(0)" (click)="viewstorage('Liste des Passeports')">
               <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="../assets/img/search.png" class="img img-fluid" *ngIf="entier!==3">
                 <img src="../assets/img/search-white.png" class="img img-fluid" *ngIf="entier===3">
@@ -71,7 +71,7 @@
           <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
             <div class="cercle d-flex justify-content-center pt-3 pb-3 btn"
               routerLink="/Espace Gouvernement/Gestion des Problèmes" (mouseenter)="mouseEnter(4)"
-              (mouseleave)="mouseLeave(0)">
+              (mouseleave)="mouseLeave(0)" (click)="viewstorage('Gestion des problèmes')">
               <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="../assets/img/warning.png" class="img img-fluid" *ngIf="entier!==4">
                 <img src="../assets/img/warning-white.png" class="img img-fluid" *ngIf="entier===4">
@@ -98,7 +98,7 @@
       
           <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5 ">
             <div class="cercle d-flex justify-content-center pt-3 pb-3 btn" routerLink="/Espace Gouvernement/Ajout Passeport"
-              (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave(0)">
+              (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave(0)" (click)="viewstorage('Ajout Passeport')">
               <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="../assets/img/add.png" class="img img-fluid " *ngIf="entier!==1">
                 <img src="../assets/img/add-white.png" class="img img-fluid " *ngIf="entier===1">
@@ -112,7 +112,7 @@
       
           <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
             <div class="cercle container justify-content-center pt-3 pb-3 btn non-autorized"
-              routerLink="/Espace Gouvernement/Modifier Passeport" (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave(0)">
+              routerLink="/Espace Gouvernement/Modifier Passeport" (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave(0)" (click)="viewstorage('Modifier Passeport')">
               <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="../assets/img/modify.png" class="img img-fluid justify-content-center align-items-center"
                   *ngIf="entier!=2" />
@@ -127,7 +127,7 @@
           <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
             <div class="cercle d-flex justify-content-center pt-3 pb-3 btn"
               routerLink="/Espace Gouvernement/Liste des Passeports" (mouseenter)="mouseEnter(3)"
-              (mouseleave)="mouseLeave(0)">
+              (mouseleave)="mouseLeave(0)" (click)="viewstorage('Liste des Passeports')">
               <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="../assets/img/search.png" class="img img-fluid" *ngIf="entier!==3">
                 <img src="../assets/img/search-white.png" class="img img-fluid" *ngIf="entier===3">
@@ -141,7 +141,7 @@
           <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
             <div class="cercle d-flex justify-content-center pt-3 pb-3 btn"
               routerLink="/Espace Gouvernement/Gestion des Problèmes" (mouseenter)="mouseEnter(4)"
-              (mouseleave)="mouseLeave(0)">
+              (mouseleave)="mouseLeave(0)" (click)="viewstorage('Gestion des problèmes')">
               <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="../assets/img/warning.png" class="img img-fluid" *ngIf="entier!==4">
                 <img src="../assets/img/warning-white.png" class="img img-fluid" *ngIf="entier===4">

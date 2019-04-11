@@ -3,10 +3,9 @@
 div.col-auto.a {
     display: inline-block;
     margin-left: 30px;
-
 }
 
-div.col-auto.a div.row.a {
+.validity {
 
     height : 30px;
     
@@ -17,54 +16,19 @@ div.col-auto.a div.row.a {
     text-align: center;
     padding-top: 2px;
 }
-
 .image{
-    max-width: 100%;
-	height: 100%;
-    
-}
-div.col-auto.a div.row.maPhoto {
-    /*                        Photo                            */
-
-    height : 260px;
-    width :170px;
-    background: #2F404D;
-    border-radius: 10px;
-    
-}
-
-div.col-auto.a div.row.c {
-    /*                        Signature                            */
-
-    height : 50px;
-    background: #2F404D;
-    border-radius: 10px;
-    align-items: flex-start;
-    display: block;
-    text-align: center;
-}
-
-/*                                    Deuxième colonne                              */
-
-div.col-auto.b {
-    margin-top: 10px;
-    display: inline-block;
+    width:70%;
     height: auto;
-    width: auto;
-    margin-left: 30px;
-
 }
-
-div.col-auto.c {
-    display: inline-block;
-    margin-right: 60px;
+.mt-custom{
+    margin-top:5%
 }
 
 /*                             Text                                                         */
 span.titre {
     font-family: Roboto;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     line-height: normal;
     font-size: 13px;
 

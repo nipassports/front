@@ -52,6 +52,8 @@ import { FAQComponent } from './faq/faq.component';
 import { VisagouvComponent } from './EspaceGouvernement/visagouv/visagouv.component';
 import { AuthentifComponent } from './authentif/authentif.component';
 import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.component';
+import { View } from './view';
+import { ViewService } from './Service/view.service';
 
 
 
@@ -100,9 +102,12 @@ import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.com
     AppRoutingModule
   ],
   providers: [PassService,
+              ViewService,
               GlobalToolbarInfo,
               AuthentificationService,
-              AppComponent
+              AppComponent,
+              View
+              
              ],
   bootstrap: [AppComponent]
 })
