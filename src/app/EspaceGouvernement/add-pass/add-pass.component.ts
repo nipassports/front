@@ -7,7 +7,7 @@ import{ImageServiceService}from '../../image-service.service'
 import { Pass } from '../../pass';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
-
+import Swal from 'sweetalert2'
 
 
 class ImageSnippet {
@@ -241,13 +241,29 @@ export class AddPassComponent implements OnInit {
             //console.log('connect: ' + data.message);
 
             if (data.message === 'Transaction has been submitted') {
-              alert("Le passeport a bien été ajouté !\n\n   Identifiant: " + this.f.passNb.value +
-                "\n   Mot de passe: " + data.password);
+              var message : string; 
+              message = "<b> Identifiant: </b> " + this.f.passNb.value +
+              "<br> <b> Mot de passe:</b> " + data.password; 
+              Swal.fire({
+                title: 'Passeport ajouté !',
+                html: message,
+                type: 'success',
+                confirmButtonText: 'Fermer', 
+                confirmButtonColor: '#2F404D',
+                timer : 6000
+              })             
               this.loading = false;
             }
 
             else {
-              alert("Un problème est survenu, veuillez réessayer")
+              Swal.fire({
+                title: 'Problème',
+                text: 'Veuillez ré-essayer.',
+                type: 'error',
+                confirmButtonText: 'Fermer', 
+                confirmButtonColor: '#2F404D',
+                timer : 6000
+              })   
             }
           },
 
