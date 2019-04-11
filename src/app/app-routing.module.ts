@@ -32,7 +32,6 @@ import { VisaDouaneComponent } from './EspaceDouanes/visa-douane/visa-douane.com
 import { FAQComponent } from './faq/faq.component';
 import { VisagouvComponent } from './EspaceGouvernement/visagouv/visagouv.component'
 import { AuthentifComponent } from './authentif/authentif.component';
-import { AuthGuard } from './Service/auth-guard.service';
 
 
 const routes: Routes = [
@@ -49,20 +48,20 @@ const routes: Routes = [
   { path: 'Douanes', component: AuthCustomComponent },
 
   // Gouv
-  { path: 'Espace Gouvernement', canActivate: [AuthGuard], component: AccueilGouvComponent },
-  { path: 'Espace Gouvernement/Modifier Passeport', canActivate: [AuthGuard], component: ModifyPassComponent },
-  { path: 'Espace Gouvernement/Liste des Passeports', canActivate: [AuthGuard], component: PassListComponent },
-  { path: 'Espace Gouvernement/Ajout Passeport', canActivate: [AuthGuard], component: AddPassComponent },
-  { path: 'Espace Gouvernement/Gestion des Problèmes', canActivate: [AuthGuard], component: PassIssuesComponent },
+  { path: 'Espace Gouvernement', component: AccueilGouvComponent },
+  { path: 'Espace Gouvernement/Modifier Passeport', component: ModifyPassComponent },
+  { path: 'Espace Gouvernement/Liste des Passeports', component: PassListComponent },
+  { path: 'Espace Gouvernement/Ajout Passeport', component: AddPassComponent },
+  { path: 'Espace Gouvernement/Gestion des Problèmes', component: PassIssuesComponent },
   {
     path: 'Espace Gouvernement/Passeports/:passNb', component: PassViewComponent,
     children: [
       { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
-      { path: 'Passeport', canActivate: [AuthGuard], component: PassDetailsComponent },
-      { path: 'Visa', canActivate: [AuthGuard], component: VisagouvComponent },
-      { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
-      { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent },
-      { path: 'Ajout VISA', canActivate: [AuthGuard], component: AddVisaComponent }
+      { path: 'Passeport', component: PassDetailsComponent },
+      { path: 'Visa', component: VisagouvComponent },
+      { path: 'Autre', component: AutreComponent },
+      { path: 'problem', component: ProblemComponent },
+      { path: 'Ajout VISA', component: AddVisaComponent }
     ]
   },
 
@@ -71,10 +70,10 @@ const routes: Routes = [
     path: 'Espace Citoyen', component: PasseportComponent,
     children: [
       { path: '', redirectTo: 'Mon Passeport', pathMatch: 'full' },
-      { path: 'Mon Passeport', canActivate: [AuthGuard], component: PassDetailComponent },
-      { path: 'Visa', canActivate: [AuthGuard], component: VisaComponent },
-      { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
-      { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent },
+      { path: 'Mon Passeport', component: PassDetailComponent },
+      { path: 'Visa', component: VisaComponent },
+      { path: 'Autre', component: AutreComponent },
+      { path: 'problem', component: ProblemComponent },
     ]
   },
 
@@ -84,10 +83,10 @@ const routes: Routes = [
     path: 'Espace Douanes/Passeports/:passNb', component: AffichagePassComponent,
     children: [
       { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
-      { path: 'Passeport', canActivate: [AuthGuard], component: PassInfosComponent },
-      { path: 'Visa', canActivate: [AuthGuard], component: VisaDouaneComponent },
-      { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
-      { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent },
+      { path: 'Passeport', component: PassInfosComponent },
+      { path: 'Visa', component: VisaDouaneComponent },
+      { path: 'Autre', component: AutreComponent },
+      { path: 'problem', component: ProblemComponent },
     ]
   },
   { path: '**', redirectTo: 'not-found'}

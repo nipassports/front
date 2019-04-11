@@ -27,3 +27,11 @@ button.generate{
     border-radius: 10px;
     overflow: hidden;
 }
+
+input{
+    width:200px;
+}
+
+select{
+    width:200px;
+}

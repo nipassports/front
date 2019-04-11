@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Pass } from '../../pass';
 import { PassService } from '../../Service/pass.service';
 import { AuthentificationService } from '../../Service/authentification.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { timingSafeEqual } from 'crypto';
+
 
 @Component({
   selector: 'app-pass-details',
@@ -13,6 +16,7 @@ export class PassDetailsComponent implements OnInit {
 
   pass: Pass;
   id: string;
+  private sub: Subscription;
   private passNb: string;
   frInfo = {
       type: 'Type',
@@ -56,7 +60,9 @@ export class PassDetailsComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor( private pS : PassService,private auth: AuthentificationService, private route:ActivatedRoute) { 
+  constructor( private pS : PassService,
+    private auth: AuthentificationService, 
+    private route:ActivatedRoute) { 
   }
 
   ngOnInit() {
@@ -66,13 +72,18 @@ export class PassDetailsComponent implements OnInit {
     this.getPass(this.passNb);
   }
 
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }
+
   getPass(passNb: string ): void {
 
-    this.pS.getPassInfoGouv(passNb)
+    this.sub = this.pS.getPassInfoGouv(passNb)
     .subscribe( 
-      pass => {this.pass = pass.infos; this.id = pass.id});
+      pass => {this.pass = pass.infos;
+       this.id = pass.id});
 
-    console.log("pass-detail:"+ this.pass.autority);
+    // console.log("pass-detail:"+ this.storage.get("passInfo"));
 
   }
 
