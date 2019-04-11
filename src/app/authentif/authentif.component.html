@@ -29,7 +29,7 @@
               <div class="log-content">
                 <h1>{{espace}}</h1>
                 <div class="log-body">
-                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keyup)="onSubmit()">
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
                     <div class="form-group myr-top">
                       <label>Login</label>
                       <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant"
@@ -49,7 +49,7 @@
                         </div>
                         <div class="form-group col-md-auto">
                           <div class="log-btn text-center">
-                            <button class="btn btn-theme1">Retour</button>
+                            <button class="btn btn-theme1" [routerLink]="['/Accueil']" >Retour</button>
                           </div>
                         </div>
                       </div>
