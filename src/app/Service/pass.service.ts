@@ -165,6 +165,38 @@ export class PassService {
     return this.http.get<Pass_json[]>(url, options);
   }
 
+  // Visa
+  addVisa(visaInfo: any): Observable<any> {
+
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+
+    console.log("pS: "+ visaInfo[0]);
+    const options = { headers: headers };
+
+    return this.http.post<any>(this.gouvUrl + "/visa",
+      {
+        type: visaInfo[0],
+        visaCode: visaInfo[1],
+        passNb: visaInfo[2],
+        name: visaInfo[3],
+        surname: visaInfo[4],
+        autority: visaInfo[5],
+        dateOfExpiry: visaInfo[6].toString(),
+        dateOfIssue: visaInfo[7].toString(),
+        placeOfIssue: visaInfo[8],
+        validity: visaInfo[9],
+        validFor: visaInfo[10],
+        numberOfEntries: visaInfo[11],
+        durationOfStay: visaInfo[12].toString(),
+        remarks: visaInfo[13]
+      }, options);
+
+  }
+
   getVisaGouv(passNb:string):Observable<Visa_json[]>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
