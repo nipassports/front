@@ -8,8 +8,6 @@ import { AuthentificationService } from '../Service/authentification.service';
 import { GlobalToolbarInfo } from '../globalToolbarInfo';
 import { PassService } from '../Service/pass.service';
 
-import Swal from 'sweetalert2'
-
 @Component({
   selector: 'app-authentif',
   templateUrl: './authentif.component.html',
@@ -18,7 +16,7 @@ import Swal from 'sweetalert2'
 export class AuthentifComponent implements OnInit {
 
   espace: string = "Citoyen"
-  private type : string; 
+  private type : string = "citizen"
 
 
   Espace(espace: string): void {
@@ -46,8 +44,6 @@ export class AuthentifComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-
-    Swal.fire('YES CA FONCTIONNE')
 
     this.loginForm = this.formBuilder.group({
       identifiant: ['', Validators.required],
