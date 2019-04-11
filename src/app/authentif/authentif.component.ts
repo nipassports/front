@@ -16,7 +16,7 @@ import { PassService } from '../Service/pass.service';
 export class AuthentifComponent implements OnInit {
 
   espace: string = "Citoyen"
-  private type : string; 
+  private type : string = "citizen"
 
 
   Espace(espace: string): void {
