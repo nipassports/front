@@ -1,0 +1,13 @@
+.center{
+    text-align: center;
+    margin: 10%;
+}
+
+.btn{
+    background-color: #2F404D;
+    border-color: #2F404D;
+}
+
+.img-responsive{
+    max-width: 20%;
+}

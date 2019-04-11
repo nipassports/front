@@ -51,6 +51,7 @@ import { VisaDouaneComponent } from './EspaceDouanes/visa-douane/visa-douane.com
 import { FAQComponent } from './faq/faq.component';
 import { VisagouvComponent } from './EspaceGouvernement/visagouv/visagouv.component';
 import { AuthentifComponent } from './authentif/authentif.component';
+import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.component';
 
 
 
@@ -86,7 +87,8 @@ import { AuthentifComponent } from './authentif/authentif.component';
     VisaDouaneComponent,
     FAQComponent,
     VisagouvComponent,
-    AuthentifComponent
+    AuthentifComponent,
+    PageNonTrouveeComponent
   ],
   imports: [
     HttpClientModule,
