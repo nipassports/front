@@ -8,6 +8,8 @@ import { AuthentificationService } from '../Service/authentification.service';
 import { GlobalToolbarInfo } from '../globalToolbarInfo';
 import { PassService } from '../Service/pass.service';
 
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-authentif',
   templateUrl: './authentif.component.html',
@@ -103,8 +105,14 @@ export class AuthentifComponent implements OnInit {
         error => {
           console.log('ERROR: ' + JSON.stringify(error));
           //this.error = JSON.stringify(error);
-          this.error = "Le mot de passe ou l'identifiant est incorrect";
-          // this.loading = false;
+          Swal.fire({
+            title: 'Problème',
+            text: "Le mot de passe ou l'identifiant est incorrect.",
+            type: 'error',
+            confirmButtonText: 'Fermer', 
+            confirmButtonColor: '#2F404D',
+            timer : 6000
+          }) 
         });
   }
 
