@@ -19,6 +19,7 @@
 </div>
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div><img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" /></div>
   <div class="container-fluid object justify-content-center" *ngIf="!loading">
 
     <div class="row object justify-content-center">

@@ -77,8 +77,7 @@ export class AddPassComponent implements OnInit {
   };
 
 
-  constructor( private formBuilder: FormBuilder, private imageService:ImageServiceService,
-    private pS: PassService,
+  constructor(private passservice: PassService, private formBuilder: FormBuilder, private imageService:ImageServiceService,private pS: PassService,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
@@ -158,7 +157,7 @@ export class AddPassComponent implements OnInit {
 
   addPass(pseudoPass: any): void {
     console.log('Ajout du passeport');
-    this.pS.addPass(pseudoPass).subscribe(data => {
+    this.passservice.addPass(pseudoPass).subscribe(data => {
       console.log(data);
     });
     console.log("Fin d'ajout");
@@ -209,12 +208,6 @@ export class AddPassComponent implements OnInit {
         return;
       }
 
-      Swal.fire({
-        html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
-        showConfirmButton: false,
-        allowOutsideClick: () => !Swal.isLoading(),
-      })  
-      
       this.loading = true;
       const pseudoPass = [
 
@@ -238,10 +231,12 @@ export class AddPassComponent implements OnInit {
         this.imageService.IMGbase64
       ]
 
-      this.pS.addPass(pseudoPass)
+      this.passservice.addPass(pseudoPass)
         .pipe(first())
         .subscribe(
           data => {
+
+            console.log('coucou: ' + JSON.stringify(data));
 
             //console.log('connect: ' + data.message);
 
