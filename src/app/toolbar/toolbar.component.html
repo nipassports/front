@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item" (click)="onClick(vue)" *ngFor="let vue of ongletNav">
-            <a class="nav-link btn fcol" routerLink="{{vue}}" [class.selected]="vue===selectedvue">{{vue}}</a>
+            <a class="nav-link btn fcol" routerLink="{{vue}}" [class.selected]="vue===viewService.getView()">{{vue}}</a>
           </li>
         </ul>
       </div>

@@ -1,14 +1,14 @@
 <div class="accordion" id="accordionExample">
-    <div class="card" *ngFor="let visa of visa_json">
-      <div class="card-header" id="headingOne">
+    <div class="card" *ngFor="let visa of visa_json;let iteration = index">
+      <div class="card-header" id="{{visa.infos.visaCode}}">
         <h2 class="mb-0">
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+ iteration" aria-expanded="false" aria-controls="collapseOne">
               Visa {{visa.infos.autority}}
           </button>
         </h2>
       </div>
   
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div [attr.id]="'collapse'+iteration" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
             <div class="container">
                 <div class="row ">

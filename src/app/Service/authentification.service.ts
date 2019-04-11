@@ -27,7 +27,7 @@ export class AuthentificationService {
         .pipe(map(valid => {
 
           console.log('Connexion terminé ! validité des info: ' + valid.message);
-
+          this.storage.set("view",'Mon Passeport')
           return valid;
         }));
 
@@ -42,7 +42,7 @@ export class AuthentificationService {
         .pipe(map(valid => {
 
           console.log('Connexion terminé ! validité des info: ' + valid.message);
-
+          this.storage.set("view",'Espace Gouvernement')
           return valid;
         }));
     }
@@ -56,7 +56,7 @@ export class AuthentificationService {
         .pipe(map(valid => {
 
           console.log('Connexion terminé ! validité des info: ' + valid.message);
-
+          this.storage.set("view",'Liste des Passeports')
           return valid;
         }));
     }

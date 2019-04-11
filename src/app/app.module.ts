@@ -51,6 +51,8 @@ import { VisaDouaneComponent } from './EspaceDouanes/visa-douane/visa-douane.com
 import { FAQComponent } from './faq/faq.component';
 import { VisagouvComponent } from './EspaceGouvernement/visagouv/visagouv.component';
 import { AuthentifComponent } from './authentif/authentif.component';
+import { View } from './view';
+import { ViewService } from './Service/view.service';
 
 
 
@@ -98,9 +100,12 @@ import { AuthentifComponent } from './authentif/authentif.component';
     AppRoutingModule
   ],
   providers: [PassService,
+              ViewService,
               GlobalToolbarInfo,
               AuthentificationService,
-              AppComponent
+              AppComponent,
+              View
+              
              ],
   bootstrap: [AppComponent]
 })

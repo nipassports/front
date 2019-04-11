@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { Inject} from '@angular/core';
+import {View} from '../view';
+import {ViewService} from '../Service/view.service'
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -7,8 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
-  selectedvue:string;
+  constructor(@Inject(SESSION_STORAGE) private storage: WebStorageService,private viewService: ViewService) { }
   ongletNav =[
     'Accueil',
     //'Mon Passeport',
@@ -18,11 +20,14 @@ export class ToolbarComponent implements OnInit {
     //'Liste des Passeports'
   ];
   ngOnInit() {
-    this.selectedvue='Accueil';
+    if ( this.storage.get("view") !== null ){
+    this.viewService.setView(this.storage.get('view'));
+    }
   }
   onClick(vue: string): void{
-    this.selectedvue = vue;
-    console.log("selectedVue:" + this.selectedvue + ", vue:" + vue );
+    this.viewService.setView(vue);
+    this.storage.set("view",vue);
+    console.log("selectedVue:" + this.viewService.getView() + ", vue:" + vue );
   }
 
 }
