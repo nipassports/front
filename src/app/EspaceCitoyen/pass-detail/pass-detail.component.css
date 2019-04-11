@@ -5,7 +5,7 @@ div.col-auto.a {
     margin-left: 30px;
 }
 
-div.col-auto.a div.row.a {
+.validity {
 
     height : 30px;
     
@@ -17,55 +17,18 @@ div.col-auto.a div.row.a {
     padding-top: 2px;
 }
 .image{
-    height : 260px;
-    width :215px;
-}
-div.col-auto.a div.row.maPhoto {
-    /*                        Photo                            */
-
-    height : 260px;
-    width :215px;
-    background: #2F404D;
-    border-radius: 10px;
-    
-}
-
-div.col-auto.a div.row.c {
-    /*                        Signature                            */
-
-    height : 50px;
-    background: #2F404D;
-    border-radius: 10px;
-    align-items: flex-start;
-    display: block;
-    text-align: center;
-}
-
-/*                                    Deuxième colonne                              */
-
-div.col-auto.b {
-    margin-top: 10px;
-    display: inline-block;
+    width:70%;
     height: auto;
-    width: auto;
-    margin-left: 30px;
-
 }
-
-div.col-auto.c {
-    display: inline-block;
-    margin-right: 60px;
-}
-
-div.col-auto.d{
-    display: inline-block;
+.mt-custom{
+    margin-top:5%
 }
 
 /*                             Text                                                         */
 span.titre {
     font-family: Roboto;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     line-height: normal;
     font-size: 13px;
 
