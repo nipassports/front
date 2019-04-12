@@ -40,7 +40,7 @@
                         </div>
 
                       <div class="row align-items-end">
-                          <div class="col-sm-12 d-flex font_validity justify-content-center ">{{pass.infos.validity}}</div>
+                          <div class="col-sm-12 d-flex font_validity justify-content-center " [class.selected]="pass.infos.validity==='Invalide'">{{pass.infos.validity}}</div>
                       </div>
 
                 </div>

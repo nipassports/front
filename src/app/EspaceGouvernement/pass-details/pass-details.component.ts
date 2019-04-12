@@ -79,10 +79,14 @@ export class PassDetailsComponent implements OnInit {
   }
 
   SwapValidity():void{
+    Swal.fire({
+      html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
+      showConfirmButton: false,
+    })  
     this.pS.SwapValidityGouv(this.passNb)
     .subscribe(
       message => {Swal.fire({
-        text:message.message,
+        text:'Vous venez de changer la validité du passeport',
         title: 'Etat du passeport',
         type:'info',
         confirmButtonText:'Fermer',

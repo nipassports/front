@@ -15,7 +15,7 @@ export class PassService {
 
   private citizenUrl = 'http://nip.ddns.net:3000/citizen';
   private customUrl = 'http://nip.ddns.net:3000/custom';
-  private gouvUrl = 'http://nip.ddns.net:3000/gouvernment';
+  private gouvUrl = 'http://nip.ddns.net:3000/government';
   private passNb: string;
   public data: any = [];
   constructor(private http: HttpClient, private global: GlobalToolbarInfo,

@@ -16,6 +16,15 @@ div.col-auto.a {
     text-align: center;
     padding-top: 2px;
 }
+
+.validity.selected {
+    height : 30px;
+    background: #dd5b5b;
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+    padding-top: 2px;
+}
 .image{
     width:10em;
     height: auto;
