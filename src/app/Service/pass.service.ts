@@ -13,9 +13,9 @@ import {Visa} from '../visa';
 })
 export class PassService {
 
-  private citizenUrl = 'http://192.168.0.100:3000/citizen';
-  private customUrl = 'http://192.168.0.100:3000/custom';
-  private gouvUrl = 'http://192.168.0.100:3000/gouvernment';
+  private citizenUrl = 'http://nip.ddns.net:3000/citizen';
+  private customUrl = 'http://nip.ddns.net:3000/custom';
+  private gouvUrl = 'http://nip.ddns.net:3000/gouvernment';
   private passNb: string;
   public data: any = [];
   constructor(private http: HttpClient, private global: GlobalToolbarInfo,

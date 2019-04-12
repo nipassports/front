@@ -53,6 +53,7 @@ import { AuthGuard } from './Service/auth-guard.service';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +83,8 @@ import { AuthGuard } from './Service/auth-guard.service';
     FAQComponent,
     VisagouvComponent,
     AuthentifComponent,
-    PageNonTrouveeComponent
+    PageNonTrouveeComponent,
+
   ],
   imports: [
     HttpClientModule,
