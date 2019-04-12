@@ -54,6 +54,7 @@ import { AuthentifComponent } from './authentif/authentif.component';
 import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.component';
 import { View } from './view';
 import { ViewService } from './Service/view.service';
+import { AuthGuard } from './Service/auth-guard.service';
 
 
 
@@ -108,7 +109,8 @@ import { ViewService } from './Service/view.service';
               GlobalToolbarInfo,
               AuthentificationService,
               AppComponent,
-              View
+              View,
+              AuthGuard
               
              ],
   bootstrap: [AppComponent]

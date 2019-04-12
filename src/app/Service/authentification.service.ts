@@ -7,6 +7,7 @@ import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
   providedIn: 'root'
 })
 export class AuthentificationService {
+  isAuth = false;
   private citizenUrl = 'http://192.168.0.100:3000/citizen';
   private customUrl = 'http://192.168.0.100:3000/custom';
   private gouvUrl = 'http://192.168.0.100:3000/gouvernment';
