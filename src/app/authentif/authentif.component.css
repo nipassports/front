@@ -47,7 +47,8 @@
 
 .rectangle:hover {
 	background:#5DAC99;
-	margin:1% auto;
+	padding:1% auto;
+	cursor: pointer; 
 }
 
 .row p {
