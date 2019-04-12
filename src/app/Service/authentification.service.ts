@@ -8,9 +8,9 @@ import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 })
 export class AuthentificationService {
   isAuth = false;
-  private citizenUrl = 'http://192.168.0.100:3000/citizen';
-  private customUrl = 'http://192.168.0.100:3000/custom';
-  private gouvUrl = 'http://192.168.0.100:3000/gouvernment';
+  private citizenUrl = 'http://nip.ddns.net:3000/citizen';
+  private customUrl = 'http://nip.ddns.net:3000/custom';
+  private gouvUrl = 'http://nip.ddns.net:3000/gouvernment';
   private passNb;
 
   constructor(private http: HttpClient,
