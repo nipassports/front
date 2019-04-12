@@ -29,7 +29,6 @@ export class AuthentificationService {
 
           console.log('Connexion terminé ! validité des info: ' + valid.message);
           this.storage.set("view",'Mon Passeport')
-          this.isAuth = true;
           return valid;
         }));
 
@@ -45,7 +44,6 @@ export class AuthentificationService {
 
           console.log('Connexion terminé ! validité des info: ' + valid.message);
           this.storage.set("view",'Espace Gouvernement')
-          this.isAuth = true;
           return valid;
         }));
     }
@@ -60,7 +58,6 @@ export class AuthentificationService {
 
           console.log('Connexion terminé ! validité des info: ' + valid.message);
           this.storage.set("view",'Liste des Passeports')
-          this.isAuth = true;
           return valid;
         }));
     }
