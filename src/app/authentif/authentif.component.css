@@ -34,6 +34,7 @@
 	width:600px;
 	height:150px;
 	background:#2F404D;
+	cursor: pointer; 
 
 }
 
@@ -45,7 +46,8 @@
 	background:rgb(21, 28, 34);
 }
 
-.rectangle:hover {
+
+.rectangle.selected {
 	background:#5DAC99;
 	padding:1% auto;
 	cursor: pointer; 
