@@ -55,6 +55,8 @@ import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.com
 import { View } from './view';
 import { ViewService } from './Service/view.service';
 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 
 @NgModule({
@@ -99,7 +101,8 @@ import { ViewService } from './Service/view.service';
     NgbModule,
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [PassService,
               ViewService,
