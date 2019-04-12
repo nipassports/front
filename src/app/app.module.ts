@@ -57,6 +57,7 @@ import { ViewService } from './Service/view.service';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +91,8 @@ import { ViewService } from './Service/view.service';
     FAQComponent,
     VisagouvComponent,
     AuthentifComponent,
-    PageNonTrouveeComponent
+    PageNonTrouveeComponent,
+
   ],
   imports: [
     HttpClientModule,
