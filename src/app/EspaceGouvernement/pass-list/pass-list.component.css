@@ -70,6 +70,13 @@
     font-size: 15px;
     background-color: #5DAC99;
 }
+
+.font_validity.selected{
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    font-size: 15px;
+    background-color: #dd5b5b;
+}
 .bouton:hover{
     border-left:2px solid #2F404D;
     border-right:2px solid #2F404D;

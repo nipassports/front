@@ -206,4 +206,14 @@ export class PassService {
     const url = `${this.gouvUrl}/visa/one/${passNb}`;
     return this.http.get<Visa_json[]>(url, options);
   }
+
+  SwapValidityGouv(passNb:string){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/valid/${passNb}`;
+    return this.http.get<any>(url, options);
+  }
 }

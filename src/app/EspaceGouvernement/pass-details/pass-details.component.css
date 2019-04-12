@@ -16,6 +16,15 @@ div.col-auto.a {
     text-align: center;
     padding-top: 2px;
 }
+.validity.selected {
+    height : 30px;
+    background: #dd5b5b;
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+    padding-top: 2px;
+}
+
 .image{
     width:10em;
     height: auto;
@@ -43,4 +52,23 @@ span.trad {
     line-height: normal;
     font-size: 11px;
     color: #2F404D;  
+}
+button.generate:hover{
+    cursor: pointer;
+    background-color: #5DAC99;
+    height: 40px;
+    width : 200px;
+    color : white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+button.generate{
+    cursor: pointer;
+    background-color: #2F404D;
+    height: 40px;
+    width : 200px;
+    color : white;
+    border-radius: 10px;
+    overflow: hidden;
 }

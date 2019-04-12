@@ -6,7 +6,7 @@
         <div class="col-md-4 mt-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 validity ">{{pass.validity}}</div>
+                    <div class="col-sm-12 validity " [class.selected]="pass.validity==='Invalide'">{{pass.validity}}</div>
                     <div class="col-sm-12 justify-content-center d-flex mt-2"> 
                         <img src="{{pass.image}}" class="image img-fluid"alt="">
                     </div>
@@ -143,6 +143,11 @@
                             <br />
                             <strong>{{pass.residence}}</strong>
                           </p>
+                    </div>
+                    <div class="col-sm-6 ml-auto mt-5">
+                            <button class="btn btn-custom generate" (click)="SwapValidity()">
+                                  Invalider / Valider
+                            </button>
                     </div>
                 </div>
             </div>
