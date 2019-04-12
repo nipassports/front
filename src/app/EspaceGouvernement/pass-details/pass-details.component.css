@@ -1,0 +1,46 @@
+/*                                    Premiere colonne                              */
+
+div.col-auto.a {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.validity {
+
+    height : 30px;
+    
+    background: #219653;
+    border-radius: 10px;
+
+    display: block;
+    text-align: center;
+    padding-top: 2px;
+}
+.image{
+    width:10em;
+    height: auto;
+}
+.mt-custom{
+    margin-top:5%
+}
+
+/*                             Text                                                         */
+span.titre {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 13px;
+
+    color: #2F404D;
+}
+
+span.trad {
+    margin-left: 5px;
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: 300;
+    line-height: normal;
+    font-size: 11px;
+    color: #2F404D;  
+}

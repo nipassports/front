@@ -1,0 +1,196 @@
+
+.font-title{
+    font-family: 'Advent Pro', sans-serif;
+    color:#2F404D;
+    font-size:3em;
+}
+
+.mt-max{
+    margin-top:75px; 
+}
+.my_border{
+    border:2px solid #2F404D;
+    border-radius: 4px;
+}
+.center{
+    font-family: 'Advent Pro', sans-serif;
+    margin-left:22px;
+    color:#2F404D;
+
+}
+.font-carousel{
+    font-family: 'Advent Pro', sans-serif;
+    color:#2F404D;
+}
+.bg-custom{
+    background-color :rgba(255,255,255,0.6);
+}
+.carousel-item {
+    margin-top:2%;
+    height: 75vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+.centered{
+    border-radius: 4px;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    width: 240px;
+    margin-top:25px;
+    border:2px solid #2F404D;
+}
+.centered2{
+    border-radius: 4px;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    width: 240px;
+    margin-top:50px;
+    border:2px solid #2F404D;
+}
+.size{
+    background-size: cover;
+    width:65%;
+    height: 90%;
+    margin-top:26px;
+}
+.sizen{
+    background-size: cover;
+    width:66%;
+    height: 99%;
+    margin-top:26px;
+}
+.sizej{
+    background-size: cover;
+    width:58%;
+    height: 85%;
+    margin-top:29px;
+    margin-left:3px;
+}
+.sizeo{
+    background-size: cover;
+    width:58%;
+    height: 88%;
+    margin-top:30px;
+}
+.sizec{
+    background-size: cover;
+    width:58%;
+    height: 91%;
+    margin-top:30px;
+}
+
+.sizet{
+    background-size: cover;
+    width:58%;
+    height: 90.3%;
+    margin-top:30px;
+}
+
+.font-name{
+    font-family: 'Advent Pro', sans-serif;
+    color:#2F404D;
+    font-size: 20px;
+}
+.cercle {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  background-color: #C4C4C4;
+  border-radius: 50%;
+}
+
+
+.ang{
+    height:10em;
+
+}
+
+.hyper{
+    height:10em;
+
+}
+
+.node{
+    height:10em;
+
+}
+
+.pl-custom{
+    padding-left: 15%;
+}
+.pr-custom{
+    padding-right: 15%;
+}
+
+@media screen  and (max-width: 760px) {
+
+    .font-title{
+        font-family: 'Advent Pro', sans-serif;
+        color:#2F404D;
+        line-height: 1; 
+        font-size:2em;
+    }
+
+    .cercle {
+        width:10em; 
+        height:10em; 
+    }
+
+    .sizeo{
+        background-size: cover;
+        width:58%;
+        height: 83%;
+        margin-top:30px;
+    }
+    .sizec{
+        background-size: cover;
+        width:58%;
+        height: 86%;
+        margin-top:30px;
+    }
+    
+    .sizet{
+        background-size: cover;
+        width:58%;
+        height: 85.3%;
+        margin-top:30px;
+    }
+
+    .sizen{
+        background-size: cover;
+        width:66%;
+        height: 95%;
+        margin-top:26px;
+    }
+    .sizej{
+        background-size: cover;
+        width:58%;
+        height: 80%;
+        margin-top:29px;
+        margin-left:3px;
+    }
+
+    .ang{
+        height:6em;
+    
+    }
+    
+    .hyper{
+        height:6em;
+    
+    }
+    
+    .node{
+        height:6em;
+    
+    }
+}

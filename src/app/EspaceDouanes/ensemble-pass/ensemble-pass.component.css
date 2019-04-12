@@ -1,0 +1,90 @@
+.font-title{
+    font-family: 'Advent Pro', sans-serif;
+    color:#2F404D;
+    font-size:48px;
+}
+.item{
+    display: block;
+
+    height: 175px;
+    background-color: #C4C4C4;
+}
+.images{
+    height: 175px;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+.photo{
+    display: block;
+
+    height: 175px;
+    background-color:black;
+    color:white;
+}
+.border_photo{
+    border-top: 2px solid #2F404D;
+    border-left: 2px solid #2F404D;
+}
+.border_item{
+    border-top: 2px solid #2F404D;
+    border-right: 2px solid #2F404D;
+}
+/*[class*="col-"], footer {
+    background-color: lightgreen;
+    border: 2px solid black;
+    border-radius: 6px;
+    line-height: 40px;
+    text-align: center;
+}*/
+.font-research{
+    font-family: 'Advent Pro', sans-serif;
+    color:#2F404D;
+    font-size:24px;
+}
+
+.my_border{
+    border:2px solid #2F404D;
+    border-radius: 4px;
+}
+
+.font_item{
+    font-family: 'Roboto', sans-serif;
+    color:#2F404D;
+    font-size: 12px;
+    font-weight: bold;
+
+}
+.mb-custom{
+    margin-bottom: 30%
+}
+.font_info{
+    font-family: 'Roboto', sans-serif;
+    color:    #2F404D;
+    font-size: 12px;
+    font-weight: normal;
+
+}
+.font_validity{
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    font-size: 15px;
+    background-color: #5DAC99;
+}
+.bouton:hover{
+    border-left:2px solid #2F404D;
+    border-right:2px solid #2F404D;
+    border-bottom:2px solid #2F404D;
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    background-color:#2F404D
+}
+.bouton{
+    border-left:2px solid #2F404D ;
+    border-right:2px solid #2F404D;
+    border-bottom:2px solid #2F404D;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 0px;
+    color:#2F404D;
+
+}
+

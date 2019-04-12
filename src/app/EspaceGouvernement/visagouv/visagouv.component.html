@@ -1,0 +1,34 @@
+<div class="accordion" id="accordionExample">
+    <div class="card" *ngFor="let visa of visa_json;let iteration = index">
+      <div class="card-header" id="{{visa.infos.visaCode}}">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+ iteration" aria-expanded="false" aria-controls="collapseOne">
+              Visa {{visa.infos.autority}}
+          </button>
+        </h2>
+      </div>
+  
+      <div [attr.id]="'collapse'+iteration" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-sm-6 col-md-4 mb-4"><span class="bold">Nom :</span> {{visa.infos.surname}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Prenom :</span> {{visa.infos.name}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Code du visa :</span> {{visa.infos.visaCode}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Autorité :</span> {{visa.infos.autority}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Date de remise :</span> {{visa.infos.dateOfIssue}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Durée du séjour :</span> {{visa.infos.durationOfStay}} jours</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Nombre d'entrées :</span> {{visa.infos.numberOfEntries}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Numéro du  passeport :</span> {{visa.infos.passNb}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Lieu de délivrance :</span> {{visa.infos.placeOfIssue}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Type :</span> {{visa.infos.type}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Remarques :</span> {{visa.infos.remarks}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Valide pour :</span> {{visa.infos.validFor}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><span>Date d'expiration :</span> {{visa.infos.dateOfExpiry}}</div>
+                    <div class="col-sm-6 col-md-4 mb-4"><div class="valid d-flex justify-content-center">{{visa.infos.validity}}</div></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

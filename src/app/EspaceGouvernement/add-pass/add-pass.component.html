@@ -1,0 +1,650 @@
+<div class="container-fluid navbar justify-content-center">
+
+
+  <div class="row">
+
+    <div class="col">
+
+
+      <p class="card-header">
+        Création d'un nouveau passeport
+      </p>
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="container-fluid object justify-content-center" *ngIf="!loading">
+
+    <div class="row object justify-content-center">
+
+
+      <!--  Premiere colonne  -->
+      <div class="col-auto a">
+
+        <!--  Photo  -->
+        <div class="row a">
+
+          <label id="Photo">
+            <span class="titre">Photo</span>
+            <span class="trad">/Photo:</span>
+          </label>
+
+        </div>
+
+        <div class="row maPhoto">
+          <div *ngIf="imgchanged"><img src="{{imageService.IMGbase64}}" class="images"></div>
+        </div>
+
+        <div class="row a mt-3">
+
+
+          <input type="file" #imageInput class="form-control-file input-sm" accept="image/*" (change)="processFile(imageInput)" formControlName="photo" id="Photo"
+            [ngClass]="{ 'is-invalid': submitted && f.photo.errors }">
+
+          <div *ngIf="submitted && f.photo.errors" class="invalid-feedback">
+
+            <div *ngIf="f.photo.errors.required">
+              Veuillez selectionner une photo d'identité
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+
+        <!--  Signature  -->
+        <div class="row a mt-3">
+
+          <label id="Signature">
+            <span class="titre">Signature</span>
+            <span class="trad">/Signature:</span>
+          </label>
+
+        </div>
+
+        <div class="row c">
+          <!--  Insérer l'image de la signature   -->
+        </div>
+
+        <div class="row a mt-3">
+
+          <div class="form-group">
+
+            <input type="file" class="form-control-file input-sm" id="Signature" formControlName="signature"
+              [ngClass]="{ 'is-invalid': submitted && f.signature.errors }">
+
+            <div *ngIf="submitted && f.signature.errors" class="invalid-feedback">
+
+              <div *ngIf="f.signature.errors.required">
+                Veuillez selectionner la signature du citoyen
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--  Info importante du passeport (date d'expiration etc...)  -->
+        <div class="row a mt-2">
+
+          <label>
+
+            <span class="titre">{{frInfo.passOrigin}}</span>
+            <span class="trad">/{{enInfo.passOrigin}}:</span>
+
+
+          </label>
+        </div>
+
+        <div class="row a mt-2 justify-content-center">
+          <div class="form-group">
+
+            <select type="text" formControlName="passOrigin" class="custom-select custom-select-sm"
+              [ngClass]="{ 'is-invalid': submitted && f.passOrigin.errors }">
+
+              <option value="France">France</option>
+
+            </select>
+
+            <div *ngIf="submitted && f.passOrigin.errors" class="invalid-feedback">
+              <div *ngIf="f.passOrigin.errors.required">
+                Veuillez selectionner le pays d'origine du passeport
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!--  Deuxieme colonne  -->
+      <div class="col-auto b">
+
+        <!--  Premiere colonne des infos  -->
+        <div class="col-auto c">
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="row a">
+
+            <label for="type">
+
+              <span class="titre">{{frInfo.type}}</span>
+              <span class="trad">/{{enInfo.type}}:</span>
+
+            </label>
+
+          </div>
+
+          <div class="row a ">
+
+            <div class="form-group">
+
+              <select type="text" formControlName="type" class="custom-select" id="type"
+                [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+
+                <option value="P">P</option>
+
+              </select>
+
+              <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                <div *ngIf="f.type.errors.required">
+                  Veuillez selectionner le type de passeport
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="row a">
+            <label for="surname">
+
+              <span class="titre">{{frInfo.surname}}</span>
+              <span class="trad">/{{enInfo.surname}}:</span>
+
+            </label>
+          </div>
+
+          <div class="row a ">
+
+            <div class="form-group">
+
+              <input type="text" class="form-control" id="surname" formControlName="surname"
+                [ngClass]="{ 'is-invalid': submitted && f.surname.errors }">
+
+              <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+                <div *ngIf="f.surname.errors.required">
+                  Veuillez renseigner le nom du citoyen
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="row a">
+            <label for="sex">
+
+              <span class="titre">{{frInfo.sex}}</span>
+              <span class="trad">/{{enInfo.sex}}:</span>
+
+            </label>
+          </div>
+
+          <div class="row a ">
+
+            <div class="form-group">
+
+              <select type="text" formControlName="sex" class="custom-select" id="sex"
+                [ngClass]="{ 'is-invalid': submitted && f.sex.errors }">
+
+                <option value="M">M</option>
+                <option value="F">F</option>
+                <option value="NB">F</option>
+
+              </select>
+
+              <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
+                <div *ngIf="f.sex.errors.required">
+                  Veuillez selectionner le sexe du citoyen
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <!--  Deuxieme colonne des infos  -->
+        <div class="col-auto c">
+
+          <div class="row a">
+            <label>
+
+              <span class="titre">{{frInfo.countryCode}}</span>
+              <span class="trad">/{{enInfo.countryCode}}:</span>
+
+            </label>
+          </div>
+
+          <div class="row a ">
+
+            <div class="form-group">
+
+              <input type="text" class="form-control" id="countryCode" formControlName="countryCode"
+                [ngClass]="{ 'is-invalid': submitted && f.countryCode.errors }">
+
+              <div *ngIf="submitted && f.countryCode.errors" class="invalid-feedback">
+                <div *ngIf="f.countryCode.errors.required">
+                  Veuillez renseigner le code du pays
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="row a">
+            <label for="name">
+
+              <span class="titre">{{frInfo.name}}</span>
+              <span class="trad">/{{enInfo.name}}:</span>
+
+            </label>
+          </div>
+
+          <div class="row a ">
+
+            <div class="form-group">
+
+              <input type="text" class="form-control" id="name" formControlName="name"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">
+                  Veuillez renseigner le prénom du citoyen
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="row a">
+            <label for="height">
+
+              <span class="titre">{{frInfo.height}}</span>
+              <span class="trad">/{{enInfo.height}} (m):</span>
+
+            </label>
+          </div>
+
+          <div class="row a ">
+
+            <div class="form-group">
+
+              <input type="number" max="3" step="0.01" class="form-control" id="height" formControlName="height"
+                [ngClass]="{ 'is-invalid': submitted && f.height.errors }">
+
+              <div *ngIf="submitted && f.height.errors" class="invalid-feedback">
+                <div *ngIf="f.height.errors.required">
+                  Veuillez renseigner la taille du citoyen
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--  Troisième colonne des infos  -->
+        <div class="col-auto cd">
+
+          <div class="row a">
+            <label for="passNb">
+
+              <span class="titre">{{frInfo.passNb}}</span>
+              <span class="trad">/{{enInfo.passNb}}:</span>
+
+            </label>
+          </div>
+
+          <div class="row a ">
+
+            <div class="form-group">
+
+              <input type="text" class="form-control" id="passNb" formControlName="passNb"
+                [ngClass]="{ 'is-invalid': submitted && f.passNb.errors }">
+
+              <div *ngIf="submitted && f.passNb.errors" class="invalid-feedback">
+                <div *ngIf="f.passNb.errors.required">
+                  Veuillez renseigner le numéo du passeport
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="row a">
+            <label for="dateOfBirth">
+
+              <span class="titre">{{frInfo.dateOfBirth}}</span>
+              <span class="trad">/{{enInfo.dateOfBirth}}:</span>
+
+            </label>
+          </div>
+
+
+          <div class="row a ">
+
+            <div class="form-group">
+
+              <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth"
+                [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }">
+
+              <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+                <div *ngIf="f.dateOfBirth.errors.required">
+                  Veuillez renseigner la date de naissance du citoyen
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="row a">
+            <label for="eyesColor">
+
+              <span class="titre">{{frInfo.eyesColor}}</span>
+              <span class="trad">/{{enInfo.eyesColor}}:</span>
+
+            </label>
+          </div>
+
+          <div class="row a">
+
+            <div class="form-group">
+
+              <input type="text" class="form-control" id="eyesColor" formControlName="eyesColor"
+                [ngClass]="{ 'is-invalid': submitted && f.eyesColor.errors }">
+
+              <div *ngIf="submitted && f.eyesColor.errors" class="invalid-feedback">
+                <div *ngIf="f.eyesColor.errors.required">
+                  Veuillez renseigner la coueur des yeux du citoyen
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--  Premiere ligne après les 3 colonnes des infos -->
+
+        <div class="row d">
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="col c">
+
+            <div class="row a ">
+              <label for="placeOfBirth">
+
+                <span class="titre">{{frInfo.placeOfBirth}}</span>
+                <span class="trad">/{{enInfo.placeOfBirth}}:</span>
+
+              </label>
+            </div>
+
+            <div class="row a ">
+
+              <div class="form-group">
+
+                <input type="text" class="form-control GD" id="placeOfBirth" formControlName="placeOfBirth"
+                  [ngClass]="{ 'is-invalid': submitted && f.placeOfBirth.errors }">
+
+                <div *ngIf="submitted && f.placeOfBirth.errors" class="invalid-feedback">
+                  <div *ngIf="f.placeOfBirth.errors.required">
+                    Veuillez renseigner le lieu de naissance du citoyen
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="col c">
+            <div class="row a ">
+              <label for="residence">
+
+                <span class="titre">{{frInfo.residence}}</span>
+                <span class="trad">/{{enInfo.residence}}:</span>
+                <br />
+
+              </label>
+            </div>
+
+            <div class="row a ">
+
+              <div class="form-group">
+
+                <input type="text" class="form-control GD" id="residence" formControlName="residence"
+                  [ngClass]="{ 'is-invalid': submitted && f.residence.errors }">
+
+                <div *ngIf="submitted && f.residence.errors" class="invalid-feedback">
+                  <div *ngIf="f.residence.errors.required">
+                    Veuillez renseigner le lieu de domicile du citoyen
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--  deuxième ligne  -->
+
+        <div class="row e">
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="col c">
+
+            <div class="row a ">
+              <label for="autority">
+
+                <span class="titre">{{frInfo.autority}}</span>
+                <span class="trad">/{{enInfo.autority}}:</span>
+
+              </label>
+            </div>
+
+            <div class="row a ">
+
+              <div class="form-group">
+
+                <input type="text" class="form-control GD" id="autority" formControlName="autority"
+                  [ngClass]="{ 'is-invalid': submitted && f.autority.errors }">
+
+                <div *ngIf="submitted && f.autority.errors" class="invalid-feedback">
+                  <div *ngIf="f.autority.errors.required">
+                    Veuillez renseigner l'autorité qui a délivré le passeport
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="col c ml-3">
+            <div class="row a ">
+
+              <label for="dateOfIssue">
+
+                <span class="titre">{{frInfo.dateOfIssue}}</span>
+                <span class="trad">/{{enInfo.dateOfIssue}}:</span>
+
+              </label>
+
+            </div>
+
+            <div class="row a ">
+
+              <div class="form-group">
+
+                <input type="date" class="form-control" id="dateOfIssue" formControlName="dateOfIssue"
+                  [ngClass]="{ 'is-invalid': submitted && f.dateOfIssue.errors }">
+
+                <div *ngIf="submitted && f.dateOfIssue.errors" class="invalid-feedback">
+                  <div *ngIf="f.dateOfIssue.errors.required">
+                    Veuillez remplir ce champ
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="col c">
+
+            <div class="row a ">
+              <label for="dateOfExpiry">
+
+                <span class="titre">{{frInfo.dateOfExpiry}}</span>
+                <span class="trad">/{{enInfo.dateOfExpiry}}:</span>
+
+              </label>
+            </div>
+
+            <div class="row a ">
+
+              <div class="form-group">
+
+                <input type="date" class="form-control" id="dateOfExpiry" formControlName="dateOfExpiry"
+                  [ngClass]="{ 'is-invalid': submitted && f.dateOfExpiry.errors }">
+
+                <div *ngIf="submitted && f.dateOfExpiry.errors" class="invalid-feedback">
+                  <div *ngIf="f.dateOfExpiry.errors.required">
+                    Veuillez remplir ce champ
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--  troisième ligne  -->
+        <div class="row f">
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="col-lg-4 nationality c">
+            <div class="row a ">
+              <label for="nationality">
+
+                <span class="titre">{{frInfo.nationality}}</span>
+                <span class="trad">/{{enInfo.nationality}}:</span>
+
+              </label>
+            </div>
+
+            <div class="row a ">
+
+              <div class="form-group">
+
+                <input type="text" class="form-control" id="nationality" formControlName="nationality"
+                  [ngClass]="{ 'is-invalid': submitted && f.nationality.errors }">
+
+                <div *ngIf="submitted && f.nationality.errors" class="invalid-feedback">
+                  <div *ngIf="f.nationality.errors.required">
+                    Veuillez renseigner la nationalité du citoyen
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!------------------------------------------------------------------------------------------------>
+
+          <div class="col-lg-8 c">
+
+            <span class="titre">{{frInfo.id}}</span>
+            <span class="trad">/{{enInfo.id}}:</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div> <!-- Fin row object-->
+  </div> <!-- container-fluid object-->
+
+  <div class="container-fluid justify-content-end">
+    <div class="row bouton">
+      
+      <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
+        Génerer
+      </button>
+
+      <button class="btn btn-custom generate" (click)="buttonClicked('valider')">
+        Valider
+      </button>
+
+    </div>
+  </div>
+
+
+
+
+  <p>{{image?.replace("data:image/png;base64,", "")}}</p>
+</form>

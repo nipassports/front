@@ -1,0 +1,37 @@
+/* div.container-fluid.object{
+    width: 95%;
+    border-style: solid;
+    border-color: black;
+} */
+
+div.bouton{
+    width: 100%;
+}
+
+button.generate:hover{
+    cursor: pointer;
+    background-color: #5DAC99;
+    height: 40px;
+    width : 200px;
+    color : white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+button.generate{
+    cursor: pointer;
+    background-color: #2F404D;
+    height: 40px;
+    width : 200px;
+    color : white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+input{
+    width:200px;
+}
+
+select{
+    width:200px;
+}

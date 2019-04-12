@@ -1,0 +1,47 @@
+<div class="container justify-content-center mt-custom">
+        <div class="row justify-content-around">
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5 ">
+              <div class="cercle d-flex justify-content-center pt-3 pb-3 btn" routerLink="/Citoyen" (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave(0)" >
+                <div class="d-flex flex-column justify-content-center align-items-center" >
+                  <img src="../assets/img/team.png" class="img img-fluid " *ngIf="entier!=1">
+                  <img src="../assets/img/team-white.png" class="img img-fluid " *ngIf="entier==1">
+                  <h1 class="font mt-3">
+                      Espace Particulier
+                  </h1>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
+              <div class="cercle container justify-content-center pt-3 pb-3 btn" routerLink="/Gouvernement"  (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave(0)">
+                  <div class="d-flex flex-column justify-content-center align-items-center">
+                  <img src="../assets/img/museum.png" class="img img-fluid justify-content-center align-items-center"  *ngIf="entier!=2"/>
+                  <img src="../assets/img/museum-white.png" class="img img-fluid justify-content-center"  *ngIf="entier==2"/>
+                  <h1 class=" font mt-3">
+                    Espace Gouvernemental
+                  </h1>
+                  </div>
+              </div>
+            </div>
+
+
+            <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
+              <div class="cercle d-flex justify-content-center pt-3 pb-3 btn" routerLink="/Douanes" (mouseenter)="mouseEnter(3)" (mouseleave)="mouseLeave(0)">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                  <img src="../assets/img/police.png" class="img img-fluid" *ngIf="entier!=3">
+                  <img src="../assets/img/police-white.png" class="img img-fluid" *ngIf="entier==3">
+                  <h1 class="font mt-3">
+                  Espace Douanier
+                  </h1>
+                </div>
+              </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+

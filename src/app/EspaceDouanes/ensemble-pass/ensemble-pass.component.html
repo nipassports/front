@@ -1,0 +1,64 @@
+<div class="container-fluid pt-5">
+
+  <div class=" d-flex align-items-start justify-content-center mt-5 pb-2">
+    <h1 class="my_border pl-2 pr-2 pb-1 font-title">Ensemble des passeports</h1>
+  </div>
+
+  <div class="d-flex my_border mt-5">
+    <div class="mr-auto p-2 font-research">Trier par</div>
+
+    <div class="p-2 font-research">Filtre</div>
+  </div>
+
+  <div class="container mt-5 mt-custom ">
+
+      <div class="row justify-content-start">
+
+          <div class="col-sm-6 col-lg-4 col-xl-3 mb-5 " *ngFor="let pass of Allpass">
+              <div class="row  pr-3 ">
+
+                <img src="{{pass.infos.image}}" class="images justify-content-center d-flex align-items-center col-5 border_photo" alt="Photo">
+
+                
+                <div class="col-7 d-flex item  pl-1 border_item">
+                      <div class="row  align-self-start">
+                          <div class="col-sm-12 font_item pt-2">Nom: 
+                              <span class="font_info">{{pass.infos.surname}}</span>
+                            </div>
+
+                          <div class="col-sm-12 font_item">Prenom: 
+                                <span class="font_info">{{pass.infos.name}}</span>
+                            </div>
+
+                          <div class="col-sm-12 font_item">Nationalité: 
+                                <span class="font_info">{{pass.infos.nationality}}</span>
+                            </div>
+
+                          <div class="col-sm-12 font_item ">ID: 
+                                <span class="font_info">{{pass.infos.passNb}}</span>
+                            </div>
+                        </div>
+
+                      <div class="row align-items-end">
+                          <div class="col-sm-12 d-flex font_validity justify-content-center ">{{pass.infos.validity}}</div>
+                      </div>
+
+                </div>
+              </div>
+              <div class="row pr-3 ">
+                  <div class="col-sm-12 bouton d-flex justify-content-center align-items-center pb-1 pt-1 btn" routerLink='/Espace Douanes/Passeports/{{pass.infos.passNb}}'>Consulter</div>
+              </div>
+
+          </div>
+          
+
+
+      </div>
+
+  </div>
+
+
+
+
+
+</div>

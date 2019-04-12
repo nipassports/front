@@ -1,0 +1,161 @@
+<div class="row justify-content-center mt-custom">
+  <form class="form-group">
+    <div class="lg-3">
+      <label>
+
+        <span class="titre">Autorisation:</span>
+        {{global.autority}}
+      </label>
+
+      <select #aut type="text" class="custom-select custom-select-sm">
+
+        <option value="1">Autorisé</option>
+        <option value="0">Non Autorisé</option>
+
+      </select>
+
+      <button type="submit" class="btn btn-primary" (click)="autorisation(aut.value)">ok</button>
+
+    </div>
+  </form>
+</div>
+
+<ng-template [ngIf]="global.autority==1">
+
+    <div class="container justify-content-center mt-custom" >
+
+        <div class="row justify-content-around">
+      
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5 ">
+            <div class="cercle d-flex justify-content-center pt-3 pb-3 btn" routerLink="/Espace Gouvernement/Ajout Passeport"
+              (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave(0)" (click)="viewstorage('Ajout Passeport')">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="../assets/img/add.png" class="img img-fluid " *ngIf="entier!==1">
+                <img src="../assets/img/add-white.png" class="img img-fluid " *ngIf="entier===1">
+                <h1 class="font mt-3">
+                  Ajout de Passeport
+                </h1>
+              </div>
+            </div>
+          </div>
+      
+      
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
+            <div class="cercle container justify-content-center pt-3 pb-3 btn"
+              routerLink="/Espace Gouvernement/Modifier Passeport" (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave(0)" (click)="viewstorage('Modifier Passeport')">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="../assets/img/modify.png" class="img img-fluid justify-content-center align-items-center"
+                  *ngIf="entier!=2" />
+                <img src="../assets/img/modify-white.png" class="img img-fluid justify-content-center" *ngIf="entier===2" />
+                <h1 class=" font mt-3">
+                  Modifier un Passeport
+                </h1>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
+            <div class="cercle d-flex justify-content-center pt-3 pb-3 btn"
+              routerLink="/Espace Gouvernement/Liste des Passeports" (mouseenter)="mouseEnter(3)"
+              (mouseleave)="mouseLeave(0)" (click)="viewstorage('Liste des Passeports')">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="../assets/img/search.png" class="img img-fluid" *ngIf="entier!==3">
+                <img src="../assets/img/search-white.png" class="img img-fluid" *ngIf="entier===3">
+                <h1 class="font mt-3">
+                  Liste des Passeports
+                </h1>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
+            <div class="cercle d-flex justify-content-center pt-3 pb-3 btn"
+              routerLink="/Espace Gouvernement/Gestion des Problèmes" (mouseenter)="mouseEnter(4)"
+              (mouseleave)="mouseLeave(0)" (click)="viewstorage('Gestion des problèmes')">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="../assets/img/warning.png" class="img img-fluid" *ngIf="entier!==4">
+                <img src="../assets/img/warning-white.png" class="img img-fluid" *ngIf="entier===4">
+                <h1 class="font mt-3">
+                  Gestion des Problèmes
+                </h1>
+              </div>
+            </div>
+          </div>
+      
+      
+      
+        </div>
+      </div>
+
+</ng-template>
+
+
+<ng-template [ngIf]="global.autority==0">
+
+    <div class="container justify-content-center mt-custom">
+
+        <div class="row justify-content-around">
+      
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5 ">
+            <div class="cercle d-flex justify-content-center pt-3 pb-3 btn" routerLink="/Espace Gouvernement/Ajout Passeport"
+              (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave(0)" (click)="viewstorage('Ajout Passeport')">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="../assets/img/add.png" class="img img-fluid " *ngIf="entier!==1">
+                <img src="../assets/img/add-white.png" class="img img-fluid " *ngIf="entier===1">
+                <h1 class="font mt-3">
+                  Ajout de Passeport
+                </h1>
+              </div>
+            </div>
+          </div>
+      
+      
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
+            <div class="cercle container justify-content-center pt-3 pb-3 btn non-autorized"
+              routerLink="/Espace Gouvernement/Modifier Passeport" (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave(0)" (click)="viewstorage('Modifier Passeport')">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="../assets/img/modify.png" class="img img-fluid justify-content-center align-items-center"
+                  *ngIf="entier!=2" />
+                <img src="../assets/img/modify-white.png" class="img img-fluid justify-content-center" *ngIf="entier===2" />
+                <h1 class=" font mt-3">
+                  Modifier un Passeport
+                </h1>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
+            <div class="cercle d-flex justify-content-center pt-3 pb-3 btn"
+              routerLink="/Espace Gouvernement/Liste des Passeports" (mouseenter)="mouseEnter(3)"
+              (mouseleave)="mouseLeave(0)" (click)="viewstorage('Liste des Passeports')">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="../assets/img/search.png" class="img img-fluid" *ngIf="entier!==3">
+                <img src="../assets/img/search-white.png" class="img img-fluid" *ngIf="entier===3">
+                <h1 class="font mt-3">
+                  Liste des Passeports
+                </h1>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-12 col-sm-12  col-md-6 col-lg-4 col-xl-4 pr-5 pb-5">
+            <div class="cercle d-flex justify-content-center pt-3 pb-3 btn"
+              routerLink="/Espace Gouvernement/Gestion des Problèmes" (mouseenter)="mouseEnter(4)"
+              (mouseleave)="mouseLeave(0)" (click)="viewstorage('Gestion des problèmes')">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="../assets/img/warning.png" class="img img-fluid" *ngIf="entier!==4">
+                <img src="../assets/img/warning-white.png" class="img img-fluid" *ngIf="entier===4">
+                <h1 class="font mt-3">
+                  Gestion des Problèmes
+                </h1>
+              </div>
+            </div>
+          </div>
+      
+      
+      
+        </div>
+      </div>
+
+</ng-template>
+

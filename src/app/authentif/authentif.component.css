@@ -1,0 +1,174 @@
+
+.login-page{
+	background: #ffffff;  /* fallback for old browsers\
+	background: -webkit-linear-gradient(to bottom, #2399f4, #12D8FA, #1FA2FF);  /* Chrome 10-25, Safari 5.1-6 
+	background: linear-gradient(to bottom, #2399f4, #12D8FA, #1FA2FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	padding:7.4em 0px;
+	min-height:450px;
+	position:absolute;
+	display:inline-flex;
+	width:100%;
+}
+.log-box{
+	min-height:400px;
+	border-radius: 0 10px 10px 0px; 
+	box-shadow:0px 0px 10px rgb(187, 189, 194);
+	display:inline-block;
+	width:100%;
+}
+/* .logo-back{
+	background: url("../../assets/img/plane.jpg");
+	background-size: auto auto;
+	display: inline-block;
+	width: 100%;
+	min-height: 250px;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	border-radius: 10px 0px 0px 10px;
+	background-size: cover;
+	background-repeat: no-repeat;
+} */
+
+.rectangle {
+	width:600px;
+	height:150px;
+	background:#2F404D;
+
+}
+
+.rectangle.gouvernement {
+	background:rgb(31, 42, 51);
+}
+
+.rectangle.douane {
+	background:rgb(21, 28, 34);
+}
+
+.rectangle:hover {
+	background:#5DAC99;
+	margin:1% auto;
+}
+
+.row p {
+	text-align: center; 
+	margin-top:4em; 
+	color: white; 
+}
+
+
+.log-content{
+	padding:40px 20px 0px;
+	display:inline-block;
+	width:100%;
+	background-color:#fff;
+	min-height:460px;
+	border-radius:0px 10px 10px 0px;
+}
+.myr-top{
+	margin-top:15px;
+}
+.log-content .log-body{
+	margin-top:50px;
+}
+.log-content label{
+	margin:0px;
+	font-family:Poppins-R;
+	font-size:14px;
+	display:none;
+}
+.log-content .custom{
+	border-bottom:1px solid #000;
+	padding:10px 10px 10px 0px
+}
+
+.log-content h1 {
+    color: #5DAC99; 
+}
+.log-btn{
+    padding-bottom:20px;
+}
+.btn-theme1{
+	font-size:16px;
+	padding:10px 20px;
+	background-color:#2F404D;
+	color:#fff;
+	border-radius:50px;
+	transition:ease 0.5s;
+	position: relative; 
+}
+.btn-theme1:hover{
+	color:#fbfcff;
+	background-color:#5DAC99;
+}
+.log-bottom-cotent{
+	margin-top:20%;
+}
+/* end login page css */
+
+.custom{
+	border:0px;
+	height:40px;
+	box-shadow:0px 0px 0px;
+	border-radius:0px;
+	border-bottom:1px solid #fff;
+	background-color:transparent;
+	color:black;
+}
+.custom:hover, .custom:focus{
+	background-color:transparent;
+	box-shadow:0px 0px 0px;
+	border-bottom:1px solid red;
+}
+
+.form-group a{
+    margin-top:10px;
+}
+
+
+.alert {
+	font-size: 0.9em; 
+}
+
+@media screen and (max-width: 480px) {
+	.log-box{
+		border-radius: 0px 0px 10px 10px; 
+	}
+	.log-bottom-cotent{
+		margin-top:0%;
+	}
+
+}
+
+@media screen and (max-width: 839px) {
+	.log-content h1 {
+		color: #5DAC99;
+		font-size: 2em; 
+	}
+	.alert {
+		font-size: 0.7em; 
+	}
+
+
+}
+
+@media screen and (max-width: 940px) {
+	.alert {
+		font-size: 0.8em; 
+	}
+
+	.btn {
+		font-size: 0.8em; 
+		padding:5px 10px;
+	}
+
+	
+}
+
+
+@media screen and (max-width: 711px) {
+	.log-content h1 {
+		color: #5DAC99;
+		font-size: 1.5em; 
+	}
+}

@@ -1,0 +1,27 @@
+.cercle {
+  display: block;
+    
+  background-color: #C4C4C4;
+  border-radius: 40px;
+}
+.font{
+    font-family:Roboto;
+    font-size:18px;
+}
+.img{
+    height: 175px;
+}
+
+.cercle:hover{
+    background-color:#2F404D;
+    color:white;
+}
+ .museum{
+    background-image: url("/src/assets/img/museum.png");
+    height: 20vh;
+ }
+
+.mt-custom{
+    margin-top:20%;
+}
+
