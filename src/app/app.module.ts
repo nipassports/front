@@ -9,7 +9,6 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 
 
 import { AccueilComponent } from './accueil/accueil.component';
-import { ChooseComponent } from './choose/choose.component';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { PasseportComponent } from './EspaceCitoyen/passeport/passeport.component';
@@ -32,10 +31,6 @@ import { GlobalToolbarInfo } from './globalToolbarInfo';
 
 import { AffichagePassComponent } from './EspaceDouanes/affichage-pass/affichage-pass.component';
 import { PassInfosComponent } from './EspaceDouanes/pass-infos/pass-infos.component';
-
-import { AuthcitoyenComponent } from './Authentification/authcitoyen/authcitoyen.component';
-import { AuthGouvComponent } from './Authentification/auth-gouv/auth-gouv.component';
-import { AuthCustomComponent } from './Authentification/auth-custom/auth-custom.component';
 
 import { PassService } from './Service/pass.service';
 import { AuthentificationService } from './Service/authentification.service';
@@ -68,16 +63,12 @@ import { AuthGuard } from './Service/auth-guard.service';
     AutreComponent,
     ProblemComponent,
     AccueilComponent,
-    ChooseComponent,
     AddPassComponent,
     ChangeimgDirective,
-    AuthcitoyenComponent,
     EnsemblePassComponent,
     ToolbarCitoyenComponent,
     AffichagePassComponent,
     PassInfosComponent,
-    AuthGouvComponent,
-    AuthCustomComponent,
     ToolbarGouvComponent,
     ToolbarDouaneComponent,
     AccueilGouvComponent,

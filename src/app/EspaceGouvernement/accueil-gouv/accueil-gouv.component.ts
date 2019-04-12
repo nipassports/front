@@ -41,9 +41,9 @@ export class AccueilGouvComponent implements OnInit {
     this.storage.set("view",view);
   }
 
-  autorisation(value:number){
-    console.log("autority :"+value);
-    this.storage.set("autority",value);
-    location.reload();
-  }
+  // autorisation(value:number){
+  //   console.log("autority :"+value);
+  //   this.storage.set("autority",value);
+  //   location.reload();
+  // }
 }

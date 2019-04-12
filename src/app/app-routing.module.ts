@@ -4,11 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AccueilComponent } from './accueil/accueil.component';
 import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.component';
-import { ChooseComponent } from './choose/choose.component';
 
-import { AuthcitoyenComponent } from './Authentification/authcitoyen/authcitoyen.component';
-import { AuthGouvComponent } from './Authentification/auth-gouv/auth-gouv.component';
-import { AuthCustomComponent } from './Authentification/auth-custom/auth-custom.component';
 import { PasseportComponent } from './EspaceCitoyen/passeport/passeport.component';
 
 import { PassDetailComponent } from './EspaceCitoyen/pass-detail/pass-detail.component';
@@ -43,10 +39,6 @@ const routes: Routes = [
   { path: 'Accueil', component: AccueilComponent },
   { path: 'Se connecter', component: AuthentifComponent },
   { path: 'FAQ', component: FAQComponent },
-  // Authentification 
-  { path: 'Citoyen', component: AuthcitoyenComponent },
-  { path: 'Gouvernement', component: AuthGouvComponent },
-  { path: 'Douanes', component: AuthCustomComponent },
 
   // Gouv
   { path: 'Espace Gouvernement', canActivate: [AuthGuard], component: AccueilGouvComponent },

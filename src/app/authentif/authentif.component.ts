@@ -68,9 +68,7 @@ export class AuthentifComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          console.log('coucou: ' + JSON.stringify(data));
-
-          //console.log('connect: ' + data.message);
+          console.log('Authentif: ' + JSON.stringify(data));
 
           if (data.message === 'Auth successful') {
             this.auth.setPassNb(this.f.identifiant.value);
@@ -89,6 +87,12 @@ export class AuthentifComponent implements OnInit {
             } else if (this.espace === 'Gouvernement') {
               this.global.tbInfo = 'gouvernement';
               this.auth.setTbInfo('gouvernement');
+
+              if(data.admin === true)
+                this.auth.setAutority(1);
+              else
+                this.auth.setAutority(0);
+                
               // this.global.token  = data.token;
               // this.global.passNb  = this.f.identifiant.value;
               this.auth.setToken(data.token);

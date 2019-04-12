@@ -98,5 +98,9 @@ export class AuthentificationService {
   getTbInfo(val: string) {
     return this.storage.get("tbInfo");
   }
+  
+  setAutority(val: number) {
+    this.storage.set("autority", val);
+  }
 
 }
