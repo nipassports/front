@@ -235,7 +235,7 @@ export class AddPassComponent implements OnInit {
         "Valide",
         this.imageService.IMGbase64
       ]
-
+      console.log("pseudo pass: "+ pseudoPass);
       this.pS.addPass(pseudoPass)
         .pipe(first())
         .subscribe(
