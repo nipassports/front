@@ -7,7 +7,18 @@ div.container-fluid.navbar div.row {
     border-radius: 10px;
     overflow: hidden;
 }
-  
+
+
+.card-header {
+    margin-top:5em;
+    width:auto; 
+    max-width:58em;  
+    border-radius: 1em;
+    overflow: hidden;
+    justify-content: center; 
+    margin-left:auto; 
+    margin-right:auto; 
+}
 
 
 .col-lg-2 {
@@ -77,7 +88,7 @@ input.custom-file-input.input-sm {
     padding-right:20px;
 }
 div.col-auto.a div.row.maPhoto {
-    /*                        Photo                            */ 
+    /*                        Photo                            */
 
     height : 250px;
     width : 300px;
@@ -202,4 +213,12 @@ select {
 input {
     width: 200px;
     overflow: auto;
+}
+
+
+@media screen and (max-width: 500px) {
+    .card-header {
+        font-size:1em; 
+    }
+    
 }

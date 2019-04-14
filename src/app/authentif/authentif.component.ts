@@ -20,7 +20,6 @@ export class AuthentifComponent implements OnInit {
   espace: string = "Citoyen"
   private type : string = "citizen"
 
-
   Espace(espace: string): void {
     this.espace = espace;
     this.ChangeType(this.espace); 

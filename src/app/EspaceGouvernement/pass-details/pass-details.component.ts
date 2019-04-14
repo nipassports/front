@@ -4,6 +4,8 @@ import { PassService } from '../../Service/pass.service';
 import { AuthentificationService } from '../../Service/authentification.service';
 import { ActivatedRoute } from '@angular/router';
 
+import Swal from 'sweetalert2'; 
+
 @Component({
   selector: 'app-pass-details',
   templateUrl: './pass-details.component.html',
@@ -74,6 +76,33 @@ export class PassDetailsComponent implements OnInit {
 
     console.log("pass-detail:"+ this.pass.autority);
 
+  }
+
+  SwapValidity():void{
+    Swal.fire({
+      html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
+      showConfirmButton: false,
+    })  
+    this.pS.SwapValidityGouv(this.passNb)
+    .subscribe(
+      message => {Swal.fire({
+        text:'Vous venez de changer la validité du passeport',
+        title: 'Etat du passeport',
+        type:'info',
+        confirmButtonText:'Fermer',
+        confirmButtonColor:'#2F404D'
+      })
+      if (message){
+        if (this.pass.validity==='Valide'){
+          this.pass.validity='Invalide';
+        }
+        else{
+          this.pass.validity='Valide';
+        }
+      }
+
+    }
+    )
   }
 
 }

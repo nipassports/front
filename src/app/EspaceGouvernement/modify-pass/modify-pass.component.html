@@ -1,17 +1,10 @@
-<div class="container-fluid navbar justify-content-center">
-
+<div class="container-fluid justify-content-center">
 
   <div class="row">
-
-    <div class="col">
-
-
-      <p class="card-header">
+    <div class="col justifiy-content-center">
+      <p class="card-header container-fluid">
         Modification d'un passeport
       </p>
-
-
-
     </div>
 
   </div>
@@ -19,7 +12,6 @@
 </div>
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
   <div class="container-fluid object justify-content-center">
 
     <div class="row object justify-content-center">
@@ -48,11 +40,9 @@
           </div>
 
           <ng-template #noImage>
-              <div class="row maPhoto"></div>
+            <div class="row maPhoto"></div>
           </ng-template>
         </ng-template>
-
-
 
         <div class="row a mt-3">
 
@@ -647,7 +637,7 @@
     <div class="row bouton">
 
       <button class="btn btn-custom generate" (click)="buttonClicked('rechercher')">
-        Rechercher
+        Génerer
       </button>
 
       <button class="btn btn-custom generate" (click)="buttonClicked('valider')">

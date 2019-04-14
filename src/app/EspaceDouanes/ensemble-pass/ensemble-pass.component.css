@@ -41,7 +41,12 @@
     color:#2F404D;
     font-size:24px;
 }
-
+.font_validity.selected{
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    font-size: 15px;
+    background-color: #dd5b5b;
+}
 .my_border{
     border:2px solid #2F404D;
     border-radius: 4px;

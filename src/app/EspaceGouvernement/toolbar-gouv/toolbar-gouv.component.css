@@ -1,3 +1,7 @@
+.btn {
+    box-shadow: none; 
+}
+
 
 .bg-custom{
     background-color:#2F404D;

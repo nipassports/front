@@ -52,6 +52,8 @@ import { ViewService } from './Service/view.service';
 import { AuthGuard } from './Service/auth-guard.service';
 
 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 
 @NgModule({
@@ -93,7 +95,8 @@ import { AuthGuard } from './Service/auth-guard.service';
     NgbModule,
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [PassService,
               ViewService,

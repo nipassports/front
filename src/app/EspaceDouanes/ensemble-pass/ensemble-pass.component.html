@@ -40,13 +40,13 @@
                         </div>
 
                       <div class="row align-items-end">
-                          <div class="col-sm-12 d-flex font_validity justify-content-center ">{{pass.infos.validity}}</div>
+                          <div class="col-sm-12 d-flex font_validity justify-content-center " [class.selected]="pass.infos.validity==='Invalide'">{{pass.infos.validity}}</div>
                       </div>
 
                 </div>
               </div>
               <div class="row pr-3 ">
-                  <div class="col-sm-12 bouton d-flex justify-content-center align-items-center pb-1 pt-1 btn" routerLink='/Espace Douanes/Passeports/{{pass.infos.passNb}}'>Consulter</div>
+                  <div class="col-sm-12 bouton d-flex justify-content-center align-items-center pb-1 pt-1" routerLink='/Espace Douanes/Passeports/{{pass.infos.passNb}}'>Consulter</div>
               </div>
 
           </div>

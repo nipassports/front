@@ -8,17 +8,17 @@
               <div class="logo-back">
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="rectangle mt-sm-1" (click)="Espace('Citoyen')">
+                    <div class="rectangle mt-sm-1" [class.selected]="espace==='Citoyen'" (click)="Espace('Citoyen')">
                       <p> CITOYEN</p>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="rectangle gouvernement" (click)="Espace('Gouvernement')">
+                    <div class="rectangle gouvernement" [class.selected]="espace==='Gouvernement'" (click)="Espace('Gouvernement')">
                       <p> GOUVERNEMENT</p>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="rectangle douane" (click)="Espace('Douane')">
+                    <div class="rectangle douane" [class.selected]="espace==='Douane'" (click)="Espace('Douane')">
                       <p> DOUANE</p>
                     </div>
                   </div>
@@ -32,13 +32,17 @@
                   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
                     <div class="form-group myr-top">
                       <label>Login</label>
-                      <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant"
-                      [ngClass]="{ 'is-invalid': submitted && f.identifiant.errors }" placeholder="Numéro de passeport">
+                      <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant" *ngIf="espace==='Douane'"
+                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="Identifiant">
+                      <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant" *ngIf="espace==='Gouvernement'"
+                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="Identifiant">
+                      <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant" *ngIf="espace==='Citoyen'"
+                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="Numéro de Passeport">
                     </div>
                     <div class="form-group myr-top">
                       <label>Password</label>
-                      <input type="password" class="form-control custom" placeholder="Mot de Passe" id="password" formControlName="password"
-                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                      <input type="password" class="form-control custom" placeholder="Mot de Passe" id="password"
+                        formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                     </div>
                     <div class="container">
                       <div class="row">
@@ -49,7 +53,7 @@
                         </div>
                         <div class="form-group col-md-auto">
                           <div class="log-btn text-center">
-                            <button class="btn btn-theme1" [routerLink]="['/Accueil']" >Retour</button>
+                            <button class="btn btn-theme1" [routerLink]="['/Accueil']">Retour</button>
                           </div>
                         </div>
                       </div>

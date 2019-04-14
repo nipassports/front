@@ -195,7 +195,7 @@ export class ModifyPassComponent implements OnInit {
 
 
             (error) => {
-              console.log(" modify pass info: ERROR: " + error.statusText);
+              console.log(" modify pass info: ERROR: " + error);
 
               Swal.fire({
                 type: 'warning',
@@ -306,7 +306,12 @@ export class ModifyPassComponent implements OnInit {
   
         // Vérifie si le passeport existe
         preConfirm: (data) => {
-          console.log("Modify pass: " + data);
+
+          Swal.fire({
+            html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
+            showConfirmButton: false,
+          })  
+
           this.sub2 = this.pS.getPassInfoGouv(data)
             .pipe(first())
             .subscribe(
@@ -347,6 +352,9 @@ export class ModifyPassComponent implements OnInit {
                   console.log(this.loginForm.value);
                   this.imageService.IMGbase64 = this.pass.image;
   
+                  Swal.fire({
+                    type: "success"
+                  })  
   
                 }
                 else {
@@ -374,6 +382,8 @@ export class ModifyPassComponent implements OnInit {
               }
   
             ) // Fin suscribe
+
+
         }, // Fin preConfirm
   
       }) //Fin de Swal.fire
