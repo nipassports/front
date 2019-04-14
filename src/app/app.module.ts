@@ -23,6 +23,7 @@ import { AddPassComponent } from './EspaceGouvernement/add-pass/add-pass.compone
 import { ToolbarGouvComponent } from './EspaceGouvernement/toolbar-gouv/toolbar-gouv.component';
 import { AccueilGouvComponent } from './EspaceGouvernement/accueil-gouv/accueil-gouv.component';
 
+
 import { ToolbarDouaneComponent } from './EspaceDouanes/toolbar-douane/toolbar-douane.component';
 
 
@@ -53,6 +54,7 @@ import { AuthGuard } from './Service/auth-guard.service';
 
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AccueilgouvComponent } from './EspaceGouvernement/accueilgouv/accueilgouv.component';
 
 
 
@@ -86,6 +88,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     VisagouvComponent,
     AuthentifComponent,
     PageNonTrouveeComponent,
+    AccueilgouvComponent,
 
   ],
   imports: [
