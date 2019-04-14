@@ -15,7 +15,7 @@ export class PassService {
 
   private citizenUrl = 'http://nip.ddns.net:3000/citizen';
   private customUrl = 'http://nip.ddns.net:3000/custom';
-  private gouvUrl = 'http://nip.ddns.net:3000/gouvernment';
+  private gouvUrl = 'http://nip.ddns.net:3000/government';
   private passNb: string;
   public data: any = [];
   constructor(private http: HttpClient, private global: GlobalToolbarInfo,
@@ -123,6 +123,37 @@ export class PassService {
       }, options);
   }
 
+  modifyPass(pseudoPass: any){
+
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    return this.http.post<any>(this.gouvUrl+"/passport/update",
+      {
+        type: pseudoPass[0],
+        countryCode: pseudoPass[1],
+        passNb: pseudoPass[2],
+        name: pseudoPass[3],
+        surname: pseudoPass[4],
+        dateOfBirth: pseudoPass[5],
+        nationality: pseudoPass[6],
+        sex: pseudoPass[7],
+        placeOfBirth: pseudoPass[8],
+        height: pseudoPass[9].toString(),
+        autority: pseudoPass[10],
+        residence: pseudoPass[11],
+        eyesColor: pseudoPass[12],
+        dateOfExpiry: pseudoPass[13],
+        dateOfIssue: pseudoPass[14],
+        passOrigin: pseudoPass[15],
+        validity: pseudoPass[16],
+        image: pseudoPass[17]
+      }, options);
+  }
+
   getPassRandom(): Observable<Pass> {
     
     const url = `${this.gouvUrl}/random`;    
@@ -205,5 +236,15 @@ export class PassService {
     const options = { headers: headers };
     const url = `${this.gouvUrl}/visa/one/${passNb}`;
     return this.http.get<Visa_json[]>(url, options);
+  }
+
+  //Session
+  clean(){
+    this.global.tbInfo = 'all';
+    this.storage.remove("tbInfo");
+    this.storage.remove("token");
+    this.storage.set("view",'Accueil');
+    this.storage.remove("autority");
+    this.storage.remove("passInfo");
   }
 }

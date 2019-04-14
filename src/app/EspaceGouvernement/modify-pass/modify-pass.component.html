@@ -19,8 +19,8 @@
 </div>
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div><img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" /></div>
-  <div class="container-fluid object justify-content-center" *ngIf="!loading">
+
+  <div class="container-fluid object justify-content-center">
 
     <div class="row object justify-content-center">
 
@@ -38,14 +38,27 @@
 
         </div>
 
-        <div class="row maPhoto">
-          <div *ngIf="imgchanged"><img src="{{imageService.IMGbase64}}" class="images"></div>
+        <div class="row maPhoto" *ngIf="imgchanged; else elseBlock">
+          <div><img src="{{imageService.IMGbase64}}" class="images"></div>
         </div>
+
+        <ng-template #elseBlock>
+          <div class="row" *ngIf="loading; else noImage">
+            <div><img src="{{pass.image}}" class="image images" alt=""></div>
+          </div>
+
+          <ng-template #noImage>
+              <div class="row maPhoto"></div>
+          </ng-template>
+        </ng-template>
+
+
 
         <div class="row a mt-3">
 
 
-          <input type="file" #imageInput class="form-control-file input-sm" accept="image/*" (change)="processFile(imageInput)" formControlName="photo" id="Photo"
+          <input type="file" #imageInput class="form-control-file input-sm" accept="image/*"
+            (change)="processFile(imageInput)" formControlName="photo" id="Photo"
             [ngClass]="{ 'is-invalid': submitted && f.photo.errors }">
 
           <div *ngIf="submitted && f.photo.errors" class="invalid-feedback">
@@ -632,9 +645,9 @@
 
   <div class="container-fluid justify-content-end">
     <div class="row bouton">
-      
-      <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
-        Génerer
+
+      <button class="btn btn-custom generate" (click)="buttonClicked('rechercher')">
+        Rechercher
       </button>
 
       <button class="btn btn-custom generate" (click)="buttonClicked('valider')">

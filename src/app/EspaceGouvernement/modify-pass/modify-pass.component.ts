@@ -6,10 +6,12 @@ import { PassService } from '../../Service/pass.service';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { first } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import { Subscription, Subscriber } from 'rxjs';
+import { Router } from '@angular/router';
+import { async } from 'q';
+import { Subscription, Observable } from 'rxjs';
 
 class ImageSnippet {
-  constructor(public src: string, public file: File) {}
+  constructor(public src: string, public file: File) { }
 }
 
 @Component({
@@ -19,16 +21,18 @@ class ImageSnippet {
 })
 export class ModifyPassComponent implements OnInit {
 
-  imgchanged=false;
+  imgchanged = false;
 
-  private sub = Subscriber;
   pass: Pass;
   loginForm: FormGroup;
-  valid: boolean;
   submitted = false;
   loading = false;
   private error: any;
   selectedFile: ImageSnippet;
+  private sub1 : Subscription;
+  private sub2 : Subscription;
+  private sub3 : Subscription;
+  private image: Observable<string>;
 
   buttonValue: string;
 
@@ -75,20 +79,45 @@ export class ModifyPassComponent implements OnInit {
   };
 
 
-  constructor( private formBuilder: FormBuilder, private imageService:ImageServiceService,
+  constructor(private formBuilder: FormBuilder, private imageService: ImageServiceService, private router: Router,
     private pS: PassService,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
-    
+
 
   ngOnInit() {
- 
-    Swal.fire({
+
+    this.loginForm = this.formBuilder.group({
+      photo: ['', Validators.required],
+      signature: ['', Validators.required],
+      passOrigin: ['', Validators.required],
+      type: ['', Validators.required],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      sex: ['', Validators.required],
+      countryCode: ['', Validators.required],
+      height: ['', Validators.required],
+      passNb: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      eyesColor: ['', Validators.required],
+      placeOfBirth: ['', Validators.required],
+      residence: ['', Validators.required],
+      autority: ['', Validators.required],
+      dateOfIssue: ['', Validators.required],
+      dateOfExpiry: ['', Validators.required],
+      nationality: ['', Validators.required],
+    });
+
+
+   Swal.fire({
+
+      // Initialisation
       type: "info",
       text: 'Veuillez renseigner le numéro de passeport a modifier',
       input: "text",
+
       inputPlaceholder: "ex: 14ML52147",
 
-      confirmButtonText: 'Valider', 
+      confirmButtonText: 'Valider',
       cancelButtonText: 'Retour',
 
       showCancelButton: true,
@@ -97,84 +126,112 @@ export class ModifyPassComponent implements OnInit {
       cancelButtonColor: '#2F404D',
       confirmButtonColor: '#2F404D',
 
-      preConfirm: (data) =>{
-       
-        this.getPass(data);
-        
-      }
-    })     
+      showLoaderOnConfirm: true,
 
-    if ( this.pass !== null ){
-      
-      
-      console.log(this.pass.dateOfBirth)
+      // Traitement
 
-      let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
-      let dateOfIssue = this.normalDate(this.pass.dateOfIssue); 
-      let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry); 
+      // Check si l'input est rempli
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Un numéro de passeport est nécessaire !'
+        }
+      },
 
-      this.loginForm = this.formBuilder.group({
-        photo: [this.pass.image,Validators.required],
-        signature: [this.pass.image,Validators.required],
-        passOrigin: [this.pass.passOrigin, Validators.required],
-        type: [this.pass.passOrigin, Validators.required],
-        name: [this.pass.name, Validators.required],
-        surname: [this.pass.surname, Validators.required],
-        sex: [this.pass.sex, Validators.required],
-        countryCode: [this.pass.countryCode, Validators.required],
-        height: [this.pass.height, Validators.required],
-        passNb: [this.pass.passNb, Validators.required],
-        dateOfBirth: [dateOfBirth, Validators.required],
-        eyesColor: [this.pass.eyesColor, Validators.required],
-        placeOfBirth: [this.pass.placeOfBirth, Validators.required],
-        residence: [this.pass.residence, Validators.required],
-        autority: [this.pass.autority, Validators.required],
-        dateOfIssue: [dateOfIssue, Validators.required],
-        dateOfExpiry: [dateOfExpiry, Validators.required],
-        nationality: [this.pass.nationality, Validators.required],
+      // Vérifie si le passeport existe
+      preConfirm: (data) => {
+        console.log("Modify pass: " + data);
+        this.sub1 = this.pS.getPassInfoGouv(data)
+          .pipe(first())
+          .subscribe(
+
+            (pass) => {
+              this.loading = true;
+              console.log(" modify pass info: " + pass.infos);
+              if (pass.infos !== undefined) {
+                this.pass = pass.infos; console.log(" modify pass info: " + this.pass.autority);
+
+
+
+                console.log(this.pass.dateOfBirth)
+
+                let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
+                let dateOfIssue = this.normalDate(this.pass.dateOfIssue);
+                let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry);
+
+                this.loginForm.patchValue({
+                  passOrigin: this.pass.passOrigin,
+                  type: this.pass.type,
+                  name: this.pass.name,
+                  surname: this.pass.surname,
+                  sex: this.pass.sex,
+                  countryCode: this.pass.countryCode,
+                  height: this.pass.height,
+                  passNb: this.pass.passNb,
+                  dateOfBirth: dateOfBirth,
+                  eyesColor: this.pass.eyesColor,
+                  placeOfBirth: this.pass.placeOfBirth,
+                  residence: this.pass.residence,
+                  autority: this.pass.autority,
+                  dateOfIssue: dateOfIssue,
+                  dateOfExpiry: dateOfExpiry,
+                  nationality: this.pass.nationality
+                })
+
+                console.log(this.loginForm.value);
+                this.imageService.IMGbase64 = this.pass.image;
+
+
+              }
+              else {
+                console.log(" modify pass info: undefined");
+
+                Swal.fire({
+                  type: 'warning',
+                  title: 'Le Passeport est introuvable !'
+                })
+
+              }
+            },
+
+
+            (error) => {
+              console.log(" modify pass info: ERROR: " + error.statusText);
+
+              Swal.fire({
+                type: 'warning',
+                title: "Votre session vient d'expirer !"
+              })
+
+              this.pS.clean();
+              this.router.navigate(['/Se connecter']);
+            }
+
+          ) // Fin suscribe
+      }, // Fin preConfirm
+
+      allowOutsideClick: false,
+
+    }) //Fin de Swal.fire
+      .then(reason => {
+        console.log(" modify pass exit: " + reason.dismiss + " Swal.DismissReason.cancel: " + Swal.DismissReason.cancel);
+        if (reason.dismiss === Swal.DismissReason.cancel) {
+          this.router.navigate(['/Espace Gouvernement']);
+        }
+
       });
-    
-     }
-     else{
-      this.loginForm = this.formBuilder.group({
-        photo: ['', Validators.required],
-        signature: ['', Validators.required],
-        passOrigin: ['', Validators.required],
-        type: ['', Validators.required],
-        name: ['', Validators.required],
-        surname: ['', Validators.required],
-        sex: ['', Validators.required],
-        countryCode: ['', Validators.required],
-        height: ['', Validators.required],
-        passNb: ['', Validators.required],
-        dateOfBirth: ['', Validators.required],
-        eyesColor: ['', Validators.required],
-        placeOfBirth: ['', Validators.required],
-        residence: ['', Validators.required],
-        autority: ['', Validators.required],
-        dateOfIssue: ['', Validators.required],
-        dateOfExpiry: ['', Validators.required],
-        nationality: ['', Validators.required],
-      });
-     }
+  }
 
+  ngOnDestroy(){
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
+    this.sub3.unsubscribe();
   }
 
   get f() { return this.loginForm.controls; }
-  
-  getPass(passNb: string ): void {
 
-    this.pS.getPassInfoGouv(passNb)
-    .pipe(first())
-    .subscribe( 
-      pass => {this.pass = pass.infos;});
-
-    // console.log("pass-detail:"+ this.storage.get("passInfo"));
-
-  }
 
   processFile(imageInput: any) {
-    this.imgchanged=true;
+    this.imgchanged = true;
 
     const file: File = imageInput.files[0];
     const reader = new FileReader();
@@ -203,12 +260,12 @@ export class ModifyPassComponent implements OnInit {
   }
 
 
-  normalDate(date:string): string{
+  normalDate(date: string): string {
     let splitDate = date.split('/');
-    const year  = splitDate[2];
+    const year = splitDate[2];
     const month = splitDate[1];
     const day = splitDate[0];
-    const trueDate = year+"-"+month+"-"+day;
+    const trueDate = year + "-" + month + "-" + day;
     return trueDate;
   }
 
@@ -216,22 +273,111 @@ export class ModifyPassComponent implements OnInit {
 
     console.log("button value: " + this.buttonValue)
 
-    if (this.buttonValue === "generate") {
+    if (this.buttonValue === "rechercher") {
 
-      console.log("before generate: " + this.f.dateOfBirth.value)
-      this.pS.getPassRandom()
-        .subscribe(
-          pass => {
-            this.pass = pass;
-            this.storage.set("passInfo",this.pass);
-            console.log("pass-detail storage: " + JSON.stringify(this.storage.get("passInfo")));
-            location.reload();
-          },
+      Swal.fire({
 
-          error => { console.log("pass-detail:ERROR " + error) }
-        );  
-      
-        
+        // Initialisation
+        type: "info",
+        text: 'Veuillez renseigner le numéro de passeport a modifier',
+        input: "text",
+  
+        inputPlaceholder: "ex: 14ML52147",
+  
+        confirmButtonText: 'Valider',
+        cancelButtonText: 'Retour',
+  
+        showCancelButton: true,
+        reverseButtons: true,
+  
+        cancelButtonColor: '#2F404D',
+        confirmButtonColor: '#2F404D',
+  
+        showLoaderOnConfirm: true,
+  
+        // Traitement
+  
+        // Check si l'input est rempli
+        inputValidator: (value) => {
+          if (!value) {
+            return 'Un numéro de passeport est nécessaire !'
+          }
+        },
+  
+        // Vérifie si le passeport existe
+        preConfirm: (data) => {
+          console.log("Modify pass: " + data);
+          this.sub2 = this.pS.getPassInfoGouv(data)
+            .pipe(first())
+            .subscribe(
+  
+              (pass) => {
+                this.loading = true;
+                console.log(" modify pass info: " + pass.infos);
+                if (pass.infos !== undefined) {
+                  this.pass = pass.infos; console.log(" modify pass info: " + this.pass.autority);
+  
+  
+  
+                  console.log(this.pass.dateOfBirth)
+  
+                  let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
+                  let dateOfIssue = this.normalDate(this.pass.dateOfIssue);
+                  let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry);
+  
+                  this.loginForm.patchValue({
+                    passOrigin: this.pass.passOrigin,
+                    type: this.pass.type,
+                    name: this.pass.name,
+                    surname: this.pass.surname,
+                    sex: this.pass.sex,
+                    countryCode: this.pass.countryCode,
+                    height: this.pass.height,
+                    passNb: this.pass.passNb,
+                    dateOfBirth: dateOfBirth,
+                    eyesColor: this.pass.eyesColor,
+                    placeOfBirth: this.pass.placeOfBirth,
+                    residence: this.pass.residence,
+                    autority: this.pass.autority,
+                    dateOfIssue: dateOfIssue,
+                    dateOfExpiry: dateOfExpiry,
+                    nationality: this.pass.nationality
+                  })
+  
+                  console.log(this.loginForm.value);
+                  this.imageService.IMGbase64 = this.pass.image;
+  
+  
+                }
+                else {
+                  console.log(" modify pass info: undefined");
+  
+                  Swal.fire({
+                    type: 'warning',
+                    title: 'Le Passeport est introuvable !'
+                  })
+  
+                }
+              },
+  
+  
+              (error) => {
+                console.log(" modify pass info: ERROR: " + error.statusText);
+  
+                Swal.fire({
+                  type: 'warning',
+                  title: "Votre session vient d'expirer !"
+                })
+  
+                this.pS.clean();
+                this.router.navigate(['/Se connecter']);
+              }
+  
+            ) // Fin suscribe
+        }, // Fin preConfirm
+  
+      }) //Fin de Swal.fire
+
     }
 
     if (this.buttonValue === "valider") {
@@ -241,6 +387,8 @@ export class ModifyPassComponent implements OnInit {
       if (this.loginForm.invalid) {
         return;
       }
+
+
 
       this.loading = true;
       const pseudoPass = [
@@ -265,7 +413,7 @@ export class ModifyPassComponent implements OnInit {
         this.imageService.IMGbase64
       ]
 
-      this.pS.addPass(pseudoPass)
+      this.sub3 = this.pS.modifyPass(pseudoPass)
         .pipe(first())
         .subscribe(
           data => {
@@ -273,18 +421,18 @@ export class ModifyPassComponent implements OnInit {
             //console.log('connect: ' + data.message);
 
             if (data.message === 'Transaction has been submitted') {
-              var message : string; 
+              var message: string;
               message = "<b> Identifiant: </b> " + this.f.passNb.value +
-              "<br> <b> Mot de passe:</b> " + data.password; 
+                "<br> <b> Mot de passe:</b> " + data.password;
               Swal.fire({
                 title: 'Passeport ajouté !',
                 html: message,
                 type: 'success',
-                confirmButtonText: 'Fermer', 
+                confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer : 6000
-              })             
-              this.loading = false;
+                timer: 6000
+              })
+              
             }
 
             else {
@@ -292,22 +440,20 @@ export class ModifyPassComponent implements OnInit {
                 title: 'Problème',
                 text: 'Veuillez ré-essayer.',
                 type: 'error',
-                confirmButtonText: 'Fermer', 
+                confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer : 6000
-              })   
+                timer: 6000
+              })
             }
           },
 
           error => {
             console.log('ERROR: ' + JSON.stringify(error));
             this.error = JSON.stringify(error);
-            // this.loading = false;
+    
           }
         );
     }
-
-
-
   }
+
 }

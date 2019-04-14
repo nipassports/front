@@ -10,7 +10,7 @@ export class AuthentificationService {
   isAuth = false;
   private citizenUrl = 'http://nip.ddns.net:3000/citizen';
   private customUrl = 'http://nip.ddns.net:3000/custom';
-  private gouvUrl = 'http://nip.ddns.net:3000/gouvernment';
+  private gouvUrl = 'http://nip.ddns.net:3000/government';
   private passNb;
 
   constructor(private http: HttpClient,

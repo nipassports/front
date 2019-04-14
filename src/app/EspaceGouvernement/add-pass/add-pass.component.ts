@@ -82,38 +82,7 @@ export class AddPassComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
-    if ( this.storage.get("passInfo") !== null ){
-      this.pass= this.storage.get("passInfo");
-      
-      console.log(this.pass.dateOfBirth)
 
-      let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
-      let dateOfIssue = this.normalDate(this.pass.dateOfIssue); 
-      let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry); 
-
-      this.loginForm = this.formBuilder.group({
-        photo: ['',Validators.required],
-        signature: ['',Validators.required],
-        passOrigin: ['France', Validators.required],
-        type: ['P', Validators.required],
-        name: [this.pass.name, Validators.required],
-        surname: [this.pass.surname, Validators.required],
-        sex: [this.pass.sex, Validators.required],
-        countryCode: [this.pass.countryCode, Validators.required],
-        height: [this.pass.height, Validators.required],
-        passNb: [this.pass.passNb, Validators.required],
-        dateOfBirth: [dateOfBirth, Validators.required],
-        eyesColor: [this.pass.eyesColor, Validators.required],
-        placeOfBirth: [this.pass.placeOfBirth, Validators.required],
-        residence: [this.pass.residence, Validators.required],
-        autority: [this.pass.autority, Validators.required],
-        dateOfIssue: [dateOfIssue, Validators.required],
-        dateOfExpiry: [dateOfExpiry, Validators.required],
-        nationality: [this.pass.nationality, Validators.required],
-      });
-    
-     }
-     else{
       this.loginForm = this.formBuilder.group({
         photo: ['', Validators.required],
         signature: ['', Validators.required],
@@ -134,7 +103,6 @@ export class AddPassComponent implements OnInit {
         dateOfExpiry: ['', Validators.required],
         nationality: ['', Validators.required],
       });
-     }
 
   }
 
@@ -179,26 +147,56 @@ export class AddPassComponent implements OnInit {
     return trueDate;
   }
 
-  onSubmit() {
+  async onSubmit() {
 
     console.log("button value: " + this.buttonValue)
 
     if (this.buttonValue === "generate") {
 
+      Swal.fire({
+        html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
+        showConfirmButton: false,
+      })  
+
       console.log("before generate: " + this.f.dateOfBirth.value)
-      this.pS.getPassRandom()
+      await this.pS.getPassRandom()
         .subscribe(
           pass => {
             this.pass = pass;
-            this.storage.set("passInfo",this.pass);
-            console.log("pass-detail storage: " + JSON.stringify(this.storage.get("passInfo")));
-            location.reload();
+            
+            let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
+            let dateOfIssue = this.normalDate(this.pass.dateOfIssue);
+            let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry);
+    
+            this.loginForm.patchValue({
+              passOrigin: 'France',
+              type: 'P',
+              name: this.pass.name,
+              surname: this.pass.surname,
+              sex: this.pass.sex,
+              countryCode: this.pass.countryCode,
+              height: this.pass.height,
+              passNb: this.pass.passNb,
+              dateOfBirth: dateOfBirth,
+              eyesColor: this.pass.eyesColor,
+              placeOfBirth: this.pass.placeOfBirth,
+              residence: this.pass.residence,
+              autority: this.pass.autority,
+              dateOfIssue: dateOfIssue,
+              dateOfExpiry: dateOfExpiry,
+              nationality: this.pass.nationality
+            })
+           
           },
 
           error => { console.log("pass-detail:ERROR " + error) }
         );  
-      
-        
+    
+        Swal.fire({
+          type: 'success',
+          text: 'Le passeport a bien été généré !',
+          confirmButtonColor: '#2F404D',
+        })  
     }
 
     if (this.buttonValue === "valider") {
