@@ -62,6 +62,7 @@ p {
  .container-fluid {
     margin-top: 35%; 
     margin-left : auto; 
+    margin-bottom:0; 
 }
 
 }
