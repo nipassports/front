@@ -14,7 +14,6 @@ import { ProblemComponent } from './EspaceCitoyen/problem/problem.component';
 
 import { AddPassComponent } from './EspaceGouvernement/add-pass/add-pass.component';
 import { EnsemblePassComponent } from './EspaceDouanes/ensemble-pass/ensemble-pass.component';
-import { AccueilGouvComponent } from './EspaceGouvernement/accueil-gouv/accueil-gouv.component';
 import { ModifyPassComponent } from './EspaceGouvernement/modify-pass/modify-pass.component';
 import { PassIssuesComponent } from './EspaceGouvernement/pass-issues/pass-issues.component';
 import { AccueilgouvComponent } from "./EspaceGouvernement/accueilgouv/accueilgouv.component";

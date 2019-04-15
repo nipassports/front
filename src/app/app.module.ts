@@ -21,7 +21,6 @@ import { ToolbarCitoyenComponent } from './EspaceCitoyen/toolbar-citoyen/toolbar
 
 import { AddPassComponent } from './EspaceGouvernement/add-pass/add-pass.component';
 import { ToolbarGouvComponent } from './EspaceGouvernement/toolbar-gouv/toolbar-gouv.component';
-import { AccueilGouvComponent } from './EspaceGouvernement/accueil-gouv/accueil-gouv.component';
 
 
 import { ToolbarDouaneComponent } from './EspaceDouanes/toolbar-douane/toolbar-douane.component';
@@ -76,7 +75,6 @@ import { AccueilgouvComponent } from './EspaceGouvernement/accueilgouv/accueilgo
     PassInfosComponent,
     ToolbarGouvComponent,
     ToolbarDouaneComponent,
-    AccueilGouvComponent,
     ModifyPassComponent,
     PassListComponent,
     PassIssuesComponent,
