@@ -8,6 +8,7 @@ import { Pass } from '../../pass';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 
 class ImageSnippet {
@@ -78,7 +79,7 @@ export class AddPassComponent implements OnInit {
 
 
   constructor( private formBuilder: FormBuilder, private imageService:ImageServiceService,
-    private pS: PassService,
+    private pS: PassService, private router: Router,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
@@ -273,7 +274,15 @@ export class AddPassComponent implements OnInit {
           error => {
             console.log('ERROR: ' + JSON.stringify(error));
             this.error = JSON.stringify(error);
-            // this.loading = false;
+            Swal.fire({
+              text: "Votre session a expirée !",
+              type: 'warning',
+              confirmButtonText: 'Fermer',
+              confirmButtonColor: '#2F404D',
+              timer: 6000
+            })
+            this.pS.clean();
+            this.router.navigate(['/Se connecter']);
           }
         );
     }
