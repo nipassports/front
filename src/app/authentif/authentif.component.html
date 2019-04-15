@@ -32,12 +32,8 @@
                   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
                     <div class="form-group myr-top">
                       <label>Login</label>
-                      <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant" *ngIf="espace==='Douane'"
-                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="Identifiant">
-                      <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant" *ngIf="espace==='Gouvernement'"
-                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="Identifiant">
-                      <input type="text" class="form-control custom" id="identifiant" formControlName="identifiant" *ngIf="espace==='Citoyen'"
-                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="Numéro de Passeport">
+                      <input #login type="text" class="form-control custom" id="identifiant" formControlName="identifiant"
+                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="{{placeholder}}"/>
                     </div>
                     <div class="form-group myr-top">
                       <label>Password</label>

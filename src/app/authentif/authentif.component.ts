@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from "@angular/router";
 import { first } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,6 +10,9 @@ import { PassService } from '../Service/pass.service';
 
 import Swal from 'sweetalert2'
 
+
+
+
 @Component({
   selector: 'app-authentif',
   templateUrl: './authentif.component.html',
@@ -17,21 +20,28 @@ import Swal from 'sweetalert2'
 })
 export class AuthentifComponent implements OnInit {
 
+  @ViewChild('login') myInput: ElementRef; 
+
   espace: string = "Citoyen"
   private type : string = "citizen"
+  private placeholder : string = "Numéro de passport"
 
   Espace(espace: string): void {
     this.espace = espace;
-    this.ChangeType(this.espace); 
+    this.ChangeType(this.espace);
+    this.myInput.nativeElement.focus(); 
   }
 
   ChangeType(type : string) : void {
     if (type === "Douane") {
       this.type = 'custom'; 
+      this.placeholder = "Identifiant"; 
     } else if (type === "Citoyen") {
       this.type = 'citizen'; 
+      this.placeholder = "Numéro de passport"; 
     } else if (type === "Gouvernement") {
       this.type = 'gouvernment'; 
+      this.placeholder = "Identifiant"; 
     }
   }
 
@@ -46,14 +56,14 @@ export class AuthentifComponent implements OnInit {
 
   ngOnInit() {
 
+
     this.loginForm = this.formBuilder.group({
       identifiant: ['', Validators.required],
       password: ['', Validators.required],
-      //checkbox: ['', Validators.required]
     });
 
-    let inputField: HTMLElement = <HTMLElement>document.querySelectorAll('input')[0];
-    inputField && inputField.focus();
+    this.myInput.nativeElement && this.myInput.nativeElement.focus(); 
+
   }
 
   get f() { return this.loginForm.controls; }
