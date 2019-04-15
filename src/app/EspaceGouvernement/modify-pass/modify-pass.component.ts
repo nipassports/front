@@ -29,9 +29,9 @@ export class ModifyPassComponent implements OnInit {
   loading = false;
   private error: any;
   selectedFile: ImageSnippet;
-  private sub1 : Subscription;
-  private sub2 : Subscription;
-  private sub3 : Subscription;
+  private sub1: Subscription;
+  private sub2: Subscription;
+  private sub3: Subscription;
   private image: Observable<string>;
 
   buttonValue: string;
@@ -108,7 +108,7 @@ export class ModifyPassComponent implements OnInit {
     });
 
 
-   Swal.fire({
+    Swal.fire({
 
       // Initialisation
       type: "info",
@@ -199,7 +199,9 @@ export class ModifyPassComponent implements OnInit {
 
               Swal.fire({
                 type: 'warning',
-                title: "Votre session vient d'expirer !"
+                title: "Votre session vient d'expirer !",
+                confirmButtonText: 'Fermer', 
+                confirmButtonColor: '#2F404D',
               })
 
               this.pS.clean();
@@ -221,10 +223,11 @@ export class ModifyPassComponent implements OnInit {
       });
   }
 
-  ngOnDestroy(){
-    this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
-    this.sub3.unsubscribe();
+  ngOnDestroy() {
+    // Si on fait les lignes suivantes : erreur lorsqu'on fait RETOUR sur la popup
+    //this.sub1.unsubscribe();
+    //this.sub2.unsubscribe();
+    //this.sub3.unsubscribe();
   }
 
   get f() { return this.loginForm.controls; }
@@ -281,55 +284,55 @@ export class ModifyPassComponent implements OnInit {
         type: "info",
         text: 'Veuillez renseigner le numéro de passeport a modifier',
         input: "text",
-  
+
         inputPlaceholder: "ex: 14ML52147",
-  
+
         confirmButtonText: 'Valider',
         cancelButtonText: 'Retour',
-  
+
         showCancelButton: true,
         reverseButtons: true,
-  
+
         cancelButtonColor: '#2F404D',
         confirmButtonColor: '#2F404D',
-  
+
         showLoaderOnConfirm: true,
-  
+
         // Traitement
-  
+
         // Check si l'input est rempli
         inputValidator: (value) => {
           if (!value) {
             return 'Un numéro de passeport est nécessaire !'
           }
         },
-  
+
         // Vérifie si le passeport existe
         preConfirm: (data) => {
 
           Swal.fire({
             html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
             showConfirmButton: false,
-          })  
+          })
 
           this.sub2 = this.pS.getPassInfoGouv(data)
             .pipe(first())
             .subscribe(
-  
+
               (pass) => {
                 this.loading = true;
                 console.log(" modify pass info: " + pass.infos);
                 if (pass.infos !== undefined) {
                   this.pass = pass.infos; console.log(" modify pass info: " + this.pass.autority);
-  
-  
-  
+
+
+
                   console.log(this.pass.dateOfBirth)
-  
+
                   let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
                   let dateOfIssue = this.normalDate(this.pass.dateOfIssue);
                   let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry);
-  
+
                   this.loginForm.patchValue({
                     passOrigin: this.pass.passOrigin,
                     type: this.pass.type,
@@ -348,44 +351,44 @@ export class ModifyPassComponent implements OnInit {
                     dateOfExpiry: dateOfExpiry,
                     nationality: this.pass.nationality
                   })
-  
+
                   console.log(this.loginForm.value);
                   this.imageService.IMGbase64 = this.pass.image;
-  
+
                   Swal.fire({
                     type: "success"
-                  })  
-  
+                  })
+
                 }
                 else {
                   console.log(" modify pass info: undefined");
-  
+
                   Swal.fire({
                     type: 'warning',
                     title: 'Le Passeport est introuvable !'
                   })
-  
+
                 }
               },
-  
-  
+
+
               (error) => {
                 console.log(" modify pass info: ERROR: " + error.statusText);
-  
+
                 Swal.fire({
                   type: 'warning',
                   title: "Votre session vient d'expirer !"
                 })
-  
+
                 this.pS.clean();
                 this.router.navigate(['/Se connecter']);
               }
-  
+
             ) // Fin suscribe
 
 
         }, // Fin preConfirm
-  
+
       }) //Fin de Swal.fire
 
     }
@@ -442,7 +445,7 @@ export class ModifyPassComponent implements OnInit {
                 confirmButtonColor: '#2F404D',
                 timer: 6000
               })
-              
+
             }
 
             else {
@@ -460,7 +463,7 @@ export class ModifyPassComponent implements OnInit {
           error => {
             console.log('ERROR: ' + JSON.stringify(error));
             this.error = JSON.stringify(error);
-    
+
           }
         );
     }
