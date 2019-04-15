@@ -212,7 +212,7 @@ export class ModifyPassComponent implements OnInit {
                 })
   
                 this.pS.clean();
-                this.router.navigate(['/Se connecter']);
+                this.router.navigate(['/Se_connecter']);
               }
               else{
                 Swal.fire({
@@ -227,13 +227,12 @@ export class ModifyPassComponent implements OnInit {
           ) // Fin suscribe
       }, // Fin preConfirm
 
-      allowOutsideClick: false,
 
     }) //Fin de Swal.fire
       .then(reason => {
         console.log(" modify pass exit: " + reason.dismiss + " Swal.DismissReason.cancel: " + Swal.DismissReason.cancel);
         if (reason.dismiss === Swal.DismissReason.cancel) {
-          this.router.navigate(['/Espace Gouvernement']);
+          this.router.navigate(['/Espace_Gouvernement']);
         }
 
       });
@@ -481,17 +480,29 @@ export class ModifyPassComponent implements OnInit {
             }
           },
 
-          error => {
-            console.log('ERROR: ' + JSON.stringify(error));
-            Swal.fire({
-              title: 'Problème',
-              text: 'Veuillez ré-essayer.',
-              type: 'error',
-              confirmButtonText: 'Fermer',
-              confirmButtonColor: '#2F404D',
-              timer: 6000
-            })
+          async (error) => {
+            console.log(" modify pass info: ERROR: " + error.error.message);
+
+            if(error.error.message === "Auth failed"){
+              await Swal.fire({
+                type: 'warning',
+                title: "Votre session vient d'expirer !",
+                confirmButtonColor: '#2F404D'
+              })
+
+              this.pS.clean();
+              this.router.navigate(['/Se_connecter']);
+            }
+            else{
+              Swal.fire({
+                type: 'warning',
+                title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+                confirmButtonColor: '#2F404D',
+              })
+            }
+
           }
+          
         );
     }
   }

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-visa',
@@ -37,7 +38,7 @@ export class AddVisaComponent implements OnInit {
 
   ]
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,private router: Router,
     @Inject(SESSION_STORAGE) private storage: WebStorageService,
   private pS: PassService) { }
 
@@ -170,22 +171,32 @@ export class AddVisaComponent implements OnInit {
                 type: 'error',
                 confirmButtonText: 'Fermer', 
                 confirmButtonColor: '#2F404D',
-                timer : 6000
+              
               })   
             }
           },
 
-          (error: any) =>{
-            console.log("ERROR: "+ JSON.stringify(error));
-            
-            Swal.fire({
-              title: 'Problème',
-              text: 'Veuillez ré-essayer.',
-              type: 'error',
-              confirmButtonText: 'Fermer', 
-              confirmButtonColor: '#2F404D',
-              timer : 6000
-            })   
+          async (error) => {
+            console.log(" modify pass info: ERROR: " + error.error.message);
+
+            if(error.error.message === "Auth failed"){
+              await Swal.fire({
+                type: 'warning',
+                title: "Votre session vient d'expirer !",
+                confirmButtonColor: '#2F404D'
+              })
+
+              this.pS.clean();
+              this.router.navigate(['/Se_connecter']);
+            }
+            else{
+              Swal.fire({
+                type: 'warning',
+                title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+                confirmButtonColor: '#2F404D',
+              })
+            }
+
           }
         )
 

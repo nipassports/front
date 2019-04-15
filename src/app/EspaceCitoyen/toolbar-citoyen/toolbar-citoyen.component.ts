@@ -4,7 +4,6 @@ import { Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalToolbarInfo } from '../../globalToolbarInfo';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
-import {View} from '../../view';
 import {ViewService} from '../../Service/view.service';
 @Component({
   selector: 'app-toolbar-citoyen',
@@ -19,7 +18,7 @@ export class ToolbarCitoyenComponent implements OnInit {
 
   ongletNav =[
     {title:'Accueil',link:'/Accueil'},
-    {title:'Mon Passeport',link:'/Espace Citoyen/Mon Passeport'},
+    {title:'Mon Passeport',link:'/Espace_Citoyen/Mon_Passeport'},
     {title:'Se déconnecter',link:'#'},  
   ];
 
@@ -33,11 +32,13 @@ export class ToolbarCitoyenComponent implements OnInit {
     this.viewService.setView(vue.title);
     this.storage.set("view",vue.title);
     if(this.viewService.getView() == 'Se déconnecter'){
+
       this.storage.remove("tbInfo");
       this.storage.remove("token");
-      this.storage.set("view",'Accueil');
+      
       this.storage.remove("passNb");
       this.global.tbInfo ='all';
+      this.storage.set("view",'Accueil');
       this.router.navigate(['/Accueil']);
     }
     console.log("selectedVue:" + this.viewService.getView()+ ", vue:" + vue );

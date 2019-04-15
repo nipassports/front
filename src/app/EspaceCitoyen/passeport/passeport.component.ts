@@ -20,10 +20,9 @@ export class PasseportComponent implements OnInit {
   selectedVue: string;
 
   passBar = [ 
-    'Mon Passeport',
-    'Visa',
-    'Autre'
-
+    {title:'Mon Passeport',link:'Mon_Passeport'},
+    {title:'Visa',link:'Visa'},
+    {title:'Autre',link:'Autre'},
   ];
 
   constructor( private pS : PassService) { }
@@ -61,7 +60,7 @@ export class PasseportComponent implements OnInit {
 
 
   ngOnInit() {
-    this.selectedVue = 'Mon Passeport';
+    this.selectedVue = 'Mon_Passeport';
     this.time(); 
   }
 

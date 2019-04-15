@@ -41,7 +41,7 @@ export class PassListComponent implements OnInit {
             })
 
             this.pS.clean();
-            this.router.navigate(['/Se connecter']);
+            this.router.navigate(['/Se_connecter']);
           }
           else{
             Swal.fire({

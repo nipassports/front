@@ -207,7 +207,7 @@ export class AddPassComponent implements OnInit {
               })
 
               this.pS.clean();
-              this.router.navigate(['/Se connecter']);
+              this.router.navigate(['/Se_connecter']);
             }
             else{
               Swal.fire({
@@ -233,7 +233,7 @@ export class AddPassComponent implements OnInit {
       Swal.fire({
         html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
         showConfirmButton: false,
-        allowOutsideClick: () => !Swal.isLoading(),
+        allowOutsideClick: false,
       })
 
       this.loading = true;
@@ -276,7 +276,7 @@ export class AddPassComponent implements OnInit {
                 type: 'success',
                 confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer: 6000
+      
               })
               this.loading = false;
             }
@@ -288,24 +288,34 @@ export class AddPassComponent implements OnInit {
                 type: 'error',
                 confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer: 6000
+                
               })
             }
           },
 
-          error => {
-            console.log('ERROR: ' + JSON.stringify(error));
-            this.error = JSON.stringify(error);
-            Swal.fire({
-              text: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
-              type: 'warning',
-              confirmButtonText: 'Fermer',
-              confirmButtonColor: '#2F404D',
-              timer: 6000
-            })
-            // this.pS.clean();
-            // this.router.navigate(['/Se connecter']);
+          async (error) => {
+            console.log(" modify pass info: ERROR: " + error.error.message);
+
+            if(error.error.message === "Auth failed"){
+              await Swal.fire({
+                type: 'warning',
+                title: "Votre session vient d'expirer !",
+                confirmButtonColor: '#2F404D'
+              })
+
+              this.pS.clean();
+              this.router.navigate(['/Se_connecter']);
+            }
+            else{
+              Swal.fire({
+                type: 'warning',
+                title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+                confirmButtonColor: '#2F404D',
+              })
+            }
+
           }
+
         );
     }
   }

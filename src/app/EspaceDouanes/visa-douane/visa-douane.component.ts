@@ -25,18 +25,30 @@ export class VisaDouaneComponent implements OnInit {
     this.pS.getVisaDouane(passNb)
     .subscribe(
       visa_json => this.visa_json = visa_json,
-      error => {
-        console.log('ERROR: ' + JSON.stringify(error));
-        Swal.fire({
-          text: "Votre session a expirée !",
-          type: 'warning',
-          confirmButtonText: 'Fermer',
-          confirmButtonColor: '#2F404D',
-          timer: 6000
-        })
-        this.pS.clean();
-        this.router.navigate(['/Se connecter']);
+
+      async (error) => {
+        console.log(" modify pass info: ERROR: " + error.error.message);
+
+        if(error.error.message === "Auth failed"){
+          await Swal.fire({
+            type: 'warning',
+            title: "Votre session vient d'expirer !",
+            confirmButtonColor: '#2F404D'
+          })
+
+          this.pS.clean();
+          this.router.navigate(['/Se_connecter']);
+        }
+        else{
+          Swal.fire({
+            type: 'warning',
+            title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+            confirmButtonColor: '#2F404D',
+          })
+        }
+
       });
+      
     console.log(this.visa_json);
   }
 

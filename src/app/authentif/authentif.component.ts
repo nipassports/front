@@ -85,21 +85,27 @@ export class AuthentifComponent implements OnInit {
           if (data.message === 'Auth successful') {
             this.auth.setPassNb(this.f.identifiant.value);
             if (this.espace === 'Douane') {
+
               this.global.tbInfo = 'douanes';
               this.auth.setTbInfo('douanes');
               this.auth.setToken(data.token);
-              this.router.navigate(['Espace Douanes/Liste des Passeports']);
+              this.router.navigate(['Espace_Douanes/Liste_des_Passeports']);
+
             } else if (this.espace === 'Citoyen') {
+
               this.global.tbInfo = 'citoyen';
               this.auth.setTbInfo('citoyen');
               // this.global.token  = data.token;
               // this.global.passNb  = this.f.identifiant.value;
               this.auth.setToken(data.token);
-              this.router.navigate(['/Espace Citoyen/Mon Passeport']);
+              this.router.navigate(['/Espace_Citoyen/Mon_Passeport']);
+
             } else if (this.espace === 'Gouvernement') {
+
               this.global.tbInfo = 'gouvernement';
               this.auth.setTbInfo('gouvernement');
               this.service.setCountryCode(data.countryCode);
+              
               if(data.admin === true)
                 this.auth.setAutority(1);
               else
@@ -108,7 +114,7 @@ export class AuthentifComponent implements OnInit {
               // this.global.token  = data.token;
               // this.global.passNb  = this.f.identifiant.value;
               this.auth.setToken(data.token);
-              this.router.navigate(['/Espace Gouvernement']);
+              this.router.navigate(['/Espace_Gouvernement']);
             }
 
             // this.global.token  = data.token;
