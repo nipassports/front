@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Pass } from '../../pass';
 import { AuthentificationService } from '../../Service/authentification.service';
 import { PassService } from '../../Service/pass.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -59,7 +60,7 @@ export class PassInfosComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor( private pS : PassService,private auth: AuthentificationService, private route:ActivatedRoute) { 
+  constructor( private pS : PassService,private auth: AuthentificationService, private route:ActivatedRoute, private router: Router) { 
   }
 
   ngOnInit() {
@@ -74,7 +75,19 @@ export class PassInfosComponent implements OnInit {
     console.log("LE NUM DE PASSPORT RECUPERE est :"+passNb)
     this.pS.getPassInfoDouanes(passNb)
     .subscribe( 
-      pass => {this.pass = pass.infos; this.id = pass.id});
+      pass => {this.pass = pass.infos; this.id = pass.id},
+      error => {
+        console.log('ERROR: ' + JSON.stringify(error));
+        Swal.fire({
+          text: "Votre session a expirée !",
+          type: 'warning',
+          confirmButtonText: 'Fermer',
+          confirmButtonColor: '#2F404D',
+          timer: 6000
+        })
+        this.pS.clean();
+        this.router.navigate(['/Se connecter']);
+      });
 
     console.log("pass-detail:"+ this.pass.autority);
 
