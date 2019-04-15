@@ -99,7 +99,7 @@ export class AuthentifComponent implements OnInit {
             } else if (this.espace === 'Gouvernement') {
               this.global.tbInfo = 'gouvernement';
               this.auth.setTbInfo('gouvernement');
-
+              this.service.setCountryCode(data.countryCode);
               if(data.admin === true)
                 this.auth.setAutority(1);
               else

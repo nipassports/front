@@ -20,28 +20,40 @@ export class PassListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getAllPassGouv("FR");
+    this.getAllPassGouv();
   }
 
-  getAllPassGouv(country: string): void {
-    this.pS.getAllPassGouv(country)
+  getAllPassGouv(): void {
+    this.pS.getAllPassGouv()
       .subscribe(
         (Allpass) => {
-           this.Allpass = Allpass
+           this.Allpass = Allpass;
         },
-        error => {
-          console.log('ERROR: ' + JSON.stringify(error));
-          Swal.fire({
-            text: "Votre session a expirée !",
-            type: 'warning',
-            confirmButtonText: 'Fermer',
-            confirmButtonColor: '#2F404D',
-            timer: 6000
-          })
-          this.pS.clean();
-          this.router.navigate(['/Se connecter']);
+
+        async (error) => {
+          console.log(" modify pass info: ERROR: " + error.error.message);
+
+          if(error.error.message === "Auth failed"){
+            await Swal.fire({
+              type: 'warning',
+              title: "Votre session vient d'expirer !",
+              confirmButtonColor: '#2F404D',
+            })
+
+            this.pS.clean();
+            this.router.navigate(['/Se connecter']);
+          }
+          else{
+            Swal.fire({
+              type: 'warning',
+              title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+              confirmButtonColor: '#2F404D',
+            })
+          }
+
         });
-    console.log(this.Allpass);
+        
+    console.log(JSON.stringify(this.Allpass));
 
   }
 
