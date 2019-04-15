@@ -242,7 +242,7 @@ export class AddPassComponent implements OnInit {
         .subscribe(
           data => {
 
-            //console.log('connect: ' + data.message);
+            console.log('connect: ' + data.message);
 
             if (data.message === 'Transaction has been submitted') {
               var message : string; 
@@ -286,8 +286,5 @@ export class AddPassComponent implements OnInit {
           }
         );
     }
-
-
-
   }
 }

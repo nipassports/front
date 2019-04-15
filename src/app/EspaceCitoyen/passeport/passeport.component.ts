@@ -63,8 +63,6 @@ export class PasseportComponent implements OnInit {
   ngOnInit() {
     this.selectedVue = 'Mon Passeport';
     this.time(); 
-    console.log("salut :" +  localStorage.dateOfExpiry); 
-
   }
 
 
