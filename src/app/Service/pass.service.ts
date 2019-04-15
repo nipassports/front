@@ -28,7 +28,13 @@ export class PassService {
     return this.passNb;
   }
   
+  setCountryCode(val: string){
+    this.storage.set("countryCode",val);
+  }
 
+  getCountryCode(){
+    return this.storage.get("countryCode");
+  }
   //Citizen
 
   getPassInfo(passNb: string): Observable<Pass_json> {
@@ -185,14 +191,16 @@ export class PassService {
     return this.http.get<Pass_json>(url, options);
   }
 
-  getAllPassGouv(countryCode:string):Observable<Pass_json[]>{
+  getAllPassGouv():Observable<Pass_json[]>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'bearer ' + this.storage.get("token")
     });
     const options = { headers: headers };
 
-    const url = `${this.gouvUrl}/passport/all/${countryCode}`;
+    const url = `${this.gouvUrl}/all/`;
+
+    console.log(JSON.stringify(this.http.get<Pass_json[]>(url, options)));
     return this.http.get<Pass_json[]>(url, options);
   }
 

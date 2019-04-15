@@ -133,6 +133,12 @@
 	font-size: 0.9em; 
 }
 
+input[type="text"] {
+
+}
+
+
+
 @media screen and (max-width: 480px) {
 	.log-box{
 		border-radius: 0px 0px 10px 10px; 

@@ -7,7 +7,6 @@ import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { first } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { async } from 'q';
 import { Subscription, Observable } from 'rxjs';
 
 class ImageSnippet {
@@ -183,6 +182,7 @@ export class ModifyPassComponent implements OnInit {
 
               }
               else {
+
                 console.log(" modify pass info: undefined");
 
                 Swal.fire({
@@ -195,15 +195,24 @@ export class ModifyPassComponent implements OnInit {
 
 
             (error) => {
-              console.log(" modify pass info: ERROR: " + error);
+              console.log(" modify pass info: ERROR: " + JSON.stringify(error.message));
 
-              Swal.fire({
-                type: 'warning',
-                title: "Votre session vient d'expirer !"
-              })
+              if(error.message === "Auth failed"){
+                Swal.fire({
+                  type: 'warning',
+                  title: "Votre session vient d'expirer !"
+                })
+  
+                this.pS.clean();
+                this.router.navigate(['/Se connecter']);
+              }
+              else{
+                Swal.fire({
+                  type: 'warning',
+                  title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement."
+                })
+              }
 
-              this.pS.clean();
-              this.router.navigate(['/Se connecter']);
             }
 
           ) // Fin suscribe
@@ -268,6 +277,8 @@ export class ModifyPassComponent implements OnInit {
     const trueDate = year + "-" + month + "-" + day;
     return trueDate;
   }
+
+  
 
   onSubmit() {
 
@@ -374,7 +385,7 @@ export class ModifyPassComponent implements OnInit {
   
                 Swal.fire({
                   type: 'warning',
-                  title: "Votre session vient d'expirer !"
+                  title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement."
                 })
   
                 this.pS.clean();

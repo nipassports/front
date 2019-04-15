@@ -7,8 +7,6 @@ import { PassService } from '../../Service/pass.service';
 import { AuthentificationService } from '../../Service/authentification.service';
 
 
-
-
 @Component({
   selector: 'app-pass-detail',
   templateUrl: './pass-detail.component.html',
@@ -69,13 +67,17 @@ export class PassDetailComponent implements OnInit {
     this.passNb = this.userInfo.getPassNb();
     console.log("lol!!!! passNb: "+this.passNb);
     this.getPass(this.passNb);
+    
   }
+
 
   getPass(passNb: string ): void {
     this.pS.getPassInfo(passNb)
     .subscribe( 
-      pass => {this.pass = pass.infos; this.id = pass.id});
-    console.log("pass-detail: "+ this.pass);
-    console.log("pass-image: "+ this.pass.image);
+      pass => {this.pass = pass.infos; 
+        localStorage.setItem('dateOfExpiry',JSON.stringify(this.pass.dateOfExpiry)); 
+        this.id = pass.id;}
+      );
   }
+  
 }

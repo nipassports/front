@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccueilGouvComponent } from './accueil-gouv.component';
+import { AccueilgouvComponent } from './accueilgouv.component';
 
-describe('AccueilGouvComponent', () => {
-  let component: AccueilGouvComponent;
-  let fixture: ComponentFixture<AccueilGouvComponent>;
+describe('AccueilgouvComponent', () => {
+  let component: AccueilgouvComponent;
+  let fixture: ComponentFixture<AccueilgouvComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccueilGouvComponent ]
+      declarations: [ AccueilgouvComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccueilGouvComponent);
+    fixture = TestBed.createComponent(AccueilgouvComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

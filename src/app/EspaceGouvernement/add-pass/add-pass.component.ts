@@ -8,6 +8,7 @@ import { Pass } from '../../pass';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 
 class ImageSnippet {
@@ -78,7 +79,7 @@ export class AddPassComponent implements OnInit {
 
 
   constructor( private formBuilder: FormBuilder, private imageService:ImageServiceService,
-    private pS: PassService,
+    private pS: PassService, private router: Router,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
@@ -91,7 +92,7 @@ export class AddPassComponent implements OnInit {
         name: ['', Validators.required],
         surname: ['', Validators.required],
         sex: ['', Validators.required],
-        countryCode: ['', Validators.required],
+        countryCode: [{value: '', disabled: true}, Validators.required],
         height: ['', Validators.required],
         passNb: ['', Validators.required],
         dateOfBirth: ['', Validators.required],
@@ -174,7 +175,7 @@ export class AddPassComponent implements OnInit {
               name: this.pass.name,
               surname: this.pass.surname,
               sex: this.pass.sex,
-              countryCode: this.pass.countryCode,
+              countryCode: this.pS.getCountryCode(),
               height: this.pass.height,
               passNb: this.pass.passNb,
               dateOfBirth: dateOfBirth,
@@ -186,17 +187,18 @@ export class AddPassComponent implements OnInit {
               dateOfExpiry: dateOfExpiry,
               nationality: this.pass.nationality
             })
+
+            Swal.fire({
+              type: 'success',
+              text: 'Le passeport a bien été généré !',
+              confirmButtonColor: '#2F404D',
+            })  
            
           },
 
-          error => { console.log("pass-detail:ERROR " + error) }
+          error => { console.log("pass-detail:ERROR " + JSON.stringify(error)) }
         );  
     
-        Swal.fire({
-          type: 'success',
-          text: 'Le passeport a bien été généré !',
-          confirmButtonColor: '#2F404D',
-        })  
     }
 
     if (this.buttonValue === "valider") {
@@ -273,7 +275,15 @@ export class AddPassComponent implements OnInit {
           error => {
             console.log('ERROR: ' + JSON.stringify(error));
             this.error = JSON.stringify(error);
-            // this.loading = false;
+            Swal.fire({
+              text: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+              type: 'warning',
+              confirmButtonText: 'Fermer',
+              confirmButtonColor: '#2F404D',
+              timer: 6000
+            })
+            // this.pS.clean();
+            // this.router.navigate(['/Se connecter']);
           }
         );
     }
