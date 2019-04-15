@@ -17,6 +17,7 @@ import { EnsemblePassComponent } from './EspaceDouanes/ensemble-pass/ensemble-pa
 import { AccueilGouvComponent } from './EspaceGouvernement/accueil-gouv/accueil-gouv.component';
 import { ModifyPassComponent } from './EspaceGouvernement/modify-pass/modify-pass.component';
 import { PassIssuesComponent } from './EspaceGouvernement/pass-issues/pass-issues.component';
+import { AccueilgouvComponent } from "./EspaceGouvernement/accueilgouv/accueilgouv.component";
 
 import { AffichagePassComponent } from './EspaceDouanes/affichage-pass/affichage-pass.component';
 import { PassInfosComponent } from './EspaceDouanes/pass-infos/pass-infos.component';
@@ -41,7 +42,7 @@ const routes: Routes = [
   { path: 'FAQ', component: FAQComponent },
 
   // Gouv
-  { path: 'Espace Gouvernement', canActivate: [AuthGuard], component: AccueilGouvComponent },
+  { path: 'Espace Gouvernement', canActivate: [AuthGuard], component: AccueilgouvComponent },
   { path: 'Espace Gouvernement/Modifier Passeport', canActivate: [AuthGuard], component: ModifyPassComponent },
   { path: 'Espace Gouvernement/Liste des Passeports', canActivate: [AuthGuard], component: PassListComponent },
   { path: 'Espace Gouvernement/Ajout Passeport', canActivate: [AuthGuard], component: AddPassComponent },

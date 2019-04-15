@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md">
+            <div class="card border mx-sm-2 p-3">
+                <div class="card border shadow p-3 my-card"><span class="fas fa-user-plus" aria-hidden="true"></span></div>
+                <div class="text-center" routerLink="/Espace Gouvernement/Ajout Passeport" (click)="viewstorage('Ajout Passeport')">
+                    <p> Ajout de passeports</p>
+                </div>
+            </div>
+        </div>
+            <div class="col-md" *ngIf="global.autority==1">
+                <div class="card border mx-sm-2 p-3">
+                    <div class="card border shadow p-3 my-card"><span class="fas fa-user-edit" aria-hidden="true"></span></div>
+                    <div class="text-center" routerLink="/Espace Gouvernement/Modifier Passeport" (click)="viewstorage('Modifier Passeport') ">
+                        <p>Modification de passeports</p>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md">
+            <div class="card border mx-sm-2 p-3">
+                <div class="card border shadow p-3 my-card"><span class="fas fa-list" aria-hidden="true"></span></div>
+                <div class="text-center" routerLink="/Espace Gouvernement/Liste des Passeports" (click)="viewstorage('Liste des Passeports')">
+                    <p>Liste des passeports</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card border mx-sm-2 p-3">
+                <div class="card border shadow p-3 my-card"><span class="fas fa-exclamation-triangle" aria-hidden="true"></span></div>
+                <div class="text-center" routerLink="/Espace Gouvernement/Gestion des Problèmes" (click)="viewstorage('Gestion des problèmes')">
+                    <p>Gestion des problèmes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

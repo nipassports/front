@@ -87,8 +87,8 @@ export class ModifyPassComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = this.formBuilder.group({
-      photo: ['', Validators.required],
-      signature: ['', Validators.required],
+      photo: [''],
+      signature: [''],
       passOrigin: ['', Validators.required],
       type: ['', Validators.required],
       name: ['', Validators.required],
@@ -96,7 +96,7 @@ export class ModifyPassComponent implements OnInit {
       sex: ['', Validators.required],
       countryCode: ['', Validators.required],
       height: ['', Validators.required],
-      passNb: ['', Validators.required],
+      passNb: [ {value: '', disabled: true}, Validators.required],
       dateOfBirth: ['', Validators.required],
       eyesColor: ['', Validators.required],
       placeOfBirth: ['', Validators.required],
@@ -401,7 +401,10 @@ export class ModifyPassComponent implements OnInit {
         return;
       }
 
-
+      Swal.fire({
+        html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
+        showConfirmButton: false,
+      })  
 
       this.loading = true;
       const pseudoPass = [
@@ -426,6 +429,7 @@ export class ModifyPassComponent implements OnInit {
         this.imageService.IMGbase64
       ]
 
+      console.log("pseudo pass modify: "+ pseudoPass);
       this.sub3 = this.pS.modifyPass(pseudoPass)
         .pipe(first())
         .subscribe(
@@ -435,10 +439,9 @@ export class ModifyPassComponent implements OnInit {
 
             if (data.message === 'Transaction has been submitted') {
               var message: string;
-              message = "<b> Identifiant: </b> " + this.f.passNb.value +
-                "<br> <b> Mot de passe:</b> " + data.password;
+
               Swal.fire({
-                title: 'Passeport ajouté !',
+                title: 'Passeport modifié !',
                 html: message,
                 type: 'success',
                 confirmButtonText: 'Fermer',
@@ -462,8 +465,14 @@ export class ModifyPassComponent implements OnInit {
 
           error => {
             console.log('ERROR: ' + JSON.stringify(error));
-            this.error = JSON.stringify(error);
-
+            Swal.fire({
+              title: 'Problème',
+              text: 'Veuillez ré-essayer.',
+              type: 'error',
+              confirmButtonText: 'Fermer',
+              confirmButtonColor: '#2F404D',
+              timer: 6000
+            })
           }
         );
     }

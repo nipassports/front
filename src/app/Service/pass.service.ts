@@ -131,7 +131,7 @@ export class PassService {
       Authorization: 'bearer ' + this.storage.get("token")
     });
     const options = { headers: headers };
-    return this.http.post<any>(this.gouvUrl+"/passport/update",
+    return this.http.put<any>(this.gouvUrl+"/passport/update",
       {
         type: pseudoPass[0],
         countryCode: pseudoPass[1],
