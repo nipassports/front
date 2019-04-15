@@ -37,7 +37,8 @@
         <div class="row a mt-3">
 
 
-          <input type="file" #imageInput class="form-control-file input-sm" accept="image/*" (change)="processFile(imageInput)" formControlName="photo" id="Photo"
+          <input type="file" #imageInput class="form-control-file input-sm" accept="image/*"
+            (change)="processFile(imageInput)" formControlName="photo" id="Photo"
             [ngClass]="{ 'is-invalid': submitted && f.photo.errors }">
 
           <div *ngIf="submitted && f.photo.errors" class="invalid-feedback">
@@ -622,9 +623,9 @@
     </div> <!-- Fin row object-->
   </div> <!-- container-fluid object-->
 
-  <div class="container-fluid justify-content-end">
+  <div class="container-fluid justify-content-end" *ngIf="!loading">
     <div class="row bouton">
-      
+
       <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
         Génerer
       </button>

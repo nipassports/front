@@ -253,10 +253,10 @@ export class AddPassComponent implements OnInit {
                 html: message,
                 type: 'success',
                 confirmButtonText: 'Fermer', 
-                confirmButtonColor: '#2F404D',
-                timer : 6000
+                confirmButtonColor: '#2F404D'
               })             
               this.loading = false;
+              this.router.navigate(['/Espace Gouvernement']);
             }
 
             else {
