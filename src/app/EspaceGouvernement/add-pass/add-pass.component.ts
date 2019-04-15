@@ -279,6 +279,7 @@ export class AddPassComponent implements OnInit {
       
               })
               this.loading = false;
+              this.router.navigate(['/Espace Gouvernement']);
             }
 
             else {
