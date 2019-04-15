@@ -51,6 +51,9 @@ export class AuthentifComponent implements OnInit {
       password: ['', Validators.required],
       //checkbox: ['', Validators.required]
     });
+
+    let inputField: HTMLElement = <HTMLElement>document.querySelectorAll('input')[0];
+    inputField && inputField.focus();
   }
 
   get f() { return this.loginForm.controls; }
