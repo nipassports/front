@@ -162,22 +162,10 @@ export class PassService {
 
   getPassRandom(): Observable<Pass> {
     
-    const url = `${this.gouvUrl}/random`;    
+    const url = `${this.gouvUrl}/passport/random`;    
     return this.http.get<Pass>(url);
   }
 
-  getCountryPass(countryCode:string): Observable<Pass_json[]> {
-
-    const url = `${this.gouvUrl}/passport/all/${countryCode}`;
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'bearer ' + this.storage.get("token")
-    });
-    const options = { headers: headers };
-
-    return this.http.get<Pass_json[]>(url,options);
-  }
 
   getPassInfoGouv(passNb: string): Observable<Pass_json> {
    
@@ -198,9 +186,7 @@ export class PassService {
     });
     const options = { headers: headers };
 
-    const url = `${this.gouvUrl}/all/`;
-
-    console.log(JSON.stringify(this.http.get<Pass_json[]>(url, options)));
+    const url = `${this.gouvUrl}/passport/all`;
     return this.http.get<Pass_json[]>(url, options);
   }
 
