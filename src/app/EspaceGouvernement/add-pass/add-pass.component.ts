@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Directive, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
-import{ImageServiceService}from '../../image-service.service'
+import { ImageServiceService } from '../../image-service.service'
 import { Pass } from '../../pass';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 
 class ImageSnippet {
-  constructor(public src: string, public file: File) {}
+  constructor(public src: string, public file: File) { }
 }
 
 @Component({
@@ -23,7 +23,7 @@ class ImageSnippet {
 
 
 export class AddPassComponent implements OnInit {
-  imgchanged=false;
+  imgchanged = false;
 
   pass: Pass;
   loginForm: FormGroup;
@@ -78,39 +78,39 @@ export class AddPassComponent implements OnInit {
   };
 
 
-  constructor( private formBuilder: FormBuilder, private imageService:ImageServiceService,
+  constructor(private formBuilder: FormBuilder, private imageService: ImageServiceService,
     private pS: PassService, private router: Router,
     @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
 
-      this.loginForm = this.formBuilder.group({
-        photo: ['', Validators.required],
-        signature: ['', Validators.required],
-        passOrigin: ['', Validators.required],
-        type: ['', Validators.required],
-        name: ['', Validators.required],
-        surname: ['', Validators.required],
-        sex: ['', Validators.required],
-        countryCode: [{value: '', disabled: true}, Validators.required],
-        height: ['', Validators.required],
-        passNb: ['', Validators.required],
-        dateOfBirth: ['', Validators.required],
-        eyesColor: ['', Validators.required],
-        placeOfBirth: ['', Validators.required],
-        residence: ['', Validators.required],
-        autority: ['', Validators.required],
-        dateOfIssue: ['', Validators.required],
-        dateOfExpiry: ['', Validators.required],
-        nationality: ['', Validators.required],
-      });
+    this.loginForm = this.formBuilder.group({
+      photo: ['', Validators.required],
+      signature: ['', Validators.required],
+      passOrigin: ['', Validators.required],
+      type: ['', Validators.required],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      sex: ['', Validators.required],
+      countryCode: [{ value: '', disabled: true }, Validators.required],
+      height: ['', Validators.required],
+      passNb: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      eyesColor: ['', Validators.required],
+      placeOfBirth: ['', Validators.required],
+      residence: ['', Validators.required],
+      autority: ['', Validators.required],
+      dateOfIssue: ['', Validators.required],
+      dateOfExpiry: ['', Validators.required],
+      nationality: ['', Validators.required],
+    });
 
   }
 
   get f() { return this.loginForm.controls; }
-  
+
   processFile(imageInput: any) {
-    this.imgchanged=true;
+    this.imgchanged = true;
 
     const file: File = imageInput.files[0];
     const reader = new FileReader();
@@ -139,12 +139,12 @@ export class AddPassComponent implements OnInit {
   }
 
 
-  normalDate(date:string): string{
+  normalDate(date: string): string {
     let splitDate = date.split('/');
-    const year  = splitDate[2];
+    const year = splitDate[2];
     const month = splitDate[1];
     const day = splitDate[0];
-    const trueDate = year+"-"+month+"-"+day;
+    const trueDate = year + "-" + month + "-" + day;
     return trueDate;
   }
 
@@ -157,18 +157,18 @@ export class AddPassComponent implements OnInit {
       Swal.fire({
         html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
         showConfirmButton: false,
-      })  
+      })
 
       console.log("before generate: " + this.f.dateOfBirth.value)
       await this.pS.getPassRandom()
         .subscribe(
           pass => {
             this.pass = pass;
-            
+
             let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
             let dateOfIssue = this.normalDate(this.pass.dateOfIssue);
             let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry);
-    
+
             this.loginForm.patchValue({
               passOrigin: 'France',
               type: 'P',
@@ -192,13 +192,34 @@ export class AddPassComponent implements OnInit {
               type: 'success',
               text: 'Le passeport a bien été généré !',
               confirmButtonColor: '#2F404D',
-            })  
-           
+            })
+
           },
 
-          error => { console.log("pass-detail:ERROR " + JSON.stringify(error)) }
-        );  
-    
+          async (error) => {
+            console.log(" modify pass info: ERROR: " + error.error.message);
+
+            if(error.error.message === "Auth failed"){
+              await Swal.fire({
+                type: 'warning',
+                title: "Votre session vient d'expirer !",
+                confirmButtonColor: '#2F404D',
+              })
+
+              this.pS.clean();
+              this.router.navigate(['/Se connecter']);
+            }
+            else{
+              Swal.fire({
+                type: 'warning',
+                title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+                confirmButtonColor: '#2F404D',
+              })
+            }
+
+          }
+        );
+
     }
 
     if (this.buttonValue === "valider") {
@@ -213,8 +234,8 @@ export class AddPassComponent implements OnInit {
         html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
         showConfirmButton: false,
         allowOutsideClick: () => !Swal.isLoading(),
-      })  
-      
+      })
+
       this.loading = true;
       const pseudoPass = [
 
@@ -237,7 +258,7 @@ export class AddPassComponent implements OnInit {
         "Valide",
         this.imageService.IMGbase64
       ]
-      console.log("pseudo pass: "+ pseudoPass);
+      console.log("pseudo pass: " + pseudoPass);
       this.pS.addPass(pseudoPass)
         .pipe(first())
         .subscribe(
@@ -246,17 +267,17 @@ export class AddPassComponent implements OnInit {
             console.log('connect: ' + data.message);
 
             if (data.message === 'Transaction has been submitted') {
-              var message : string; 
+              var message: string;
               message = "<b> Identifiant: </b> " + this.f.passNb.value +
-              "<br> <b> Mot de passe:</b> " + data.password; 
+                "<br> <b> Mot de passe:</b> " + data.password;
               Swal.fire({
                 title: 'Passeport ajouté !',
                 html: message,
                 type: 'success',
-                confirmButtonText: 'Fermer', 
+                confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer : 6000
-              })             
+                timer: 6000
+              })
               this.loading = false;
             }
 
@@ -265,10 +286,10 @@ export class AddPassComponent implements OnInit {
                 title: 'Problème',
                 text: 'Veuillez ré-essayer.',
                 type: 'error',
-                confirmButtonText: 'Fermer', 
+                confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer : 6000
-              })   
+                timer: 6000
+              })
             }
           },
 

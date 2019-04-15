@@ -30,17 +30,29 @@ export class PassListComponent implements OnInit {
            this.Allpass = Allpass;
         },
 
-        error => {
-          console.log('ERROR: ' + JSON.stringify(error));
-          Swal.fire({
-            text: "Une erreur est survenu !",
-            type: 'warning',
-            confirmButtonText: 'Fermer',
-            confirmButtonColor: '#2F404D',
-            timer: 6000
-          })
+        async (error) => {
+          console.log(" modify pass info: ERROR: " + error.error.message);
+
+          if(error.error.message === "Auth failed"){
+            await Swal.fire({
+              type: 'warning',
+              title: "Votre session vient d'expirer !",
+              confirmButtonColor: '#2F404D',
+            })
+
+            this.pS.clean();
+            this.router.navigate(['/Se connecter']);
+          }
+          else{
+            Swal.fire({
+              type: 'warning',
+              title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+              confirmButtonColor: '#2F404D',
+            })
+          }
 
         });
+        
     console.log(JSON.stringify(this.Allpass));
 
   }

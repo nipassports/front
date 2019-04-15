@@ -139,6 +139,13 @@ export class ModifyPassComponent implements OnInit {
       // Vérifie si le passeport existe
       preConfirm: (data) => {
         console.log("Modify pass: " + data);
+        
+        Swal.fire({
+          html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
+          showConfirmButton: false,
+          allowOutsideClick: false,
+        })
+
         this.sub1 = this.pS.getPassInfoGouv(data)
           .pipe(first())
           .subscribe(
@@ -187,20 +194,21 @@ export class ModifyPassComponent implements OnInit {
 
                 Swal.fire({
                   type: 'warning',
-                  title: 'Le Passeport est introuvable !'
+                  title: 'Le Passeport est introuvable !',
                 })
 
               }
             },
 
 
-            (error) => {
-              console.log(" modify pass info: ERROR: " + JSON.stringify(error.message));
+            async (error) => {
+              console.log(" modify pass info: ERROR: " + error.error.message);
 
-              if(error.message === "Auth failed"){
-                Swal.fire({
+              if(error.error.message === "Auth failed"){
+                await Swal.fire({
                   type: 'warning',
-                  title: "Votre session vient d'expirer !"
+                  title: "Votre session vient d'expirer !",
+                  confirmButtonColor: '#2F404D'
                 })
   
                 this.pS.clean();
@@ -209,7 +217,8 @@ export class ModifyPassComponent implements OnInit {
               else{
                 Swal.fire({
                   type: 'warning',
-                  title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement."
+                  title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+                  confirmButtonColor: '#2F404D',
                 })
               }
 
@@ -321,6 +330,7 @@ export class ModifyPassComponent implements OnInit {
           Swal.fire({
             html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
             showConfirmButton: false,
+            allowOutsideClick: false,
           })  
 
           this.sub2 = this.pS.getPassInfoGouv(data)
