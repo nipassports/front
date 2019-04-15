@@ -221,11 +221,11 @@ export class ModifyPassComponent implements OnInit {
       });
   }
 
-  ngOnDestroy(){
-    this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
-    this.sub3.unsubscribe();
-  }
+  // ngOnDestroy(){
+  //   this.sub1.unsubscribe();
+  //   this.sub2.unsubscribe();
+  //   this.sub3.unsubscribe();
+  // }
 
   get f() { return this.loginForm.controls; }
 
