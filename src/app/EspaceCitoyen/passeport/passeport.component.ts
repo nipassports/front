@@ -29,9 +29,10 @@ export class PasseportComponent implements OnInit {
 
 
   time() : void {
+    
     var subdate = localStorage.dateOfExpiry.substring(1, localStorage.dateOfExpiry.length -1);  
-    var timesplitted = subdate.toString().split('/', 3); 
-    let dateOfExpiry = new Date(timesplitted[1]+'/'+timesplitted[0]+'/'+timesplitted[2]).getTime();
+    var timesplitted = subdate.toString().split('-', 3); 
+    let dateOfExpiry = new Date(timesplitted[1]+'/'+timesplitted[2]+'/'+timesplitted[0]).getTime();
     let today =  new Date().getTime(); 
 
 
