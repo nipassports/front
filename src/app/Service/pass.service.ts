@@ -248,7 +248,7 @@ export class PassService {
       Authorization: 'bearer ' + this.storage.get("token")
     });
     const options = { headers: headers };
-    const url = `${this.gouvUrl}/valid/${passNb}`;
+    const url = `${this.gouvUrl}/passport/valid/${passNb}`;
     return this.http.get<any>(url, options);
   }
 }
