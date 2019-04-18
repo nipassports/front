@@ -111,7 +111,7 @@ export class ModifyPassComponent implements OnInit {
 
       // Initialisation
       type: "info",
-      text: 'Veuillez renseigner le numéro de passeport a modifier',
+      text: 'Veuillez renseigner le numéro de passeport à modifier',
       input: "text",
 
       inputPlaceholder: "ex: 14ML52147",

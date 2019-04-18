@@ -19,6 +19,7 @@ export class ToolbarGouvComponent implements OnInit {
     {title:'Modifier Passeport',link:'/Espace_Gouvernement/Modifier_Passeport',autority:0},
     {title:'Liste des Passeports',link:'/Espace_Gouvernement/Liste_des_Passeports',autority:1},
     {title:'Gestion des problèmes', link:'/Espace_Gouvernement/Gestion_des_Problèmes',autority:1},
+    {title:'Ajout Visa', link:'/Espace_Gouvernement/Ajout_Visa',autority:1},
     {title:'Se déconnecter', link:'#',autority:1}
   ];
 
@@ -42,6 +43,7 @@ export class ToolbarGouvComponent implements OnInit {
       {title:'Modifier Passeport',link:'/Espace_Gouvernement/Modifier_Passeport',autority:this.global.autority},
       {title:'Liste des Passeports',link:'/Espace_Gouvernement/Liste_des_Passeports',autority:1},
       {title:'Gestion des problèmes', link:'/Espace_Gouvernement/Gestion_des_Problèmes',autority:1},
+      {title:'Ajout Visa', link:'/Espace_Gouvernement/Ajout_Visa',autority:1},
       {title:'Se déconnecter', link:'#',autority:1}
     ];
 

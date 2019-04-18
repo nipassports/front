@@ -38,9 +38,9 @@ div {
     background-color: #2F404D; 
     color:white; 
     border-radius: 0.6em; 
-    text-transform: uppercase;
     box-shadow: 0.4em 0.4em blur #d4d2d2; 
     cursor:pointer; 
+    height: 10em;
  }
 
 
