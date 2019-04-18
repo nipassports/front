@@ -30,15 +30,48 @@
 
         </div>
 
-        <div class="row maPhoto">
-          <div *ngIf="imgchanged"><img src="{{imageService.IMGbase64}}" class="images"></div>
-        </div>
+          <div [className]="classes.actions">
+            <button ly-button color="primary" (click)="_fileInput.click()">
+              <ly-icon>image</ly-icon>
+              <span>Select File</span>
+            </button>
+            <span [className]="classes.flex"></span>
+            <!-- Hidden input -->
+            <input #_fileInput type="file" (change)="cropping.selectInputEvent($event)" accept="image/*" hidden>
+            <button raised ly-button bg="accent" *ngIf="cropping.isCropped">Upload</button>
+          </div>
+          
+          <div *ngIf="cropping.isLoaded">
+            <button (click)="cropping.zoomIn()" ly-button appearance="icon"><ly-icon>zoom_in</ly-icon></button>
+            <button (click)="cropping.zoomOut()" ly-button appearance="icon"><ly-icon>zoom_out</ly-icon></button>
+            <button (click)="cropping.center()" ly-button appearance="icon"><ly-icon>filter_center_focus</ly-icon></button>
+            <button (click)="cropping.rotate(-90)" ly-button appearance="icon"><ly-icon>rotate_90_degrees_ccw</ly-icon></button>
+            <button (click)="cropping.fit()" ly-button>Fit</button>
+            <button (click)="cropping.fitToScreen()" ly-button>Fit to screen</button>
+            <button (click)="cropping.setScale(1)" ly-button>1:1</button>
+            <button (click)="cropping.clean()" ly-button>Clean</button>
+          </div>
+          
+          <ly-img-cropper [withClass]="classes.cropping" #cropping
+          [config]="myConfig"
+          (cropped)="onCropped($event)">
+            <span>Drag and drop image</span>
+          </ly-img-cropper>
+          
+          <button *ngIf="cropping.isLoaded" color="accent" (click)="cropping.crop()" ly-button>
+            <ly-icon>crop</ly-icon>crop
+          </button>
+          
+          <div><img *ngIf="cropping.isCropped" [src]="imgResultAfterCompress"></div>
+          
+        
+
 
         <div class="row a mt-3">
 
 
           <input type="file" #imageInput class="form-control-file input-sm" accept="image/*"
-            (change)="processFile(imageInput)" formControlName="photo" id="Photo"
+            (change)="processFile(imageInput);fileChangeEvent($event)" formControlName="photo" id="Photo"
             [ngClass]="{ 'is-invalid': submitted && f.photo.errors }">
 
           <div *ngIf="submitted && f.photo.errors" class="invalid-feedback">

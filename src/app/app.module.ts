@@ -50,12 +50,18 @@ import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.com
 import { View } from './view';
 import { ViewService } from './Service/view.service';
 import { AuthGuard } from './Service/auth-guard.service';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AccueilgouvComponent } from './EspaceGouvernement/accueilgouv/accueilgouv.component';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LyThemeModule, LY_THEME } from '@alyle/ui';
+import { MinimaLight } from '@alyle/ui/themes/minima';
+import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
+import { LyButtonModule } from '@alyle/ui/button';
+import { LyIconModule } from '@alyle/ui/icon';
+import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 @NgModule({
   declarations: [
@@ -95,9 +101,15 @@ import { AccueilgouvComponent } from './EspaceGouvernement/accueilgouv/accueilgo
     ReactiveFormsModule,
     NgbModule,
     FormsModule,
+    ImageCropperModule,
     BrowserModule,
     AppRoutingModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    BrowserAnimationsModule,
+    LyThemeModule.setTheme('minima-light'),
+    LyIconModule,
+    LyButtonModule,
+    LyResizingCroppingImageModule
   ],
   providers: [PassService,
               ViewService,
@@ -105,7 +117,11 @@ import { AccueilgouvComponent } from './EspaceGouvernement/accueilgouv/accueilgo
               AuthentificationService,
               AppComponent,
               View,
-              AuthGuard
+              AuthGuard,
+              ImageCompressService,
+              ResizeOptions,
+              NgxImageCompressService,
+              { provide: LY_THEME, useClass: MinimaLight, multi: true }
               
              ],
   bootstrap: [AppComponent]

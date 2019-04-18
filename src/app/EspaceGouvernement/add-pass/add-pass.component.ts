@@ -1,14 +1,30 @@
-import { Component, OnInit, Input, Directive, Inject } from '@angular/core';
-
+import { Component, OnInit, Input, Directive, Inject,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
 import { ImageServiceService } from '../../image-service.service'
 import { Pass } from '../../pass';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
-
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
+import { LyTheme2 } from '@alyle/ui';
+import {NgxImageCompressService} from 'ngx-image-compress';
+import {DOC_ORIENTATION} from 'ngx-image-compress/lib/image-compress';
+
+const styles = {
+  actions: {
+    display: 'flex'
+  },
+  cropping: {
+    maxWidth: '600px',
+    height: '450px'
+  },
+  flex: {
+    flex: 1
+  }
+};
 
 
 class ImageSnippet {
@@ -18,7 +34,8 @@ class ImageSnippet {
 @Component({
   selector: 'app-add-pass',
   templateUrl: './add-pass.component.html',
-  styleUrls: ['./add-pass.component.css']
+  styleUrls: ['./add-pass.component.css'],
+
 })
 
 
@@ -32,9 +49,35 @@ export class AddPassComponent implements OnInit {
   loading = false;
   private error: any;
   selectedFile: ImageSnippet;
+  imageChangedEvent: any = '';
 
+
+  imgResultAfterCompress:string;
   buttonValue: string;
+  classes = this.theme.addStyleSheet(styles);
+  croppedImage?: string;
+  @ViewChild(LyResizingCroppingImages) img: LyResizingCroppingImages;
+  result: string;
+  myConfig: ImgCropperConfig = {
+    width: 289, // Default `250`
+    height: 372, // Default `200`,
+    antiAliased:false,
+    output: {
+      width: 413,
+      height: 531,
+    }
+  };
 
+  onCropped(e) {
+    this.croppedImage = e.dataURL;
+    console.warn('Size in bytes was:', this.imageCompress.byteCount(this.croppedImage));
+    this.imageCompress.compressFile(this.croppedImage,1,100,25)
+    .then( result => {
+      this.imgResultAfterCompress = result;
+      console.warn('Size in bytes is now:', this.imageCompress.byteCount(result))        }
+      );;
+    console.log(e,e.size);
+  }
   frInfo = {
     type: 'Type',
     countryCode: 'Code du pays',
@@ -80,7 +123,7 @@ export class AddPassComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private imageService: ImageServiceService,
     private pS: PassService, private router: Router,
-    @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
+    @Inject(SESSION_STORAGE) private storage: WebStorageService,private theme: LyTheme2,private imageCompress: NgxImageCompressService) { }
 
   ngOnInit() {
 
@@ -106,6 +149,8 @@ export class AddPassComponent implements OnInit {
     });
 
   }
+
+
 
   get f() { return this.loginForm.controls; }
 
@@ -256,7 +301,7 @@ export class AddPassComponent implements OnInit {
         this.f.dateOfIssue.value,
         this.f.passOrigin.value,
         "Valide",
-        this.imageService.IMGbase64
+        this.imgResultAfterCompress
       ]
       console.log("pseudo pass: " + pseudoPass);
       this.pS.addPass(pseudoPass)

@@ -2,6 +2,19 @@ import { Component } from '@angular/core';
 import { GlobalToolbarInfo } from './globalToolbarInfo';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { Inject} from '@angular/core';
+import { LyTheme2, ThemeVariables } from '@alyle/ui';
+
+const STYLES = (theme: ThemeVariables) => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.background.default,
+      color: theme.text.default,
+      fontFamily: theme.typography.fontFamily,
+      margin: 0,
+      direction: theme.direction
+    }
+  }
+});
 
 @Component({
   selector: 'app-root',
@@ -9,9 +22,13 @@ import { Inject} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  readonly classes = this.theme.addStyleSheet(STYLES);
+
   title = 'nip-front';
   
-  constructor(private global: GlobalToolbarInfo, @Inject(SESSION_STORAGE) private storage: WebStorageService ) {
+  constructor(private theme: LyTheme2,
+              private global: GlobalToolbarInfo,
+              @Inject(SESSION_STORAGE) private storage: WebStorageService) {
   }
 
   ngOnInit(){
