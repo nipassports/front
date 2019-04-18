@@ -5,6 +5,10 @@ import { GlobalToolbarInfo } from '../../globalToolbarInfo';
 
 import { PassService } from '../../Service/pass.service';
 import { AuthentificationService } from '../../Service/authentification.service';
+import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { Inject } from '@angular/core';
+
+import Swal from "sweetalert2"; 
 
 
 @Component({
@@ -59,7 +63,7 @@ export class PassDetailComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor( private global: GlobalToolbarInfo ,private pS : PassService, private userInfo : AuthentificationService) { 
+  constructor( private global: GlobalToolbarInfo ,private pS : PassService, private userInfo : AuthentificationService, @Inject(SESSION_STORAGE) private storage: WebStorageService) { 
   }
 
   ngOnInit() {
@@ -67,6 +71,38 @@ export class PassDetailComponent implements OnInit {
     this.passNb = this.userInfo.getPassNb();
     console.log("lol!!!! passNb: "+this.passNb);
     this.getPass(this.passNb);
+
+    }
+
+
+
+time() {
+    let timesplitted = this.pass.dateOfExpiry.toString().split('-', 3); 
+    let dateOfExpiry = new Date(timesplitted[1]+'/'+timesplitted[2]+'/'+timesplitted[0]).getTime();
+    let today = new Date().getTime(); 
+
+
+    // tableau des différences en jour, mois et années
+    let differencetab = [ Math.ceil((dateOfExpiry - today)/ (1000 * 3600 * 24)), Math.ceil((dateOfExpiry - today)/ (1000 * 3600 * 24 * 30)), Math.ceil((dateOfExpiry - today)/ (1000 * 3600 * 24 * 30 * 12))];
+
+    let message = "Votre passeport périme dans "
+    //choix de la valeur 
+    if (differencetab[0]<30) {
+      message += differencetab[0] + " jour(s)"; 
+    } else if (differencetab[1]<12) {
+      message += differencetab[1] + " mois"; 
+    } else {
+      message += differencetab[2] + " an(s)"; 
+    }
+
+    Swal.fire ({
+      title: 'Validité',
+      text : message,
+      type: 'info',
+      confirmButtonText: 'Fermer', 
+      confirmButtonColor: '#2F404D',
+      timer : 3000
+    }) 
     
   }
 
@@ -75,8 +111,9 @@ export class PassDetailComponent implements OnInit {
     this.pS.getPassInfo(passNb)
     .subscribe( 
       pass => {this.pass = pass.infos; 
-        localStorage.setItem('dateOfExpiry',JSON.stringify(this.pass.dateOfExpiry)); 
-        this.id = pass.id;}
+        this.id = pass.id;
+        this.time(); 
+      }
       );
   }
   
