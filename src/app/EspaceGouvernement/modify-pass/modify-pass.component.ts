@@ -87,7 +87,7 @@ export class ModifyPassComponent implements OnInit {
 
     this.loginForm = this.formBuilder.group({
       photo: [''],
-      signature: [''],
+      // signature: [''],
       passOrigin: ['', Validators.required],
       type: ['', Validators.required],
       name: ['', Validators.required],

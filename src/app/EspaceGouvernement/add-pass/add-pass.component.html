@@ -55,7 +55,7 @@
 
 
         <!--  Signature  -->
-        <div class="row a mt-3">
+        <!-- <div class="row a mt-3">
 
           <label id="Signature">
             <span class="titre">Signature</span>
@@ -64,9 +64,10 @@
 
         </div>
 
-        <div class="row c">
-          <!--  Insérer l'image de la signature   -->
-        </div>
+        <div class="row c"> -->
+        <!--  Insérer l'image de la signature   -->
+
+        <!-- </div>
 
         <div class="row a mt-3">
 
@@ -85,10 +86,10 @@
 
           </div>
 
-        </div>
+        </div> -->
 
         <!--  Info importante du passeport (date d'expiration etc...)  -->
-        <div class="row a mt-2">
+        <div class="row a mt-2 justify-content-center">
 
           <label>
 
@@ -118,6 +119,39 @@
           </div>
 
         </div>
+
+        <!------------------------------------------------------------------------------------------------>
+
+        <div class="col-lg-4 nationality c">
+          <div class="row a justify-content-center">
+            <label for="nationality">
+
+              <span class="titre">{{frInfo.nationality}}</span>
+              <span class="trad">/{{enInfo.nationality}}:</span>
+
+            </label>
+          </div>
+
+          <div class="row a justify-content-center">
+
+            <div class="form-group">
+
+              <input type="text" class="form-control" id="nationality" formControlName="nationality"
+                [ngClass]="{ 'is-invalid': submitted && f.nationality.errors }">
+
+              <div *ngIf="submitted && f.nationality.errors" class="invalid-feedback">
+                <div *ngIf="f.nationality.errors.required">
+                  Veuillez renseigner la nationalité du citoyen
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!------------------------------------------------------------------------------------------------>
 
       </div>
 
@@ -470,7 +504,7 @@
 
         <!--  deuxième ligne  -->
 
-        <div class="row e">
+        <div class="row e mt-4">
 
           <!------------------------------------------------------------------------------------------------>
 
@@ -574,40 +608,8 @@
         </div>
 
         <!--  troisième ligne  -->
-        <div class="row f">
+        <!-- <div class="row f">
 
-          <!------------------------------------------------------------------------------------------------>
-
-          <div class="col-lg-4 nationality c">
-            <div class="row a ">
-              <label for="nationality">
-
-                <span class="titre">{{frInfo.nationality}}</span>
-                <span class="trad">/{{enInfo.nationality}}:</span>
-
-              </label>
-            </div>
-
-            <div class="row a ">
-
-              <div class="form-group">
-
-                <input type="text" class="form-control" id="nationality" formControlName="nationality"
-                  [ngClass]="{ 'is-invalid': submitted && f.nationality.errors }">
-
-                <div *ngIf="submitted && f.nationality.errors" class="invalid-feedback">
-                  <div *ngIf="f.nationality.errors.required">
-                    Veuillez renseigner la nationalité du citoyen
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <!------------------------------------------------------------------------------------------------>
 
           <div class="col-lg-8 c">
 
@@ -616,9 +618,9 @@
 
           </div>
 
-        </div>
+        </div> -->
 
-      </div>
+      </div> 
 
     </div> <!-- Fin row object-->
   </div> <!-- container-fluid object-->
