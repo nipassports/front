@@ -1,10 +1,10 @@
 <div class="container" id="corps">
   <div class="container" id="element" *ngFor="let problem of problems">
     <mdb-card>
-      <mdb-card-header>{{problem}}</mdb-card-header>
+      <mdb-card-header>{{problem.passNb}}</mdb-card-header>
       <mdb-card-body>
-        <p> VOICI LE PB</p>
-        <mdb-card-text>With supporting text below as a natural lead-in to additional content.</mdb-card-text>
+        <p>{{problem.date}}</p>
+        <mdb-card-text>{{problem.message}}</mdb-card-text>
       </mdb-card-body>
       <div class="row">
         <div class="col-auto ml-auto">

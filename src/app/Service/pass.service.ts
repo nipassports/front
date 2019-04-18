@@ -8,6 +8,7 @@ import { Pass_json } from '../pass_json';
 import { Pass } from '../pass';
 import { Visa_json } from '../visa_json';
 import {Visa} from '../visa';
+import { Problem } from "../problem";
 @Injectable({
   providedIn: 'root'
 })
@@ -231,6 +232,19 @@ export class PassService {
     const url = `${this.gouvUrl}/visa/one/${passNb}`;
     return this.http.get<Visa_json[]>(url, options);
   }
+
+  //Problem
+  getProblems(countryCode: string): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/problems/all/${countryCode}`;
+    return this.http.get<Problem[]>(url, options);
+  }
+
+
 
   //Session
   clean(){
