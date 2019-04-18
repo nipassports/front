@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PassIssuesComponent implements OnInit {
 
+  private nbproblem : number; 
+  problems: number[] = [1, 2, 3];
+
   constructor() { }
 
   ngOnInit() {
