@@ -76,8 +76,9 @@ export class PassDetailComponent implements OnInit {
 
 
   time() {
-    let timesplitted = this.pass.dateOfExpiry.toString().split('-', 3);
-    let dateOfExpiry = new Date(timesplitted[1] + '/' + timesplitted[2] + '/' + timesplitted[0]).getTime();
+    alert(this.pass.dateOfExpiry); 
+    let timesplitted = this.pass.dateOfExpiry.toString().split('/', 3);
+    let dateOfExpiry = new Date(timesplitted[1] + '/' + timesplitted[0] + '/' + timesplitted[2]).getTime();
     let today = new Date().getTime();
 
 
@@ -85,7 +86,7 @@ export class PassDetailComponent implements OnInit {
     let differencetab = [Math.ceil((dateOfExpiry - today) / (1000 * 3600 * 24)), Math.ceil((dateOfExpiry - today) / (1000 * 3600 * 24 * 30)), Math.ceil((dateOfExpiry - today) / (1000 * 3600 * 24 * 30 * 12))];
 
 
-    if (differencetab[0] < 0) {
+    if (differencetab[0] <= 0) {
       var message = "Votre passeport est périmé."
     } else {
       var message = "Votre passeport périme dans "
