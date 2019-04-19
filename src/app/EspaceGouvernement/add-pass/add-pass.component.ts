@@ -128,7 +128,7 @@ export class AddPassComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = this.formBuilder.group({
-      photo: ['', Validators.required],
+      //photo: ['', Validators.required],
       // signature: ['', Validators.required],
       passOrigin: ['', Validators.required],
       type: ['', Validators.required],
