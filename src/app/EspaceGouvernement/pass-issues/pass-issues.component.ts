@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PassService } from '../../Service/pass.service';
+import { Problem } from '../../problem';
+
 
 @Component({
   selector: 'app-pass-issues',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PassIssuesComponent implements OnInit {
 
-  constructor() { }
+  private nbproblem : number; 
+  problems: Problem[];
+
+  constructor(private pS : PassService) { }
 
   ngOnInit() {
+    this.getProblems(); 
+  }
+
+  getProblems() {
+    this.pS.getProblems(this.pS.getCountryCode())
+    .subscribe( 
+      (problems) => {
+          this.problems=problems; 
+          console.log(problems); 
+      });
+
   }
 
 }

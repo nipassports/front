@@ -129,7 +129,7 @@ export class AddPassComponent implements OnInit {
 
     this.loginForm = this.formBuilder.group({
       photo: ['', Validators.required],
-      signature: ['', Validators.required],
+      // signature: ['', Validators.required],
       passOrigin: ['', Validators.required],
       type: ['', Validators.required],
       name: ['', Validators.required],
@@ -324,7 +324,7 @@ export class AddPassComponent implements OnInit {
       
               })
               this.loading = false;
-              this.router.navigate(['/Espace Gouvernement']);
+              this.router.navigate(['/Espace_Gouvernement']);
             }
 
             else {

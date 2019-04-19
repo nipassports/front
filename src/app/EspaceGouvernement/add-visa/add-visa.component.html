@@ -1,3 +1,16 @@
+<div class="container-fluid justify-content-center">
+
+  <div class="row">
+    <div class="col justifiy-content-center">
+      <p class="card-header container-fluid">
+        Ajout d'un Visa
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="container-fluid object justify-content-center mt-4">
 
@@ -104,22 +117,23 @@
         <!------------------------------------------------------------------------------------------------>
 
       </div> <!--  d-inline-flex -->
+      <div class="container-fluid bouton mt-2">
+        <div class="row bouton justify-content-end">
+    
+          <!-- <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
+            Génerer
+          </button> -->
+    
+          <button class="btn btn-custom generate" (click)="buttonClicked('valider')">
+            Valider
+          </button>
+    
+        </div>
+      </div>
     </div> <!-- Fin row object-->
 
   </div> <!-- container-fluid object-->
 
-  <div class="container-fluid bouton mt-2">
-    <div class="row bouton justify-content-end">
 
-      <!-- <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
-        Génerer
-      </button> -->
-
-      <button class="btn btn-custom generate" (click)="buttonClicked('valider')">
-        Valider
-      </button>
-
-    </div>
-  </div>
   <p>{{image?.replace("data:image/png;base64,", "")}}</p>
 </form>

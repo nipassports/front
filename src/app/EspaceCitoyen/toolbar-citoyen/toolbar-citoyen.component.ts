@@ -35,6 +35,7 @@ export class ToolbarCitoyenComponent implements OnInit {
 
       this.storage.remove("tbInfo");
       this.storage.remove("token");
+      localStorage.removeItem("dateOfExpiry"); 
       
       this.storage.remove("passNb");
       this.global.tbInfo ='all';

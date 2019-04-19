@@ -1,8 +1,30 @@
-/* div.container-fluid.object{
-    width: 95%;
-    border-style: solid;
-    border-color: black;
-} */
+/* Conteainer AJOUT VISA */
+.card-header {
+    margin-top:5em;
+    width:auto; 
+    max-width:58em;  
+    border-radius: 1em;
+    overflow: hidden;
+    justify-content: center; 
+    margin-left:auto; 
+    margin-right:auto; 
+    background-color: #2F404D;
+    text-align: center;
+    font-size: 22px;
+    color : white;
+}
+
+/* Conteneur du formulaire */
+div.container-fluid.object div.row.object{
+    width: 93%;
+    margin-top: -25px;
+    margin-left: 3.5%;
+    height: 100%;
+    background-color: #C4C4C4;
+    overflow: auto;
+   
+}
+
 
 div.bouton{
     width: 100%;

@@ -46,6 +46,7 @@ const routes: Routes = [
   { path: 'Espace_Gouvernement/Liste_des_Passeports', canActivate: [AuthGuard], component: PassListComponent },
   { path: 'Espace_Gouvernement/Ajout_Passeport', canActivate: [AuthGuard], component: AddPassComponent },
   { path: 'Espace_Gouvernement/Gestion_des_Problèmes', canActivate: [AuthGuard], component: PassIssuesComponent },
+  { path: 'Espace_Gouvernement/Ajout_Visa', canActivate: [AuthGuard], component: AddVisaComponent },
   {
     path: 'Espace_Gouvernement/Passeports/:passNb', component: PassViewComponent,
     children: [
@@ -53,8 +54,7 @@ const routes: Routes = [
       { path: 'Passeport', canActivate: [AuthGuard], component: PassDetailsComponent },
       { path: 'Visa', canActivate: [AuthGuard], component: VisagouvComponent },
       { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
-      { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent },
-      { path: 'Ajout_VISA', canActivate: [AuthGuard], component: AddVisaComponent }
+      { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent }
     ]
   },
 

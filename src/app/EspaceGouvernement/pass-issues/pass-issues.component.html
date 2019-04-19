@@ -1,3 +1,22 @@
-<p>
-  pass-issues works!
-</p>
+<div class="container" id="corps">
+  <div class="container" id="element" *ngFor="let problem of problems">
+    <mdb-card>
+      <mdb-card-header>MOTIF : "titre de la réclamation"</mdb-card-header>
+      <mdb-card-body>
+         <mdb-card-text><b>Identifiant : </b> {{problem.passNb}}</mdb-card-text>
+         <mdb-card-text><b>Nom : </b></mdb-card-text>
+         <mdb-card-text><b>Prénom : </b></mdb-card-text>
+         <mdb-card-text><b> Message : </b> </mdb-card-text>
+         <mdb-card-text>{{problem.message}}</mdb-card-text>
+      </mdb-card-body>
+      <div class="row">
+        <div class="col-auto ml-auto">
+          <button mdbBtn type="button" rounded="true" mdbWavesEffect>Problème réglé</button>
+        </div>
+        <div class="container" id="bottom">
+
+        </div>
+      </div>
+    </mdb-card>
+  </div>
+</div>

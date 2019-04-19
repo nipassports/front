@@ -18,7 +18,6 @@ export class PassViewComponent implements OnInit {
     {title:'Passeport',link:'Passeport'},
     {title:'Visa',link:'Visa'},
     {title:'Autre',link:'Autre'},
-    {title:'Ajout VISA',link:'Ajout_VISA'},
 
   ];
 
