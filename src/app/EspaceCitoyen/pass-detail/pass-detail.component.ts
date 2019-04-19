@@ -75,8 +75,7 @@ export class PassDetailComponent implements OnInit {
   }
 
 
-  time() {
-    alert(this.pass.dateOfExpiry); 
+  time() { 
     let timesplitted = this.pass.dateOfExpiry.toString().split('/', 3);
     let dateOfExpiry = new Date(timesplitted[1] + '/' + timesplitted[0] + '/' + timesplitted[2]).getTime();
     let today = new Date().getTime();
