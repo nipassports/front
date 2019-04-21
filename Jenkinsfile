@@ -29,7 +29,7 @@ pipeline {
             branch "master"
           }
           steps {
-            sh 'docker build -t nip/front .'
+            sh 'docker build -t nip/front --build-arg SSL_FULLCHAIN="$(cat /srv/certs/fullchain.pem)" --build-arg SSL_PRIVKEY="$(cat /srv/certs/privkey.pem)" .'
             echo 'Docker prod image built'
           }
         }
@@ -71,7 +71,7 @@ pipeline {
         branch "master"
       }
       steps {
-        sh 'docker run -p 80:4200 -d --name nip-front nip/front'
+        sh 'docker run -p 443:4200 -d --name nip-front nip/front'
         echo 'Prod container ready !'
       }
     }

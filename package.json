@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --disable-host-check",
+    "start": "ng serve --host 0.0.0.0 --disable-host-check --ssl true --ssl-cert \"/root/fullchain.pem\" --ssl-key \"/root/privkey.pem\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
