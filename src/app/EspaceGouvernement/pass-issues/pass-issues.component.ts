@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PassService } from '../../Service/pass.service';
 import { Problem } from '../../problem';
+import Swal from 'sweetalert2';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +15,7 @@ export class PassIssuesComponent implements OnInit {
   private nbproblem : number; 
   problems: Problem[];
 
-  constructor(private pS : PassService) { }
+  constructor(private pS : PassService, private router: Router) { }
 
   ngOnInit() {
     this.getProblems(); 
@@ -25,7 +27,23 @@ export class PassIssuesComponent implements OnInit {
       (problems) => {
           this.problems=problems; 
           console.log(problems); 
-      });
+      },
+      async (error) => {
+        console.log(" modify pass info: ERROR: " + error.error.message);
+
+        if(error.error.message === "Auth failed"){
+          await Swal.fire({
+            type: 'warning',
+            title: "Votre session vient d'expirer !",
+            confirmButtonColor: '#2F404D'
+          })
+
+          this.pS.clean();
+          this.router.navigate(['/Se_connecter']);
+        }
+      }
+    
+      );
 
   }
 

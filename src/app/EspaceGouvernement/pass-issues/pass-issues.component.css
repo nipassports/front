@@ -7,9 +7,14 @@
 }
 
 mdb-card-header {
-    background-color: #2F404D; 
+    background-color:#5DAC99;  
     color:white; 
 }
+
+mdb-card-text {
+    color:#2F404D; 
+}
+
 
 button {
     background-color: #2F404D; 
@@ -24,4 +29,13 @@ button:hover {
 
 #bottom {
     margin-bottom:0.5em; 
+}
+
+
+#titre {
+    text-transform: uppercase; 
+}
+
+.title {
+    background-color:#5DAC99; 
 }
