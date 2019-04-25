@@ -13,7 +13,6 @@ import { Problem } from "../problem";
   providedIn: 'root'
 })
 export class PassService {
-
   private citizenUrl = 'http://nip.ddns.net:3000/citizen';
   private customUrl = 'http://nip.ddns.net:3000/custom';
   private gouvUrl = 'http://nip.ddns.net:3000/government';
@@ -264,5 +263,9 @@ export class PassService {
     const options = { headers: headers };
     const url = `${this.gouvUrl}/passport/valid/${passNb}`;
     return this.http.get<any>(url, options);
+  }
+  sendProblem(probleme: any) : Observable<any> {
+    const url = `/passport/random`;    
+    return this.http.get<Pass>(url);
   }
 }

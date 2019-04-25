@@ -29,6 +29,7 @@ import { FAQComponent } from './faq/faq.component';
 import { VisagouvComponent } from './EspaceGouvernement/visagouv/visagouv.component'
 import { AuthentifComponent } from './authentif/authentif.component';
 import { AuthGuard } from './Service/auth-guard.service';
+import { SignalerProblemeComponent } from './signaler-probleme/signaler-probleme.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,7 @@ const routes: Routes = [
       { path: 'Visa', canActivate: [AuthGuard], component: VisaComponent },
       { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
       { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent },
+      { path: 'Signaler_Probleme', canActivate: [AuthGuard], component: SignalerProblemeComponent }
     ]
   },
 
@@ -80,6 +82,7 @@ const routes: Routes = [
       { path: 'Visa', canActivate: [AuthGuard], component: VisaDouaneComponent },
       { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
       { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent },
+      { path: 'Signaler_Probleme', canActivate: [AuthGuard], component: SignalerProblemeComponent }
     ]
   },
   { path: '**', redirectTo: 'not-found'}

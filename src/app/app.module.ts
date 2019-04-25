@@ -62,6 +62,7 @@ import { LyButtonModule } from '@alyle/ui/button';
 import { LyIconModule } from '@alyle/ui/icon';
 import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
 import {NgxImageCompressService} from 'ngx-image-compress';
+import { SignalerProblemeComponent } from './signaler-probleme/signaler-probleme.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {NgxImageCompressService} from 'ngx-image-compress';
     AuthentifComponent,
     PageNonTrouveeComponent,
     AccueilgouvComponent,
+    SignalerProblemeComponent,
 
   ],
   imports: [

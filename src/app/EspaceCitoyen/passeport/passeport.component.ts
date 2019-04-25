@@ -26,6 +26,7 @@ export class PasseportComponent implements OnInit {
     {title:'Mon Passeport',link:'Mon_Passeport'},
     {title:'Visa',link:'Visa'},
     {title:'Autre',link:'Autre'},
+    {title:'Signaler un problème', link:'Signaler_Probleme'}
   ];
 
   constructor( private pS : PassService, @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
