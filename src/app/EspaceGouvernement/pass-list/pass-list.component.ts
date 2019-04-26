@@ -188,6 +188,13 @@ export class PassListComponent implements OnInit {
       return;
     }
     else{
+
+      Swal.fire({
+        html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+      })
+
       let research = [
 
         this.f.type.value,
@@ -215,6 +222,11 @@ export class PassListComponent implements OnInit {
         (Allpass) => {
           console.log("Allpass2: "+ JSON.stringify(Allpass))
           this.Allpass = Allpass;
+          Swal.fire({
+            type: 'success',
+            timer: 1,
+            showConfirmButton: false,
+          });
         },
   
         async (error) => {
