@@ -14,6 +14,7 @@ import { first } from 'rxjs/internal/operators/first';
 export class SignalerProblemeComponent implements OnInit {
   email: string;
   probleme_type: string;
+  titreForm: string;
   description: string;
 
   submitted = false;
@@ -28,7 +29,8 @@ export class SignalerProblemeComponent implements OnInit {
     this.form = new FormGroup({
       emailForm: new FormControl(null, [Validators.required, Validators.email]),
       probleme_typeForm: new FormControl(null, Validators.required),
-      descriptionForm: new FormControl(null, Validators.required)
+      titreForm: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+      descriptionForm: new FormControl(null, [Validators.required, Validators.maxLength(500)])
     });
 
 
@@ -44,11 +46,14 @@ export class SignalerProblemeComponent implements OnInit {
     const probleme = [
       this.form.controls.emailForm.value,
       this.form.controls.probleme_typeForm.value,
+      this.form.controls.titreForm.value,
       this.form.controls.descriptionForm.value
     ]
     console.log("probleme: " + probleme);
+    console.log("Mon passNb(this.ps.getPassNumb()) : " + this.ps.getPassNumb())
+    console.log("Mon passNb(this.global.passNb) : " + this.global.passNb)
 
-     this.ps.sendProblem(probleme)
+     this.ps.sendProblem(probleme, this.global.tbInfo)
       .pipe(first())
       .subscribe(
         (data) => {

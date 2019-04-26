@@ -6,7 +6,7 @@
     <div class="form-group myr-top">
       <label>Email</label>
       <input type="text" class="form-control custom" id="email" formControlName="emailForm" placeholder="Email" required
-      [ngClass]="{ 'is-invalid': submitted && f.emailForm.errors }">
+        [ngClass]="{ 'is-invalid': submitted && f.emailForm.errors }">
       <div *ngIf=" f.emailForm.errors" class="invalid-feedback">
         <span *ngIf="f.emailForm.errors.required">Un email est requis.</span>
         <span *ngIf="f.emailForm.errors.email">L'email n'est pas valide.</span>
@@ -16,8 +16,8 @@
     <!-- CHAMP TYPE PROBLEME  -->
     <div class="form-group">
       <label>Type de problème</label>
-      <select type="text" formControlName="probleme_typeForm" class="custom-select custom" placeholder="Type à renseigner" 
-      [ngClass]="{ 'is-invalid': submitted && f.probleme_typeForm.errors }">
+      <select type="text" formControlName="probleme_typeForm" class="custom-select custom"
+        placeholder="Type à renseigner" [ngClass]="{ 'is-invalid': submitted && f.probleme_typeForm.errors }">
         <option value="" disabled>Type à renseigner</option>
         <option value="Passeport">Passeport</option>
         <option value="Visa">Visa</option>
@@ -30,20 +30,38 @@
       </div>
     </div>
 
+    <!-- CHAMP TITRE  -->
+    <div class="form-group">
+      <label>Titre</label>
+      <input type="text" formControlName="titreForm" class="form-control" placeholder="Titre de votre problème ici."
+        required [ngClass]="{ 'is-invalid': submitted && f.titreForm.errors }">
+      <div *ngIf="submitted && f.titreForm.errors" class="invalid-feedback">
+        <div *ngIf="f.titreForm.errors.required">
+          Veuillez donner un titre votre problème.
+        </div>
+        <div *ngIf="f.titreForm.errors.maxlength">
+          Vous avez atteint la limite de 50 caractères. Veuillez racourcir la description.
+        </div>
+      </div>
+    </div>
+
     <!-- CHAMP DESCRIPTION  -->
     <div class="form-group">
       <label>Description</label>
-      <input type="text" formControlName="descriptionForm" class="form-control"
+      <textarea type="text" formControlName="descriptionForm" class="form-control"
         placeholder="Description de votre problème ici." required
-        [ngClass]="{ 'is-invalid': submitted && f.descriptionForm.errors }">
-        <div *ngIf="submitted && f.probleme_typeForm.errors" class="invalid-feedback">
-          <div *ngIf="f.probleme_typeForm.errors.required">
-            Veuillez décrire votre problème.
-          </div>
+        [ngClass]="{ 'is-invalid': submitted && f.descriptionForm.errors }"></textarea>
+      <div *ngIf="submitted && f.descriptionForm.errors" class="invalid-feedback">
+        <div *ngIf="f.descriptionForm.errors.required">
+          Veuillez décrire votre problème.
         </div>
+        <div *ngIf="f.descriptionForm.errors.maxlength">
+          Vous avez atteint la limite de 500 caractères. Veuillez racourcir la description.
+        </div>
+      </div>
     </div>
 
     <label></label>
-    <button class="btn btn-red btn-block" type="submit" >Signaler</button>
+    <button class="btn btn-red btn-block" type="submit">Signaler</button>
   </form>
 </div>
