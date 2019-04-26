@@ -193,6 +193,21 @@ export class AddPassComponent implements OnInit {
     return trueDate;
   }
 
+  euroDate(date: string): string {
+    let splitDate = date.split('-');
+
+    if( splitDate.indexOf("/") !== -1 ){
+      return  date;
+    }
+    const year = splitDate[0];
+    const month = splitDate[1];
+    const day = splitDate[2];
+    const euDate = day + "/" + month + "/" + year;
+
+    console.log("add pass DATE: "+ euDate);
+    return euDate;
+  }
+
   async onSubmit() {
 
     console.log("button value: " + this.buttonValue)
@@ -282,6 +297,18 @@ export class AddPassComponent implements OnInit {
       })
 
       this.loading = true;
+
+      let dateOfBirth = this.euroDate(this.f.dateOfBirth.value);
+      let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
+      let dateOfExpiry = this.euroDate(this.f.dateOfExpiry.value);
+
+      this.loginForm.patchValue({
+        dateOfBirth: dateOfBirth,
+        dateOfIssue: dateOfIssue,
+        dateOfExpiry: dateOfExpiry,
+        
+      });
+
       const pseudoPass = [
 
         this.f.type.value,
@@ -303,6 +330,9 @@ export class AddPassComponent implements OnInit {
         "Valide",
         this.imgResultAfterCompress
       ]
+
+      console.log("Pseudo PAss: "+ pseudoPass);
+
       console.log("pseudo pass: " + pseudoPass);
       this.pS.addPass(pseudoPass)
         .pipe(first())

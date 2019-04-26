@@ -232,6 +232,99 @@ export class PassService {
     const url = `${this.gouvUrl}/visa/one/${passNb}`;
     return this.http.get<Visa_json[]>(url, options);
   }
+  //Search
+
+  govSearch(pseudoPass:any): Observable<Pass_json[]>{
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/passport/search`;
+    let trueSearch = {};
+
+    const search = {
+      type: pseudoPass[0],
+      autority: pseudoPass[1],
+      passNb: pseudoPass[2],
+      name: pseudoPass[3],
+      surname: pseudoPass[4],
+      dateOfBirth: pseudoPass[5],
+      nationality: pseudoPass[6],
+      sex: pseudoPass[7],
+      placeOfBirth: pseudoPass[8],
+      height: pseudoPass[9].toString(),
+      residence: pseudoPass[10],
+      eyesColor: pseudoPass[11],
+      dateOfExpiry: pseudoPass[12],
+      dateOfIssue: pseudoPass[13],
+      passOrigin: pseudoPass[14],
+      validity: pseudoPass[15]
+    }
+
+
+    for (let key in search){
+      let value = search[key];
+      console.log("key: "+key + " value: "+ value );
+      if( value !== "" ){
+        trueSearch[key] = value;
+       
+      }
+      
+
+    }
+
+    console.log("trueSearch: " + JSON.stringify(trueSearch))
+
+    return this.http.post<Pass_json[]>(url,trueSearch, options);
+  }
+
+  customSearch(pseudoPass:any): Observable<Pass_json[]>{
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.customUrl}/passport/search`;
+    let trueSearch = {};
+
+    const search = {
+      type: pseudoPass[0],
+      autority: pseudoPass[1],
+      passNb: pseudoPass[2],
+      name: pseudoPass[3],
+      surname: pseudoPass[4],
+      dateOfBirth: pseudoPass[5],
+      nationality: pseudoPass[6],
+      sex: pseudoPass[7],
+      placeOfBirth: pseudoPass[8],
+      height: pseudoPass[9].toString(),
+      residence: pseudoPass[10],
+      eyesColor: pseudoPass[11],
+      dateOfExpiry: pseudoPass[12],
+      dateOfIssue: pseudoPass[13],
+      passOrigin: pseudoPass[14],
+      validity: pseudoPass[15]
+    }
+
+
+    for (let key in search){
+      let value = search[key];
+      console.log("key: "+key + " value: "+ value );
+      if( value !== "" ){
+        trueSearch[key] = value;
+       
+      }
+      
+
+    }
+
+    console.log("trueSearch: " + JSON.stringify(trueSearch))
+
+    return this.http.post<Pass_json[]>(url,trueSearch, options);
+  }
 
   //Problem
   getProblems(countryCode: string): Observable<Problem[]> {
