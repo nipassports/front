@@ -29,7 +29,10 @@ import { FAQComponent } from './faq/faq.component';
 import { VisagouvComponent } from './EspaceGouvernement/visagouv/visagouv.component'
 import { AuthentifComponent } from './authentif/authentif.component';
 import { AuthGuard } from './Service/auth-guard.service';
+import { SignalerProblemeComponent } from './signaler-probleme/signaler-probleme.component';
 
+import { GouvproblemComponent } from "./EspaceGouvernement/gouvproblem/gouvproblem.component";
+import { ProblemDouaneComponent } from "./EspaceDouanes/problem-douane/problem-douane.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/Accueil', pathMatch: 'full' },
@@ -53,7 +56,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
       { path: 'Passeport', canActivate: [AuthGuard], component: PassDetailsComponent },
       { path: 'Visa', canActivate: [AuthGuard], component: VisagouvComponent },
-      { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
+      { path: 'Problem', canActivate: [AuthGuard], component: GouvproblemComponent },
       { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent }
     ]
   },
@@ -67,6 +70,7 @@ const routes: Routes = [
       { path: 'Visa', canActivate: [AuthGuard], component: VisaComponent },
       { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
       { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent },
+      { path: 'Signaler_Probleme', canActivate: [AuthGuard], component: SignalerProblemeComponent }
     ]
   },
 
@@ -78,8 +82,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'Passeport', pathMatch: 'full' },
       { path: 'Passeport', canActivate: [AuthGuard], component: PassInfosComponent },
       { path: 'Visa', canActivate: [AuthGuard], component: VisaDouaneComponent },
-      { path: 'Autre', canActivate: [AuthGuard], component: AutreComponent },
-      { path: 'problem', canActivate: [AuthGuard], component: ProblemComponent },
+      { path: 'Problem', canActivate: [AuthGuard], component: ProblemDouaneComponent },
+      { path: 'Signaler_Probleme', canActivate: [AuthGuard], component: SignalerProblemeComponent }
     ]
   },
   { path: '**', redirectTo: 'not-found'}
