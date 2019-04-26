@@ -1,14 +1,19 @@
 <div class="container" id="corps">
-  <div class="container animated fadeIn" id="element" *ngFor="let problem of problems">
+  <div class="container wow animated fadeIn" id="element" *ngFor="let problem of problems">
     <mdb-card>
       <mdb-card-header>
         <div class="row">
           <div class="col-auto mr-auto">
-            TYPE DE PROBLÈME : {{problem.type}}
+            <div *ngIf="problem.type === 'Passeport'" title="Problème relatif aux passeports"><i class="fas fa-passport"></i></div> 
+            <div *ngIf="problem.type === 'Visa'" title="Problème relatif aux passeports"><i class="fab fa-cc-visa"></i></div> 
+            <div *ngIf="problem.type === 'Autre'" title="Problème relatif aux passeports"><i class="fas fa-exclamation-circle"></i></div> 
+          </div>
+          <div class="col-auto">
+            <p> {{problem.title}}</p>
           </div>
           <div class="col-auto ml-auto pl-2">
-            <div *ngIf="problem.author === true"><i class="fas fa-plane"></i></div>
-            <div *ngIf="problem.author === false"><i class="fas fa-users"></i></div>
+            <div *ngIf="problem.author === true"  title="Problème déclaré par la douane"><i class="fas fa-plane"></i></div>
+            <div *ngIf="problem.author === false" title="Problème déclaré par un citoyen"><i class="fas fa-users"></i></div>
           </div>
         </div>
       </mdb-card-header>
@@ -16,6 +21,9 @@
         <div class="row">
           <div class="col-auto mr-auto">
             <mdb-card-text><b>Identifiant : </b> {{problem.passNb}}</mdb-card-text>
+          </div>
+          <div class="col-auto">
+            <mdb-card-text><b> Email : </b> {{problem.email}}</mdb-card-text>
           </div>
           <div class="col-auto ml-auto">
             <mdb-card-text><b> Date : </b> {{problem.date}}</mdb-card-text>

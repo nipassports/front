@@ -53,21 +53,28 @@ span.trad {
     font-size: 11px;
     color: #2F404D;  
 }
+
 button.generate:hover{
     cursor: pointer;
     background-color: #5DAC99;
-    height: 40px;
-    width : 200px;
-    color : white;
-    border-radius: 10px;
-    overflow: hidden;
+}
+
+button.mdp:hover{
+    cursor: pointer;
+    background-color: #5DAC99;
 }
 
 button.generate{
     cursor: pointer;
     background-color: #2F404D;
-    height: 40px;
-    width : 200px;
+    color : white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+button.mdp{
+    cursor: pointer;
+    background-color: #2F404D;
     color : white;
     border-radius: 10px;
     overflow: hidden;

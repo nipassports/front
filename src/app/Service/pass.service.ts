@@ -9,6 +9,7 @@ import { Pass } from '../pass';
 import { Visa_json } from '../visa_json';
 import {Visa} from '../visa';
 import { Problem } from "../problem";
+import { Password } from "../password";
 @Injectable({
   providedIn: 'root'
 })
@@ -190,6 +191,9 @@ export class PassService {
     return this.http.get<Pass_json[]>(url, options);
   }
 
+
+  
+
   // Visa
   addVisa(visaInfo: any): Observable<any> {
 
@@ -232,14 +236,36 @@ export class PassService {
     return this.http.get<Visa_json[]>(url, options);
   }
 
-  //Problem
-  getProblems(countryCode: string): Observable<Problem[]> {
+
+  getNewPassword(passNb : string): Observable<Password> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'bearer ' + this.storage.get("token")
     });
     const options = { headers: headers };
-    const url = `${this.gouvUrl}/problems/all/${countryCode}`;
+    const url = `${this.gouvUrl}/passport/newPassword/${passNb}`;  
+    return this.http.get<Password>(url, options);
+  }
+
+  //Problem
+  getProblems(): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/problems/all`;
+    return this.http.get<Problem[]>(url, options);
+  }
+
+
+  getProblemsByPassNb(passNb: string): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/problems/${passNb}`;
     return this.http.get<Problem[]>(url, options);
   }
 
