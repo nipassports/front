@@ -50,14 +50,12 @@ export class SignalerProblemeComponent implements OnInit {
       this.form.controls.descriptionForm.value
     ]
     console.log("probleme: " + probleme);
-    console.log("Mon passNb(this.ps.getPassNumb()) : " + this.ps.getPassNumb())
-    console.log("Mon passNb(this.global.passNb) : " + this.global.passNb)
 
      this.ps.sendProblem(probleme, this.global.tbInfo)
       .pipe(first())
       .subscribe(
         (data) => {
-          if (data.message == 'Probleme signale') {
+          if (data.message == 'Problem sent') {
             console.log('DATA.MESSAGE: ' + JSON.stringify(data.message));
             Swal.fire({
               title: 'Probleme signalé !',

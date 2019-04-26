@@ -243,7 +243,35 @@ export class PassService {
     return this.http.get<Problem[]>(url, options);
   }
 
+  sendProblem(problemeInfo: any, typeUser: string) : Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
 
+    const options = { headers: headers };
+    
+    console.log(problemeInfo,typeUser);
+
+    if (typeUser == 'citoyen') {
+      const url = `${this.citizenUrl}/problem/`;
+      return this.http.post<any>(url, {
+        email: problemeInfo[0],
+        type: problemeInfo[1],
+        title: problemeInfo[2],
+        message: problemeInfo[3]
+      }, options);
+    } else if (typeUser == 'custom'){
+      const url = `${this.customUrl}/problem/`;
+      return this.http.post<any>(url, {
+        email: problemeInfo[0],
+        type: problemeInfo[1],
+        message: problemeInfo[2]
+      }, options);
+    }
+
+    
+  }
 
   //Session
   clean(){
@@ -263,9 +291,5 @@ export class PassService {
     const options = { headers: headers };
     const url = `${this.gouvUrl}/passport/valid/${passNb}`;
     return this.http.get<any>(url, options);
-  }
-  sendProblem(probleme: any) : Observable<any> {
-    const url = `/passport/random`;    
-    return this.http.get<Pass>(url);
   }
 }
