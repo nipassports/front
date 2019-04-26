@@ -19,7 +19,7 @@ export class AffichagePassComponent implements OnInit {
   passBar = [ 
     {title:'Mon Passeport',link:'Passeport'},
     {title:'Visa',link:'Visa'},
-    {title:'Autre',link:'Autre'},
+    {title:'Problèmes',link:'Problem'},
     {title:'Signaler un problème', link:'Signaler_Probleme'}
 
   ];

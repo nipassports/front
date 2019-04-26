@@ -59,6 +59,7 @@ export class PassService {
     const url = `${this.citizenUrl}/visa/`;
     return this.http.get<Visa_json[]>(url, options);
   }
+  
 
   //Custom
   getPassInfoDouanes(passNb: string): Observable<Pass_json> {
@@ -258,8 +259,17 @@ export class PassService {
     return this.http.get<Problem[]>(url, options);
   }
 
+  getProblemsByPassNb(): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.citizenUrl}/problems`;
+    return this.http.get<Problem[]>(url, options);
+  }
 
-  getProblemsByPassNb(passNb: string): Observable<Problem[]> {
+  getProblemsByPass(passNb : string): Observable<Problem[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'bearer ' + this.storage.get("token")
@@ -300,6 +310,7 @@ export class PassService {
 
     
   }
+
 
   //Session
   clean(){

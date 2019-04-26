@@ -25,7 +25,7 @@ export class PasseportComponent implements OnInit {
   passBar = [ 
     {title:'Mon Passeport',link:'Mon_Passeport'},
     {title:'Visa',link:'Visa'},
-    {title:'Autre',link:'Autre'},
+    {title:'Mes problèmes',link:'Gou'},
     {title:'Signaler un problème', link:'Signaler_Probleme'}
   ];
 

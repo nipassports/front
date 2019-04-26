@@ -1,22 +1,28 @@
 <div class="accordion" id="accordionExample">
-  <div class="card" *ngFor="let visa of visa_json;let iteration = index">
-    <div class="card-header" id="{{visa.infos.visaCode}}">
+  <div class="card" *ngFor="let problem of problems;let iteration = index">
+    <div class="card-header">
       <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+ iteration" aria-expanded="false" aria-controls="collapseOne">
-            Visa {{visa.infos.autority}} {{visa.infos.dateOfExpiry}}
+        <button class="btn" data-toggle="collapse" [attr.data-target]="'#collapse'+ iteration" aria-expanded="false" aria-controls="collapseOne">
+            {{problem.title}}
         </button>
       </h2>
     </div>
-
     <div [attr.id]="'collapse'+iteration" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
           <div class="container">
-              <div class="row ">
-                  <div class="col-sm-6 col-md-4 mb-4"><span class="bold">Nom :</span> </div>
-                  <div class="col-sm-6 col-md-4 mb-4"><span>Prenom :</span> </div>
-                  <div class="col-sm-6 col-md-4 mb-4"><span>Code du visa :</span> </div>
-                  <div class="col-sm-6 col-md-4 mb-4"><span>Autorité :</span> </div>
+            <div class="row">
+              <div class="col-auto mr-auto">
+                <mdb-card-text><b>Identifiant :</b> {{problem.passNb}}</mdb-card-text>
               </div>
+              <div class="col-auto">
+                <mdb-card-text><b> Email : </b> {{problem.email}}</mdb-card-text>
+              </div>
+              <div class="col-auto ml-auto">
+                <mdb-card-text><b> Date : </b> {{problem.date}}</mdb-card-text>
+              </div>
+            </div>
+            <mdb-card-text><b> Message : </b> </mdb-card-text>
+            <mdb-card-text>{{problem.message}}</mdb-card-text>
           </div>
       </div>
     </div>

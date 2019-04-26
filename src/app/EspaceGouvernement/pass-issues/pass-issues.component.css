@@ -7,7 +7,7 @@
 }
 
 mdb-card-header {
-    background-color:#5DAC99;  
+    background-color:#2F404D;  
     color:white; 
 }
 
@@ -38,4 +38,8 @@ button:hover {
 
 .title {
     background-color:#5DAC99; 
+}
+
+b {
+    color : #5DAC99; 
 }

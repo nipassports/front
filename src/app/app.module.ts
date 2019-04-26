@@ -63,6 +63,8 @@ import { LyIconModule } from '@alyle/ui/icon';
 import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
 import {NgxImageCompressService} from 'ngx-image-compress';
 import { SignalerProblemeComponent } from './signaler-probleme/signaler-probleme.component';
+import { GouvproblemComponent } from './EspaceGouvernement/gouvproblem/gouvproblem.component';
+import { ProblemDouaneComponent } from './EspaceDouanes/problem-douane/problem-douane.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { SignalerProblemeComponent } from './signaler-probleme/signaler-probleme
     PageNonTrouveeComponent,
     AccueilgouvComponent,
     SignalerProblemeComponent,
+    GouvproblemComponent,
+    ProblemDouaneComponent,
 
   ],
   imports: [
