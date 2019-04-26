@@ -233,13 +233,24 @@ export class PassService {
   }
 
   //Problem
-  getProblems(countryCode: string): Observable<Problem[]> {
+  getProblems(): Observable<Problem[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'bearer ' + this.storage.get("token")
     });
     const options = { headers: headers };
-    const url = `${this.gouvUrl}/problems/all/${countryCode}`;
+    const url = `${this.gouvUrl}/problems/all`;
+    return this.http.get<Problem[]>(url, options);
+  }
+
+
+  getProblemsByPassNb(passNb: string): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/problems/${passNb}`;
     return this.http.get<Problem[]>(url, options);
   }
 

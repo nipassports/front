@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PassIssuesComponent implements OnInit {
 
-  private nbproblem : number; 
   problems: Problem[];
 
   constructor(private pS : PassService, private router: Router) { }
@@ -22,7 +21,7 @@ export class PassIssuesComponent implements OnInit {
   }
 
   getProblems() {
-    this.pS.getProblems(this.pS.getCountryCode())
+    this.pS.getProblems()
     .subscribe( 
       (problems) => {
           this.problems=problems; 

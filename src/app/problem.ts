@@ -4,6 +4,8 @@ export class Problem {
     countryCode: string; 
     type: string; 
     date: string; 
+    email: string; 
+    title: string; 
     author: string; 
     status: string; 
     __v: string; 
