@@ -4,7 +4,12 @@
       <mdb-card-header>
         <div class="row">
           <div class="col-auto mr-auto">
-            <div *ngIf="problem.type === 'Passeport'"><i class="fas fa-passport"></i> {{problem.title}}</div> 
+            <div *ngIf="problem.type === 'Passeport'" title="Problème relatif aux passeports"><i class="fas fa-passport"></i></div> 
+            <div *ngIf="problem.type === 'Visa'" title="Problème relatif aux passeports"><i class="fab fa-cc-visa"></i></div> 
+            <div *ngIf="problem.type === 'Autre'" title="Problème relatif aux passeports"><i class="fas fa-exclamation-circle"></i></div> 
+          </div>
+          <div class="col-auto">
+            <p> {{problem.title}}</p>
           </div>
           <div class="col-auto ml-auto pl-2">
             <div *ngIf="problem.author === true"  title="Problème déclaré par la douane"><i class="fas fa-plane"></i></div>
