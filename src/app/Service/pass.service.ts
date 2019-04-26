@@ -269,14 +269,14 @@ export class PassService {
     return this.http.get<Problem[]>(url, options);
   }
 
-  sendProblem(problemeInfo: any, typeUser: string) : Observable<any> {
+  sendProblem(problemeInfo: any, typeUser: string, passNb: string) : Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'bearer ' + this.storage.get("token")
     });
-
-    const options = { headers: headers };
     
+    const options = { headers: headers };
+
     console.log(problemeInfo,typeUser);
 
     if (typeUser == 'citoyen') {
@@ -290,9 +290,11 @@ export class PassService {
     } else if (typeUser == 'custom'){
       const url = `${this.customUrl}/problem/`;
       return this.http.post<any>(url, {
+        passNb: passNb,
         email: problemeInfo[0],
         type: problemeInfo[1],
-        message: problemeInfo[2]
+        title: problemeInfo[2],
+        message: problemeInfo[3]
       }, options);
     }
 

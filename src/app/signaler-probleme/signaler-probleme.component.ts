@@ -50,8 +50,9 @@ export class SignalerProblemeComponent implements OnInit {
       this.form.controls.descriptionForm.value
     ]
     console.log("probleme: " + probleme);
+    console.log("passNb : "+this.ps.getPassNumb());
 
-     this.ps.sendProblem(probleme, this.global.tbInfo)
+     this.ps.sendProblem(probleme, this.global.tbInfo, this.ps.getPassNumb())
       .pipe(first())
       .subscribe(
         (data) => {
