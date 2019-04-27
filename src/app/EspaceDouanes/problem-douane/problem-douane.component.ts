@@ -21,7 +21,7 @@ export class ProblemDouaneComponent implements OnInit {
   }
 
   getProblems() {
-    this.pS.getProblemsByPass(this.pS.getPassNumb())
+    this.pS.getProblemsByPassCustom(this.pS.getPassNumb())
     .subscribe( 
       (problems) => {
           this.problems=problems; 

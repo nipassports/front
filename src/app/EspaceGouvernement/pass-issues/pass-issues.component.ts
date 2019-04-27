@@ -14,6 +14,7 @@ export class PassIssuesComponent implements OnInit {
 
   problems: Problem[];
 
+
   constructor(private pS : PassService, private router: Router) { }
 
   ngOnInit() {
@@ -25,7 +26,6 @@ export class PassIssuesComponent implements OnInit {
     .subscribe( 
       (problems) => {
           this.problems=problems; 
-          console.log(problems); 
       },
       async (error) => {
         console.log(" modify pass info: ERROR: " + error.error.message);
@@ -44,6 +44,31 @@ export class PassIssuesComponent implements OnInit {
     
       );
 
+  }
+
+
+  modifiedStatus(id : string): void {
+    this.pS.modifiedPbStatus(id)
+    .subscribe( 
+      (message) => { 
+        this.getProblems(); 
+      },
+      async (error) => {
+        console.log(" modify pass info: ERROR: " + error.error.message);
+
+        if(error.error.message === "Auth failed"){
+          await Swal.fire({
+            type: 'warning',
+            title: "Votre session vient d'expirer !",
+            confirmButtonColor: '#2F404D'
+          })
+
+          this.pS.clean();
+          this.router.navigate(['/Se_connecter']);
+        }
+      }
+    
+      );
   }
 
 }

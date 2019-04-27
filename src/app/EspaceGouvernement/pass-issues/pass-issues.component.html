@@ -1,6 +1,6 @@
 <div class="container" id="corps">
   <div class="container wow animated fadeIn" id="element" *ngFor="let problem of problems">
-    <mdb-card>
+    <mdb-card *ngIf="problem.status !== 'treated'">
       <mdb-card-header>
         <div class="row">
           <div class="col-auto mr-auto">
@@ -34,7 +34,7 @@
       </mdb-card-body>
       <div class="row">
         <div class="col-auto ml-auto">
-          <button mdbBtn type="button" rounded="true" mdbWavesEffect>Problème réglé</button>
+          <button mdbBtn type="button" rounded="true" (click)="modifiedStatus(problem._id)" mdbWavesEffect>Problème réglé</button>
         </div>
         <div class="container" id="bottom">
         </div>

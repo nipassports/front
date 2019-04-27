@@ -372,6 +372,27 @@ export class PassService {
     return this.http.get<Problem[]>(url, options);
   }
 
+  getProblemsByPassCustom(passNb : string): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.customUrl}/problems/${passNb}`;
+    return this.http.get<Problem[]>(url, options);
+  }
+
+
+  modifiedPbStatus(id : string): Observable<JSON> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/problems/${id}`;
+    return this.http.post<any>(url, [], options);
+  }
+
   sendProblem(problemeInfo: any, typeUser: string, passNb: string) : Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
