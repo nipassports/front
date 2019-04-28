@@ -61,6 +61,6 @@ export class ToolbarGouvComponent implements OnInit {
       this.storage.remove("passInfo");
       this.router.navigate(['/Accueil']);
     }
-    console.log("selectedVue:" + this.viewService.getView()+ ", vue:" + vue );
+    console.log("selectedVue:" + this.viewService.getView()+ ", vue:" + vue.title );
   }
 }

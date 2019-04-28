@@ -18,8 +18,8 @@ const styles = {
     display: 'flex'
   },
   cropping: {
-    maxWidth: '600px',
-    height: '450px'
+    maxWidth: '310px',
+    height: '400px'
   },
   flex: {
     flex: 1
@@ -62,6 +62,7 @@ export class AddPassComponent implements OnInit {
     width: 289, // Default `250`
     height: 372, // Default `200`,
     antiAliased:false,
+    autoCrop: true,
     output: {
       width: 413,
       height: 531,
@@ -78,6 +79,14 @@ export class AddPassComponent implements OnInit {
       );;
     console.log(e,e.size);
   }
+  onloaded(e) {
+    console.log('img loaded', e);
+  }
+  onerror(e) {
+    console.warn(`'${e.name}' is not a valid image`, e);
+  }
+
+
   frInfo = {
     type: 'Type',
     countryCode: 'Code du pays',
@@ -115,7 +124,7 @@ export class AddPassComponent implements OnInit {
     eyesColor: 'Color of eyes',
     dateOfExpiry: 'Date of expiry',
     dateOfIssue: 'Date of issue',
-    passOrigin: "Passeport origine",
+    passOrigin: "Pass origine",
     id: "ID",
     signature: "Holder's signature"
   };

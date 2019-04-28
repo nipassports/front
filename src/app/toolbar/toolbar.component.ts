@@ -22,8 +22,9 @@ export class ToolbarComponent implements OnInit {
     this.viewService.setView(this.storage.get('view'));
     }
   }
-  onClick(vue: string): void{
-    this.viewService.setView(vue);
+  onClick(vue: any): void{
+    console.log("la vue est :"+vue);
+    this.viewService.setView(vue.title);
     this.storage.set("view",vue);
     console.log("selectedVue:" + this.viewService.getView() + ", vue:" + vue );
   }
