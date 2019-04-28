@@ -3,15 +3,14 @@ import { PassService } from '../../Service/pass.service';
 import { Problem } from '../../problem';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { AuthentificationService } from '../../Service/authentification.service';
 
 @Component({
-  selector: 'app-autre',
-  templateUrl: './autre.component.html',
-  styleUrls: ['./autre.component.css']
+  selector: 'app-problem-douane',
+  templateUrl: '../../EspaceCitoyen/autre/autre.component.html',
+  styleUrls: ['../../EspaceCitoyen/autre/autre.component.css']
 })
-export class AutreComponent implements OnInit {
-
+export class ProblemDouaneComponent implements OnInit {
   private problems : Problem[]; 
 
   constructor(private pS : PassService, private router: Router) { }
@@ -21,9 +20,8 @@ export class AutreComponent implements OnInit {
 
   }
 
-
   getProblems() {
-    this.pS.getProblemsByPassNb()
+    this.pS.getProblemsByPassCustom(this.pS.getPassNumb())
     .subscribe( 
       (problems) => {
           this.problems=problems; 
@@ -46,6 +44,5 @@ export class AutreComponent implements OnInit {
       );
 
   }
-
 
 }

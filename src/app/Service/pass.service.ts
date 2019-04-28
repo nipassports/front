@@ -9,11 +9,11 @@ import { Pass } from '../pass';
 import { Visa_json } from '../visa_json';
 import {Visa} from '../visa';
 import { Problem } from "../problem";
+import { Password } from "../password";
 @Injectable({
   providedIn: 'root'
 })
 export class PassService {
-
   private citizenUrl = 'http://nip.ddns.net:3000/citizen';
   private customUrl = 'http://nip.ddns.net:3000/custom';
   private gouvUrl = 'http://nip.ddns.net:3000/government';
@@ -59,6 +59,7 @@ export class PassService {
     const url = `${this.citizenUrl}/visa/`;
     return this.http.get<Visa_json[]>(url, options);
   }
+  
 
   //Custom
   getPassInfoDouanes(passNb: string): Observable<Pass_json> {
@@ -191,6 +192,9 @@ export class PassService {
     return this.http.get<Pass_json[]>(url, options);
   }
 
+
+  
+
   // Visa
   addVisa(visaInfo: any): Observable<any> {
 
@@ -232,18 +236,194 @@ export class PassService {
     const url = `${this.gouvUrl}/visa/one/${passNb}`;
     return this.http.get<Visa_json[]>(url, options);
   }
+  //Search
 
-  //Problem
-  getProblems(countryCode: string): Observable<Problem[]> {
+  govSearch(pseudoPass:any): Observable<Pass_json[]>{
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'bearer ' + this.storage.get("token")
     });
     const options = { headers: headers };
-    const url = `${this.gouvUrl}/problems/all/${countryCode}`;
+    const url = `${this.gouvUrl}/passport/search`;
+    let trueSearch = {};
+
+    const search = {
+      type: pseudoPass[0],
+      autority: pseudoPass[1],
+      passNb: pseudoPass[2],
+      name: pseudoPass[3],
+      surname: pseudoPass[4],
+      dateOfBirth: pseudoPass[5],
+      nationality: pseudoPass[6],
+      sex: pseudoPass[7],
+      placeOfBirth: pseudoPass[8],
+      height: pseudoPass[9].toString(),
+      residence: pseudoPass[10],
+      eyesColor: pseudoPass[11],
+      dateOfExpiry: pseudoPass[12],
+      dateOfIssue: pseudoPass[13],
+      passOrigin: pseudoPass[14],
+      validity: pseudoPass[15]
+    }
+
+
+    for (let key in search){
+      let value = search[key];
+      console.log("key: "+key + " value: "+ value );
+      if( value !== "" ){
+        trueSearch[key] = value;
+       
+      }
+      
+
+    }
+
+    console.log("trueSearch: " + JSON.stringify(trueSearch))
+
+    return this.http.post<Pass_json[]>(url,trueSearch, options);
+  }
+
+  customSearch(pseudoPass:any): Observable<Pass_json[]>{
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.customUrl}/passport/search`;
+    let trueSearch = {};
+
+    const search = {
+      type: pseudoPass[0],
+      autority: pseudoPass[1],
+      passNb: pseudoPass[2],
+      name: pseudoPass[3],
+      surname: pseudoPass[4],
+      dateOfBirth: pseudoPass[5],
+      nationality: pseudoPass[6],
+      sex: pseudoPass[7],
+      placeOfBirth: pseudoPass[8],
+      height: pseudoPass[9].toString(),
+      residence: pseudoPass[10],
+      eyesColor: pseudoPass[11],
+      dateOfExpiry: pseudoPass[12],
+      dateOfIssue: pseudoPass[13],
+      passOrigin: pseudoPass[14],
+      validity: pseudoPass[15]
+    }
+
+
+    for (let key in search){
+      let value = search[key];
+      console.log("key: "+key + " value: "+ value );
+      if( value !== "" ){
+        trueSearch[key] = value;
+       
+      }
+      
+
+    }
+
+    console.log("trueSearch: " + JSON.stringify(trueSearch))
+
+    return this.http.post<Pass_json[]>(url,trueSearch, options);
+  }
+
+
+  getNewPassword(passNb : string): Observable<Password> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/passport/newPassword/${passNb}`;  
+    return this.http.get<Password>(url, options);
+  }
+
+  //Problem
+  getProblems(): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/problems/all`;
     return this.http.get<Problem[]>(url, options);
   }
 
+  getProblemsByPassNb(): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.citizenUrl}/problems`;
+    return this.http.get<Problem[]>(url, options);
+  }
+
+  getProblemsByPass(passNb : string): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/problems/${passNb}`;
+    return this.http.get<Problem[]>(url, options);
+  }
+
+  getProblemsByPassCustom(passNb : string): Observable<Problem[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.customUrl}/problems/${passNb}`;
+    return this.http.get<Problem[]>(url, options);
+  }
+
+
+  modifiedPbStatus(id : string): Observable<JSON> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/problems/${id}`;
+    return this.http.post<any>(url, [], options);
+  }
+
+  sendProblem(problemeInfo: any, typeUser: string, passNb: string) : Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    
+    const options = { headers: headers };
+
+    console.log(problemeInfo,typeUser);
+
+    if (typeUser == 'citoyen') {
+      const url = `${this.citizenUrl}/problem/`;
+      return this.http.post<any>(url, {
+        email: problemeInfo[0],
+        type: problemeInfo[1],
+        title: problemeInfo[2],
+        message: problemeInfo[3]
+      }, options);
+    } else if (typeUser == 'custom'){
+      const url = `${this.customUrl}/problem/`;
+      return this.http.post<any>(url, {
+        passNb: passNb,
+        email: problemeInfo[0],
+        type: problemeInfo[1],
+        title: problemeInfo[2],
+        message: problemeInfo[3]
+      }, options);
+    }
+
+    
+  }
 
 
   //Session

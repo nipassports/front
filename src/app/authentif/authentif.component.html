@@ -1,5 +1,5 @@
 <div class="login-page">
-  <div class="container-fluid">
+  <div class="container-fluid animated fadeIn">
     <div class="row">
       <div class="col-sm-8 m-auto col-sm-8 col-12">
         <div class="log-box">
@@ -27,18 +27,18 @@
             </div>
             <div class="col-sm-7 col-sm-7 col-12">
               <div class="log-content">
-                <h1>{{espace}}</h1>
+                <h1 class=" animated fadeInDown">{{espace}}</h1>
                 <div class="log-body">
                   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
                     <div class="form-group myr-top">
                       <label>Login</label>
                       <input #login type="text" class="form-control custom" id="identifiant" formControlName="identifiant"
-                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="{{placeholder}}"/>
+                        [ngClass]="{ 'is-in valid': submitted && f.identifiant.errors }" placeholder="{{placeholder}}" autocapitalize="off"/>
                     </div>
                     <div class="form-group myr-top">
                       <label>Password</label>
                       <input type="password" class="form-control custom" placeholder="Mot de Passe" id="password"
-                        formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                        formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" autocapitalize="off">
                     </div>
                     <div class="container">
                       <div class="row">

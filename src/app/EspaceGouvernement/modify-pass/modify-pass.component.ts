@@ -286,7 +286,20 @@ export class ModifyPassComponent implements OnInit {
     return trueDate;
   }
 
-  
+  euroDate(date: string): string {
+    let splitDate = date.split('-');
+
+    if( splitDate.indexOf("/") !== -1 ){
+      return  date;
+    }
+    const year = splitDate[0];
+    const month = splitDate[1];
+    const day = splitDate[2];
+    const euDate = day + "/" + month + "/" + year;
+
+    console.log("add pass DATE: "+ euDate);
+    return euDate;
+  }
 
   onSubmit() {
 
@@ -424,6 +437,18 @@ export class ModifyPassComponent implements OnInit {
       })  
 
       this.loading = true;
+
+      let dateOfBirth = this.euroDate(this.f.dateOfBirth.value);
+      let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
+      let dateOfExpiry = this.euroDate(this.f.dateOfExpiry.value);
+
+      this.loginForm.patchValue({
+        dateOfBirth: dateOfBirth,
+        dateOfIssue: dateOfIssue,
+        dateOfExpiry: dateOfExpiry,
+        
+      });
+      
       const pseudoPass = [
 
         this.f.type.value,
