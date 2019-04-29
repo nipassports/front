@@ -401,7 +401,7 @@ export class PassService {
     
     const options = { headers: headers };
 
-    console.log(problemeInfo,typeUser);
+    console.log("FONCTION SEND PROBLEM",problemeInfo,typeUser);
 
     if (typeUser == 'citoyen') {
       const url = `${this.citizenUrl}/problem/`;
@@ -411,7 +411,7 @@ export class PassService {
         title: problemeInfo[2],
         message: problemeInfo[3]
       }, options);
-    } else if (typeUser == 'custom'){
+    } else if (typeUser == 'douanes'){
       const url = `${this.customUrl}/problem/`;
       return this.http.post<any>(url, {
         passNb: passNb,

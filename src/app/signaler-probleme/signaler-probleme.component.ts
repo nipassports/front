@@ -65,6 +65,8 @@ export class SignalerProblemeComponent implements OnInit {
               confirmButtonColor: '#2F404D',
               timer : 6000
             }) 
+            this.form.reset();
+            this.submitted = false;
           }
         },
         async (error) => {
