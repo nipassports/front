@@ -12,8 +12,8 @@
             <p> {{problem.title}}</p>
           </div>
           <div class="col-auto ml-auto pl-2">
-            <div *ngIf="problem.author === true"  title="Problème déclaré par la douane"><i class="fas fa-plane"></i></div>
-            <div *ngIf="problem.author === false" title="Problème déclaré par un citoyen"><i class="fas fa-users"></i></div>
+            <div *ngIf="problem.author === 1"  title="Problème déclaré par la douane"><i class="fas fa-plane"></i></div>
+            <div *ngIf="problem.author === 0" title="Problème déclaré par un citoyen"><i class="fas fa-users"></i></div>
           </div>
         </div>
       </mdb-card-header>
