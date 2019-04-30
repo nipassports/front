@@ -4,146 +4,134 @@
     <h1 class="my_border pl-2 pr-2 pb-1 font-title">Ensemble des passeports</h1>
   </div>
 
-
   <form [formGroup]="searchForm" (ngSubmit)="searchPass()">
-    <div class="d-flex flex-row my_border mt-5">
-
-
+    <div class="row my_border mt-5">
 
       <div class="p-2 font-research">
 
 
         <label> Recherche par numéro de passeport: </label>
         <!-- <input class="search-box  ml-5" /> -->
-        <input type="text" class="search-box ml-5" formControlName="passNb">
-        <button type="submit" class="search-boutton"><i class="fa fa-search"></i></button>
-
-
-
-      </div>
-
-
+          <input type="text" class="search-box ml-5" formControlName="passNb">
+          <button type="submit" class="search-boutton"><i class="fa fa-search"></i></button>
+        </div>
 
       <div class="p-2 ml-auto font-research">
-
         <button class="btn filter" type="button" data-toggle="collapse" data-target="#moreSearch" aria-expanded="true"
           aria-controls="collapseExample" (click)="reset()">
           Filtrer
         </button>
       </div>
 
-
-
-
     </div>
 
 
-    <div class="container">
+    <div class="container-fluid">
 
       <div class="collapse row a justify-content-md-center pt-2" id="moreSearch">
         <div class="ml-2 col-sm-6 col-lg-4 col-xl-3 mb-2" *ngFor="let box of infos">
-  
+
           <div class="row">
-  
+
             <label for="{{box.componentName}}">
-  
+
               <span class="titre">{{box.label}}:</span>
-  
+
             </label>
-  
+
           </div>
-  
+
           <div class="row">
-  
+
             <div class="form-group" *ngIf=" !getComponentTypeSelect(box.type) ">
-  
+
               <input type="{{box.type}}" formControlName="{{box.componentName}}" class="form-control"
                 id="{{box.componentName}}">
-  
-  
+
+
             </div>
-  
+
             <div class="form-group" *ngIf=" getComponentTypeSelect(box.type) ">
-  
+
               <ng-template [ngIf]="getComponentName(box.componentName) === 'type'">
-  
+
                 <select type="text" formControlName="{{box.componentName}}" class="form-control"
                   id="{{box.componentName}}">
-  
+
                   <option value="P">P</option>
-  
+
                 </select>
-  
+
               </ng-template>
-  
-  
+
+
               <ng-template [ngIf]="getComponentName(box.componentName) === 'passOrigin'">
-  
+
                 <select type="text" formControlName="{{box.componentName}}" class="form-control"
                   id="{{box.componentName}}">
-  
+
                   <option value="France">France</option>
-  
+
                 </select>
-  
+
               </ng-template>
-  
+
               <ng-template [ngIf]="getComponentName(box.componentName) === 'sex'">
-  
-                  <select type="text" formControlName="{{box.componentName}}" class="form-control"
-                    id="{{box.componentName}}">
-    
-                    <option value="M">M</option>
-                    <option value="F">F</option>
-                    <option value="NB">NB</option>
-    
-                  </select>
-    
-                </ng-template>
-  
-              <ng-template [ngIf]="getComponentName(box.componentName) === 'validity'">
-  
+
                 <select type="text" formControlName="{{box.componentName}}" class="form-control"
                   id="{{box.componentName}}">
-  
+
+                  <option value="M">M</option>
+                  <option value="F">F</option>
+                  <option value="NB">NB</option>
+
+                </select>
+
+              </ng-template>
+
+              <ng-template [ngIf]="getComponentName(box.componentName) === 'validity'">
+
+                <select type="text" formControlName="{{box.componentName}}" class="form-control"
+                  id="{{box.componentName}}">
+
                   <option value="Valide">Valide</option>
                   <option value="Invalide">Invalide</option>
-  
+
                 </select>
-  
-  
+
+
               </ng-template>
-  
+
             </div>
-  
-  
+
+
           </div>
-  
+
         </div>
 
         <div class="col-sm-6 col-lg-4 col-xl-3 mb-5">
-          <button type="submit" class="research-boutton font-research btn" (click)="buttonClicked('reset')">Reset</button>
+          <button type="submit" class="research-boutton font-research btn"
+            (click)="buttonClicked('reset')">Reset</button>
         </div>
-  
+
         <div class="col-sm-6 col-lg-4 col-xl-3 mb-5">
           <button type="submit" class="research-boutton font-research btn">Rechercher</button>
         </div>
-  
+
       </div>
     </div>
 
   </form>
 
-
-  <div class="container mt-5 mt-custom ">
+  <div class="container mt-5 mt-custom">
 
     <div class="row justify-content-start">
 
-      <div class="col-sm-6 col-lg-4 col-xl-3 mb-5 " *ngFor="let pass of Allpass">
-        <div class="row  pr-3 ">
+      <div class="col-sm-6 col-lg-4 col-xl-3 mb-5  wow animated fadeIn " *ngFor="let pass of Allpass">
+        <div class="row case">
 
           <img src="{{pass.infos.image}}"
-            class="images justify-content-center d-flex align-items-center col-5 border_photo" alt="Photo">
+            class="images justify-content-center align-items-center col-5 border_photo" alt="Photo">
 
 
           <div class="col-7 d-flex item  pl-1 border_item">
@@ -172,8 +160,8 @@
 
           </div>
         </div>
-        <div class="row pr-3 ">
-          <div class="col-sm-12 bouton d-flex justify-content-center align-items-center pb-1 pt-1 "
+        <div class="row case">
+          <div class="col-sm-12 bouton d-flex justify-content-center align-items-center pb-1 pt-1"
             routerLink='/Espace_Gouvernement/Passeports/{{pass.infos.passNb}}'>Consulter</div>
         </div>
 

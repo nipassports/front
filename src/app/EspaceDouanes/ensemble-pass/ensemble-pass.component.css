@@ -1,7 +1,8 @@
 .font-title{
     font-family: 'Advent Pro', sans-serif;
     color:#2F404D;
-    font-size:48px;
+    font-size:3.5em;
+    text-align: center; 
 }
 .item{
     display: block;
@@ -14,11 +15,13 @@
     height: 175px;
     padding-right: 0px !important;
     padding-left: 0px !important;
+    object-fit: cover;
 }
+
 .photo{
     display: block;
-
     height: 175px;
+    width:auto; 
     background-color:black;
     color:white;
 }
@@ -46,6 +49,8 @@
 .my_border{
     border:2px solid #2F404D;
     border-radius: 4px;
+    margin-left : 2em; 
+    margin-right: 2em; 
 }
 
 .font_item{
@@ -177,4 +182,47 @@
     border-left:2px solid #2F404D;
     border-right:2px solid #2F404D;
     border-bottom:2px solid #2F404D;    
+    width:auto;
+    margin-left:3em; 
+    margin-right:3em;  
+}
+
+.case {
+    padding-right: 0.6em; 
+    
+}
+
+
+@media screen  and (max-width: 760px) {
+    .font-title{
+        font-size:2.5em;
+    }
+    .font-research{
+        font-size:1.7em;
+    }
+}
+
+@media screen  and (max-width: 499px) {
+    .font-title{
+        font-size:2em;
+    }
+
+    .font-research{
+        font-size:1.2em;
+    }
+
+    .my_border{
+        margin-left : 0.5em; 
+        margin-right: 0.5em; 
+    }
+    .case {
+        padding-right: 0em; 
+    }
+}
+
+@media screen  and (max-width: 634px) {
+    .row.a{  
+        margin-right: 2em; 
+        margin-left:2em; 
+    }
 }

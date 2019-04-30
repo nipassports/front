@@ -26,8 +26,9 @@ div.col-auto.a {
 }
 
 .image{
-    width:13em;
-    height: auto;
+    height:13em; 
+    width: auto; 
+    object-fit: cover;
 }
 .mt-custom{
     margin-top:5%

@@ -26,8 +26,9 @@ div.col-auto.a {
     padding-top: 2px;
 }
 .image{
-    width:10em;
-    height: auto;
+    height:13em; 
+    width: auto; 
+    object-fit: cover;
 }
 .mt-custom{
     margin-top:5%
