@@ -1,7 +1,15 @@
 
+.btn {
+    box-shadow: none; 
+}
+
+
+
+
 .bg-custom{
     background-color:#2F404D;
     color:#2F404D;
+    box-shadow: 0 5px 5px #b9b6b6; 
 }
 .navbar-dark .navbar-nav .nav-link{
     color: white !important;

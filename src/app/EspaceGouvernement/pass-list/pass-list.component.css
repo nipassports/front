@@ -1,23 +1,27 @@
 .font-title{
     font-family: 'Advent Pro', sans-serif;
     color:#2F404D;
-    font-size:48px;
+    font-size:3.5em;
+    text-align: center; 
 }
 .item{
     display: block;
-
     height: 175px;
-    background-color: #C4C4C4;
+    background-color: white;
+    box-shadow:0px 0px 6px rgb(187, 189, 194);
 }
+
 .images{
     height: 175px;
     padding-right: 0px !important;
     padding-left: 0px !important;
+    object-fit: cover;
 }
+
 .photo{
     display: block;
-
     height: 175px;
+    width:auto; 
     background-color:black;
     color:white;
 }
@@ -45,6 +49,8 @@
 .my_border{
     border:2px solid #2F404D;
     border-radius: 4px;
+    margin-left : 2em; 
+    margin-right: 2em; 
 }
 
 .font_item{
@@ -70,12 +76,20 @@
     font-size: 15px;
     background-color: #5DAC99;
 }
+
+.font_validity.selected{
+    font-family: 'Roboto', sans-serif;
+    color:white;
+    font-size: 15px;
+    background-color: #dd5b5b;
+}
 .bouton:hover{
     border-left:2px solid #2F404D;
     border-right:2px solid #2F404D;
     border-bottom:2px solid #2F404D;
     font-family: 'Roboto', sans-serif;
     color:white;
+    cursor: pointer;  
     background-color:#2F404D
 }
 .bouton{
@@ -88,3 +102,127 @@
 
 }
 
+.filter{
+    background-color:#2F404D
+}
+
+
+.search-boutton:hover{
+    
+    margin-left: -2px;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #2F404D;
+    color:white;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border-top:2px solid gray ;
+    border-right:2px solid gray;
+    border-bottom:2px solid gray;
+}
+
+.search-boutton{
+    
+    margin-left: -2px;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border-top:2px solid gray ;
+    border-right:2px solid gray;
+    border-bottom:2px solid gray;
+}
+
+
+.research-boutton{
+    
+    width: 200px;
+    padding: 10px ;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #2F404D;
+    color: white;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border:2px solid gray;
+}
+
+.research-boutton:hover{
+    
+    width: 200px;
+    padding: 10px ;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #2F404D;
+    color: black;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border:2px solid gray;
+}
+
+.search-box {
+    
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    width: auto;
+    border-left: 2px solid gray;
+    border-bottom: 2px solid gray;
+    border-top: 2px solid gray;
+}
+
+.row.a{
+    border-left:2px solid #2F404D;
+    border-right:2px solid #2F404D;
+    border-bottom:2px solid #2F404D;    
+    width:auto;
+    margin-left:3em; 
+    margin-right:3em;  
+}
+
+.case {
+    padding-right: 0.6em; 
+    
+}
+
+
+@media screen  and (max-width: 760px) {
+    .font-title{
+        font-size:2.5em;
+    }
+    .font-research{
+        font-size:1.7em;
+    }
+}
+
+@media screen  and (max-width: 499px) {
+    .font-title{
+        font-size:2em;
+    }
+
+    .font-research{
+        font-size:1.2em;
+    }
+
+    .my_border{
+        margin-left : 0.5em; 
+        margin-right: 0.5em; 
+    }
+    .case {
+        padding-right: 0em; 
+    }
+}
+
+@media screen  and (max-width: 634px) {
+    .row.a{  
+        margin-right: 2em; 
+        margin-left:2em; 
+    }
+}

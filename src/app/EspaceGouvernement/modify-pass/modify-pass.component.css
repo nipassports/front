@@ -1,0 +1,224 @@
+/* Bandeau création de passeport */
+
+div.container-fluid.navbar div.row {
+    width: 95%;
+    margin-top: 90px;
+    background: #2F404D;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.card-header {
+    margin-top:5em;
+    width:auto; 
+    max-width:58em;  
+    border-radius: 1em;
+    overflow: hidden;
+    justify-content: center; 
+    margin-left:auto; 
+    margin-right:auto; 
+}
+
+
+.col-lg-2 {
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    display: inline-block;
+    border-right: 2px solid #828282;
+    background-color: #C7C6C6;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+  
+
+  
+  
+.card-header {
+    background-color: #2F404D;
+    text-align: center;
+    font-size: 22px;
+    color : white;
+}
+
+
+/* Conteneur du formulaire */
+div.container-fluid.object div.row.object{
+    width: 93%;
+    margin-top: -8px;
+    margin-left: 3.5%;
+    height: 100%;
+    overflow: auto;
+    box-shadow:0px 0px 6px rgb(187, 189, 194);
+   
+}
+
+
+/* Conteneur du Bouton valider */
+div.container-fluid div.row.bouton{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    justify-content: center;
+    overflow: auto;
+}
+
+
+
+
+/*                                    Premiere colonne                              */
+
+div.col-auto.a {
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+input.custom-file-input.input-sm {
+    display: block;
+
+}
+.images{
+
+    height :237px;
+    width : 300px;
+    padding-left:20px;
+    padding-right:20px;
+}
+div.col-auto.a div.row.maPhoto {
+    /*                        Photo                            */
+
+    height : 237px;
+    width : 300px;
+    background: #2F404D;
+    border-radius: 10px;
+    
+}
+
+div.col-auto.a div.row.c {
+    /*                        Signature                            */
+
+    height : 50px;
+    width : 300px;
+    background: #2F404D;
+    border-radius: 10px;
+    align-items: flex-start;
+    display: block;
+    text-align: center;
+}
+
+div.col-auto.a div.row.a {
+    width: 300px;
+}
+/*                                    Deuxième colonne                              */
+
+div.col-xs-2 {
+    margin-right:10px;
+}
+div.col-auto.b {
+    margin-top: 10px;
+    display: inline-block;
+    height: auto;
+    width: auto;
+    margin-left: 30px;
+    align-items: self-start;
+
+}
+
+div.col-auto.c {
+    display: inline-block;
+    margin-bottom: 22px;
+    margin-right: 110px;
+    align-items: self-start;
+}
+
+div.col-auto.cd {
+    display: inline-block;
+    margin-bottom: 22px;
+}
+
+div.row.d{
+    margin-top:5px;
+}
+
+input.GD{
+    width: 400px;
+}
+
+/* div.col-lg-4.nationality{
+    display: flexbox ;
+    justify-content: end;
+} */
+
+div.col.d {
+    display: inline-block;
+}
+
+
+button.generate:hover{
+    cursor: pointer;
+    background-color: #5DAC99;
+    height: 50px;
+    width : 45%;
+    color : white;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+button.generate{
+    cursor: pointer;
+    background-color: #2F404D;
+    height: 50px;
+    width : 45%;
+    color : white;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+img.charge{
+    width: 20%;
+    margin-left: 40%;
+}
+
+/*                             Text                                                         */
+span.titre {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 13px;
+
+    color: #2F404D;
+}
+
+span.trad {
+    margin-left: 5px;
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: 300;
+    line-height: normal;
+    font-size: 11px;
+    color: #2F404D;  
+}
+
+/*                                       Choix multiple                                        */ 
+select {
+    width: 100px;
+}
+
+input {
+    width: 200px;
+    overflow: auto;
+}
+
+
+@media screen and (max-width: 500px) {
+    .card-header {
+        font-size:1em; 
+    }
+    
+}

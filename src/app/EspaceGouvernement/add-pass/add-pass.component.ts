@@ -1,28 +1,46 @@
-import { Component, OnInit, Input, Directive, Inject } from '@angular/core';
-
+import { Component, OnInit, Input, Directive, Inject,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
-import{ImageServiceService}from '../../image-service.service'
+import { ImageServiceService } from '../../image-service.service'
 import { Pass } from '../../pass';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
-
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
+import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
+import { LyTheme2 } from '@alyle/ui';
+import {NgxImageCompressService} from 'ngx-image-compress';
+import {DOC_ORIENTATION} from 'ngx-image-compress/lib/image-compress';
+
+const styles = {
+  actions: {
+    display: 'flex'
+  },
+  cropping: {
+    maxWidth: '310px',
+    height: '400px'
+  },
+  flex: {
+    flex: 1
+  }
+};
 
 
 class ImageSnippet {
-  constructor(public src: string, public file: File) {}
+  constructor(public src: string, public file: File) { }
 }
 
 @Component({
   selector: 'app-add-pass',
   templateUrl: './add-pass.component.html',
-  styleUrls: ['./add-pass.component.css']
+  styleUrls: ['./add-pass.component.css'],
+
 })
 
 
 export class AddPassComponent implements OnInit {
-  imgchanged=false;
+  imgchanged = false;
 
   pass: Pass;
   loginForm: FormGroup;
@@ -31,8 +49,43 @@ export class AddPassComponent implements OnInit {
   loading = false;
   private error: any;
   selectedFile: ImageSnippet;
+  imageChangedEvent: any = '';
 
+
+  imgResultAfterCompress:string;
   buttonValue: string;
+  classes = this.theme.addStyleSheet(styles);
+  croppedImage?: string;
+  @ViewChild(LyResizingCroppingImages) img: LyResizingCroppingImages;
+  result: string;
+  myConfig: ImgCropperConfig = {
+    width: 289, // Default `250`
+    height: 372, // Default `200`,
+    antiAliased:false,
+    autoCrop: true,
+    output: {
+      width: 413,
+      height: 531,
+    }
+  };
+
+  onCropped(e) {
+    this.croppedImage = e.dataURL;
+    console.warn('Size in bytes was:', this.imageCompress.byteCount(this.croppedImage));
+    this.imageCompress.compressFile(this.croppedImage,1,100,25)
+    .then( result => {
+      this.imgResultAfterCompress = result;
+      console.warn('Size in bytes is now:', this.imageCompress.byteCount(result))        }
+      );;
+    console.log(e,e.size);
+  }
+  onloaded(e) {
+    console.log('img loaded', e);
+  }
+  onerror(e) {
+    console.warn(`'${e.name}' is not a valid image`, e);
+  }
+
 
   frInfo = {
     type: 'Type',
@@ -71,77 +124,47 @@ export class AddPassComponent implements OnInit {
     eyesColor: 'Color of eyes',
     dateOfExpiry: 'Date of expiry',
     dateOfIssue: 'Date of issue',
-    passOrigin: "Passeport origine",
+    passOrigin: "Pass origine",
     id: "ID",
     signature: "Holder's signature"
   };
 
 
-  constructor( private formBuilder: FormBuilder, private imageService:ImageServiceService,
-    private pS: PassService,
-    @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
+  constructor(private formBuilder: FormBuilder, private imageService: ImageServiceService,
+    private pS: PassService, private router: Router,
+    @Inject(SESSION_STORAGE) private storage: WebStorageService,private theme: LyTheme2,private imageCompress: NgxImageCompressService) { }
 
   ngOnInit() {
-    if ( this.storage.get("passInfo") !== null ){
-      this.pass= this.storage.get("passInfo");
-      
-      console.log(this.pass.dateOfBirth)
 
-      let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
-      let dateOfIssue = this.normalDate(this.pass.dateOfIssue); 
-      let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry); 
-
-      this.loginForm = this.formBuilder.group({
-        photo: ['',Validators.required],
-        signature: ['',Validators.required],
-        passOrigin: ['France', Validators.required],
-        type: ['P', Validators.required],
-        name: [this.pass.name, Validators.required],
-        surname: [this.pass.surname, Validators.required],
-        sex: [this.pass.sex, Validators.required],
-        countryCode: [this.pass.countryCode, Validators.required],
-        height: [this.pass.height, Validators.required],
-        passNb: [this.pass.passNb, Validators.required],
-        dateOfBirth: [dateOfBirth, Validators.required],
-        eyesColor: [this.pass.eyesColor, Validators.required],
-        placeOfBirth: [this.pass.placeOfBirth, Validators.required],
-        residence: [this.pass.residence, Validators.required],
-        autority: [this.pass.autority, Validators.required],
-        dateOfIssue: [dateOfIssue, Validators.required],
-        dateOfExpiry: [dateOfExpiry, Validators.required],
-        nationality: [this.pass.nationality, Validators.required],
-      });
-    
-     }
-     else{
-      this.loginForm = this.formBuilder.group({
-        photo: ['', Validators.required],
-        signature: ['', Validators.required],
-        passOrigin: ['', Validators.required],
-        type: ['', Validators.required],
-        name: ['', Validators.required],
-        surname: ['', Validators.required],
-        sex: ['', Validators.required],
-        countryCode: ['', Validators.required],
-        height: ['', Validators.required],
-        passNb: ['', Validators.required],
-        dateOfBirth: ['', Validators.required],
-        eyesColor: ['', Validators.required],
-        placeOfBirth: ['', Validators.required],
-        residence: ['', Validators.required],
-        autority: ['', Validators.required],
-        dateOfIssue: ['', Validators.required],
-        dateOfExpiry: ['', Validators.required],
-        nationality: ['', Validators.required],
-      });
-     }
+    this.loginForm = this.formBuilder.group({
+      //photo: ['', Validators.required],
+      // signature: ['', Validators.required],
+      passOrigin: ['', Validators.required],
+      type: ['', Validators.required],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      sex: ['', Validators.required],
+      countryCode: [{ value: '', disabled: true }, Validators.required],
+      height: ['', Validators.required],
+      passNb: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      eyesColor: ['', Validators.required],
+      placeOfBirth: ['', Validators.required],
+      residence: ['', Validators.required],
+      autority: ['', Validators.required],
+      dateOfIssue: ['', Validators.required],
+      dateOfExpiry: ['', Validators.required],
+      nationality: ['', Validators.required],
+    });
 
   }
 
+
+
   get f() { return this.loginForm.controls; }
-  
+
   processFile(imageInput: any) {
-    this.imgchanged=true;
+    this.imgchanged = true;
 
     const file: File = imageInput.files[0];
     const reader = new FileReader();
@@ -170,35 +193,102 @@ export class AddPassComponent implements OnInit {
   }
 
 
-  normalDate(date:string): string{
+  normalDate(date: string): string {
     let splitDate = date.split('/');
-    const year  = splitDate[2];
+    const year = splitDate[2];
     const month = splitDate[1];
     const day = splitDate[0];
-    const trueDate = year+"-"+month+"-"+day;
+    const trueDate = year + "-" + month + "-" + day;
     return trueDate;
   }
 
-  onSubmit() {
+  euroDate(date: string): string {
+    let splitDate = date.split('-');
+
+    if( splitDate.indexOf("/") !== -1 ){
+      return  date;
+    }
+    const year = splitDate[0];
+    const month = splitDate[1];
+    const day = splitDate[2];
+    const euDate = day + "/" + month + "/" + year;
+
+    console.log("add pass DATE: "+ euDate);
+    return euDate;
+  }
+
+  async onSubmit() {
 
     console.log("button value: " + this.buttonValue)
 
     if (this.buttonValue === "generate") {
 
+      Swal.fire({
+        html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
+        showConfirmButton: false,
+      })
+
       console.log("before generate: " + this.f.dateOfBirth.value)
-      this.pS.getPassRandom()
+      await this.pS.getPassRandom()
         .subscribe(
           pass => {
             this.pass = pass;
-            this.storage.set("passInfo",this.pass);
-            console.log("pass-detail storage: " + JSON.stringify(this.storage.get("passInfo")));
-            location.reload();
+
+            let dateOfBirth = this.normalDate(this.pass.dateOfBirth);
+            let dateOfIssue = this.normalDate(this.pass.dateOfIssue);
+            let dateOfExpiry = this.normalDate(this.pass.dateOfExpiry);
+
+            this.loginForm.patchValue({
+              passOrigin: 'France',
+              type: 'P',
+              name: this.pass.name,
+              surname: this.pass.surname,
+              sex: this.pass.sex,
+              countryCode: this.pS.getCountryCode(),
+              height: this.pass.height,
+              passNb: this.pass.passNb,
+              dateOfBirth: dateOfBirth,
+              eyesColor: this.pass.eyesColor,
+              placeOfBirth: this.pass.placeOfBirth,
+              residence: this.pass.residence,
+              autority: this.pass.autority,
+              dateOfIssue: dateOfIssue,
+              dateOfExpiry: dateOfExpiry,
+              nationality: this.pass.nationality
+            })
+
+            Swal.fire({
+              type: 'success',
+              text: 'Le passeport a bien été généré !',
+              confirmButtonColor: '#2F404D',
+            })
+
           },
 
-          error => { console.log("pass-detail:ERROR " + error) }
-        );  
-      
-        
+          async (error) => {
+            console.log(" modify pass info: ERROR: " + error.error.message);
+
+            if(error.error.message === "Auth failed"){
+              await Swal.fire({
+                type: 'warning',
+                title: "Votre session vient d'expirer !",
+                confirmButtonColor: '#2F404D',
+              })
+
+              this.pS.clean();
+              this.router.navigate(['/Se_connecter']);
+            }
+            else{
+              Swal.fire({
+                type: 'warning',
+                title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+                confirmButtonColor: '#2F404D',
+              })
+            }
+
+          }
+        );
+
     }
 
     if (this.buttonValue === "valider") {
@@ -212,10 +302,22 @@ export class AddPassComponent implements OnInit {
       Swal.fire({
         html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
         showConfirmButton: false,
-        allowOutsideClick: () => !Swal.isLoading(),
-      })  
-      
+        allowOutsideClick: false,
+      })
+
       this.loading = true;
+
+      let dateOfBirth = this.euroDate(this.f.dateOfBirth.value);
+      let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
+      let dateOfExpiry = this.euroDate(this.f.dateOfExpiry.value);
+
+      this.loginForm.patchValue({
+        dateOfBirth: dateOfBirth,
+        dateOfIssue: dateOfIssue,
+        dateOfExpiry: dateOfExpiry,
+        
+      });
+
       const pseudoPass = [
 
         this.f.type.value,
@@ -235,29 +337,33 @@ export class AddPassComponent implements OnInit {
         this.f.dateOfIssue.value,
         this.f.passOrigin.value,
         "Valide",
-        this.imageService.IMGbase64
+        this.imgResultAfterCompress
       ]
 
+      console.log("Pseudo PAss: "+ pseudoPass);
+
+      console.log("pseudo pass: " + pseudoPass);
       this.pS.addPass(pseudoPass)
         .pipe(first())
         .subscribe(
           data => {
 
-            //console.log('connect: ' + data.message);
+            console.log('connect: ' + data.message);
 
             if (data.message === 'Transaction has been submitted') {
-              var message : string; 
+              var message: string;
               message = "<b> Identifiant: </b> " + this.f.passNb.value +
-              "<br> <b> Mot de passe:</b> " + data.password; 
+                "<br> <b> Mot de passe:</b> " + data.password;
               Swal.fire({
                 title: 'Passeport ajouté !',
                 html: message,
                 type: 'success',
-                confirmButtonText: 'Fermer', 
+                confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer : 6000
-              })             
+      
+              })
               this.loading = false;
+              this.router.navigate(['/Espace_Gouvernement']);
             }
 
             else {
@@ -265,22 +371,37 @@ export class AddPassComponent implements OnInit {
                 title: 'Problème',
                 text: 'Veuillez ré-essayer.',
                 type: 'error',
-                confirmButtonText: 'Fermer', 
+                confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer : 6000
-              })   
+                
+              })
             }
           },
 
-          error => {
-            console.log('ERROR: ' + JSON.stringify(error));
-            this.error = JSON.stringify(error);
-            // this.loading = false;
+          async (error) => {
+            console.log(" modify pass info: ERROR: " + error.error.message);
+
+            if(error.error.message === "Auth failed"){
+              await Swal.fire({
+                type: 'warning',
+                title: "Votre session vient d'expirer !",
+                confirmButtonColor: '#2F404D'
+              })
+
+              this.pS.clean();
+              this.router.navigate(['/Se_connecter']);
+            }
+            else{
+              Swal.fire({
+                type: 'warning',
+                title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+                confirmButtonColor: '#2F404D',
+              })
+            }
+
           }
+
         );
     }
-
-
-
   }
 }

@@ -1,125 +1,142 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="container-fluid object justify-content-center mt-4">
-
-    <div class="row object justify-content-center">
-
-      <div class="col-auto b d-inline-flex bd-highlight mt-2" *ngFor="let visaInput of visaInfos">
-
-        <div class="col-auto c">
-
-          <!------------------------------------------------------------------------------------------------>
-
-          <div class="row a">
-
-            <label for="{{visaInput.componentName}}">
-
-              <span class="titre">{{visaInput.label}}:</span>
-
-            </label>
-
-          </div>
-
-          <div class="row a ">
-
-            <div class="form-group" *ngIf=" !getComponentTypeSelect(visaInput.type) ">
-
-              <input type="{{visaInput.type}}" formControlName="{{visaInput.componentName}}" class="form-control"
-                id="{{visaInput.componentName}}"
-                [ngClass]="{ 'is-invalid': getComponentError(visaInput.componentName) }">
+<div class="container ">
+  <div class="row">
 
 
+    <div class="col-12 justifiy-content-center">
+      <p class="card-header container-fluid">
+        Ajout d'un Visa
+      </p>
+    </div>
 
-              <div *ngIf="getComponentError(visaInput.componentName)" class="invalid-feedback">
-                <div *ngIf="getComponentErrorRequired(visaInput.componentName)">
-                  Veuillez remplir ce champ
+
+    <div class="col-12">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="container grey">
+              <div class="row mt-4">
+        
+
+            <div class="col-auto b d-inline-flex bd-highlight mt-2" *ngFor="let visaInput of visaInfos">
+
+              <div class="col-auto c">
+
+                <!------------------------------------------------------------------------------------------------>
+
+                <div class="row a">
+
+                  <label for="{{visaInput.componentName}}">
+
+                    <span class="titre">{{visaInput.label}}:</span>
+
+                  </label>
+
+                </div>
+
+                <div class="row a ">
+
+                  <div class="form-group" *ngIf=" !getComponentTypeSelect(visaInput.type) ">
+
+                    <input type="{{visaInput.type}}" formControlName="{{visaInput.componentName}}" class="form-control"
+                      id="{{visaInput.componentName}}"
+                      [ngClass]="{ 'is-invalid': getComponentError(visaInput.componentName) }">
+
+
+
+                    <div *ngIf="getComponentError(visaInput.componentName)" class="invalid-feedback">
+                      <div *ngIf="getComponentErrorRequired(visaInput.componentName)">
+                        Veuillez remplir ce champ
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group" *ngIf=" getComponentTypeSelect(visaInput.type) ">
+
+                    <ng-template [ngIf]="getComponentName(visaInput.componentName) === 'type'">
+
+                      <select type="text" formControlName="{{visaInput.componentName}}" class="form-control"
+                        id="{{visaInput.componentName}}"
+                        [ngClass]="{ 'is-invalid': getComponentError(visaInput.componentName) }">
+
+                        <option value="C">C</option>
+
+                      </select>
+
+                      <div *ngIf="getComponentError(visaInput.componentName)" class="invalid-feedback">
+                        <div *ngIf="getComponentErrorRequired(visaInput.componentName)">
+                          Veuillez remplir ce champ
+                        </div>
+                      </div>
+
+                    </ng-template>
+
+
+                    <ng-template [ngIf]="getComponentName(visaInput.componentName) === 'entries'">
+
+                      <select type="text" formControlName="{{visaInput.componentName}}" class="form-control"
+                        id="{{visaInput.componentName}}"
+                        [ngClass]="{ 'is-invalid': getComponentError(visaInput.componentName) }">
+
+                        <option value="Mult">Mult</option>
+                        <option value="Single">Single</option>
+
+                      </select>
+
+                      <div *ngIf="getComponentError(visaInput.componentName)" class="invalid-feedback">
+                        <div *ngIf="getComponentErrorRequired(visaInput.componentName)">
+                          Veuillez remplir ce champ
+                        </div>
+                      </div>
+
+                    </ng-template>
+
+                    <ng-template [ngIf]="getComponentName(visaInput.componentName) === 'validity'">
+
+                      <select type="text" formControlName="{{visaInput.componentName}}" class="form-control"
+                        id="{{visaInput.componentName}}"
+                        [ngClass]="{ 'is-invalid': getComponentError(visaInput.componentName) }">
+
+                        <option value="Valide">Valide</option>
+                        <option value="Invalide">Invalide</option>
+
+                      </select>
+
+                      <div *ngIf="getComponentError(visaInput.componentName)" class="invalid-feedback">
+                        <div *ngIf="getComponentErrorRequired(visaInput.componentName)">
+                          Veuillez remplir ce champ
+                        </div>
+                      </div>
+
+                    </ng-template>
+
+                  </div>
+
+
                 </div>
               </div>
+              <!------------------------------------------------------------------------------------------------>
 
+            </div> <!--  d-inline-flex -->
+            <div class="container-fluid bouton mt-2">
+              <div class="row bouton justify-content-end">
+          
+                <!-- <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
+                  Génerer
+                </button> -->
+          
+                <button class="btn btn-custom generate" (click)="buttonClicked('valider')">
+                  Valider
+                </button>
+          
+              </div>
             </div>
+</div>  
 
-            <div class="form-group" *ngIf=" getComponentTypeSelect(visaInput.type) ">
-
-              <ng-template [ngIf]="getComponentName(visaInput.componentName) === 'type'">
-
-                <select type="text" formControlName="{{visaInput.componentName}}" class="form-control"
-                  id="{{visaInput.componentName}}"
-                  [ngClass]="{ 'is-invalid': getComponentError(visaInput.componentName) }">
-
-                  <option value="C">C</option>
-
-                </select>
-
-                <div *ngIf="getComponentError(visaInput.componentName)" class="invalid-feedback">
-                  <div *ngIf="getComponentErrorRequired(visaInput.componentName)">
-                    Veuillez remplir ce champ
-                  </div>
-                </div>
-
-              </ng-template>
+        </div> <!-- container-fluid object-->
 
 
-              <ng-template [ngIf]="getComponentName(visaInput.componentName) === 'entries'">
-
-                <select type="text" formControlName="{{visaInput.componentName}}" class="form-control"
-                  id="{{visaInput.componentName}}"
-                  [ngClass]="{ 'is-invalid': getComponentError(visaInput.componentName) }">
-
-                  <option value="Mult">Mult</option>
-                  <option value="Single">Single</option>
-
-                </select>
-
-                <div *ngIf="getComponentError(visaInput.componentName)" class="invalid-feedback">
-                  <div *ngIf="getComponentErrorRequired(visaInput.componentName)">
-                    Veuillez remplir ce champ
-                  </div>
-                </div>
-
-              </ng-template>
-
-              <ng-template [ngIf]="getComponentName(visaInput.componentName) === 'validity'">
-
-                <select type="text" formControlName="{{visaInput.componentName}}" class="form-control"
-                  id="{{visaInput.componentName}}"
-                  [ngClass]="{ 'is-invalid': getComponentError(visaInput.componentName) }">
-
-                  <option value="Valide">Valide</option>
-                  <option value="Invalide">Invalide</option>
-
-                </select>
-
-                <div *ngIf="getComponentError(visaInput.componentName)" class="invalid-feedback">
-                  <div *ngIf="getComponentErrorRequired(visaInput.componentName)">
-                    Veuillez remplir ce champ
-                  </div>
-                </div>
-
-              </ng-template>
-
-            </div>
-
-
-          </div>
-        </div>
-        <!------------------------------------------------------------------------------------------------>
-
-      </div> <!--  d-inline-flex -->
-    </div> <!-- Fin row object-->
-
-  </div> <!-- container-fluid object-->
-
-  <div class="container-fluid bouton mt-2">
-    <div class="row bouton justify-content-end">
-
-      <!-- <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
-        Génerer
-      </button> -->
-
-      <button class="btn btn-custom generate" (click)="buttonClicked('valider')">
-        Valider
-      </button>
-
+        <p>{{image?.replace("data:image/png;base64,", "")}}</p>
+      </form>
     </div>
   </div>
-  <p>{{image?.replace("data:image/png;base64,", "")}}</p>
-</form>
+
+</div>

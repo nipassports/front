@@ -15,11 +15,9 @@ export class PassViewComponent implements OnInit {
   selectedVue: string;
 
   passBar = [ 
-    'Passeport',
-    'Visa',
-    'Autre',
-
-    'Ajout VISA'
+    {title:'Passeport',link:'Passeport'},
+    {title:'Visa',link:'Visa'},
+    {title:'Problèmes',link:'Problem'},
 
   ];
 

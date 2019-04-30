@@ -1,0 +1,45 @@
+.container#element {
+    margin-top: 4em;
+}
+
+.container#corps {
+    margin-top: 11em;
+}
+
+mdb-card-header {
+    background-color:#2F404D;  
+    color:white; 
+}
+
+mdb-card-text {
+    color:#2F404D; 
+}
+
+
+button {
+    background-color: #2F404D; 
+    color:white; 
+}
+
+
+button:hover {
+    background-color: #5DAC99;
+    color:white; 
+}
+
+#bottom {
+    margin-bottom:0.5em; 
+}
+
+
+#titre {
+    text-transform: uppercase; 
+}
+
+.title {
+    background-color:#5DAC99; 
+}
+
+b {
+    color : #5DAC99; 
+}

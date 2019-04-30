@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthCustomComponent } from './auth-custom.component';
+import { AccueilgouvComponent } from './accueilgouv.component';
 
-describe('AuthCustomComponent', () => {
-  let component: AuthCustomComponent;
-  let fixture: ComponentFixture<AuthCustomComponent>;
+describe('AccueilgouvComponent', () => {
+  let component: AccueilgouvComponent;
+  let fixture: ComponentFixture<AccueilgouvComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthCustomComponent ]
+      declarations: [ AccueilgouvComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthCustomComponent);
+    fixture = TestBed.createComponent(AccueilgouvComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

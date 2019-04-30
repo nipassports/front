@@ -1,0 +1,42 @@
+.mt-custom{
+    margin-top: 50px;
+    }
+    
+    .card{
+        background-color: #2F404D;
+        border-radius:4px !important;
+        border-left:0;
+        border-right:0;
+    }
+    
+    .card-body{
+        background-color: whitesmoke;
+        color:#2F404D;
+    }
+    
+    .btn{
+        color:white;
+        box-shadow: 0 0 0 0; 
+        text-decoration: none; 
+    }
+    
+    
+    .valid{
+        background-color: #5DAC99;
+        width:100px;
+        font-weight:bold;
+        text-transform: capitalize;
+    }
+    
+    span{
+        font-weight:bold;
+    }
+
+b {
+    color:#5DAC99; 
+}
+
+.fa-check-circle {
+    color : #5DAC99; 
+    size: 10%; 
+}

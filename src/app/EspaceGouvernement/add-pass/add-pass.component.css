@@ -1,48 +1,48 @@
 /* Bandeau création de passeport */
 
-div.container-fluid.navbar div.row {
-    width: 95%;
-    margin-top: 90px;
-    background: #2F404D;
-    border-radius: 10px;
-    overflow: hidden;
+.grey {
+    width: 97%;
+    height: 550px;
+    overflow: auto;
+    margin-top:-5px; 
+    margin-left:3.5%;
+    background-color: white !important;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 4px;
+    z-index: 0;
+    box-shadow:0px 0px 6px rgb(187, 189, 194);
 }
-  
-
-
-.col-lg-2 {
-    cursor: pointer;
-    width: 100%;
-    height: 50px;
-    display: inline-block;
-    border-right: 2px solid #828282;
-    background-color: #C7C6C6;
-    text-align: center;
-    border-radius: 10px;
-    overflow: hidden;
+.color{
+    color:#2F404D;
 }
-  
-
-  
-  
 .card-header {
+    z-index: 1;
+    position: relative;
+    margin-top:4em;
+    width:105%;   
+    border-radius: 30px;
+    overflow: hidden;
+    justify-content: center; 
     background-color: #2F404D;
     text-align: center;
     font-size: 22px;
     color : white;
 }
 
+.col-lg-2 {
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    display: inline-block;
 
-/* Conteneur du formulaire */
-div.container-fluid.object div.row.object{
-    width: 93%;
-    margin-top: -8px;
-    margin-left: 3.5%;
-    height: 100%;
-    background-color: #C4C4C4;
-    overflow: auto;
-   
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
 }
+
+
+
 
 
 /* Conteneur du Bouton valider */
@@ -55,8 +55,6 @@ div.container-fluid div.row.bouton{
 }
 
 
-
-
 /*                                    Premiere colonne                              */
 
 div.col-auto.a {
@@ -67,11 +65,9 @@ div.col-auto.a {
 
 input.custom-file-input.input-sm {
     display: block;
-
 }
 .images{
-
-    height :250px;
+    height :237px;
     width : 300px;
     padding-left:20px;
     padding-right:20px;
@@ -79,24 +75,14 @@ input.custom-file-input.input-sm {
 div.col-auto.a div.row.maPhoto {
     /*                        Photo                            */
 
-    height : 250px;
+    height : 237px;
     width : 300px;
     background: #2F404D;
     border-radius: 10px;
     
 }
 
-div.col-auto.a div.row.c {
-    /*                        Signature                            */
 
-    height : 50px;
-    width : 300px;
-    background: #2F404D;
-    border-radius: 10px;
-    align-items: flex-start;
-    display: block;
-    text-align: center;
-}
 
 div.col-auto.a div.row.a {
     width: 300px;
@@ -132,9 +118,7 @@ div.row.d{
     margin-top:5px;
 }
 
-input.GD{
-    width: 400px;
-}
+
 
 /* div.col-lg-4.nationality{
     display: flexbox ;
@@ -195,11 +179,15 @@ span.trad {
 }
 
 /*                                       Choix multiple                                        */ 
-select {
-    width: 100px;
-}
 
-input {
-    width: 200px;
-    overflow: auto;
+
+
+
+
+
+@media screen and (max-width: 500px) {
+    .card-header {
+        font-size:1em; 
+    }
+    
 }

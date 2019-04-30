@@ -12,20 +12,19 @@ export class ToolbarComponent implements OnInit {
 
   constructor(@Inject(SESSION_STORAGE) private storage: WebStorageService,private viewService: ViewService) { }
   ongletNav =[
-    'Accueil',
-    //'Mon Passeport',
-    'FAQ',
-    'Se connecter',
-    //'Ajout Passeport',
-    //'Liste des Passeports'
+    {title:'Accueil',link:'Accueil'},
+    {title:'FAQ',link:'FAQ'},
+    {title:'Se connecter', link:'Se_connecter'}
   ];
+
   ngOnInit() {
     if ( this.storage.get("view") !== null ){
     this.viewService.setView(this.storage.get('view'));
     }
   }
-  onClick(vue: string): void{
-    this.viewService.setView(vue);
+  onClick(vue: any): void{
+    console.log("la vue est :"+vue);
+    this.viewService.setView(vue.title);
     this.storage.set("view",vue);
     console.log("selectedVue:" + this.viewService.getView() + ", vue:" + vue );
   }

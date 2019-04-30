@@ -1,0 +1,68 @@
+div {
+    text-decoration: none; 
+}
+
+.my-card
+{
+    position:absolute;
+    color: #2F404D; 
+    left:40%;
+    top:-20px;
+    border-radius:50%;
+}
+
+.my-card:hover
+{
+    color: #5DAC99; 
+}
+
+
+.container-fluid {
+    margin-top:15em; 
+    justify-content: center; 
+    margin-bottom:9.1em; 
+
+}
+
+
+
+.col-md {
+    margin-bottom:2em; 
+}
+
+.card.border.mx-sm-2.p-3:hover {
+   background-color: #5DAC99; 
+}
+
+.card.border.mx-sm-2.p-3 {
+    background-color: #2F404D; 
+    color:white; 
+    border-radius: 0.6em; 
+    box-shadow: 0.4em 0.4em blur #d4d2d2; 
+    cursor:pointer; 
+    height: 10em;
+ }
+
+
+p {
+    margin: 4em auto; 
+    font-size: 1em; 
+}
+
+
+@media screen and (max-width: 800px) {
+
+.card.border.mx-sm-2.p-3 {
+    height: auto; 
+    margin: 0em; 
+    padding: 0em; 
+ }
+
+
+ .container-fluid {
+    margin-top: 35%; 
+    margin-left : auto; 
+    margin-bottom:0; 
+}
+
+}

@@ -1,0 +1,44 @@
+<div class="container-fluid animated fadeIn">
+    <div class="row">
+        <div class="col-md">
+            <div class="card border mx-sm-2 p-3">
+                <div class="card border shadow p-3 my-card"><span class="fas fa-user-plus" aria-hidden="true"></span></div>
+                <div class="text-center" routerLink="/Espace_Gouvernement/Ajout_Passeport" (click)="viewstorage('Ajout Passeport')">
+                    <p> Ajout de passeports</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md" *ngIf="global.autority==1">
+            <div class="card border mx-sm-2 p-3">
+                <div class="card border shadow p-3 my-card"><span class="fas fa-user-edit" aria-hidden="true"></span></div>
+                <div class="text-center" routerLink="/Espace_Gouvernement/Modifier_Passeport" (click)="viewstorage('Modifier Passeport') ">
+                    <p>Modification de passeports</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card border mx-sm-2 p-3">
+                <div class="card border shadow p-3 my-card"><span class="fas fa-list" aria-hidden="true"></span></div>
+                <div class="text-center" routerLink="/Espace_Gouvernement/Liste_des_Passeports" (click)="viewstorage('Liste des Passeports')">
+                    <p>Liste des passeports</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card border mx-sm-2 p-3">
+                <div class="card border shadow p-3 my-card"><span class="fas fa-exclamation-triangle" aria-hidden="true"></span></div>
+                <div class="text-center" routerLink="/Espace_Gouvernement/Gestion_des_Problèmes" (click)="viewstorage('Gestion des problèmes')">
+                    <p>Gestion des problèmes</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card border mx-sm-2 p-3">
+                <div class="card border shadow p-3 my-card"><span class="fas fa-address-card" aria-hidden="true"></span></div>
+                <div class="text-center" routerLink="/Espace_Gouvernement/Ajout_Visa" (click)="viewstorage('Ajout Visa')">
+                    <p>Ajout de Visa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

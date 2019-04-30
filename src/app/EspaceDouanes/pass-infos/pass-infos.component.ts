@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Pass } from '../../pass';
 import { AuthentificationService } from '../../Service/authentification.service';
 import { PassService } from '../../Service/pass.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -59,7 +60,7 @@ export class PassInfosComponent implements OnInit {
     signature: "Holder's signature"
   };
 
-  constructor( private pS : PassService,private auth: AuthentificationService, private route:ActivatedRoute) { 
+  constructor( private pS : PassService,private auth: AuthentificationService, private route:ActivatedRoute, private router: Router) { 
   }
 
   ngOnInit() {
@@ -74,8 +75,30 @@ export class PassInfosComponent implements OnInit {
     console.log("LE NUM DE PASSPORT RECUPERE est :"+passNb)
     this.pS.getPassInfoDouanes(passNb)
     .subscribe( 
-      pass => {this.pass = pass.infos; this.id = pass.id});
+      pass => {this.pass = pass.infos; this.id = pass.id},
 
+      async (error) => {
+        console.log(" modify pass info: ERROR: " + error.error.message);
+
+        if(error.error.message === "Auth failed"){
+          await Swal.fire({
+            type: 'warning',
+            title: "Votre session vient d'expirer !",
+            confirmButtonColor: '#2F404D'
+          })
+
+          this.pS.clean();
+          this.router.navigate(['/Se_connecter']);
+        }
+        else{
+          Swal.fire({
+            type: 'warning',
+            title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+            confirmButtonColor: '#2F404D',
+          })
+        }
+
+      });
     console.log("pass-detail:"+ this.pass.autority);
 
   }

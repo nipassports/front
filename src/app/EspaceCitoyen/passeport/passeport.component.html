@@ -1,20 +1,18 @@
-<div class="container ">
+<div class="container">
   <div class="row">
-
       <div class="col-12 menu">
            <div class="container">
                <div class="row ">
-                  <div class="col-12 col-sm-12 col-md-3 col-lg-2 d-flex justify-content-center align-items-center mt-2 mr-1 navbtn" routerLink="{{vue}}" [class.selected]="vue === selectedVue"
-                    (click)="onClick(vue)" *ngFor="let vue of passBar">
-                      {{vue}}
+                  <div class="col-12 col-sm-12 col-md-3 col-lg-2 d-flex justify-content-center align-items-center mt-2 mr-1 navbtn" 
+                  routerLink="{{vue.link}}" [class.selected]="vue.title === selectedVue"
+                    (click)="onClick(vue.title)" *ngFor="let vue of passBar">
+                      {{vue.title}}
                   </div>
                </div>
            </div>
       </div>
-
-
     <div class="col-12">
-      <div class="container grey ">
+      <div class="container principal">
         <router-outlet></router-outlet>
       </div>
 

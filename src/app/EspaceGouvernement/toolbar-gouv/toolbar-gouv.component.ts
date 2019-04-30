@@ -14,11 +14,12 @@ export class ToolbarGouvComponent implements OnInit {
 
 
   ongletNav =[
-    {title:'Espace Gouvernement',link:'/Espace Gouvernement',autority:1},
-    {title:'Ajout Passeport',link:'/Espace Gouvernement/Ajout Passeport',autority:1},
-    {title:'Modifier Passeport',link:'/Espace Gouvernement/Modifier Passeport',autority:0},
-    {title:'Liste des Passeports',link:'/Espace Gouvernement/Liste des Passeports',autority:1},
-    {title:'Gestion des problèmes', link:'/Espace Gouvernement/Gestion des Problèmes',autority:1},
+    {title:'Espace Gouvernement',link:'/Espace_Gouvernement',autority:1},
+    {title:'Ajout Passeport',link:'/Espace_Gouvernement/Ajout_Passeport',autority:1},
+    {title:'Modifier Passeport',link:'/Espace_Gouvernement/Modifier_Passeport',autority:0},
+    {title:'Liste des Passeports',link:'/Espace_Gouvernement/Liste_des_Passeports',autority:1},
+    {title:'Gestion des problèmes', link:'/Espace_Gouvernement/Gestion_des_Problèmes',autority:1},
+    {title:'Ajout Visa', link:'/Espace_Gouvernement/Ajout_Visa',autority:1},
     {title:'Se déconnecter', link:'#',autority:1}
   ];
 
@@ -37,11 +38,12 @@ export class ToolbarGouvComponent implements OnInit {
      }
 
      this.ongletNav =[
-      {title:'Espace Gouvernement',link:'/Espace Gouvernement',autority:1},
-      {title:'Ajout Passeport',link:'/Espace Gouvernement/Ajout Passeport',autority:1},
-      {title:'Modifier Passeport',link:'/Espace Gouvernement/Modifier Passeport',autority:this.global.autority},
-      {title:'Liste des Passeports',link:'/Espace Gouvernement/Liste des Passeports',autority:1},
-      {title:'Gestion des problèmes', link:'/Espace Gouvernement/Gestion des Problèmes',autority:1},
+      {title:'Espace Gouvernement',link:'/Espace_Gouvernement',autority:1},
+      {title:'Ajout Passeport',link:'/Espace_Gouvernement/Ajout_Passeport',autority:1},
+      {title:'Modifier Passeport',link:'/Espace_Gouvernement/Modifier_Passeport',autority:this.global.autority},
+      {title:'Liste des Passeports',link:'/Espace_Gouvernement/Liste_des_Passeports',autority:1},
+      {title:'Gestion des problèmes', link:'/Espace_Gouvernement/Gestion_des_Problèmes',autority:1},
+      {title:'Ajout Visa', link:'/Espace_Gouvernement/Ajout_Visa',autority:1},
       {title:'Se déconnecter', link:'#',autority:1}
     ];
 
@@ -59,6 +61,6 @@ export class ToolbarGouvComponent implements OnInit {
       this.storage.remove("passInfo");
       this.router.navigate(['/Accueil']);
     }
-    console.log("selectedVue:" + this.viewService.getView()+ ", vue:" + vue );
+    console.log("selectedVue:" + this.viewService.getView()+ ", vue:" + vue.title );
   }
 }

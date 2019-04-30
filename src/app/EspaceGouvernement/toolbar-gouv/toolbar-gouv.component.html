@@ -1,13 +1,13 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-custom fixed-top">
   <a class="navbar-brand " >
-    <img src="../assets/img/logo-nips.png" class="size">
+    <img src="../assets/img/logo-nips.png" class="size" routerLink="{{Accueil}}">
   </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item" (click)="onClick(vue)" *ngFor="let vue of ongletNav">
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" (click)="onClick(vue)" *ngFor="let vue of ongletNav">
 
               <ng-template [ngIf]="vue.autority==1">
                   <a class="nav-link btn fcol" routerLink="{{vue.link}}" 

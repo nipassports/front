@@ -9,7 +9,6 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 
 
 import { AccueilComponent } from './accueil/accueil.component';
-import { ChooseComponent } from './choose/choose.component';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { PasseportComponent } from './EspaceCitoyen/passeport/passeport.component';
@@ -22,7 +21,7 @@ import { ToolbarCitoyenComponent } from './EspaceCitoyen/toolbar-citoyen/toolbar
 
 import { AddPassComponent } from './EspaceGouvernement/add-pass/add-pass.component';
 import { ToolbarGouvComponent } from './EspaceGouvernement/toolbar-gouv/toolbar-gouv.component';
-import { AccueilGouvComponent } from './EspaceGouvernement/accueil-gouv/accueil-gouv.component';
+
 
 import { ToolbarDouaneComponent } from './EspaceDouanes/toolbar-douane/toolbar-douane.component';
 
@@ -32,10 +31,6 @@ import { GlobalToolbarInfo } from './globalToolbarInfo';
 
 import { AffichagePassComponent } from './EspaceDouanes/affichage-pass/affichage-pass.component';
 import { PassInfosComponent } from './EspaceDouanes/pass-infos/pass-infos.component';
-
-import { AuthcitoyenComponent } from './Authentification/authcitoyen/authcitoyen.component';
-import { AuthGouvComponent } from './Authentification/auth-gouv/auth-gouv.component';
-import { AuthCustomComponent } from './Authentification/auth-custom/auth-custom.component';
 
 import { PassService } from './Service/pass.service';
 import { AuthentificationService } from './Service/authentification.service';
@@ -55,9 +50,21 @@ import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.com
 import { View } from './view';
 import { ViewService } from './Service/view.service';
 import { AuthGuard } from './Service/auth-guard.service';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
-
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AccueilgouvComponent } from './EspaceGouvernement/accueilgouv/accueilgouv.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LyThemeModule, LY_THEME } from '@alyle/ui';
+import { MinimaLight } from '@alyle/ui/themes/minima';
+import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
+import { LyButtonModule } from '@alyle/ui/button';
+import { LyIconModule } from '@alyle/ui/icon';
+import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
+import {NgxImageCompressService} from 'ngx-image-compress';
+import { SignalerProblemeComponent } from './signaler-probleme/signaler-probleme.component';
+import { GouvproblemComponent } from './EspaceGouvernement/gouvproblem/gouvproblem.component';
+import { ProblemDouaneComponent } from './EspaceDouanes/problem-douane/problem-douane.component';
 
 @NgModule({
   declarations: [
@@ -69,19 +76,14 @@ import { AuthGuard } from './Service/auth-guard.service';
     AutreComponent,
     ProblemComponent,
     AccueilComponent,
-    ChooseComponent,
     AddPassComponent,
     ChangeimgDirective,
-    AuthcitoyenComponent,
     EnsemblePassComponent,
     ToolbarCitoyenComponent,
     AffichagePassComponent,
     PassInfosComponent,
-    AuthGouvComponent,
-    AuthCustomComponent,
     ToolbarGouvComponent,
     ToolbarDouaneComponent,
-    AccueilGouvComponent,
     ModifyPassComponent,
     PassListComponent,
     PassIssuesComponent,
@@ -93,6 +95,10 @@ import { AuthGuard } from './Service/auth-guard.service';
     VisagouvComponent,
     AuthentifComponent,
     PageNonTrouveeComponent,
+    AccueilgouvComponent,
+    SignalerProblemeComponent,
+    GouvproblemComponent,
+    ProblemDouaneComponent,
 
   ],
   imports: [
@@ -101,8 +107,15 @@ import { AuthGuard } from './Service/auth-guard.service';
     ReactiveFormsModule,
     NgbModule,
     FormsModule,
+    ImageCropperModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot(),
+    BrowserAnimationsModule,
+    LyThemeModule.setTheme('minima-light'),
+    LyIconModule,
+    LyButtonModule,
+    LyResizingCroppingImageModule
   ],
   providers: [PassService,
               ViewService,
@@ -110,7 +123,11 @@ import { AuthGuard } from './Service/auth-guard.service';
               AuthentificationService,
               AppComponent,
               View,
-              AuthGuard
+              AuthGuard,
+              ImageCompressService,
+              ResizeOptions,
+              NgxImageCompressService,
+              { provide: LY_THEME, useClass: MinimaLight, multi: true }
               
              ],
   bootstrap: [AppComponent]
