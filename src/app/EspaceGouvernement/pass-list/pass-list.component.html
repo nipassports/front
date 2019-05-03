@@ -28,6 +28,11 @@
 
     <div class="container-fluid">
 
+      <div *ngIf="loading" class="d-flex justify-content-center"> 
+          <img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />
+      </div>
+      
+
       <div class="collapse row a justify-content-md-center pt-2" id="moreSearch">
         <div class="ml-2 col-sm-6 col-lg-4 col-xl-3 mb-2" *ngFor="let box of infos">
 

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
 import {NgxImageCompressService} from 'ngx-image-compress';
-import {DOC_ORIENTATION} from 'ngx-image-compress/lib/image-compress';
+
 
 const styles = {
   actions: {
@@ -46,7 +46,6 @@ export class AddPassComponent implements OnInit {
   loginForm: FormGroup;
   valid: boolean;
   submitted = false;
-  loading = false;
   private error: any;
   selectedFile: ImageSnippet;
   imageChangedEvent: any = '';
@@ -137,14 +136,14 @@ export class AddPassComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = this.formBuilder.group({
-      //photo: ['', Validators.required],
+      // photo: ['', Validators.required],
       // signature: ['', Validators.required],
       passOrigin: ['', Validators.required],
       type: ['', Validators.required],
       name: ['', Validators.required],
       surname: ['', Validators.required],
       sex: ['', Validators.required],
-      countryCode: [{ value: '', disabled: true }, Validators.required],
+      countryCode: [{ value: this.storage.get("countryCode"), disabled: true }],
       height: ['', Validators.required],
       passNb: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
@@ -156,6 +155,8 @@ export class AddPassComponent implements OnInit {
       dateOfExpiry: ['', Validators.required],
       nationality: ['', Validators.required],
     });
+
+    console.log("err: "+ JSON.stringify(this.f.nationality.errors) + "/" + JSON.stringify(this.f.nationality.errors.required));
 
   }
 
@@ -192,6 +193,21 @@ export class AddPassComponent implements OnInit {
     console.log("buttonClicked value: " + value);
   }
 
+  getComponentError(value: any): boolean {
+    if ( (this.submitted === true) && (this.loginForm.get(value).errors !== null) ){
+      return true;
+    }
+    else
+      return false;
+  }
+
+  getComponentErrorRequired(value: any): boolean{
+    if ((this.submitted === true) && (this.loginForm.get(value).errors.required !== null) ){
+      return true;
+    }
+    else
+      return false;
+  }
 
   normalDate(date: string): string {
     let splitDate = date.split('/');
@@ -295,7 +311,10 @@ export class AddPassComponent implements OnInit {
 
       this.submitted = true;
 
+      console.log("err: "+ this.submitted);
+
       if (this.loginForm.invalid) {
+        console.log("invalid")
         return;
       }
 
@@ -305,7 +324,6 @@ export class AddPassComponent implements OnInit {
         allowOutsideClick: false,
       })
 
-      this.loading = true;
 
       let dateOfBirth = this.euroDate(this.f.dateOfBirth.value);
       let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
@@ -362,7 +380,6 @@ export class AddPassComponent implements OnInit {
                 confirmButtonColor: '#2F404D',
       
               })
-              this.loading = false;
               this.router.navigate(['/Espace_Gouvernement']);
             }
 

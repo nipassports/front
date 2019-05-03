@@ -19,6 +19,7 @@ export class EnsemblePassComponent implements OnInit {
   fakeArray = new Array(16);
   searchForm: FormGroup;
   private buttonValue: string;
+  private loading: boolean = true;
   private infos = [
     { label: 'Validité', componentName: 'validity', type: 'select' },
     { label: 'Type', componentName: 'type', type: 'select' },
@@ -69,7 +70,8 @@ export class EnsemblePassComponent implements OnInit {
     this.pS.getAllPass()
     .subscribe( 
       (Allpass) => {
-         this.Allpass = Allpass
+         this.Allpass = Allpass;
+         this.loading = false;
       },
 
       async (error) => {
