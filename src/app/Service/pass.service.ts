@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, observable } from 'rxjs';
 import { GlobalToolbarInfo } from '../globalToolbarInfo';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { Pass_json } from '../pass_json';
@@ -413,12 +413,18 @@ export class PassService {
       }, options);
     } else if (typeUser == 'douanes'){
       const url = `${this.customUrl}/problem/`;
+      var countryCode: string;
+      this.getPassInfoDouanes(passNb)
+      .subscribe( 
+        data => {countryCode = data.infos.countryCode},
+      )
       return this.http.post<any>(url, {
         passNb: passNb,
         email: problemeInfo[0],
         type: problemeInfo[1],
         title: problemeInfo[2],
-        message: problemeInfo[3]
+        message: problemeInfo[3],
+        countryCode: countryCode
       }, options);
     }
 
