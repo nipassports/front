@@ -10,6 +10,7 @@ import { Visa_json } from '../visa_json';
 import {Visa} from '../visa';
 import { Problem } from "../problem";
 import { Password } from "../password";
+import { ResponseQueueJson } from "../ResponseQueueJson";
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +37,23 @@ export class PassService {
   getCountryCode(){
     return this.storage.get("countryCode");
   }
+
+  getResponseFromHttpRequestWithQueue(requestId: Number): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'bearer ' + this.storage.get("token")
+    });
+    const options = { headers: headers };
+    const url = `${this.gouvUrl}/passport/result/${requestId}`;
+    this.http.get<ResponseQueueJson[]>(url, options)
+    .subscribe(
+      status => {
+        console.log(status)
+      }
+    )     
+    return this.http.get<ResponseQueueJson[]>(url, options);
+  }
+
   //Citizen
 
   getPassInfo(passNb: string): Observable<Pass_json> {
@@ -101,6 +119,7 @@ export class PassService {
   /** POST: add a new Pass to the server */
   addPass(pseudoPass: any): Observable<any> {
     console.log('args: ' + pseudoPass);
+    var id: Number; // Numero de la requete dans la queue
     console.log('getPassInfo = token:' + 'value:' + this.storage.get("token"));
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -108,7 +127,7 @@ export class PassService {
     });
     const options = { headers: headers };
     console.log('VALEUR DE LIMAGE '+pseudoPass[17]);
-    return this.http.post<any>(this.gouvUrl+"/passport",
+    this.http.post<any>(this.gouvUrl+"/passport",
       {
         type: pseudoPass[0],
         countryCode: pseudoPass[1],
@@ -128,7 +147,15 @@ export class PassService {
         passOrigin: pseudoPass[15],
         validity: pseudoPass[16],
         image: pseudoPass[17]
-      }, options);
+      }, options)
+      .subscribe(
+        data => {
+          //id = JSON.parse(data).requestId;
+          console.log("les datat "+ data.toString())
+        }
+      );
+    return this.getResponseFromHttpRequestWithQueue(id);
+
   }
 
   modifyPass(pseudoPass: any){
@@ -421,9 +448,9 @@ export class PassService {
       return this.http.post<any>(url, {
         passNb: passNb,
         email: problemeInfo[0],
-        type: problemeInfo[1],
-        title: problemeInfo[2],
-        message: problemeInfo[3],
+         type: problemeInfo[1],
+         title: problemeInfo[2],
+         message: problemeInfo[3],
         countryCode: countryCode
       }, options);
     }
