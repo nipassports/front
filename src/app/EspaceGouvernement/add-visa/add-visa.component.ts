@@ -19,33 +19,33 @@ export class AddVisaComponent implements OnInit {
   private buttonValue: string;
   private submitted: boolean;
   private loginForm: FormGroup;
-  private sub1 : Subscription;
-  private sub2 : Subscription;
+  private sub1: Subscription;
+  private sub2: Subscription;
   private pass: Pass;
   loading = false;
   submettied = false;
 
   private visaInfos = [
-    { label: 'Numéro de passeport', componentName: 'passNb', type:'text' },
-    { label: 'Validité', componentName: 'validity', type:'select' },
-    { label: 'Type', componentName: 'type', type:'select' },
-    { label: "Nombre d'entrée(s) dans le pays", componentName: 'entries', type:'select' },
-    { label: 'Code du Visa', componentName: 'visaCode', type:'text' }, 
-    { label: 'Pays de validité', componentName: 'validFor', type:'text' },
-    { label: 'Date de début de validité', componentName: 'dateOfIssue', type:'date' },
-    { label: 'Date de fin de validité', componentName: 'dateEnd', type:'date' },
-    { label: 'Durée du séjour', componentName: 'durationOfStay', type:'number' },
-    { label: "Pays de délivrance", componentName: 'placeOfIssue', type:'text' },
-    { label: "Autorité de délivrance du Visa", componentName: 'autority', type:'text' },
-    { label: "Nom", componentName: 'surname', type:'text' },
-    { label: 'Prénom', componentName: 'name', type:'text' },
-    { label: 'Remarques', componentName: 'remarks', type:'text' }
+    { label: 'Numéro de passeport', componentName: 'passNb', type: 'text' },
+    { label: 'Validité', componentName: 'validity', type: 'select' },
+    { label: 'Type', componentName: 'type', type: 'select' },
+    { label: "Nombre d'entrée(s) dans le pays", componentName: 'entries', type: 'select' },
+    { label: 'Code du Visa', componentName: 'visaCode', type: 'text' },
+    { label: 'Pays de validité', componentName: 'validFor', type: 'text' },
+    { label: 'Date de début de validité', componentName: 'dateOfIssue', type: 'date' },
+    { label: 'Date de fin de validité', componentName: 'dateEnd', type: 'date' },
+    { label: 'Durée du séjour', componentName: 'durationOfStay', type: 'number' },
+    { label: "Pays de délivrance", componentName: 'placeOfIssue', type: 'text' },
+    { label: "Autorité de délivrance du Visa", componentName: 'autority', type: 'text' },
+    { label: "Nom", componentName: 'surname', type: 'text' },
+    { label: 'Prénom', componentName: 'name', type: 'text' },
+    { label: 'Remarques', componentName: 'remarks', type: 'text' }
 
   ]
 
-  constructor(private formBuilder: FormBuilder,private router: Router,
+  constructor(private formBuilder: FormBuilder, private router: Router,
     @Inject(SESSION_STORAGE) private storage: WebStorageService,
-  private pS: PassService) { }
+    private pS: PassService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -59,10 +59,10 @@ export class AddVisaComponent implements OnInit {
       durationOfStay: ['', Validators.required],
       placeOfIssue: ['', Validators.required],
       autority: ['', Validators.required],
-      surname: [{value: '', disabled: true}, Validators.required],
-      name: [{value: '', disabled: true}, Validators.required],
+      surname: [{ value: '', disabled: true }, Validators.required],
+      name: [{ value: '', disabled: true }, Validators.required],
       remarks: [' ', Validators.required],
-      passNb: [{value: '', disabled: true}, Validators.required]
+      passNb: [{ value: '', disabled: true }, Validators.required]
     });
     Swal.fire({
 
@@ -96,7 +96,7 @@ export class AddVisaComponent implements OnInit {
       // Vérifie si le passeport existe
       preConfirm: (data) => {
         console.log("Add visa: " + data);
-        
+
         Swal.fire({
           html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
           showConfirmButton: false,
@@ -110,7 +110,7 @@ export class AddVisaComponent implements OnInit {
             (pass) => { /* Chargement des infos necessaires */
               this.loading = true;
               if (pass.infos !== undefined) {
-                this.pass = pass.infos; 
+                this.pass = pass.infos;
 
                 this.loginForm.patchValue({
                   name: this.pass.name,
@@ -132,17 +132,17 @@ export class AddVisaComponent implements OnInit {
             async (error) => {
               console.log(" add visa info: ERROR: " + error.error.message);
 
-              if(error.error.message === "Auth failed"){
+              if (error.error.message === "Auth failed") {
                 await Swal.fire({
                   type: 'warning',
                   title: "Votre session vient d'expirer !",
                   confirmButtonColor: '#2F404D'
                 })
-  
+
                 this.pS.clean();
                 this.router.navigate(['/Se_connecter']);
               }
-              else{
+              else {
                 Swal.fire({
                   type: 'warning',
                   title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
@@ -153,12 +153,12 @@ export class AddVisaComponent implements OnInit {
           ) // Fin suscribe
       }, // Fin preConfirm
     }) //Fin de Swal.fire
-    .then(reason => {
-      console.log(" add visa exit: " + reason.dismiss + " Swal.DismissReason.cancel: " + Swal.DismissReason.cancel);
-      if (reason.dismiss === Swal.DismissReason.cancel) {
-        this.router.navigate(['/Espace_Gouvernement']);
-      }
-    });
+      .then(reason => {
+        console.log(" add visa exit: " + reason.dismiss + " Swal.DismissReason.cancel: " + Swal.DismissReason.cancel);
+        if (reason.dismiss === Swal.DismissReason.cancel) {
+          this.router.navigate(['/Espace_Gouvernement']);
+        }
+      });
 
   }
 
@@ -170,24 +170,24 @@ export class AddVisaComponent implements OnInit {
   }
 
   getComponentError(value: any): boolean {
-    if ( (this.submitted === true) && (this.loginForm.get(value).errors !== null) ){
+    if ((this.submitted === true) && (this.loginForm.get(value).errors !== null)) {
       return true;
     }
     else
       return false;
   }
 
-  getComponentErrorRequired(value: any): boolean{
-    if ((this.submitted === true) && (this.loginForm.get(value).errors.required !== null) ){
+  getComponentErrorRequired(value: any): boolean {
+    if ((this.submitted === true) && (this.loginForm.get(value).errors.required !== null)) {
       return true;
     }
     else
       return false;
   }
 
-  getComponentTypeSelect(value:string): boolean{
+  getComponentTypeSelect(value: string): boolean {
 
-    if (value === 'select'){
+    if (value === 'select') {
       return true;
     }
     else
@@ -195,8 +195,23 @@ export class AddVisaComponent implements OnInit {
 
   }
 
-  getComponentName(value:string): string{
+  getComponentName(value: string): string {
     return value;
+  }
+
+  euroDate(date: string): string {
+    let splitDate = date.split('-');
+
+    if( splitDate.indexOf("/") !== -1 ){
+      return  date;
+    }
+    const year = splitDate[0];
+    const month = splitDate[1];
+    const day = splitDate[2];
+    const euDate = day + "/" + month + "/" + year;
+
+    console.log("add pass DATE: "+ euDate);
+    return euDate;
   }
 
   onSubmit() {
@@ -204,7 +219,7 @@ export class AddVisaComponent implements OnInit {
 
       this.submitted = true;
 
-      console.log("submitted: "+ this.loginForm.invalid);
+      console.log("submitted: " + this.loginForm.invalid);
       if (this.loginForm.invalid) {
         console.log("PB");
         return;
@@ -213,60 +228,81 @@ export class AddVisaComponent implements OnInit {
       Swal.fire({
         html: '<img class="charge" *ngIf="loading" src="../../../assets/img/loading_nip.gif" />',
         showConfirmButton: false,
-      })  
+      })
 
       console.log("ok");
+
+      let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
+      let dateOfExpiry = this.euroDate(this.f.durationOfStay.value);
+
       const visaInfo = [
         this.f.type.value,
         this.f.visaCode.value,
-        this.f.passNb.value ,
-        this.f.name.value ,
-        this.f.surname.value ,
-        this.f.autority.value ,
-        this.f.dateEnd.value ,
-        this.f.dateOfIssue.value ,
-        this.f.placeOfIssue.value ,
-        this.f.validity.value  ,
-        this.f.validFor.value  ,
-        this.f.entries.value  ,
-        this.f.durationOfStay.value,
+        this.f.passNb.value,
+        this.f.name.value,
+        this.f.surname.value,
+        this.f.autority.value,
+        this.f.dateEnd.value,
+        dateOfIssue,
+        this.f.placeOfIssue.value,
+        this.f.validity.value,
+        this.f.validFor.value,
+        this.f.entries.value,
+        dateOfExpiry,
         this.f.remarks.value
       ];
 
       this.sub2 = this.pS.addVisa(visaInfo)
-      .pipe(first())
+        .pipe(first())
         .subscribe(
-          (data: any) => {
-            console.log('addVisa: ' + JSON.stringify(data));
+          id => {
 
-            if (data.message === 'Transaction has been submitted') {
-              var message : string;  
-              Swal.fire({
-                title: 'Visa ajouté !',
-                html: message,
-                type: 'success',
-                confirmButtonText: 'Fermer', 
-                confirmButtonColor: '#2F404D'
-              })             
-       
-            }
+            console.log("dataRequest: " + id)
 
-            else {
-              Swal.fire({
-                title: 'Problème',
-                text: 'Veuillez ré-essayer.',
-                type: 'error',
-                confirmButtonText: 'Fermer', 
-                confirmButtonColor: '#2F404D',
-              
-              })   
-            }
+            this.pS.getResponseFromHttpRequestWithQueue(id.requestId)
+              .then(
+
+                async (resp) => {
+
+                  console.log('connect: ' + JSON.stringify(resp));
+                  //console.log('connect: ' + resp.data.message);
+
+                  if (resp.processingResults === 'Transaction has been submitted') {
+
+                    Swal.fire({
+                      title: 'Visa ajouté !',
+                      type: 'success',
+                      confirmButtonText: 'Fermer',
+                      confirmButtonColor: '#2F404D',
+                      timer: 6000
+                    })
+                  }
+
+                  else {
+                    Swal.fire({
+                      title: 'Problème',
+                      text: 'Veuillez réessayer.',
+                      type: 'error',
+                      confirmButtonText: 'Fermer',
+                      confirmButtonColor: '#2F404D',
+
+                    })
+                  }
+                })
+              .catch(error => {
+                Swal.fire({
+                  type: 'warning',
+                  title: "Une erreur est survenu ! Veuillez réessayer ultérieurement.",
+                  confirmButtonColor: '#2F404D',
+                })
+              })
+
           },
 
           async (error) => {
             console.log(" modify pass info: ERROR: " + error.error.message);
 
-            if(error.error.message === "Auth failed"){
+            if (error.error.message === "Auth failed") {
               await Swal.fire({
                 type: 'warning',
                 title: "Votre session vient d'expirer !",
@@ -276,7 +312,7 @@ export class AddVisaComponent implements OnInit {
               this.pS.clean();
               this.router.navigate(['/Se_connecter']);
             }
-            else{
+            else {
               Swal.fire({
                 type: 'warning',
                 title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
