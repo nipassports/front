@@ -492,12 +492,6 @@ export class ModifyPassComponent implements OnInit {
       let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
       let dateOfExpiry = this.euroDate(this.f.dateOfExpiry.value);
 
-      this.loginForm.patchValue({
-        dateOfBirth: dateOfBirth,
-        dateOfIssue: dateOfIssue,
-        dateOfExpiry: dateOfExpiry,
-        
-      });
       
       const pseudoPass = [
 
@@ -506,7 +500,7 @@ export class ModifyPassComponent implements OnInit {
         this.f.passNb.value,
         this.f.name.value,
         this.f.surname.value,
-        this.f.dateOfBirth.value,
+        dateOfBirth,
         this.f.nationality.value,
         this.f.sex.value,
         this.f.placeOfBirth.value,
@@ -514,8 +508,8 @@ export class ModifyPassComponent implements OnInit {
         this.f.autority.value,
         this.f.residence.value,
         this.f.eyesColor.value,
-        this.f.dateOfExpiry.value,
-        this.f.dateOfIssue.value,
+        dateOfExpiry,
+        dateOfIssue,
         this.f.passOrigin.value,
         "Valide",
         this.imgResultAfterCompress
@@ -523,62 +517,78 @@ export class ModifyPassComponent implements OnInit {
 
       console.log("pseudo pass modify: "+ pseudoPass);
       this.sub3 = this.pS.modifyPass(pseudoPass)
-        .pipe(first())
-        .subscribe(
-          data => {
+      .pipe(first())
+      .subscribe(
+        id => {
 
-            //console.log('connect: ' + data.message);
+          console.log("dataRequest: "+ id)
+          
+          this.pS.getResponseFromHttpRequestWithQueue(id.requestId)
+          .then( 
+            
+            async (resp) => {
+            
+            console.log('connect: ' + JSON.stringify(resp));
+            //console.log('connect: ' + resp.data.message);
 
-            if (data.message === 'Transaction has been submitted') {
-              var message: string;
-
+            if (resp.processingResults === 'Transaction has been submitted') {
+              
               Swal.fire({
                 title: 'Passeport modifié !',
-                html: message,
                 type: 'success',
                 confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
                 timer: 6000
-              })
-              
+})
             }
 
             else {
               Swal.fire({
                 title: 'Problème',
-                text: 'Veuillez ré-essayer.',
+                text: 'Veuillez réessayer.',
                 type: 'error',
                 confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer: 6000
+                
               })
             }
-          },
+          })
+          .catch( error => {
+            Swal.fire({
+              type: 'warning',
+              title: "Une erreur est survenu ! Veuillez réessayer ultérieurement.",
+              confirmButtonColor: '#2F404D',
+            })
+          })
 
-          async (error) => {
-            console.log(" modify pass info: ERROR: " + error.error.message);
+        },
 
-            if(error.error.message === "Auth failed"){
-              await Swal.fire({
-                type: 'warning',
-                title: "Votre session vient d'expirer !",
-                confirmButtonColor: '#2F404D'
-              })
+        async (error) => {
+          console.log(" modify pass info: ERROR: " + error.error.message);
 
-              this.pS.clean();
-              this.router.navigate(['/Se_connecter']);
-            }
-            else{
-              Swal.fire({
-                type: 'warning',
-                title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
-                confirmButtonColor: '#2F404D',
-              })
-            }
+          if(error.error.message === "Auth failed"){
+            await Swal.fire({
+              type: 'warning',
+              title: "Votre session vient d'expirer !",
+              confirmButtonColor: '#2F404D'
+            })
 
+            this.pS.clean();
+            this.router.navigate(['/Se_connecter']);
           }
-          
-        );
+          else{
+            Swal.fire({
+              type: 'warning',
+              title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+              confirmButtonColor: '#2F404D',
+            })
+          }
+
+        }
+
+      );
+
+
     }
   }
 
