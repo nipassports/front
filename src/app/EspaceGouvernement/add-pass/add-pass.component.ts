@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Directive, Inject,ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Directive, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
@@ -10,8 +10,8 @@ import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
-import {NgxImageCompressService} from 'ngx-image-compress';
-import {DOC_ORIENTATION} from 'ngx-image-compress/lib/image-compress';
+import { NgxImageCompressService } from 'ngx-image-compress';
+
 
 const styles = {
   actions: {
@@ -46,13 +46,12 @@ export class AddPassComponent implements OnInit {
   loginForm: FormGroup;
   valid: boolean;
   submitted = false;
-  loading = false;
   private error: any;
   selectedFile: ImageSnippet;
   imageChangedEvent: any = '';
 
 
-  imgResultAfterCompress:string;
+  imgResultAfterCompress: string;
   buttonValue: string;
   classes = this.theme.addStyleSheet(styles);
   croppedImage?: string;
@@ -61,7 +60,7 @@ export class AddPassComponent implements OnInit {
   myConfig: ImgCropperConfig = {
     width: 289, // Default `250`
     height: 372, // Default `200`,
-    antiAliased:false,
+    antiAliased: false,
     autoCrop: true,
     output: {
       width: 413,
@@ -72,12 +71,13 @@ export class AddPassComponent implements OnInit {
   onCropped(e) {
     this.croppedImage = e.dataURL;
     console.warn('Size in bytes was:', this.imageCompress.byteCount(this.croppedImage));
-    this.imageCompress.compressFile(this.croppedImage,1,100,25)
-    .then( result => {
-      this.imgResultAfterCompress = result;
-      console.warn('Size in bytes is now:', this.imageCompress.byteCount(result))        }
+    this.imageCompress.compressFile(this.croppedImage, 1, 100, 25)
+      .then(result => {
+        this.imgResultAfterCompress = result;
+        console.warn('Size in bytes is now:', this.imageCompress.byteCount(result))
+      }
       );;
-    console.log(e,e.size);
+    console.log(e, e.size);
   }
   onloaded(e) {
     console.log('img loaded', e);
@@ -132,19 +132,19 @@ export class AddPassComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private imageService: ImageServiceService,
     private pS: PassService, private router: Router,
-    @Inject(SESSION_STORAGE) private storage: WebStorageService,private theme: LyTheme2,private imageCompress: NgxImageCompressService) { }
+    @Inject(SESSION_STORAGE) private storage: WebStorageService, private theme: LyTheme2, private imageCompress: NgxImageCompressService) { }
 
   ngOnInit() {
 
     this.loginForm = this.formBuilder.group({
-      //photo: ['', Validators.required],
+      // photo: ['', Validators.required],
       // signature: ['', Validators.required],
       passOrigin: ['', Validators.required],
       type: ['', Validators.required],
       name: ['', Validators.required],
       surname: ['', Validators.required],
       sex: ['', Validators.required],
-      countryCode: [{ value: '', disabled: true }, Validators.required],
+      countryCode: [{ value: this.storage.get("countryCode"), disabled: true }],
       height: ['', Validators.required],
       passNb: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
@@ -156,6 +156,8 @@ export class AddPassComponent implements OnInit {
       dateOfExpiry: ['', Validators.required],
       nationality: ['', Validators.required],
     });
+
+    console.log("err: " + JSON.stringify(this.f.nationality.errors) + "/" + JSON.stringify(this.f.nationality.errors.required));
 
   }
 
@@ -192,6 +194,21 @@ export class AddPassComponent implements OnInit {
     console.log("buttonClicked value: " + value);
   }
 
+  getComponentError(value: any): boolean {
+    if ((this.submitted === true) && (this.loginForm.get(value).errors !== null)) {
+      return true;
+    }
+    else
+      return false;
+  }
+
+  getComponentErrorRequired(value: any): boolean {
+    if ((this.submitted === true) && (this.loginForm.get(value).errors.required !== null)) {
+      return true;
+    }
+    else
+      return false;
+  }
 
   normalDate(date: string): string {
     let splitDate = date.split('/');
@@ -205,15 +222,15 @@ export class AddPassComponent implements OnInit {
   euroDate(date: string): string {
     let splitDate = date.split('-');
 
-    if( splitDate.indexOf("/") !== -1 ){
-      return  date;
+    if (splitDate.indexOf("/") !== -1) {
+      return date;
     }
     const year = splitDate[0];
     const month = splitDate[1];
     const day = splitDate[2];
     const euDate = day + "/" + month + "/" + year;
 
-    console.log("add pass DATE: "+ euDate);
+    console.log("add pass DATE: " + euDate);
     return euDate;
   }
 
@@ -268,7 +285,7 @@ export class AddPassComponent implements OnInit {
           async (error) => {
             console.log(" modify pass info: ERROR: " + error.error.message);
 
-            if(error.error.message === "Auth failed"){
+            if (error.error.message === "Auth failed") {
               await Swal.fire({
                 type: 'warning',
                 title: "Votre session vient d'expirer !",
@@ -278,7 +295,7 @@ export class AddPassComponent implements OnInit {
               this.pS.clean();
               this.router.navigate(['/Se_connecter']);
             }
-            else{
+            else {
               Swal.fire({
                 type: 'warning',
                 title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
@@ -295,7 +312,10 @@ export class AddPassComponent implements OnInit {
 
       this.submitted = true;
 
+      console.log("err: " + this.submitted);
+
       if (this.loginForm.invalid) {
+        console.log("invalid")
         return;
       }
 
@@ -305,18 +325,10 @@ export class AddPassComponent implements OnInit {
         allowOutsideClick: false,
       })
 
-      this.loading = true;
 
       let dateOfBirth = this.euroDate(this.f.dateOfBirth.value);
       let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
       let dateOfExpiry = this.euroDate(this.f.dateOfExpiry.value);
-
-      this.loginForm.patchValue({
-        dateOfBirth: dateOfBirth,
-        dateOfIssue: dateOfIssue,
-        dateOfExpiry: dateOfExpiry,
-        
-      });
 
       const pseudoPass = [
 
@@ -325,7 +337,7 @@ export class AddPassComponent implements OnInit {
         this.f.passNb.value,
         this.f.name.value,
         this.f.surname.value,
-        this.f.dateOfBirth.value,
+        dateOfBirth,
         this.f.nationality.value,
         this.f.sex.value,
         this.f.placeOfBirth.value,
@@ -333,55 +345,70 @@ export class AddPassComponent implements OnInit {
         this.f.autority.value,
         this.f.residence.value,
         this.f.eyesColor.value,
-        this.f.dateOfExpiry.value,
-        this.f.dateOfIssue.value,
+        dateOfExpiry,
+        dateOfIssue,
         this.f.passOrigin.value,
         "Valide",
         this.imgResultAfterCompress
       ]
 
-      console.log("Pseudo PAss: "+ pseudoPass);
+      console.log("Pseudo PAss: " + pseudoPass);
 
-      console.log("pseudo pass: " + pseudoPass);
       this.pS.addPass(pseudoPass)
         .pipe(first())
         .subscribe(
-          data => {
+          id => {
 
-            console.log('connect: ' + data.message);
+            console.log("dataRequest: " + id)
 
-            if (data.message === 'Transaction has been submitted') {
-              var message: string;
-              message = "<b> Identifiant: </b> " + this.f.passNb.value +
-                "<br> <b> Mot de passe:</b> " + data.password;
-              Swal.fire({
-                title: 'Passeport ajouté !',
-                html: message,
-                type: 'success',
-                confirmButtonText: 'Fermer',
-                confirmButtonColor: '#2F404D',
-      
+            this.pS.getResponseFromHttpRequestWithQueue(id.requestId)
+              .then(
+
+                async (resp) => {
+
+                  console.log('connect: ' + JSON.stringify(resp));
+                  //console.log('connect: ' + resp.data.message);
+
+                  if (resp.processingResults === 'Transaction has been submitted') {
+                    var message: string;
+                    message = "<b> Identifiant: </b> " + resp.data.passNb +
+                      "<br> <b> Mot de passe:</b> " + resp.data.password;
+                    await Swal.fire({
+                      title: 'Passeport ajouté !',
+                      html: message,
+                      type: 'success',
+                      confirmButtonText: 'Fermer',
+                      confirmButtonColor: '#2F404D',
+
+                    })
+                    this.router.navigate(['/Espace_Gouvernement']);
+                  }
+
+                  else {
+                    Swal.fire({
+                      title: 'Problème',
+                      text: 'Veuillez ré-essayer.',
+                      type: 'error',
+                      confirmButtonText: 'Fermer',
+                      confirmButtonColor: '#2F404D',
+
+                    })
+                  }
+                })
+              .catch(error => {
+                Swal.fire({
+                  type: 'warning',
+                  title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+                  confirmButtonColor: '#2F404D',
+                })
               })
-              this.loading = false;
-              this.router.navigate(['/Espace_Gouvernement']);
-            }
 
-            else {
-              Swal.fire({
-                title: 'Problème',
-                text: 'Veuillez ré-essayer.',
-                type: 'error',
-                confirmButtonText: 'Fermer',
-                confirmButtonColor: '#2F404D',
-                
-              })
-            }
           },
 
           async (error) => {
-            console.log(" modify pass info: ERROR: " + error.error.message);
+            console.log(" add pass info: ERROR: " + error.error.message);
 
-            if(error.error.message === "Auth failed"){
+            if (error.error.message === "Auth failed") {
               await Swal.fire({
                 type: 'warning',
                 title: "Votre session vient d'expirer !",
@@ -391,7 +418,7 @@ export class AddPassComponent implements OnInit {
               this.pS.clean();
               this.router.navigate(['/Se_connecter']);
             }
-            else{
+            else {
               Swal.fire({
                 type: 'warning',
                 title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",

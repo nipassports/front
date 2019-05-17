@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input ,ViewChild} from '@angular/core';
 import { Pass } from '../../pass';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ImageServiceService } from '../../image-service.service';
@@ -8,6 +8,24 @@ import { first } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
+import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
+import { LyTheme2 } from '@alyle/ui';
+import {NgxImageCompressService} from 'ngx-image-compress';
+
+
+const styles = {
+  actions: {
+    display: 'flex'
+  },
+  cropping: {
+    maxWidth: '310px',
+    height: '400px'
+  },
+  flex: {
+    flex: 1
+  }
+};
+
 
 class ImageSnippet {
   constructor(public src: string, public file: File) { }
@@ -32,8 +50,40 @@ export class ModifyPassComponent implements OnInit {
   private sub2 : Subscription;
   private sub3 : Subscription;
   private image: Observable<string>;
-
+  imgResultAfterCompress:string;
   buttonValue: string;
+
+  classes = this.theme.addStyleSheet(styles);
+  croppedImage?: string;
+  @ViewChild(LyResizingCroppingImages) img: LyResizingCroppingImages;
+  result: string;
+  myConfig: ImgCropperConfig = {
+    width: 289, // Default `250`
+    height: 372, // Default `200`,
+    antiAliased:false,
+    autoCrop: true,
+    output: {
+      width: 413,
+      height: 531,
+    }
+  };
+
+  onCropped(e) {
+    this.croppedImage = e.dataURL;
+    console.warn('Size in bytes was:', this.imageCompress.byteCount(this.croppedImage));
+    this.imageCompress.compressFile(this.croppedImage,1,100,25)
+    .then( result => {
+      this.imgResultAfterCompress = result;
+      console.warn('Size in bytes is now:', this.imageCompress.byteCount(result))        }
+      );;
+    console.log(e,e.size);
+  }
+  onloaded(e) {
+    console.log('img loaded', e);
+  }
+  onerror(e) {
+    console.warn(`'${e.name}' is not a valid image`, e);
+  }
 
   frInfo = {
     type: 'Type',
@@ -80,7 +130,7 @@ export class ModifyPassComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private imageService: ImageServiceService, private router: Router,
     private pS: PassService,
-    @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
+    @Inject(SESSION_STORAGE) private storage: WebStorageService,private theme: LyTheme2,private imageCompress: NgxImageCompressService) { }
 
 
   ngOnInit() {
@@ -184,7 +234,7 @@ export class ModifyPassComponent implements OnInit {
                 })
 
                 console.log(this.loginForm.value);
-                this.imageService.IMGbase64 = this.pass.image;
+                this.img.setImageUrl(this.pass.image);
 
 
               }
@@ -383,7 +433,7 @@ export class ModifyPassComponent implements OnInit {
                   })
   
                   console.log(this.loginForm.value);
-                  this.imageService.IMGbase64 = this.pass.image;
+                  this.img.setImageUrl(this.pass.image);
   
                   Swal.fire({
                     type: "success"
@@ -442,12 +492,6 @@ export class ModifyPassComponent implements OnInit {
       let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
       let dateOfExpiry = this.euroDate(this.f.dateOfExpiry.value);
 
-      this.loginForm.patchValue({
-        dateOfBirth: dateOfBirth,
-        dateOfIssue: dateOfIssue,
-        dateOfExpiry: dateOfExpiry,
-        
-      });
       
       const pseudoPass = [
 
@@ -456,7 +500,7 @@ export class ModifyPassComponent implements OnInit {
         this.f.passNb.value,
         this.f.name.value,
         this.f.surname.value,
-        this.f.dateOfBirth.value,
+        dateOfBirth,
         this.f.nationality.value,
         this.f.sex.value,
         this.f.placeOfBirth.value,
@@ -464,71 +508,87 @@ export class ModifyPassComponent implements OnInit {
         this.f.autority.value,
         this.f.residence.value,
         this.f.eyesColor.value,
-        this.f.dateOfExpiry.value,
-        this.f.dateOfIssue.value,
+        dateOfExpiry,
+        dateOfIssue,
         this.f.passOrigin.value,
         "Valide",
-        this.imageService.IMGbase64
+        this.imgResultAfterCompress
       ]
 
       console.log("pseudo pass modify: "+ pseudoPass);
       this.sub3 = this.pS.modifyPass(pseudoPass)
-        .pipe(first())
-        .subscribe(
-          data => {
+      .pipe(first())
+      .subscribe(
+        id => {
 
-            //console.log('connect: ' + data.message);
+          console.log("dataRequest: "+ id)
+          
+          this.pS.getResponseFromHttpRequestWithQueue(id.requestId)
+          .then( 
+            
+            async (resp) => {
+            
+            console.log('connect: ' + JSON.stringify(resp));
+            //console.log('connect: ' + resp.data.message);
 
-            if (data.message === 'Transaction has been submitted') {
-              var message: string;
-
+            if (resp.processingResults === 'Transaction has been submitted') {
+              
               Swal.fire({
                 title: 'Passeport modifié !',
-                html: message,
                 type: 'success',
                 confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
                 timer: 6000
-              })
-              
+})
             }
 
             else {
               Swal.fire({
                 title: 'Problème',
-                text: 'Veuillez ré-essayer.',
+                text: 'Veuillez réessayer.',
                 type: 'error',
                 confirmButtonText: 'Fermer',
                 confirmButtonColor: '#2F404D',
-                timer: 6000
+                
               })
             }
-          },
+          })
+          .catch( error => {
+            Swal.fire({
+              type: 'warning',
+              title: "Une erreur est survenu ! Veuillez réessayer ultérieurement.",
+              confirmButtonColor: '#2F404D',
+            })
+          })
 
-          async (error) => {
-            console.log(" modify pass info: ERROR: " + error.error.message);
+        },
 
-            if(error.error.message === "Auth failed"){
-              await Swal.fire({
-                type: 'warning',
-                title: "Votre session vient d'expirer !",
-                confirmButtonColor: '#2F404D'
-              })
+        async (error) => {
+          console.log(" modify pass info: ERROR: " + error.error.message);
 
-              this.pS.clean();
-              this.router.navigate(['/Se_connecter']);
-            }
-            else{
-              Swal.fire({
-                type: 'warning',
-                title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
-                confirmButtonColor: '#2F404D',
-              })
-            }
+          if(error.error.message === "Auth failed"){
+            await Swal.fire({
+              type: 'warning',
+              title: "Votre session vient d'expirer !",
+              confirmButtonColor: '#2F404D'
+            })
 
+            this.pS.clean();
+            this.router.navigate(['/Se_connecter']);
           }
-          
-        );
+          else{
+            Swal.fire({
+              type: 'warning',
+              title: "Une erreur est survenu ! Veuillez ré-essayer ultérieurement.",
+              confirmButtonColor: '#2F404D',
+            })
+          }
+
+        }
+
+      );
+
+
     }
   }
 

@@ -19,6 +19,7 @@ export class PassListComponent implements OnInit {
   fakeArray = new Array(16);
   searchForm: FormGroup;
   private buttonValue: string;
+  private loading: boolean = true;
 
   private infos = [
     { label: 'Validité', componentName: 'validity', type: 'select' },
@@ -107,6 +108,7 @@ export class PassListComponent implements OnInit {
         (Allpass) => {
           this.Allpass = Allpass;
           console.log("Allpass1: "+ JSON.stringify(Allpass))
+          this.loading = false;
         },
 
         async (error) => {
