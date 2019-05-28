@@ -9,6 +9,10 @@ margin-top: 50px;
     border-right:0;
 }
 
+.btn.btn-link{
+    color:white !important;
+}
+
 .card-body{
     background-color: whitesmoke;
     color:#2F404D;

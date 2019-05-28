@@ -1,6 +1,10 @@
 .mt-custom{
     margin-top: 50px;
     }
+
+    .btn.btn-link{
+        color:white !important;
+    }
     
     .card{
         background-color: #2F404D;
