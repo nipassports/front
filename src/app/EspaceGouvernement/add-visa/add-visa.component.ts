@@ -237,7 +237,8 @@ export class AddVisaComponent implements OnInit {
       console.log("ok");
 
       let dateOfIssue = this.euroDate(this.f.dateOfIssue.value);
-      let dateOfExpiry = this.euroDate(this.f.durationOfStay.value);
+      let dateOfExpiry = this.euroDate(this.f.dateEnd.value);
+    
 
       const visaInfo = [
         this.f.type.value,
@@ -246,13 +247,13 @@ export class AddVisaComponent implements OnInit {
         this.f.name.value,
         this.f.surname.value,
         this.f.autority.value,
-        this.f.dateEnd.value,
+        dateOfExpiry,
         dateOfIssue,
         this.f.placeOfIssue.value,
         this.f.validity.value,
         this.f.validFor.value,
         this.f.entries.value,
-        dateOfExpiry,
+        this.f.durationOfStay.value,
         this.f.remarks.value
       ];
 
