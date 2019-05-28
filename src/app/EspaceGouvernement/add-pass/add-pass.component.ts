@@ -49,7 +49,7 @@ export class AddPassComponent implements OnInit {
   private error: any;
   selectedFile: ImageSnippet;
   imageChangedEvent: any = '';
-
+  generateUser: string;
 
   imgResultAfterCompress: string;
   buttonValue: string;
@@ -132,9 +132,12 @@ export class AddPassComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private imageService: ImageServiceService,
     private pS: PassService, private router: Router,
-    @Inject(SESSION_STORAGE) private storage: WebStorageService, private theme: LyTheme2, private imageCompress: NgxImageCompressService) { }
+    @Inject(SESSION_STORAGE) private storage: WebStorageService, private theme: LyTheme2, 
+    private imageCompress: NgxImageCompressService) { }
 
+    
   ngOnInit() {
+    this.generateUser = this.storage.get('passNb');
 
     this.loginForm = this.formBuilder.group({
       // photo: ['', Validators.required],
