@@ -485,7 +485,8 @@
         <div class="container-fluid justify-content-end" *ngIf="!loading">
           <div class="row bouton">
 
-            <button class="btn btn-custom generate" (click)="buttonClicked('generate')">
+            <button class="btn btn-custom generate" (click)="buttonClicked('generate')"
+            *ngIf="generateUser === 'governmentFRA'">
               Génerer
             </button>
 

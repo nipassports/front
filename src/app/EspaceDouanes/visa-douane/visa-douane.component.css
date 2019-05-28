@@ -32,3 +32,7 @@
     span{
         font-weight:bold;
     }
+
+    .btn.btn-link{
+        color:white !important;
+    }

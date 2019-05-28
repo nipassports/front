@@ -2,8 +2,8 @@
 
 .grey {
     width: 97%;
-    height: 550px;
-    overflow: auto;
+    height: 100%;
+    overflow: hidden;
     margin-top:-5px; 
     margin-left:3.5%;
     background-color: white !important;

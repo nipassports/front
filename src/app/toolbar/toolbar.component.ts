@@ -13,7 +13,7 @@ export class ToolbarComponent implements OnInit {
   constructor(@Inject(SESSION_STORAGE) private storage: WebStorageService,private viewService: ViewService) { }
   ongletNav =[
     {title:'Accueil',link:'Accueil'},
-    {title:'FAQ',link:'FAQ'},
+    // {title:'FAQ',link:'FAQ'},
     {title:'Se connecter', link:'Se_connecter'}
   ];
 

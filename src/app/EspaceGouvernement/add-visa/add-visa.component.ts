@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
-import { Subscription } from 'rxjs';
+import { Subscription, generate } from 'rxjs';
 import { PassService } from '../../Service/pass.service';
 import { first } from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -47,7 +47,11 @@ export class AddVisaComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: WebStorageService,
     private pS: PassService) { }
 
+  
+
   ngOnInit() {
+    
+    
     this.loginForm = this.formBuilder.group({
       validity: ['', Validators.required],
       visaCode: ['', Validators.required],
@@ -202,15 +206,15 @@ export class AddVisaComponent implements OnInit {
   euroDate(date: string): string {
     let splitDate = date.split('-');
 
-    if( splitDate.indexOf("/") !== -1 ){
-      return  date;
+    if (splitDate.indexOf("/") !== -1) {
+      return date;
     }
     const year = splitDate[0];
     const month = splitDate[1];
     const day = splitDate[2];
     const euDate = day + "/" + month + "/" + year;
 
-    console.log("add pass DATE: "+ euDate);
+    console.log("add pass DATE: " + euDate);
     return euDate;
   }
 

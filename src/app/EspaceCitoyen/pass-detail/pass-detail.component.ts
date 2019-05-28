@@ -105,7 +105,6 @@ export class PassDetailComponent implements OnInit {
       type: 'info',
       confirmButtonText: 'Fermer',
       confirmButtonColor: '#2F404D',
-      timer: 3000
     })
 
   }
