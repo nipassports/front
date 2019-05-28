@@ -162,6 +162,12 @@ export class AddPassComponent implements OnInit {
 
     console.log("err: " + JSON.stringify(this.f.nationality.errors) + "/" + JSON.stringify(this.f.nationality.errors.required));
 
+    this.loginForm.patchValue({
+
+      dateOfBirth: this.normalDate('29/05/1996'),
+      dateOfIssue: this.normalDate('29/05/2019'),
+      dateOfExpiry: this.normalDate('29/05/2020')
+    })
   }
 
 
